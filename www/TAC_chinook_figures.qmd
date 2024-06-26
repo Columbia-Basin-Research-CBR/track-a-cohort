@@ -1,0 +1,29 @@
+---
+title: "Track-a-Cohort: Winter-run Chinook Figures"
+date: "Last updated: `r Sys.Date()`"
+format: html
+output:
+  html_document: 
+   toc: true
+   toc_float: true
+   code_folding: true
+   cache: true 
+editor: visual
+bibliography: ../www/refs/references.bib
+---
+
+## Background
+
+Objective: Using shared resources via [BDO github](https://github.com/BDO-Science/track-a-cohort) from BOR, replicate figures and adjust to include dynamic data. See [Track a cohort_WR_plots.docx](https://github.com/BDO-Science/track-a-cohort/blob/main/Track%20a%20Cohort_WR_plots.docx) for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp
+
+```{r load_dependencies, echo=FALSE}
+source(here("R/load_dependencies.R"))
+```
+
+## Figure 1: Juvenile Production Estimate
+
+
+```{r, load_plot, echo=FALSE}
+source(here("R/winter_run_chinook_plot_annual_jpe.R"))
+```
+

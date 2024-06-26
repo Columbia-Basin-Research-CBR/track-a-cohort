@@ -1,0 +1,10 @@
+#load_dependencies.R
+# library(dplyr)
+library(gghighlight)
+library(ggplot2)
+library(ggrepel)
+library(here)
+library(patchwork)
+library(plotly)
+library(tidyverse)
+library(xts)
