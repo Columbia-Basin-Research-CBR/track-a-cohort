@@ -6,7 +6,6 @@
 #' @noRd
 #' 
 
-source("../TAC/R/load_dependencies.R")
 load(here("data/jpe_annual_data.rda"))
                  
 jpe_annual_barplot <- jpe_annual_data %>% 
