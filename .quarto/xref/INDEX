@@ -10,5 +10,11 @@
   },
   "src/TAC_chinook_figures.qmd": {
     "TAC_chinook_figures.html": "f2b1021b"
+  },
+  "www/TAC_steelhead_figures.qmd": {
+    "TAC_steelhead_figures.html": "c3d1a418"
+  },
+  "www/TAC_chinook_figures.qmd": {
+    "TAC_chinook_figures.html": "147b84eb"
   }
 }
