@@ -3,8 +3,8 @@ project:
   render: 
     - www/index.qmd
     - www/about.qmd
-    - src/TAC_steelhead_figures.qmd
-    - src/TAC_chinook_figures.qmd
+    - www/TAC_steelhead_figures.qmd
+    - www/TAC_chinook_figures.qmd
 
 website:
   title: "Track-a-Cohort"
@@ -14,9 +14,9 @@ website:
         text: Home
       - href: www/about.qmd
         text: About
-      - href: src/TAC_chinook_figures.qmd
+      - href: www/TAC_chinook_figures.qmd
         text:  Winter-run
-      - href: src/TAC_steelhead_figures.qmd
+      - href: www/TAC_steelhead_figures.qmd
         text:  Steelhead
 
 

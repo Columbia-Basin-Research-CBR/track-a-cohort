@@ -21,7 +21,7 @@ jpe_annual_barplot <- jpe_annual_data %>%
   scale_y_continuous( labels= scales::comma, expand = expansion(mult = c(0, 0.05))) +  # Set the lower limit of the y-axis to 0
   scale_fill_manual(values = c("NA" = "grey80", "Method 2 (O'Farrell et al., 2018)" = "grey30"))+
   theme_minimal() +
-  theme(
+  theme(text = element_text(size = 15),
         legend.position = "right",
         axis.text.x = element_text(angle = 90, vjust = .5, hjust = 1), 
         axis.line = element_line(colour = "grey", linewidth = .25), 
