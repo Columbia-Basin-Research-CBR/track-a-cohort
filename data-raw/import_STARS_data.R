@@ -1,13 +1,19 @@
 #'import STARS data from ShinyApp
 #'@description This script imports up to date STARS data from the ShinyApp and saves it to the data folder for use in other scripts. Code provided by Nick Beer.
 #'@return STARS_data.rda
+#'@import tidyverse (dplyr, tibble, lubridate)
+#'@import here
+#'@import xts
+#'@import usethis
 #'
+
 
 # grab.stars.R
 
 # /var/httpd/www/shiny/apps/STARS/STARS.shinyinputs.Rdata
 # heads up, this object has class: "xts" and "zoo"
 
+#load data 
 load(here::here("data-raw/STARS.shinyinputs.Rdata")) 
 
 

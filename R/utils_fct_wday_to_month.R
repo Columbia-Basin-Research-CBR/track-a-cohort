@@ -1,5 +1,10 @@
 #' Function to convert wDay to month name
-#reference for how wday was calculated
+#' @description This function converts a wDay to a month name. Used as a global function for most plots
+#' @param wDay numeric value of the water day
+#' @return month name
+
+
+#reference for how wday was calculated in original code shared by BOR
 # wDay = if_else(month(Date) >= 10, yday(Date) - 273, yday(Date) + 92)
 
 # Function to convert wDay to month name

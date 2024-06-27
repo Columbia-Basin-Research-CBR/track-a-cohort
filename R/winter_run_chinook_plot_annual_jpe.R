@@ -1,14 +1,19 @@
 #' Figure 1: Juvenile Production Estimate (JPE) Winter-run Chinook
-#' @description duplicate of annua; JPE barplot on SacPas.
-#'
-#' @return ggplot barplot of annual JPE estimate with highlighted methods used for annual estimate
-#'
+#' @description duplicate of annual JPE barplot on SacPas.Includes annual JPE estimate with highlighted methods used for each annual estimate.
+#' @details To access the data file, navigate to the `data` directory located at the
+#' project's root. The file is named `jpe_annual_data.rda` and is sourced from `data-raw >import_jpe_annual_data.R`. 
+#' @return static ggplot barplot object
+#' @import ggplot2
+#' @import scales
+#' @import dplyr
+#' @import here
 #' @noRd
-#' 
 
+#load data file
 load(here("data/jpe_annual_data.rda"))
-                 
-jpe_annual_barplot <- jpe_annual_data %>% 
+
+#bar plot of annual JPE                 
+p <- jpe_annual_data %>% 
   mutate(brood_year = as.factor(brood_year)) %>% 
   ggplot( aes(x=brood_year, y=value, fill = method))+
   geom_bar(stat = "identity")+
@@ -30,4 +35,4 @@ jpe_annual_barplot <- jpe_annual_data %>%
         panel.grid.major.x  = element_blank())
 
 
-print(jpe_annual_barplot)
+print(p)
