@@ -1,5 +1,8 @@
-#' Figure 3a: JPE percent loss - compare genetic and LAD loss estimates
-#' @description Barplot comparing percent JPE loss: genetic vs LAD loss estimates. Includes shared genetic data and LAD loss data from SacPas. Update underlying data files as needed
+#' Figure 3a: JPE loss - compare genetic and LAD loss estimates
+#' @description Barplot comparing JPE loss: genetic vs LAD loss estimates.
+#' Currently using a flat file provided by BOR that will be updated once genetic data
+#' is shared with SacPas. The LAD loss data is imported directly from SacPas.
+#' @return static barplot comparing JPE loss: genetic v LAD loss estimates
 #' @import ggplot2
 #' @import dplyr
 #' @import here
@@ -25,16 +28,16 @@ jpe_genetic_lad_data <- genetic_total_loss_data %>%
 
 #bar plot of genetic and LAD loss
 p <- jpe_genetic_lad_data %>% 
-  filter(value_type == "pct_total_loss") %>% 
+  filter(value_type == "total_loss") %>% 
   ggplot(aes(x=as.factor(WY), y= value, fill=method)) +
-  geom_bar(stat="identity", position=position_dodge())+
-  labs(title = "Genetic vs Length-At-Date (LAD) Historical Percent Loss of the JPE\n",
+  geom_bar(stat="identity", position=position_dodge(preserve = "single"))+
+  labs(title = "Genetic vs Length-At-Date (LAD) Historical Loss of the JPE",
        x = "Water Year", 
-       y = "Percent of the JPE Loss",
+       y = "Number of fish loss",
        fill = NULL) +
-  # scale_y_continuous(breaks = seq(0, 6, by = 2), limits = c(0, 6), expand = c(0, 0))+
+  scale_y_continuous(expand = c(0, 0))+
   scale_fill_manual(values = c("black", "grey"),
-                    # breaks = c("pct_gen", "pct_lad"),
+                    # breaks = c("count_gen", "count_lad"),
                     labels = c("Genetic", "LAD"))+
   theme_minimal() +
   theme(legend.position = "right", 
@@ -46,7 +49,9 @@ p <- jpe_genetic_lad_data %>%
 
 print(p)
 
+
 #Notes:
 #currently missing 2007 JPE data from SacPas
+#No 2005 genetic data
 #filter WY data to match genetic data years provided by BOR
 #plot by BY or WY?
