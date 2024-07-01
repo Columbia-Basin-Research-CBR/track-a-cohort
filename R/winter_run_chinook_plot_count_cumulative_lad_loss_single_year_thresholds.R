@@ -1,4 +1,4 @@
-#' Figure 5: Winter-run Chinook Cumulative Loss for current water year
+#' Figure 5: Winter-run Chinook Cumulative Loss for current water year -- LAD
 #' @details
 #' Single-Year Loss Thresholds (PA 4-69, 2019 BiOP)
 #' In each year, typically January/February, Reclamation and DWR propose to avoid exceeding an annual loss threshold equal to 90% of the greatest annual loss that occurred in the historical record 2010-2018 for each of:
@@ -10,8 +10,6 @@
 #' @import dplyr
 #' @import here
 
-
-#' 
 # import data file
 #loss data from sacpas
 load(here("data/jpe_lad_loss_data.rda"))
@@ -42,6 +40,13 @@ lad_cumulative_loss_data <- jpe_lad_loss_data$lad_cumulative_loss_data
 #convert back to CY date
 lad_cumulative_loss_data$date <- as.Date(mapply(wDay_to_date, lad_cumulative_loss_data$wDay, lad_cumulative_loss_data$WY))
 
+# extract maximum cumloss for the current year
+cumloss_current_year <- lad_cumulative_loss_data %>%
+  filter(WY == current_year) 
+
+# Calculate the first date minus 2 weeks to give space for labels - adjust as needed
+set_text_date <- min(cumloss_current_year$date) - weeks(2)
+
 # extract current water year JPE and set single year threshold @ 2% of JPE -- return single value
 jpe_current_year_2pct <- lad_cumulative_loss_data %>%
   filter(WY == current_year, cumloss == max(cumloss)) %>%
@@ -59,16 +64,8 @@ max_loss_threshold_2010_to_2018 <- lad_cumulative_loss_data %>%
   summarise(max_loss = max(cumloss)) %>%
   pull(max_loss)
 
-
-# set current year
-current_year<-year(today())
-
-# extract maximum cumloss for the current year
-cumloss_current_year <- lad_cumulative_loss_data %>%
-  filter(WY == current_year) 
-
-#
-cumloss_current_year %>% 
+# plot
+p <- cumloss_current_year %>% 
   ggplot(aes(x= date, y = cumloss)) +
   geom_point() +
   geom_line() +
@@ -85,12 +82,12 @@ cumloss_current_year %>%
                    aes(x = date, y = cumloss, label = paste0("Cumulative loss: ", max(cumloss),"\n% of Single Year Threshold: ", round((cumloss/jpe_current_year_2pct)*100, 2), "%")),
                    size = 3, 
                    nudge_x = 1, # Adjust nudge_x and nudge_y as needed to position the label
-                   nudge_y = 200, 
+                   nudge_y = 400, 
                    hjust = 0,
                    color = "black") +
   scale_x_date(date_labels = "%m/%d", date_breaks = "1 month") +
   scale_y_continuous(expand = c(0,NA), limits = c(0,5000)) +
-  labs(title = "Winter-run Chinook Cumulative Loss for Current Water Year with Single Year Thresholds",
+  labs(title = "Cumulative LAD Loss for Current Water Year with Single Year Thresholds",
        subtitle = paste0("Cumulative loss to date: ", max(cumloss_current_year$cumloss),
                          "\nProgress toward 2% Single Year Threshold: ", round((max(cumloss_current_year$cumloss)/jpe_current_year_2pct)*100, 2), "%"),
        x = "Date",
@@ -99,8 +96,10 @@ cumloss_current_year %>%
   theme(
         panel.grid.minor = element_blank(),
         panel.background = element_rect(color = "black", fill = "transparent"),
-        plot.background = element_rect(fill = "white"),
+        plot.background = element_rect(color = "black", fill = "white"),
         legend.position = "bottom")
+
+print(p)
 
 #Notes
 #automatically generate dots for days with no cumloss reported up to today's date?

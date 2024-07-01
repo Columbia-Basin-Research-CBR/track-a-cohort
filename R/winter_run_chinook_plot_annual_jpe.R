@@ -25,7 +25,7 @@ p <- jpe_annual_data %>%
        fill = "JPE Method")+
   scale_y_continuous( labels= scales::comma, expand = expansion(mult = c(0, 0.05))) +  # Set the lower limit of the y-axis to 0
   scale_fill_manual(values = c("NA" = "grey80", "Method 2 (O'Farrell et al., 2018)" = "grey30"),
-                    labels = c("NA", "Method 2\n(O'Farrell et al., 2008)"))+
+                    labels = c("NA" = "grey80", "Method 2\n(O'Farrell et al., 2008)" = "grey30"))+
   theme_minimal() +
   theme(text = element_text(size = 15),
         legend.position = "right",

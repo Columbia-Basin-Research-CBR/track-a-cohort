@@ -1,0 +1,100 @@
+[
+  {
+    "objectID": "www/TAC_chinook_figures.html",
+    "href": "www/TAC_chinook_figures.html",
+    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "section": "",
+    "text": "Objective: Using shared resources via BDO github from BOR, replicate figures and adjust to include dynamic data. See Track a cohort_WR_plots.docx for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp"
+  },
+  {
+    "objectID": "www/TAC_chinook_figures.html#background",
+    "href": "www/TAC_chinook_figures.html#background",
+    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "section": "",
+    "text": "Objective: Using shared resources via BDO github from BOR, replicate figures and adjust to include dynamic data. See Track a cohort_WR_plots.docx for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp"
+  },
+  {
+    "objectID": "www/TAC_chinook_figures.html#figure-1.-juvenile-production-estimate",
+    "href": "www/TAC_chinook_figures.html#figure-1.-juvenile-production-estimate",
+    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "section": "Figure 1. Juvenile Production Estimate",
+    "text": "Figure 1. Juvenile Production Estimate"
+  },
+  {
+    "objectID": "www/TAC_chinook_figures.html#figure-2.-survival-and-routing-probabilites-for-winter-run-chinook",
+    "href": "www/TAC_chinook_figures.html#figure-2.-survival-and-routing-probabilites-for-winter-run-chinook",
+    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "section": "Figure 2. Survival and Routing Probabilites for Winter-run Chinook",
+    "text": "Figure 2. Survival and Routing Probabilites for Winter-run Chinook"
+  },
+  {
+    "objectID": "www/TAC_chinook_figures.html#figure-3.-juvenile-production-estimate-jpe-percent-loss",
+    "href": "www/TAC_chinook_figures.html#figure-3.-juvenile-production-estimate-jpe-percent-loss",
+    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "section": "Figure 3. Juvenile Production Estimate (JPE) – Percent Loss",
+    "text": "Figure 3. Juvenile Production Estimate (JPE) – Percent Loss\n\nFigure 3a. Genetic vs Length-At-Date (LAD) Historical Percent Loss of the JPE\n\n\n\n\n\n\n\n\n\n\n\nFigure 3b. Cumulative Genetic Percent Loss of the JPE"
+  },
+  {
+    "objectID": "www/TAC_chinook_figures.html#figure-4.-juvenile-production-estimate-jpe-number-loss",
+    "href": "www/TAC_chinook_figures.html#figure-4.-juvenile-production-estimate-jpe-number-loss",
+    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "section": "Figure 4. Juvenile Production Estimate (JPE) – Number Loss",
+    "text": "Figure 4. Juvenile Production Estimate (JPE) – Number Loss\n\nFigure 4a. Genetic vs Length-At-Date (LAD) Historical Loss of the JPE\n\n\n\n\n\n\n\n\n\n\n\nFigure 4b. Cumulative Length-At-Date (LAD) loss of the JPE"
+  },
+  {
+    "objectID": "www/TAC_chinook_figures.html#figure-5.-single-year-thresholds",
+    "href": "www/TAC_chinook_figures.html#figure-5.-single-year-thresholds",
+    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "section": "Figure 5. Single Year Thresholds",
+    "text": "Figure 5. Single Year Thresholds\n\nFigure 5a. Cumulative Genetic Loss for Current Water Year\n\n\n\n\n\n\n\n\n\n\n\nFigure 5b. Cumulative LAD Loss for Current Water Year"
+  },
+  {
+    "objectID": "www/TAC_chinook_figures.html#figure-6.-hatchery-percent-confirmed-loss",
+    "href": "www/TAC_chinook_figures.html#figure-6.-hatchery-percent-confirmed-loss",
+    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "section": "Figure 6. Hatchery Percent Confirmed Loss",
+    "text": "Figure 6. Hatchery Percent Confirmed Loss"
+  },
+  {
+    "objectID": "www/TAC_chinook_figures.html#figure-7.-tillotson-predicted-loss-with-omr-scenarios",
+    "href": "www/TAC_chinook_figures.html#figure-7.-tillotson-predicted-loss-with-omr-scenarios",
+    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "section": "Figure 7. Tillotson predicted loss with OMR scenarios",
+    "text": "Figure 7. Tillotson predicted loss with OMR scenarios\n-pending"
+  },
+  {
+    "objectID": "www/about.html",
+    "href": "www/about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site - pending"
+  },
+  {
+    "objectID": "www/index.html",
+    "href": "www/index.html",
+    "title": "In development webpage highlighting conversion of Access/Excel to R",
+    "section": "",
+    "text": "pending updates"
+  },
+  {
+    "objectID": "www/TAC_steelhead_figures.html",
+    "href": "www/TAC_steelhead_figures.html",
+    "title": "Track-a-Cohort: Steelhead Figures",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "www/TAC_steelhead_figures.html#quarto",
+    "href": "www/TAC_steelhead_figures.html#quarto",
+    "title": "Track-a-Cohort: Steelhead Figures",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "www/TAC_steelhead_figures.html#running-code",
+    "href": "www/TAC_steelhead_figures.html#running-code",
+    "title": "Track-a-Cohort: Steelhead Figures",
+    "section": "Running Code",
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  }
+]

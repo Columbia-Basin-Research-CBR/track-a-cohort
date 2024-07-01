@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2024-07-01">
 
-<title>Track-a-Cohort - Track-a-Cohort: Steelhead Figures</title>
+<title>Track-a-Cohort - Track-a-Cohort: Winter-run Chinook Figures</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -132,11 +98,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../www/TAC_chinook_figures.html"> 
+    <a class="nav-link active" href="../www/TAC_chinook_figures.html" aria-current="page"> 
 <span class="menu-text">Winter-run</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../www/TAC_steelhead_figures.html" aria-current="page"> 
+    <a class="nav-link" href="../www/TAC_steelhead_figures.html"> 
 <span class="menu-text">Steelhead</span></a>
   </li>  
 </ul>
@@ -155,8 +121,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link active" data-scroll-target="#quarto">Quarto</a></li>
-  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code">Running Code</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  <li><a href="#figure-1.-juvenile-production-estimate" id="toc-figure-1.-juvenile-production-estimate" class="nav-link" data-scroll-target="#figure-1.-juvenile-production-estimate">Figure 1. Juvenile Production Estimate</a></li>
+  <li><a href="#figure-2.-survival-and-routing-probabilites-for-winter-run-chinook" id="toc-figure-2.-survival-and-routing-probabilites-for-winter-run-chinook" class="nav-link" data-scroll-target="#figure-2.-survival-and-routing-probabilites-for-winter-run-chinook">Figure 2. Survival and Routing Probabilites for Winter-run Chinook</a></li>
+  <li><a href="#figure-3.-juvenile-production-estimate-jpe-percent-loss" id="toc-figure-3.-juvenile-production-estimate-jpe-percent-loss" class="nav-link" data-scroll-target="#figure-3.-juvenile-production-estimate-jpe-percent-loss">Figure 3. Juvenile Production Estimate (JPE) – Percent Loss</a>
+  <ul class="collapse">
+  <li><a href="#figure-3a.-genetic-vs-length-at-date-lad-historical-percent-loss-of-the-jpe" id="toc-figure-3a.-genetic-vs-length-at-date-lad-historical-percent-loss-of-the-jpe" class="nav-link" data-scroll-target="#figure-3a.-genetic-vs-length-at-date-lad-historical-percent-loss-of-the-jpe">Figure 3a. Genetic vs Length-At-Date (LAD) Historical Percent Loss of the JPE</a></li>
+  <li><a href="#figure-3b.-cumulative-genetic-percent-loss-of-the-jpe" id="toc-figure-3b.-cumulative-genetic-percent-loss-of-the-jpe" class="nav-link" data-scroll-target="#figure-3b.-cumulative-genetic-percent-loss-of-the-jpe">Figure 3b. Cumulative Genetic Percent Loss of the JPE</a></li>
+  </ul></li>
+  <li><a href="#figure-4.-juvenile-production-estimate-jpe-number-loss" id="toc-figure-4.-juvenile-production-estimate-jpe-number-loss" class="nav-link" data-scroll-target="#figure-4.-juvenile-production-estimate-jpe-number-loss">Figure 4. Juvenile Production Estimate (JPE) – Number Loss</a>
+  <ul class="collapse">
+  <li><a href="#figure-4a.-genetic-vs-length-at-date-lad-historical-loss-of-the-jpe" id="toc-figure-4a.-genetic-vs-length-at-date-lad-historical-loss-of-the-jpe" class="nav-link" data-scroll-target="#figure-4a.-genetic-vs-length-at-date-lad-historical-loss-of-the-jpe">Figure 4a. Genetic vs Length-At-Date (LAD) Historical Loss of the JPE</a></li>
+  <li><a href="#figure-4b.-cumulative-length-at-date-lad-loss-of-the-jpe" id="toc-figure-4b.-cumulative-length-at-date-lad-loss-of-the-jpe" class="nav-link" data-scroll-target="#figure-4b.-cumulative-length-at-date-lad-loss-of-the-jpe">Figure 4b. Cumulative Length-At-Date (LAD) loss of the JPE</a></li>
+  </ul></li>
+  <li><a href="#figure-5.-single-year-thresholds" id="toc-figure-5.-single-year-thresholds" class="nav-link" data-scroll-target="#figure-5.-single-year-thresholds">Figure 5. Single Year Thresholds</a>
+  <ul class="collapse">
+  <li><a href="#figure-5a.-cumulative-genetic-loss-for-current-water-year" id="toc-figure-5a.-cumulative-genetic-loss-for-current-water-year" class="nav-link" data-scroll-target="#figure-5a.-cumulative-genetic-loss-for-current-water-year">Figure 5a. Cumulative Genetic Loss for Current Water Year</a></li>
+  <li><a href="#figure-5b.-cumulative-lad-loss-for-current-water-year" id="toc-figure-5b.-cumulative-lad-loss-for-current-water-year" class="nav-link" data-scroll-target="#figure-5b.-cumulative-lad-loss-for-current-water-year">Figure 5b. Cumulative LAD Loss for Current Water Year</a></li>
+  </ul></li>
+  <li><a href="#figure-6.-hatchery-percent-confirmed-loss" id="toc-figure-6.-hatchery-percent-confirmed-loss" class="nav-link" data-scroll-target="#figure-6.-hatchery-percent-confirmed-loss">Figure 6. Hatchery Percent Confirmed Loss</a></li>
+  <li><a href="#figure-7.-tillotson-predicted-loss-with-omr-scenarios" id="toc-figure-7.-tillotson-predicted-loss-with-omr-scenarios" class="nav-link" data-scroll-target="#figure-7.-tillotson-predicted-loss-with-omr-scenarios">Figure 7. Tillotson predicted loss with OMR scenarios</a></li>
   </ul>
 </nav>
     </div>
@@ -165,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Track-a-Cohort: Steelhead Figures</h1>
+<h1 class="title">Track-a-Cohort: Winter-run Chinook Figures</h1>
 </div>
 
 
@@ -188,26 +172,139 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>Objective: Using shared resources via <a href="https://github.com/BDO-Science/track-a-cohort">BDO github</a> from BOR, replicate figures and adjust to include dynamic data. See <a href="https://github.com/BDO-Science/track-a-cohort/blob/main/Track%20a%20Cohort_WR_plots.docx">Track a cohort_WR_plots.docx</a> for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp</p>
 </section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
+<section id="figure-1.-juvenile-production-estimate" class="level2">
+<h2 class="anchored" data-anchor-id="figure-1.-juvenile-production-estimate">Figure 1. Juvenile Production Estimate</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_chinook_figures_files/figure-html/load_plot_01-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
 </div>
 </div>
-<p>You can add options to executable code like this</p>
+</div>
+</section>
+<section id="figure-2.-survival-and-routing-probabilites-for-winter-run-chinook" class="level2">
+<h2 class="anchored" data-anchor-id="figure-2.-survival-and-routing-probabilites-for-winter-run-chinook">Figure 2. Survival and Routing Probabilites for Winter-run Chinook</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_chinook_figures_files/figure-html/load_plot_02-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
 </div>
 </div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_chinook_figures_files/figure-html/load_plot_02_alt-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="figure-3.-juvenile-production-estimate-jpe-percent-loss" class="level2">
+<h2 class="anchored" data-anchor-id="figure-3.-juvenile-production-estimate-jpe-percent-loss">Figure 3. Juvenile Production Estimate (JPE) – Percent Loss</h2>
+<section id="figure-3a.-genetic-vs-length-at-date-lad-historical-percent-loss-of-the-jpe" class="level3">
+<h3 class="anchored" data-anchor-id="figure-3a.-genetic-vs-length-at-date-lad-historical-percent-loss-of-the-jpe">Figure 3a. Genetic vs Length-At-Date (LAD) Historical Percent Loss of the JPE</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_chinook_figures_files/figure-html/load_plot_03a-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="figure-3b.-cumulative-genetic-percent-loss-of-the-jpe" class="level3">
+<h3 class="anchored" data-anchor-id="figure-3b.-cumulative-genetic-percent-loss-of-the-jpe">Figure 3b. Cumulative Genetic Percent Loss of the JPE</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_chinook_figures_files/figure-html/load_plot_03b-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="figure-4.-juvenile-production-estimate-jpe-number-loss" class="level2">
+<h2 class="anchored" data-anchor-id="figure-4.-juvenile-production-estimate-jpe-number-loss">Figure 4. Juvenile Production Estimate (JPE) – Number Loss</h2>
+<section id="figure-4a.-genetic-vs-length-at-date-lad-historical-loss-of-the-jpe" class="level3">
+<h3 class="anchored" data-anchor-id="figure-4a.-genetic-vs-length-at-date-lad-historical-loss-of-the-jpe">Figure 4a. Genetic vs Length-At-Date (LAD) Historical Loss of the JPE</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_chinook_figures_files/figure-html/load_plot4a-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="figure-4b.-cumulative-length-at-date-lad-loss-of-the-jpe" class="level3">
+<h3 class="anchored" data-anchor-id="figure-4b.-cumulative-length-at-date-lad-loss-of-the-jpe">Figure 4b. Cumulative Length-At-Date (LAD) loss of the JPE</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_chinook_figures_files/figure-html/load_plot4b-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="figure-5.-single-year-thresholds" class="level2">
+<h2 class="anchored" data-anchor-id="figure-5.-single-year-thresholds">Figure 5. Single Year Thresholds</h2>
+<section id="figure-5a.-cumulative-genetic-loss-for-current-water-year" class="level3">
+<h3 class="anchored" data-anchor-id="figure-5a.-cumulative-genetic-loss-for-current-water-year">Figure 5a. Cumulative Genetic Loss for Current Water Year</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_chinook_figures_files/figure-html/load_plot5a-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="figure-5b.-cumulative-lad-loss-for-current-water-year" class="level3">
+<h3 class="anchored" data-anchor-id="figure-5b.-cumulative-lad-loss-for-current-water-year">Figure 5b. Cumulative LAD Loss for Current Water Year</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_chinook_figures_files/figure-html/load_plot5b-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="figure-6.-hatchery-percent-confirmed-loss" class="level2">
+<h2 class="anchored" data-anchor-id="figure-6.-hatchery-percent-confirmed-loss">Figure 6. Hatchery Percent Confirmed Loss</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_chinook_figures_files/figure-html/load_plot6-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="figure-7.-tillotson-predicted-loss-with-omr-scenarios" class="level2">
+<h2 class="anchored" data-anchor-id="figure-7.-tillotson-predicted-loss-with-omr-scenarios">Figure 7. Tillotson predicted loss with OMR scenarios</h2>
+<p>-pending</p>
 
 
 </section>

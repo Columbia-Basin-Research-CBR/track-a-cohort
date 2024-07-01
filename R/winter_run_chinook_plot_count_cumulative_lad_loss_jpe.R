@@ -1,4 +1,4 @@
-#' Figure 4b: Winter-run Chinook JPE Cumulative LAD Loss
+#' @title Figure 4b: Winter-run Chinook JPE Cumulative LAD Loss
 #' @description This script includes the wrangling and plotting of the cumulative LAD loss data for winter-run chinook salmon. 
 #' It compares the cumulative LAD loss of the JPE for the current water year compared to historical years, 
 #' along with separating the plots by hydrological classification index and pre/post 2009 BiOp. The blue = wet, red = dry, black = current water year, and grey is past years. 

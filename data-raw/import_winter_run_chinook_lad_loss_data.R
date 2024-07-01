@@ -1,4 +1,4 @@
-#' import LAD loss data for winter-run chinook
+#' @title import LAD loss data for winter-run chinook
 #' @description This script includes wrangling of lad data imported directly from SacPas. 
 #' The lad loss data is joined with the JPE annual data to calculate cumulative loss and percent loss of the JPE. 
 #' Needs confirmation of numbers/link from SI/MC since numbers differ from BOR shared flat file.

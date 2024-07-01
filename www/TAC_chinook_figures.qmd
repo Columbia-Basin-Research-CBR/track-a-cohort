@@ -12,6 +12,11 @@ editor: visual
 bibliography: ../www/refs/references.bib
 ---
 
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo = FALSE, warning = FALSE, error = FALSE, message = FALSE)
+```
+
 ## Background
 
 Objective: Using shared resources via [BDO github](https://github.com/BDO-Science/track-a-cohort) from BOR, replicate figures and adjust to include dynamic data. See [Track a cohort_WR_plots.docx](https://github.com/BDO-Science/track-a-cohort/blob/main/Track%20a%20Cohort_WR_plots.docx) for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp
@@ -26,27 +31,32 @@ current_year<-year(today())
 
 ## Figure 1. Juvenile Production Estimate
 
-```{r, load_plot_01, fig.width=10, fig.height=6, echo=FALSE}
+```{r, load_plot_01, fig.width=10, fig.height=6}
 source(here("R/winter_run_chinook_plot_annual_jpe.R"))
 ```
 
 ## Figure 2. Survival and Routing Probabilites for Winter-run Chinook
 
-```{r, load_plot_02, fig.width=12, fig.height=12, echo=FALSE}
+```{r, load_plot_02, fig.width=12, fig.height=12 }
 source(here("R/winter_run_chinook_plot_STARS.R"))
 ```
+
+```{r,  load_plot_02_alt, fig.width=12, fig.height=12}
+source(here("R/winter_run_chinook_plot_STARS_withoutfacetedyears.R"))
+```
+
 
 ## Figure 3. Juvenile Production Estimate (JPE) – Percent Loss
 
 ### Figure 3a. Genetic vs Length-At-Date (LAD) Historical Percent Loss of the JPE
 
-```{r load_plot_03a, fig.width=10, fig.height=6, echo=FALSE}
+```{r load_plot_03a, fig.width=10, fig.height=6}
 source(here("R/winter_run_chinook_plot_pct_genetic_lad_loss_jpe.R"))
 ```
 
 ### Figure 3b. Cumulative Genetic Percent Loss of the JPE
 
-```{r, load_plot_03b, fig.width=10, fig.height=6, echo=FALSE, warning = FALSE}
+```{r, load_plot_03b, fig.width=10, fig.height=6}
 source(here("R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R"))
 ```
 
@@ -54,13 +64,13 @@ source(here("R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R"))
 
 ### Figure 4a. Genetic vs Length-At-Date (LAD) Historical Loss of the JPE
 
-```{r, load_plot4a, fig.width=10, fig.height=6, echo=FALSE}
+```{r, load_plot4a, fig.width=10, fig.height=6}
 source(here("R/winter_run_chinook_plot_count_genetic_lad_loss_jpe.R"))
 ```
 
 ### Figure 4b.  Cumulative Length-At-Date (LAD) loss of the JPE
 
-```{r, load_plot4b, fig.width=10, fig.height=6, echo=FALSE}
+```{r, load_plot4b, fig.width=10, fig.height=6}
 source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R"))
 ```
 
@@ -68,12 +78,22 @@ source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R"))
 
 ### Figure 5a. Cumulative Genetic Loss for Current Water Year 
 
-```{r, load_plot5a, echo=FALSE}
+```{r, load_plot5a, fig.width=10, fig.height=6}
 source(here("R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R"))
 ```
 
 ### Figure 5b. Cumulative LAD Loss for Current Water Year 
 
-```{r, load_plot5b, echo=FALSE}
-source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thesholds.R"))
+```{r, load_plot5b, fig.width=10, fig.height=6}
+source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R"))
 ```
+
+## Figure 6. Hatchery Percent Confirmed Loss
+
+```{r load_plot6, fig.width=10, fig.height=12}
+source(here("R/winter_run_chinook_hatchery_plot_pct_loss.R"))
+```
+
+## Figure 7. Tillotson predicted loss with OMR scenarios
+
+-pending
