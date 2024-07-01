@@ -1,4 +1,4 @@
-#' Figure 5: Winter-run Chinook Cumulative Loss for current water year
+#' @title Figure 5: Winter-run Chinook Cumulative Loss for current water year -- Genetic
 #' @details
 #' Single-Year Loss Thresholds (PA 4-69, 2019 BiOP)
 #' In each year, typically January/February, Reclamation and DWR propose to avoid exceeding an annual loss threshold equal to 90% of the greatest annual loss that occurred in the historical record 2010-2018 for each of:
@@ -34,8 +34,7 @@ wDay_to_date <- function(wDay, WY) {
   return(start_date + days(wDay - 1))
 }
 
-# Calculate the first date minus 2 weeks to give space for labels - adjust as needed
-set_text_date <- min(cumloss_current_year$date) - weeks(2)
+
 
 # wrangle base data for plot
 
@@ -44,6 +43,13 @@ genetic_cumulative_loss_data <- jpe_genetic_loss_data$genetic_cumulative_loss_da
 
 #convert back to CY date
 genetic_cumulative_loss_data$date <- as.Date(mapply(wDay_to_date, genetic_cumulative_loss_data$wDay, genetic_cumulative_loss_data$WY))
+
+# extract maximum cumloss for the current year
+cumloss_current_year <- genetic_cumulative_loss_data %>%
+  filter(WY == current_year) 
+
+# Calculate the first date minus 2 weeks to give space for labels - adjust as needed
+set_text_date <- min(cumloss_current_year$date) - weeks(2)
 
 # extract current water year JPE and set single year threshold @ 2% of JPE -- return single value
 jpe_current_year_2pct <- genetic_cumulative_loss_data %>%
@@ -63,15 +69,8 @@ max_loss_threshold_2010_to_2018 <- genetic_cumulative_loss_data %>%
   pull(max_loss)
 
 
-# set current year
-current_year<-year(today())
-
-# extract maximum cumloss for the current year
-cumloss_current_year <- genetic_cumulative_loss_data %>%
-  filter(WY == current_year) 
-
 # plot
-cumloss_current_year %>% 
+p <- cumloss_current_year %>% 
   ggplot(aes(x= date, y = cumloss)) +
   geom_point() +
   geom_line() +
@@ -88,7 +87,7 @@ cumloss_current_year %>%
                    aes(x = date, y = cumloss, label = paste0("Cumulative loss: ", max(cumloss),"\n% of Single Year Threshold: ", round((cumloss/jpe_current_year_2pct)*100, 2), "%")),
                    size = 3, 
                    nudge_x = 1, # Adjust nudge_x and nudge_y as needed to position the label
-                   nudge_y = 200, 
+                   nudge_y = 400, 
                    hjust = 0,
                    color = "black") +
   scale_x_date(date_labels = "%m/%d", date_breaks = "1 month") +
@@ -102,8 +101,11 @@ cumloss_current_year %>%
   theme(
         panel.grid.minor = element_blank(),
         panel.background = element_rect(color = "black", fill = "transparent"),
-        plot.background = element_rect(fill = "white"),
+        plot.background = element_rect(color = "black", fill = "white"),
         legend.position = "bottom")
+
+
+print(p)
 
 #Notes
 #automatically generate dots for days with no cumloss reported up to today's date?
