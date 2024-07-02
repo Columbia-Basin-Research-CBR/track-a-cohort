@@ -12,7 +12,7 @@
 # load data
 load(here("data/steelhead_loss_data.rda"))
 # load wDay to month function
-load(here("R/utils_fct_wday_to_month.R"))
+source(here("R/utils_fct_wday_to_month.R"))
 
 
 #wrangle data
