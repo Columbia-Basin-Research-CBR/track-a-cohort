@@ -20,7 +20,8 @@ p <- steelhead_loss_export_data %>%
   scale_x_date(date_breaks = "1 month", date_labels = "%m-%d-%Y") +
   theme_minimal() + 
   theme(text = element_text(size = 15),
-        axis.text.x = element_text(angle = 90, hjust = 1))
+        axis.text.x = element_text(angle = 90, vjust = .5),
+        panel.grid.minor.y = element_blank())
 
 print(p)
 
