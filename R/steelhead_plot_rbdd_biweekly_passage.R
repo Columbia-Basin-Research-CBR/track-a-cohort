@@ -2,6 +2,9 @@
 #' @description This figure shows the daily and biweekly passage estimates for steelhead at Red Bluff Diversion Dam.
 #' @import ggplot2
 #' @import dplyr
+#' @import here
+#' @import lubridate
+#' @importFrom magrittr %>%
 
 # load data file
 load(here("data/rbdd_biweekly_passage_data.rda"))

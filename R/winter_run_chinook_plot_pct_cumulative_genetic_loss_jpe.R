@@ -9,6 +9,8 @@
 #' @import scales
 #' @import gghighlight
 #' @import ggrepel
+#' @import lubridate
+#' @importFrom magrittr %>%
 #' @noRd
 
 # import data file

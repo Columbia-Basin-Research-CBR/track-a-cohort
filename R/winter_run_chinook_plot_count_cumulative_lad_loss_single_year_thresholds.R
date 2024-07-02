@@ -9,6 +9,8 @@
 #' @import ggplot2
 #' @import dplyr
 #' @import here
+#' @import lubridate
+#' @importFrom magrittr %>%
 
 # import data file
 #loss data from sacpas

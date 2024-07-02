@@ -1,9 +1,11 @@
 #' @title Minimization of Cumulative Loss of Hatchery Steelhead
 #' @description This table summarizes cumulative loss of hatchery steelhead releases and loss.
 #' @import dplyr
+#' @import here
 #' @import knitr
 #' @import kableExtra
 #' @import scales
+#' @importFrom magrittr %>%
 #' 
 
 

@@ -1,10 +1,13 @@
 #'import STARS data from ShinyApp
 #'@description This script imports up to date STARS data from the ShinyApp and saves it to the data folder for use in other scripts. Code provided by Nick Beer.
 #'@return STARS_data.rda
-#'@import tidyverse (dplyr, tibble, lubridate)
+#'@import dplyr
+#'@import lubridate
+#'@import tibble
 #'@import here
-#'@import xts
+#'@importFrom xts index
 #'@import usethis
+#'@importFrom magrittr %>%
 #'
 
 
@@ -18,7 +21,7 @@ load(here::here("data-raw/STARS.shinyinputs.Rdata"))
 
 
 # Subset the data and convert to tibble
-df_stars_raw <- as_tibble(WR_xts[,c("Survival Interior Delta Est", 
+df_stars_raw <- tibble::as_tibble(WR_xts[,c("Survival Interior Delta Est", 
                                     "Survival Interior Delta LCL 80", 
                                     "Survival Interior Delta UCL 80",
                                     "Routing Probability Interior Delta Est",    
@@ -28,7 +31,7 @@ df_stars_raw <- as_tibble(WR_xts[,c("Survival Interior Delta Est",
                                     "Survival Overall LCL 80",
                                     "Survival Overall UCL 80")]) %>%
   # Add the first date as a new column
-  mutate(date = index(WR_xts)) %>%
+  mutate(date = xts::index(WR_xts)) %>%
   # Make date the first column
   select(date, everything()) %>%
   rename( surv =  "Survival Overall Est", survL80 =  "Survival Overall LCL 80", survU80 =  "Survival Overall UCL 80", 

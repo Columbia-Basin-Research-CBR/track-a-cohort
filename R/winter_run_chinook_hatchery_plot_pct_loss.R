@@ -1,9 +1,11 @@
 #' @title Winter- run Chinook Hatchery Percent Confirmed Loss
 #' @import ggplot2
+#' @import lubridate
 #' @import dplyr
 #' @import scales
 #' @import here
 #' @import patchwork
+#' @importFrom magrittr %>%
 #' 
 
 # import data file

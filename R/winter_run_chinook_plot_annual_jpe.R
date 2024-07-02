@@ -7,6 +7,7 @@
 #' @import scales
 #' @import dplyr
 #' @import here
+#' @importFrom magrittr %>%
 #' @noRd
 
 #load data file

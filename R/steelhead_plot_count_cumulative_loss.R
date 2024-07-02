@@ -8,6 +8,7 @@
 #' @import ggrepel
 #' @import ggh4x
 #' @import here
+#' @importFrom magrittr %>% 
 
 # load data
 load(here("data/steelhead_loss_data.rda"))
@@ -18,7 +19,7 @@ source(here("R/utils_fct_wday_to_month.R"))
 #wrangle data
 
 #set current year
-current_year <- year(today())
+current_year <- lubridate::year(today())
 
 #extract max cumloss of 2024 to adjust color 
 max2024LAD <- steelhead_loss_data %>% 
@@ -48,7 +49,7 @@ p<- steelhead_loss_data %>%
   geom_line( data = . %>% filter(WY != current_year ), aes(x = wday, y = cum_loss, group = WY, color =  hydro_type_grp)) +
   geom_hline(yintercept = max2024LAD, linetype = "dashed", color = "black") +
   geom_text(aes(x = 330, y = max2024LAD), label = "WY2024 cumulative loss", size = 2.5, vjust = -0.5, fontface = "plain" ) +
-  gghighlight() +
+  gghighlight::gghighlight() +
   ggrepel::geom_text_repel(data = subset(max_cumloss_per_year, cum_loss >= max2024LAD ), #& WY !=2001
                            aes(x = wday, y = cum_loss, label = WY), 
                            size = 3, direction = "y",vjust = 1,  nudge_y = 1, min.segment.length = 0, force = 15) +
@@ -71,6 +72,6 @@ p<- steelhead_loss_data %>%
     panel.border = element_rect(color = "grey", fill = NA),
     panel.spacing = unit(.5, "cm"),
     axis.ticks.x = element_line(color = "black"), 
-    text = element_text(size = 15, family = "Arial"))
+    text = element_text(size = 15))
 
 print(p)

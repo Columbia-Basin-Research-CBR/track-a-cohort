@@ -11,9 +11,8 @@
 #' @import gghighlight
 #' @import ggrepel
 #' @import ggh4x
-#' @import tidyr
-#' @import readr
 #' @import lubridate
+#' @importFrom magrittr %>%
 #' @noRd
 
 # import data file
@@ -106,7 +105,7 @@ source(here("R/utils_fct_wday_to_month.R"))
       panel.border = element_rect(color = "grey", fill = NA),
       panel.spacing = unit(1, "cm"),
       axis.ticks.x = element_line(color = "black"), 
-      text = element_text(size = 15, family = "Arial"))
+      text = element_text(size = 15))
 
 
 print(p)

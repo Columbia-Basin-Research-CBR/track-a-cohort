@@ -4,6 +4,8 @@
 #' @import scales
 #' @import dplyr
 #' @import here
+#' @import lubridate
+#' @importFrom magrittr %>%
 #' 
 
 # load data

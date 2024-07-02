@@ -16,10 +16,19 @@ Imports:
     gghighlight,
     ggplot2,
     ggrepel,
+    ggridges,
     here,
+    janitor,
+    kableExtra,
+    knitr,
+    lubridate,
+    magrittr,
     patchwork,
-    plotly,
+    readr,
     scales,
+    stringr,
+    tibble,
+    usethis,
     xts
 Depends: 
     R (>= 2.10)

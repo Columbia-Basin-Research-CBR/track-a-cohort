@@ -1,6 +1,9 @@
 #' @title Import Steelhead Bi-Weekly Passage data from SacPas generated URL
-#' @import tidyverse (dplyr, readr, lubridate)
+#' @import dplyr
+#' @import lubridate
+#' @import janitor
 #' @import usethis
+#' @importFrom magrittr %>%
 
 
 # load data via URL
@@ -15,7 +18,7 @@ rbdd_biweekly_raw <-read.csv(url)
 
 # clean data
 rbdd_biweekly <- rbdd_biweekly_raw %>% 
-  clean_names() %>% 
+  janitor::clean_names() %>% 
   rename( biweek_total = biweek_total_2_3) %>% 
   mutate(date = as.Date(date_yyyy_mm_dd, format = "%Y-%m-%d")) %>% 
   filter(!is.na(date))

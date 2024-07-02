@@ -7,6 +7,9 @@
 #' @import dplyr
 #' @import here
 #' @import gghighlight
+#' @import lubridate
+#' @import patchwork
+#' @importFrom magrittr %>%
 #' @seealso \code{\link{wDay_to_month}} for converting water day to month
 #' @noRd
 #' 

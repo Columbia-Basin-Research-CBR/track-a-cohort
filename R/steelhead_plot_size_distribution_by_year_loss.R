@@ -4,10 +4,12 @@
 #' @import scales
 #' @import dplyr
 #' @import here
+#' @import ggridges
+#' @importFrom magrittr %>%
 #' 
 
 # load data
-load(here("data/steelhead_loss_data.rda"))
+load(here::here("data/steelhead_loss_data.rda"))
 
 
 #plot
@@ -15,7 +17,7 @@ p <- steelhead_loss_data %>%
   filter(length < 750) %>%  #set limit for length -- why 750 seems big?
   # filter(WY > 2004) %>% #why filtering WY after 2004?
   ggplot(aes(x = length, y = factor(WY))) +
-  geom_density_ridges( aes(fill = adipose_clip, color = adipose_clip), scale = 1.5, draw_baseline = FALSE) +
+  ggridges::geom_density_ridges( aes(fill = adipose_clip, color = adipose_clip), scale = 1.5, draw_baseline = FALSE) +
   labs(x = 'Fork Length (mm)', 
        y = 'Water Year', 
        subtitle = "Historical Steelhead size distribution by rear type", 

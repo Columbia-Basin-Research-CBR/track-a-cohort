@@ -4,10 +4,11 @@
 #' @import scales
 #' @import dplyr
 #' @import here
+#' @importFrom magrittr %>%
 #' 
 
 # load data
-load(here("data/steelhead_loss_data.rda"))
+load(here::here("data/steelhead_loss_data.rda"))
 
 p <- steelhead_loss_data %>% 
   ggplot( aes(x = as.factor(WY), y = total_loss, fill = adipose_clip)) + 
