@@ -12,8 +12,6 @@
 #' @import lubridate
 #' @importFrom magrittr %>%
 
-
-#' 
 # import data file
 #loss data from sacpas
 load(here("data/jpe_genetic_loss_data.rda"))
@@ -78,16 +76,16 @@ p <- cumloss_current_year %>%
   geom_point() +
   geom_line() +
   geom_hline(yintercept = jpe_current_year_2pct, linetype = "dashed", color = "purple4") +
-  geom_text(aes(x = set_text_date, y = jpe_current_year_2pct, label = paste0("Single Year Threshold (2% of JPE): ", jpe_current_year_2pct)), hjust = 0, vjust = 2, color = "purple4", size = 3) +
+  geom_text(aes(x = set_text_date, y = jpe_current_year_2pct, label = paste0("Single-Year Threshold (2% of JPE): ", jpe_current_year_2pct)), hjust = 0, vjust = 2, color = "purple4", size = 3) +
   geom_hline(yintercept = jpe_current_year_1.17pct, linetype = "dashed", color = "red4") +
-  geom_text(aes(x = set_text_date, y = jpe_current_year_1.17pct, label = paste0("100% Single Year Threshold (1.17% of JPE): ", round(jpe_current_year_1.17pct,2))), hjust = 0, vjust = 2, color = "red4", size = 3) +
+  geom_text(aes(x = set_text_date, y = jpe_current_year_1.17pct, label = paste0("100% Single-Year Threshold (1.17% of JPE): ", round(jpe_current_year_1.17pct,2))), hjust = 0, vjust = 2, color = "red4", size = 3) +
   geom_hline(yintercept = jpe_current_year_1.17pct*.75, linetype = "dashed", color = "orange3") +
-  geom_text(aes(x = set_text_date, y = jpe_current_year_1.17pct*.75, label = paste0("75% Single Year Threshold (1.17% of JPE): ", round(jpe_current_year_1.17pct*.75,2))), hjust = 0, vjust = 2, color = "orange3", size = 3) +
+  geom_text(aes(x = set_text_date, y = jpe_current_year_1.17pct*.75, label = paste0("75% Single-Year Threshold (1.17% of JPE): ", round(jpe_current_year_1.17pct*.75,2))), hjust = 0, vjust = 2, color = "orange3", size = 3) +
   geom_hline(yintercept = jpe_current_year_1.17pct*.50, linetype = "dashed", color = "goldenrod2") +
-  geom_text(aes(x = set_text_date, y = jpe_current_year_1.17pct*.5, label = paste0("50% Single Year Threshold (1.17% of JPE): ", round(jpe_current_year_1.17pct*.5,2))), hjust = 0, vjust = 2, color = "goldenrod1", size = 3) +
+  geom_text(aes(x = set_text_date, y = jpe_current_year_1.17pct*.5, label = paste0("50% Single-Year Threshold (1.17% of JPE): ", round(jpe_current_year_1.17pct*.5,2))), hjust = 0, vjust = 2, color = "goldenrod1", size = 3) +
   geom_vline(xintercept = as.numeric(wDay_to_date(wDay_today, current_year)), linetype = "dashed", color = "blue2") +
   geom_label_repel(data = data.frame(date = max(cumloss_current_year$date), cumloss = max(cumloss_current_year$cumloss)),
-                   aes(x = date, y = cumloss, label = paste0("Cumulative loss: ", max(cumloss),"\n% of Single Year Threshold: ", round((cumloss/jpe_current_year_2pct)*100, 2), "%")),
+                   aes(x = date, y = cumloss, label = paste0("Cumulative loss: ", max(cumloss),"\n% of Single-Year Threshold: ", round((cumloss/jpe_current_year_2pct)*100, 2), "%")),
                    size = 3, 
                    nudge_x = 1, # Adjust nudge_x and nudge_y as needed to position the label
                    nudge_y = 400, 
@@ -95,17 +93,18 @@ p <- cumloss_current_year %>%
                    color = "black") +
   scale_x_date(date_labels = "%m/%d", date_breaks = "1 month") +
   scale_y_continuous(expand = c(0,NA), limits = c(0,5000)) +
-  labs(title = "Cumulative Genetic Loss for Current Water Year with Single Year Thresholds",
-       subtitle = paste0("Cumulative loss to date: ", max(cumloss_current_year$cumloss),
-                         "\nProgress toward 2% Single Year Threshold: ", round((max(cumloss_current_year$cumloss)/jpe_current_year_2pct)*100, 2), "%"),
+  labs(title = "Cumulative Genetic Loss for Current Water Year with Single-Year Thresholds",
+       subtitle = paste0("Winter-run Chinook\nCumulative loss to date: ", max(cumloss_current_year$cumloss),
+                         "\nProgress toward 2% Single-Year Threshold: ", round((max(cumloss_current_year$cumloss)/jpe_current_year_2pct)*100, 2), "%"),
        x = "Date",
        y = "Cumulative Loss") +
   theme_minimal() +
   theme(
         panel.grid.minor = element_blank(),
         panel.background = element_rect(color = "black", fill = "transparent"),
-        plot.background = element_rect(color = "black", fill = "white"),
-        legend.position = "bottom")
+        # plot.background = element_rect(color = "black", fill = "white"),
+        legend.position = "bottom",
+        text = element_text(size = 15))
 
 
 print(p)

@@ -92,8 +92,8 @@ source(here("R/utils_fct_wday_to_month.R"))
               size = 3, fontface = "plain") +
     labs(x = 'Date \n(Water Year: Oct-Dec of year [t-1], Jan-Sep of year [t])', 
          y = 'Cumulative Loss', 
-         title = 'Winter-run Chinook salmon -  Current and Historical Cumulative Loss',
-         subtitle = paste0(" Data includes: WY", min(lad_cumulative_loss_data$WY), " to WY", current_year)) + 
+         title = 'Cumulative Loss by BiOp Status and Hydrologic Classification Index',
+         subtitle = paste0("Species: Winter-run Chinook\nData Years: WY", min(lad_cumulative_loss_data$WY), " to WY", current_year)) + 
     scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
     scale_y_continuous(labels = scales::comma, breaks = seq(0, 10000, by = 2000), limits = c(0, 10000), expand = c(0, 0)) +
     scale_color_manual(values = c("sienna4", "steelblue4")) +
@@ -103,8 +103,9 @@ source(here("R/utils_fct_wday_to_month.R"))
     theme(
       axis.line = element_line(color = "grey"),
       panel.grid.major.x = element_blank(), 
+      panel.grid.minor.y = element_blank(), 
       panel.border = element_rect(color = "grey", fill = NA),
-      panel.spacing = unit(1, "cm"),
+      panel.spacing = unit(.5, "cm"),
       axis.ticks.x = element_line(color = "black"), 
       text = element_text(size = 15))
 

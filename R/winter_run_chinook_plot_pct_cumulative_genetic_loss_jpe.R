@@ -50,13 +50,13 @@ p <- genetic_cumulative_loss_data %>%
   #remove values greater than 1% for better visualization
   filter(pct_cumloss < .01) %>%
   ggplot() +
-  geom_line( data = . %>% filter( WY != current_year), aes(x=wDay, y = pct_cumloss, group = WY ), lwd = .5)+ #color = hydro_type_grp
-  geom_line( data = . %>% filter( WY == current_year), aes( x=wDay, y = pct_cumloss, group = WY, linetype = as.factor(WY)), color = "black", lwd = 1)+
+  geom_line( data = . %>% filter( WY != current_year), aes(x=wDay, y = pct_cumloss, group = WY ), lwd = 1)+ #color = hydro_type_grp
+  geom_line( data = . %>% filter( WY == current_year), aes( x=wDay, y = pct_cumloss, group = WY, linetype = as.factor(WY)), color = "black", lwd = 2)+
   geom_line(aes(x = 1, y = 0, color = paste0(min(genetic_cumulative_loss_data$WY), " to ", current_year-1)),  data = data.frame(x = NA), show.legend = TRUE) +
   labs(x = 'Date \n(Water Year: Oct-Dec of year [t-1], Jan-Sep of year [t])', 
        y = 'Percent Cumulative Loss', 
        title = 'Current and Historical Percent Cumulative Genetic Loss of JPE',
-       subtitle = paste0(" Data includes: WY", min(genetic_cumulative_loss_data$WY), " to WY", current_year-1),
+       subtitle = paste0("Species: Winter-run Chinook\nData Years: WY", min(genetic_cumulative_loss_data$WY), " to WY", current_year-1),
        color = "Historical Water Years:",
        linetype = "Current Water Year:") +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) +

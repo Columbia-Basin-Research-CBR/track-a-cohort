@@ -59,8 +59,8 @@ p<- steelhead_loss_data %>%
   #           size = 3, fontface = "plain") +
   labs(x = 'Date \n(Water Year: Oct-Dec of year [t-1], Jan-Sep of year [t])', 
        y = 'Cumulative Loss', 
-       title = 'Steelhead -  Current and Historical Cumulative Loss',
-       subtitle = "Data includes: WY1994 to WY2024") +
+       title = 'Cumulative Loss by BiOp Status and Hydrologic Classification Index',
+       subtitle = "Species: Steelhead\nData Years: WY1994 to WY2024") +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
   scale_y_continuous(labels = scales::comma,limits = c(0, 40000),  expand = c(0, 0)) +
   scale_color_manual(values = c( "sienna4", "steelblue4"))+
@@ -70,6 +70,7 @@ p<- steelhead_loss_data %>%
   theme(
     axis.line = element_line(color = "grey"),
     panel.grid.major.x = element_blank(), 
+    panel.grid.minor.y = element_blank(), 
     panel.border = element_rect(color = "grey", fill = NA),
     panel.spacing = unit(.5, "cm"),
     axis.ticks.x = element_line(color = "black"), 

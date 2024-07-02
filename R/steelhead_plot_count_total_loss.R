@@ -13,7 +13,7 @@ load(here::here("data/steelhead_loss_data.rda"))
 p <- steelhead_loss_data %>% 
   ggplot( aes(x = as.factor(WY), y = total_loss, fill = adipose_clip)) + 
   geom_bar(stat = "identity", position = "dodge", width = .8) + 
-  labs(title = "Current and Historical Total Loss of Clipped and Unclipped Steelhead",
+  labs(title = "Total Loss of Clipped and Unclipped Steelhead by Water Year",
        x = "Water Year\n(Oct-Dec of year [t-1], Jan-Sep of year [t])",
        y = "Total Loss", 
        fill = NULL) +
@@ -21,7 +21,7 @@ p <- steelhead_loss_data %>%
   scale_y_continuous(labels = scales::comma, expand = c(0,0), limits = c(0, 25000)) +
   theme_minimal() +
   theme(text = element_text(size = 15),
-        legend.position = c(.9,.65),
+        legend.position = "bottom",
         axis.text.x = element_text(angle = 90, vjust = .5),
         panel.border= element_rect(color = "grey80", fill = NA), 
         panel.grid.minor = element_blank(),

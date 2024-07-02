@@ -35,12 +35,13 @@ p <- jpe_genetic_lad_data %>%
   ggplot(aes(x = as.factor(WY), y = value, fill = method)) +
   geom_bar(stat = "identity", position = position_dodge(preserve = "single")) +
   labs(
-    title = "Genetic vs Length-At-Date (LAD) Historical Loss of the JPE",
-    x = "Water Year",
-    y = "Number of fish loss",
+    title = "Genetic vs Length-At-Date (LAD) Loss of JPE by Water Year",
+    subtitle = "Species: Winter-run Chinook",
+    x = "Water Year\n(Oct-Dec of year [t-1], Jan-Sep of year [t])",
+    y = "Total loss",
     fill = NULL
   ) +
-  scale_y_continuous(expand = c(0, 0)) +
+  scale_y_continuous(expand = c(0, 0), labels = scales::comma_format()) +
   scale_fill_manual(
     values = c("black", "grey"),
     # breaks = c("count_gen", "count_lad"),
@@ -48,7 +49,7 @@ p <- jpe_genetic_lad_data %>%
   ) +
   theme_minimal() +
   theme(
-    legend.position = "right",
+    legend.position = "bottom",
     axis.text.x = element_text(angle = 90, hjust = 1, vjust = .5),
     panel.grid.major.x = element_blank(),
     axis.line.x = element_line(color = "black", .5),

@@ -30,7 +30,7 @@ p <- steelhead_loss_data %>%
   labs(x = 'Fork Length (mm)', 
        y = 'Density', 
        title = "Current and Historical Size Distribution By Rear Type",
-       subtitle = paste0("Current Water Year: ", current_year,
+       subtitle = paste0("Species: Steelhead\nCurrent Water Year: ", current_year,
                          "\nHistorical Water Years: ", min(steelhead_loss_data$WY) , " to ",max(steelhead_loss_data$WY) )) +
   scale_fill_manual(values = c("grey30", "grey70")) +
   scale_color_manual(values = c("grey30", "grey70")) +

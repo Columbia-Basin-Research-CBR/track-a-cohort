@@ -20,7 +20,7 @@ p1 <- winter_run_chinook_hatchery_loss_data %>%
   ggplot(aes(x=as.factor(WY), y= x_loss_of_cwt_number_released)) +
   geom_bar(stat="identity", position=position_dodge())+
   labs(title = "Confirmed Percent Loss of CWT Fish Released at SWP & CVP Facilities",
-       x = "Water Year", 
+       x = "Water Year\n(Oct-Dec of year [t-1], Jan-Sep of year [t])", 
        y = "Percent loss",
        fill = NULL) +
   scale_y_continuous( labels = scales::percent_format() , expand = c(0, 0))+
@@ -36,8 +36,8 @@ p1 <- winter_run_chinook_hatchery_loss_data %>%
 p2 <- winter_run_chinook_hatchery_loss_data %>% 
   ggplot(aes(x=as.factor(WY), y= cwt_number_released)) +
   geom_bar(stat="identity", position=position_dodge())+
-  labs(title = "Winter-run Chinook Hatchery Fish Released",
-       x = "Water Year", 
+  labs(title = "Number of CWT Hatchery Fish Released",
+       x = "Water Year\n(Oct-Dec of year [t-1], Jan-Sep of year [t])", 
        y = "Number released",
        fill = NULL) +
   scale_y_continuous(labels = scales::comma,  expand = c(0, 0))+
@@ -52,6 +52,9 @@ p2 <- winter_run_chinook_hatchery_loss_data %>%
 
 
 p <- p1 / p2
+
+p<- p + patchwork::plot_annotation(title = "Winter-run Chinook Hatchery Fish Released and Percent Loss at SWP & CVP Facilities")
+                            
 
 print(p)
 

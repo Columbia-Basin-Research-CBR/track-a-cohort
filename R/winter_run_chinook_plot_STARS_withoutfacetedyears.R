@@ -39,7 +39,8 @@ p1 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
   theme_minimal() +
   theme(panel.border = element_rect(color = "grey", fill = NA, linewidth = .25),
         panel.grid.minor = element_blank(), 
-        panel.grid.major.y = element_blank())
+        panel.grid.major.y = element_blank(),
+        text = element_text(size = 15))
 
 # Interior Delta Route-specific Survival Probability
 p2 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
@@ -54,7 +55,8 @@ p2 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
   theme_minimal() +
   theme(panel.border = element_rect(color = "grey", fill = NA, linewidth = .25),
         panel.grid.minor = element_blank(), 
-        panel.grid.major.y = element_blank())
+        panel.grid.major.y = element_blank(),
+        text = element_text(size = 15))
 
 
 # Interior Delta Route-specific Probability

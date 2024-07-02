@@ -3,6 +3,7 @@
 #' @import ggplot2
 #' @import dplyr
 #' @import here
+#' @import scales
 #' @importFrom magrittr %>%
 #' @noRd
 
@@ -10,6 +11,7 @@
 ## Genetic total loss data
 load(here("data/jpe_genetic_loss_data.rda"))
 genetic_total_loss_data <- jpe_genetic_loss_data$genetic_total_loss_data
+
 ## LAD total loss data
 load(here("data/jpe_lad_loss_data.rda"))
 lad_total_loss_data <- jpe_lad_loss_data$lad_total_loss_data
@@ -32,12 +34,13 @@ p <- jpe_genetic_lad_data %>%
   ggplot(aes(x = as.factor(WY), y = value, fill = method)) +
   geom_bar(stat = "identity", position = position_dodge()) +
   labs(
-    title = "Genetic vs Length-At-Date (LAD) Historical Percent Loss of the JPE\n",
-    x = "Water Year",
-    y = "Percent of the JPE Loss",
+    title = "Genetic vs Length-At-Date (LAD) Percent Loss of JPE by Water Year",
+    subtitle = "Species: Winter-run Chinook",
+    x = "Water Year\n(Oct-Dec of year [t-1], Jan-Sep of year [t])",
+    y = "Percent Loss",
     fill = NULL
   ) +
-  # scale_y_continuous(breaks = seq(0, 6, by = 2), limits = c(0, 6), expand = c(0, 0))+
+  scale_y_continuous(labels = scales::percent_format(), limits = c(0, .06), expand = c(0, 0)) +
   scale_fill_manual(
     values = c("black", "grey"),
     # breaks = c("pct_gen", "pct_lad"),
@@ -45,7 +48,7 @@ p <- jpe_genetic_lad_data %>%
   ) +
   theme_minimal() +
   theme(
-    legend.position = "right",
+    legend.position = "bottom",
     axis.text.x = element_text(angle = 90, hjust = 1, vjust = .5),
     panel.grid.major.x = element_blank(),
     axis.line.x = element_line(color = "black", .5),

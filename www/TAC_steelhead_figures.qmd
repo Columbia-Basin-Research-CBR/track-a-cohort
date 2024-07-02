@@ -1,5 +1,5 @@
 ---
-title: "Track-a-Cohort: Steelhead Figures"
+title: "Track-a-Cohort: Steelhead"
 date: "Last updated: `r Sys.Date()`"
 format: html
 output:
@@ -30,12 +30,15 @@ source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
 ```
 
-## Figure 1. RBDD Juvenile Passage Estimates Steelhead
+## Figure 1. RBDD Juvenile Passage Estimates 
 
 ```{r, load_plot_01, fig.width=10, fig.height=6}
 source(here("R/steelhead_plot_rbdd_biweekly_passage.R"))
 ```
 
+- Issues:
+  - Update biweekly shaded areas based on SI generated methods
+  
 ## Figure 2. Survival and Routing Probabilites
 
 Note: Using Winter-run Chinook as a surrogate for Steelhead
@@ -52,17 +55,17 @@ source(here("R/winter_run_chinook_plot_STARS.R"))
 source(here("R/winter_run_chinook_plot_STARS_withoutfacetedyears.R"))
 ```
 
-## Figure 3. Comparison of Clipped and Unclipped Steelhead Loss
+## Figure 3. Comparison of Clipped and Unclipped Loss
 
-### Figure 3a. Current and Historical Total Loss of Clipped and Unclipped Steelhead
+### Figure 3a. Total Loss of Clipped and Unclipped Steelhead
 
 ```{r load_plot_03a, fig.width=10, fig.height=6}
 source(here("R/steelhead_plot_count_total_loss.R"))
 ```
 
-### Figure 3b. Size Distribution of Steelhead Loss
+### Figure 3b. Size Distribution of Loss
 
-```{r load_plot_03b, fig.width=10, fig.height=6, fig.cap="Underlying density plot shows historical (WY1994 to WY2023) size distribution by rear type. Current year (WY2024) size distribution is shown as a histogram by rear type. Fork lengths below 750 mm were included"}
+```{r load_plot_03b, fig.width=10, fig.height=6, fig.cap="Figure includes density plots that highlight historical (WY1994 to WY2023) size distribution and histogram of current year (WY2024) size distribution by rear type. Fork lengths below 750 mm were included in dataset."}
 source(here("R/steelhead_plot_size_distribution_loss.R"))
 ```
 
@@ -72,7 +75,7 @@ source(here("R/steelhead_plot_size_distribution_loss.R"))
 source(here("R/steelhead_plot_size_distribution_by_year_loss.R"))
 ```
 
-## Figure 4. Cumulative Steelhead Loss
+## Figure 4. Cumulative Loss
 
 ```{r load_plot_04, fig.width=10, fig.height=10}
 source(here("R/steelhead_plot_count_cumulative_loss.R"))
@@ -80,9 +83,34 @@ source(here("R/steelhead_plot_count_cumulative_loss.R"))
 
 ## Table 1. Minimization of Cumulative Loss of Hatchery Steelhead
 
-\*Pending steelhead hatchery release information
+*Pending steelhead hatchery release information
 
-```{r load_table_01, results='asis'}
-source(here("R/steelhead_table_summary_of_hatchery_loss.R"))
+
+```{r, load_table_01}
+# Load the data
+load(here("data/steelhead_loss_data.rda"))
+
+#load function to wrangle into table format
+source(here("R/steelhead_fct_generate_table_total_hatchery_loss.R"))
+
+# generate HTML table
+generate_table_steelhead_total_hatchery_loss(steelhead_loss_data)
 
 ```
+
+- Issues:
+  - Update with steelhead hatchery release information when becomes available
+  
+  
+## Figure 5. Daily Loss, Exports, and Pumping Rates by Facility
+
+```{r load_plot_05, fig.width=10, fig.height=6}
+source(here("R/steelhead_plot_daily_loss_export.R"))
+```
+
+
+Issues:
+- Update with SacPas generated link for Export data per Facility, closest data found: [https://www.cbr.washington.edu/sacramento/tmp/juvloss_1719955580_301.html](https://www.cbr.washington.edu/sacramento/tmp/juvloss_1719955580_301.html)
+
+- 
+  

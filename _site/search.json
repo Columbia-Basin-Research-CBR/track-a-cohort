@@ -9,113 +9,120 @@
   {
     "objectID": "www/TAC_chinook_figures.html",
     "href": "www/TAC_chinook_figures.html",
-    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "",
     "text": "Objective: Using shared resources via BDO github from BOR, replicate figures and adjust to include dynamic data. See Track a cohort_WR_plots.docx for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#background",
     "href": "www/TAC_chinook_figures.html#background",
-    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "",
     "text": "Objective: Using shared resources via BDO github from BOR, replicate figures and adjust to include dynamic data. See Track a cohort_WR_plots.docx for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-1.-juvenile-production-estimate",
     "href": "www/TAC_chinook_figures.html#figure-1.-juvenile-production-estimate",
-    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 1. Juvenile Production Estimate",
-    "text": "Figure 1. Juvenile Production Estimate"
+    "text": "Figure 1. Juvenile Production Estimate\n\n\n\n\n\n\n\n\n\n\nIssues:\n\nupdate genetic data as it becomes available\nUpdate method naming conventions as needed"
   },
   {
-    "objectID": "www/TAC_chinook_figures.html#figure-2.-survival-and-routing-probabilites-for-winter-run-chinook",
-    "href": "www/TAC_chinook_figures.html#figure-2.-survival-and-routing-probabilites-for-winter-run-chinook",
-    "title": "Track-a-Cohort: Winter-run Chinook Figures",
-    "section": "Figure 2. Survival and Routing Probabilites for Winter-run Chinook",
-    "text": "Figure 2. Survival and Routing Probabilites for Winter-run Chinook\n\nFacetted by year\n\n\n\n\n\n\n\n\n\n\n\nWithout faceted years"
+    "objectID": "www/TAC_chinook_figures.html#figure-2.-survival-and-routing-probabilites",
+    "href": "www/TAC_chinook_figures.html#figure-2.-survival-and-routing-probabilites",
+    "title": "Track-a-Cohort: Winter-run Chinook",
+    "section": "Figure 2. Survival and Routing Probabilites",
+    "text": "Figure 2. Survival and Routing Probabilites\n\nFacetted by year\n\n\n\n\n\n\n\n\n\n\n\nWithout faceted years\n\n\n\n\n\n\n\n\n\n\nFuture additions:\n\nAdd ShinyApp for interactive capabilities (i.e, hydrological classification)."
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-3.-juvenile-production-estimate-jpe-percent-loss",
     "href": "www/TAC_chinook_figures.html#figure-3.-juvenile-production-estimate-jpe-percent-loss",
-    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 3. Juvenile Production Estimate (JPE) – Percent Loss",
-    "text": "Figure 3. Juvenile Production Estimate (JPE) – Percent Loss\n\nFigure 3a. Genetic vs Length-At-Date (LAD) Historical Percent Loss of the JPE\n\n\n\n\n\n\n\n\n\n\n\nFigure 3b. Cumulative Genetic Percent Loss of the JPE"
+    "text": "Figure 3. Juvenile Production Estimate (JPE) – Percent Loss\n\nFigure 3a. Genetic vs Length-At-Date (LAD) Historical Percent Loss of JPE\n\n\n\n\n\n\n\n\n\n\n\nFigure 3b. Cumulative Genetic Percent Loss of JPE\n\n\n\n\n\n\n\n\n\n\nIssues:\n\nConfirm use of Water Year over Brood Year - both were used in word doc shared\nConfirm missing 2008 JPE data\nUpdate genetic data as it becomes available\nUpdate method naming conventions as needed\nConfirm loss URL sourced from SacPas\nadd ShinyApp for interactive capabilities (i.e., hydrological classifications, plotly filtering of data, etc.)"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-4.-juvenile-production-estimate-jpe-number-loss",
     "href": "www/TAC_chinook_figures.html#figure-4.-juvenile-production-estimate-jpe-number-loss",
-    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 4. Juvenile Production Estimate (JPE) – Number Loss",
-    "text": "Figure 4. Juvenile Production Estimate (JPE) – Number Loss\n\nFigure 4a. Genetic vs Length-At-Date (LAD) Historical Loss of the JPE\n\n\n\n\n\n\n\n\n\n\n\nFigure 4b. Cumulative Length-At-Date (LAD) loss of the JPE"
+    "text": "Figure 4. Juvenile Production Estimate (JPE) – Number Loss\n\nFigure 4a. Genetic vs Length-At-Date (LAD) Historical Loss of the JPE\n\n\n\n\n\n\n\n\n\n\n\nFigure 4b. Cumulative Length-At-Date (LAD) loss of the JPE\n\n\n\n\n\n\n\n\n\n\nIssues:\n\nUpdate genetic data as it becomes available\nUpdate method naming conventions as needed\nConfirm loss URL sourced from SacPas"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-5.-single-year-thresholds",
     "href": "www/TAC_chinook_figures.html#figure-5.-single-year-thresholds",
-    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 5. Single Year Thresholds",
-    "text": "Figure 5. Single Year Thresholds\n\nFigure 5a. Cumulative Genetic Loss for Current Water Year\n\n\n\n\n\n\n\n\n\n\n\nFigure 5b. Cumulative LAD Loss for Current Water Year"
+    "text": "Figure 5. Single Year Thresholds\n\nFigure 5a. Cumulative Genetic Loss for Current Water Year\n\n\n\n\n\n\n\n\n\n\n\nFigure 5b. Cumulative LAD Loss for Current Water Year\n\n\n\n\n\n\n\n\n\n\nIssues:\n\nConfirm loss URL sourced from SacPas\nConfirm single year threshold and naming conventions"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-6.-hatchery-percent-confirmed-loss",
     "href": "www/TAC_chinook_figures.html#figure-6.-hatchery-percent-confirmed-loss",
-    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 6. Hatchery Percent Confirmed Loss",
-    "text": "Figure 6. Hatchery Percent Confirmed Loss"
+    "text": "Figure 6. Hatchery Percent Confirmed Loss\n\n\n\n\n\n\n\n\n\n\nIssues:\n\nConfirm data import URL sourced from SacPas when it becomes available"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-7.-tillotson-predicted-loss-with-omr-scenarios",
     "href": "www/TAC_chinook_figures.html#figure-7.-tillotson-predicted-loss-with-omr-scenarios",
-    "title": "Track-a-Cohort: Winter-run Chinook Figures",
+    "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 7. Tillotson predicted loss with OMR scenarios",
-    "text": "Figure 7. Tillotson predicted loss with OMR scenarios\n-pending"
+    "text": "Figure 7. Tillotson predicted loss with OMR scenarios\n-pending\nIssues: - Confirm Tillotson predicted loss with OMR scenarios – pull from SacPas or other use Tillotson.R code?"
   },
   {
     "objectID": "www/TAC_steelhead_figures.html",
     "href": "www/TAC_steelhead_figures.html",
-    "title": "Track-a-Cohort: Steelhead Figures",
+    "title": "Track-a-Cohort: Steelhead",
     "section": "",
     "text": "Objective: Using shared resources via BDO github from BOR, replicate figures and adjust to include dynamic data. See Track a cohort_Steelhead.docx for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp"
   },
   {
     "objectID": "www/TAC_steelhead_figures.html#background",
     "href": "www/TAC_steelhead_figures.html#background",
-    "title": "Track-a-Cohort: Steelhead Figures",
+    "title": "Track-a-Cohort: Steelhead",
     "section": "",
     "text": "Objective: Using shared resources via BDO github from BOR, replicate figures and adjust to include dynamic data. See Track a cohort_Steelhead.docx for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp"
   },
   {
-    "objectID": "www/TAC_steelhead_figures.html#figure-1.-rbdd-juvenile-passage-estimates-steelhead",
-    "href": "www/TAC_steelhead_figures.html#figure-1.-rbdd-juvenile-passage-estimates-steelhead",
-    "title": "Track-a-Cohort: Steelhead Figures",
-    "section": "Figure 1. RBDD Juvenile Passage Estimates Steelhead",
-    "text": "Figure 1. RBDD Juvenile Passage Estimates Steelhead"
+    "objectID": "www/TAC_steelhead_figures.html#figure-1.-rbdd-juvenile-passage-estimates",
+    "href": "www/TAC_steelhead_figures.html#figure-1.-rbdd-juvenile-passage-estimates",
+    "title": "Track-a-Cohort: Steelhead",
+    "section": "Figure 1. RBDD Juvenile Passage Estimates",
+    "text": "Figure 1. RBDD Juvenile Passage Estimates\n\n\n\n\n\n\n\n\n\n\nIssues:\n\nUpdate biweekly shaded areas based on SI generated methods"
   },
   {
     "objectID": "www/TAC_steelhead_figures.html#figure-2.-survival-and-routing-probabilites",
     "href": "www/TAC_steelhead_figures.html#figure-2.-survival-and-routing-probabilites",
-    "title": "Track-a-Cohort: Steelhead Figures",
+    "title": "Track-a-Cohort: Steelhead",
     "section": "Figure 2. Survival and Routing Probabilites",
     "text": "Figure 2. Survival and Routing Probabilites\nNote: Using Winter-run Chinook as a surrogate for Steelhead\n\nFacetted by year\n\n\n\n\n\n\n\n\n\n\n\nWithout faceted years"
   },
   {
-    "objectID": "www/TAC_steelhead_figures.html#figure-3.-comparison-of-clipped-and-unclipped-steelhead-loss",
-    "href": "www/TAC_steelhead_figures.html#figure-3.-comparison-of-clipped-and-unclipped-steelhead-loss",
-    "title": "Track-a-Cohort: Steelhead Figures",
-    "section": "Figure 3. Comparison of Clipped and Unclipped Steelhead Loss",
-    "text": "Figure 3. Comparison of Clipped and Unclipped Steelhead Loss\n\nFigure 3a. Current and Historical Total Loss of Clipped and Unclipped Steelhead\n\n\n\n\n\n\n\n\n\n\n\nFigure 3b. Size Distribution of Steelhead Loss\n\n\n\n\n\nUnderlying density plot shows historical (WY1994 to WY2023) size distribution by rear type. Current year (WY2024) size distribution is shown as a histogram by rear type. Fork lengths below 750 mm were included\n\n\n\n\n\n\nFigure 3c. Size Distribution of Steelhead Loss By Year"
+    "objectID": "www/TAC_steelhead_figures.html#figure-3.-comparison-of-clipped-and-unclipped-loss",
+    "href": "www/TAC_steelhead_figures.html#figure-3.-comparison-of-clipped-and-unclipped-loss",
+    "title": "Track-a-Cohort: Steelhead",
+    "section": "Figure 3. Comparison of Clipped and Unclipped Loss",
+    "text": "Figure 3. Comparison of Clipped and Unclipped Loss\n\nFigure 3a. Total Loss of Clipped and Unclipped Steelhead\n\n\n\n\n\n\n\n\n\n\n\nFigure 3b. Size Distribution of Loss\n\n\n\n\n\nFigure includes density plots that highlight historical (WY1994 to WY2023) size distribution and histogram of current year (WY2024) size distribution by rear type. Fork lengths below 750 mm were included in dataset.\n\n\n\n\n\n\nFigure 3c. Size Distribution of Steelhead Loss By Year"
   },
   {
-    "objectID": "www/TAC_steelhead_figures.html#figure-4.-cumulative-steelhead-loss",
-    "href": "www/TAC_steelhead_figures.html#figure-4.-cumulative-steelhead-loss",
-    "title": "Track-a-Cohort: Steelhead Figures",
-    "section": "Figure 4. Cumulative Steelhead Loss",
-    "text": "Figure 4. Cumulative Steelhead Loss"
+    "objectID": "www/TAC_steelhead_figures.html#figure-4.-cumulative-loss",
+    "href": "www/TAC_steelhead_figures.html#figure-4.-cumulative-loss",
+    "title": "Track-a-Cohort: Steelhead",
+    "section": "Figure 4. Cumulative Loss",
+    "text": "Figure 4. Cumulative Loss"
   },
   {
     "objectID": "www/TAC_steelhead_figures.html#table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead",
     "href": "www/TAC_steelhead_figures.html#table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead",
-    "title": "Track-a-Cohort: Steelhead Figures",
+    "title": "Track-a-Cohort: Steelhead",
     "section": "Table 1. Minimization of Cumulative Loss of Hatchery Steelhead",
-    "text": "Table 1. Minimization of Cumulative Loss of Hatchery Steelhead\n*Pending steelhead hatchery release information"
+    "text": "Table 1. Minimization of Cumulative Loss of Hatchery Steelhead\n*Pending steelhead hatchery release information\n\n\n\n\nMinimization of Total Loss of Hatchery Steelhead by Water Year\n\n\nWater Year\nTotal Loss\nTotal released\nPercent of fish released lost to facilities\nBrood Year\n\n\n\n\n1994\n125.25\nNA\nNA\n1993\n\n\n1995\n146.72\nNA\nNA\n1994\n\n\n1996\n330.74\nNA\nNA\n1995\n\n\n1997\n4.33\nNA\nNA\n1996\n\n\n1998\n496.44\nNA\nNA\n1997\n\n\n1999\n555.64\nNA\nNA\n1998\n\n\n2000\n18795.42\nNA\nNA\n1999\n\n\n2001\n24779.83\nNA\nNA\n2000\n\n\n2002\n5957.45\nNA\nNA\n2001\n\n\n2003\n24077.48\nNA\nNA\n2002\n\n\n2004\n18643.98\nNA\nNA\n2003\n\n\n2005\n6661.86\nNA\nNA\n2004\n\n\n2006\n2758.54\nNA\nNA\n2005\n\n\n2007\n4173.84\nNA\nNA\n2006\n\n\n2008\n6558.86\nNA\nNA\n2007\n\n\n2009\n2439.11\nNA\nNA\n2008\n\n\n2010\n6548.28\nNA\nNA\n2009\n\n\n2011\n2823.07\nNA\nNA\n2010\n\n\n2012\n1141.16\nNA\nNA\n2011\n\n\n2013\n1901.95\nNA\nNA\n2012\n\n\n2014\n327.83\nNA\nNA\n2013\n\n\n2015\n1841.19\nNA\nNA\n2014\n\n\n2016\n3566.87\nNA\nNA\n2015\n\n\n2017\n164.29\nNA\nNA\n2016\n\n\n2018\n2462.90\nNA\nNA\n2017\n\n\n2019\n5777.70\nNA\nNA\n2018\n\n\n2020\n659.44\nNA\nNA\n2019\n\n\n2021\n341.69\nNA\nNA\n2020\n\n\n2022\n639.79\nNA\nNA\n2021\n\n\n2023\n3650.30\nNA\nNA\n2022\n\n\n2024\n2828.56\nNA\nNA\n2023\n\n\n\n\n\n\n\n\n\nIssues:\n\nUpdate with steelhead hatchery release information when becomes available"
+  },
+  {
+    "objectID": "www/TAC_steelhead_figures.html#figure-5.-daily-loss-exports-and-pumping-rates-by-facility",
+    "href": "www/TAC_steelhead_figures.html#figure-5.-daily-loss-exports-and-pumping-rates-by-facility",
+    "title": "Track-a-Cohort: Steelhead",
+    "section": "Figure 5. Daily Loss, Exports, and Pumping Rates by Facility",
+    "text": "Figure 5. Daily Loss, Exports, and Pumping Rates by Facility\n\n\n\n\n\n\n\n\n\nIssues: - Update with SacPas generated link for Export data per Facility, closest data found: https://www.cbr.washington.edu/sacramento/tmp/juvloss_1719955580_301.html"
   }
 ]

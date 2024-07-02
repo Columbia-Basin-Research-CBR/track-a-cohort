@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2024-07-02">
 
-<title>Track-a-Cohort - Track-a-Cohort: Steelhead Figures</title>
+<title>Track-a-Cohort - Track-a-Cohort: Steelhead</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,6 +67,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -118,20 +120,21 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
-  <li><a href="#figure-1.-rbdd-juvenile-passage-estimates-steelhead" id="toc-figure-1.-rbdd-juvenile-passage-estimates-steelhead" class="nav-link" data-scroll-target="#figure-1.-rbdd-juvenile-passage-estimates-steelhead">Figure 1. RBDD Juvenile Passage Estimates Steelhead</a></li>
+  <li><a href="#figure-1.-rbdd-juvenile-passage-estimates" id="toc-figure-1.-rbdd-juvenile-passage-estimates" class="nav-link" data-scroll-target="#figure-1.-rbdd-juvenile-passage-estimates">Figure 1. RBDD Juvenile Passage Estimates</a></li>
   <li><a href="#figure-2.-survival-and-routing-probabilites" id="toc-figure-2.-survival-and-routing-probabilites" class="nav-link" data-scroll-target="#figure-2.-survival-and-routing-probabilites">Figure 2. Survival and Routing Probabilites</a>
   <ul class="collapse">
   <li><a href="#facetted-by-year" id="toc-facetted-by-year" class="nav-link" data-scroll-target="#facetted-by-year">Facetted by year</a></li>
   <li><a href="#without-faceted-years" id="toc-without-faceted-years" class="nav-link" data-scroll-target="#without-faceted-years">Without faceted years</a></li>
   </ul></li>
-  <li><a href="#figure-3.-comparison-of-clipped-and-unclipped-steelhead-loss" id="toc-figure-3.-comparison-of-clipped-and-unclipped-steelhead-loss" class="nav-link" data-scroll-target="#figure-3.-comparison-of-clipped-and-unclipped-steelhead-loss">Figure 3. Comparison of Clipped and Unclipped Steelhead Loss</a>
+  <li><a href="#figure-3.-comparison-of-clipped-and-unclipped-loss" id="toc-figure-3.-comparison-of-clipped-and-unclipped-loss" class="nav-link" data-scroll-target="#figure-3.-comparison-of-clipped-and-unclipped-loss">Figure 3. Comparison of Clipped and Unclipped Loss</a>
   <ul class="collapse">
-  <li><a href="#figure-3a.-current-and-historical-total-loss-of-clipped-and-unclipped-steelhead" id="toc-figure-3a.-current-and-historical-total-loss-of-clipped-and-unclipped-steelhead" class="nav-link" data-scroll-target="#figure-3a.-current-and-historical-total-loss-of-clipped-and-unclipped-steelhead">Figure 3a. Current and Historical Total Loss of Clipped and Unclipped Steelhead</a></li>
-  <li><a href="#figure-3b.-size-distribution-of-steelhead-loss" id="toc-figure-3b.-size-distribution-of-steelhead-loss" class="nav-link" data-scroll-target="#figure-3b.-size-distribution-of-steelhead-loss">Figure 3b. Size Distribution of Steelhead Loss</a></li>
+  <li><a href="#figure-3a.-total-loss-of-clipped-and-unclipped-steelhead" id="toc-figure-3a.-total-loss-of-clipped-and-unclipped-steelhead" class="nav-link" data-scroll-target="#figure-3a.-total-loss-of-clipped-and-unclipped-steelhead">Figure 3a. Total Loss of Clipped and Unclipped Steelhead</a></li>
+  <li><a href="#figure-3b.-size-distribution-of-loss" id="toc-figure-3b.-size-distribution-of-loss" class="nav-link" data-scroll-target="#figure-3b.-size-distribution-of-loss">Figure 3b. Size Distribution of Loss</a></li>
   <li><a href="#figure-3c.-size-distribution-of-steelhead-loss-by-year" id="toc-figure-3c.-size-distribution-of-steelhead-loss-by-year" class="nav-link" data-scroll-target="#figure-3c.-size-distribution-of-steelhead-loss-by-year">Figure 3c. Size Distribution of Steelhead Loss By Year</a></li>
   </ul></li>
-  <li><a href="#figure-4.-cumulative-steelhead-loss" id="toc-figure-4.-cumulative-steelhead-loss" class="nav-link" data-scroll-target="#figure-4.-cumulative-steelhead-loss">Figure 4. Cumulative Steelhead Loss</a></li>
+  <li><a href="#figure-4.-cumulative-loss" id="toc-figure-4.-cumulative-loss" class="nav-link" data-scroll-target="#figure-4.-cumulative-loss">Figure 4. Cumulative Loss</a></li>
   <li><a href="#table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead" id="toc-table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead" class="nav-link" data-scroll-target="#table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead">Table 1. Minimization of Cumulative Loss of Hatchery Steelhead</a></li>
+  <li><a href="#figure-5.-daily-loss-exports-and-pumping-rates-by-facility" id="toc-figure-5.-daily-loss-exports-and-pumping-rates-by-facility" class="nav-link" data-scroll-target="#figure-5.-daily-loss-exports-and-pumping-rates-by-facility">Figure 5. Daily Loss, Exports, and Pumping Rates by Facility</a></li>
   </ul>
 </nav>
     </div>
@@ -140,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Track-a-Cohort: Steelhead Figures</h1>
+<h1 class="title">Track-a-Cohort: Steelhead</h1>
 </div>
 
 
@@ -167,8 +170,8 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="background">Background</h2>
 <p>Objective: Using shared resources via <a href="https://github.com/BDO-Science/track-a-cohort">BDO github</a> from BOR, replicate figures and adjust to include dynamic data. See <a href="https://github.com/BDO-Science/track-a-cohort/blob/main/SH_Cohort/Track%20a%20Cohort_Steelhead.docx">Track a cohort_Steelhead.docx</a> for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp</p>
 </section>
-<section id="figure-1.-rbdd-juvenile-passage-estimates-steelhead" class="level2">
-<h2 class="anchored" data-anchor-id="figure-1.-rbdd-juvenile-passage-estimates-steelhead">Figure 1. RBDD Juvenile Passage Estimates Steelhead</h2>
+<section id="figure-1.-rbdd-juvenile-passage-estimates" class="level2">
+<h2 class="anchored" data-anchor-id="figure-1.-rbdd-juvenile-passage-estimates">Figure 1. RBDD Juvenile Passage Estimates</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -178,6 +181,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<ul>
+<li>Issues:
+<ul>
+<li>Update biweekly shaded areas based on SI generated methods</li>
+</ul></li>
+</ul>
 </section>
 <section id="figure-2.-survival-and-routing-probabilites" class="level2">
 <h2 class="anchored" data-anchor-id="figure-2.-survival-and-routing-probabilites">Figure 2. Survival and Routing Probabilites</h2>
@@ -207,10 +216,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="figure-3.-comparison-of-clipped-and-unclipped-steelhead-loss" class="level2">
-<h2 class="anchored" data-anchor-id="figure-3.-comparison-of-clipped-and-unclipped-steelhead-loss">Figure 3. Comparison of Clipped and Unclipped Steelhead Loss</h2>
-<section id="figure-3a.-current-and-historical-total-loss-of-clipped-and-unclipped-steelhead" class="level3">
-<h3 class="anchored" data-anchor-id="figure-3a.-current-and-historical-total-loss-of-clipped-and-unclipped-steelhead">Figure 3a. Current and Historical Total Loss of Clipped and Unclipped Steelhead</h3>
+<section id="figure-3.-comparison-of-clipped-and-unclipped-loss" class="level2">
+<h2 class="anchored" data-anchor-id="figure-3.-comparison-of-clipped-and-unclipped-loss">Figure 3. Comparison of Clipped and Unclipped Loss</h2>
+<section id="figure-3a.-total-loss-of-clipped-and-unclipped-steelhead" class="level3">
+<h3 class="anchored" data-anchor-id="figure-3a.-total-loss-of-clipped-and-unclipped-steelhead">Figure 3a. Total Loss of Clipped and Unclipped Steelhead</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -221,14 +230,14 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="figure-3b.-size-distribution-of-steelhead-loss" class="level3">
-<h3 class="anchored" data-anchor-id="figure-3b.-size-distribution-of-steelhead-loss">Figure 3b. Size Distribution of Steelhead Loss</h3>
+<section id="figure-3b.-size-distribution-of-loss" class="level3">
+<h3 class="anchored" data-anchor-id="figure-3b.-size-distribution-of-loss">Figure 3b. Size Distribution of Loss</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="TAC_steelhead_figures_files/figure-html/load_plot_03b-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Underlying density plot shows historical (WY1994 to WY2023) size distribution by rear type. Current year (WY2024) size distribution is shown as a histogram by rear type. Fork lengths below 750 mm were included</figcaption>
+<figcaption>Figure includes density plots that highlight historical (WY1994 to WY2023) size distribution and histogram of current year (WY2024) size distribution by rear type. Fork lengths below 750 mm were included in dataset.</figcaption>
 </figure>
 </div>
 </div>
@@ -247,8 +256,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="figure-4.-cumulative-steelhead-loss" class="level2">
-<h2 class="anchored" data-anchor-id="figure-4.-cumulative-steelhead-loss">Figure 4. Cumulative Steelhead Loss</h2>
+<section id="figure-4.-cumulative-loss" class="level2">
+<h2 class="anchored" data-anchor-id="figure-4.-cumulative-loss">Figure 4. Cumulative Loss</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -262,6 +271,267 @@ ul.task-list li input[type="checkbox"] {
 <section id="table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead" class="level2">
 <h2 class="anchored" data-anchor-id="table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead">Table 1. Minimization of Cumulative Loss of Hatchery Steelhead</h2>
 <p>*Pending steelhead hatchery release information</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Minimization of Total Loss of Hatchery Steelhead by Water Year</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Water Year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Total Loss</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Total released</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Percent of fish released lost to facilities</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Brood Year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1994</td>
+<td style="text-align: left;">125.25</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1993</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1995</td>
+<td style="text-align: left;">146.72</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1994</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1996</td>
+<td style="text-align: left;">330.74</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1995</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1997</td>
+<td style="text-align: left;">4.33</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1996</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1998</td>
+<td style="text-align: left;">496.44</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1997</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1999</td>
+<td style="text-align: left;">555.64</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1998</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2000</td>
+<td style="text-align: left;">18795.42</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1999</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2001</td>
+<td style="text-align: left;">24779.83</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2002</td>
+<td style="text-align: left;">5957.45</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2003</td>
+<td style="text-align: left;">24077.48</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2002</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2004</td>
+<td style="text-align: left;">18643.98</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2003</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2005</td>
+<td style="text-align: left;">6661.86</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2004</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2006</td>
+<td style="text-align: left;">2758.54</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2005</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2007</td>
+<td style="text-align: left;">4173.84</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2006</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2008</td>
+<td style="text-align: left;">6558.86</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2007</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;">2439.11</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2008</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">6548.28</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2009</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">2823.07</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">1141.16</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2011</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">1901.95</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2012</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">327.83</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2013</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">1841.19</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2014</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">3566.87</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2015</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">164.29</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2016</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">2462.90</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2017</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2019</td>
+<td style="text-align: left;">5777.70</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2018</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2020</td>
+<td style="text-align: left;">659.44</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2019</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">341.69</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2020</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022</td>
+<td style="text-align: left;">639.79</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2021</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2023</td>
+<td style="text-align: left;">3650.30</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2022</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2024</td>
+<td style="text-align: left;">2828.56</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2023</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+</div>
+</div>
+<ul>
+<li>Issues:
+<ul>
+<li>Update with steelhead hatchery release information when becomes available</li>
+</ul></li>
+</ul>
+</section>
+<section id="figure-5.-daily-loss-exports-and-pumping-rates-by-facility" class="level2">
+<h2 class="anchored" data-anchor-id="figure-5.-daily-loss-exports-and-pumping-rates-by-facility">Figure 5. Daily Loss, Exports, and Pumping Rates by Facility</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_steelhead_figures_files/figure-html/load_plot_05-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Issues: - Update with SacPas generated link for Export data per Facility, closest data found: <a href="https://www.cbr.washington.edu/sacramento/tmp/juvloss_1719955580_301.html">https://www.cbr.washington.edu/sacramento/tmp/juvloss_1719955580_301.html</a></p>
+<ul>
+<li></li>
+</ul>
 
 
 </section>
