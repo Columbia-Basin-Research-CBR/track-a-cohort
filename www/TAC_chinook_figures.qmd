@@ -25,8 +25,9 @@ Objective: Using shared resources via [BDO github](https://github.com/BDO-Scienc
 library(here)
 source(here("R/load_dependencies.R"))
 
-# extract current year
-current_year<-year(today())
+#set current year
+source(here("R/utils_fct_assign_current_water_year.R"))
+current_year <- assign_current_water_year()
 ```
 
 ## Figure 1. Juvenile Production Estimate
@@ -37,20 +38,17 @@ source(here("R/winter_run_chinook_plot_annual_jpe.R"))
 
 ## Figure 2. Survival and Routing Probabilites for Winter-run Chinook
 
-
 ### Facetted by year
 
 ```{r, load_plot_02, fig.width=12, fig.height=12 }
 source(here("R/winter_run_chinook_plot_STARS.R"))
 ```
 
-
 ### Without faceted years
 
 ```{r,  load_plot_02_alt, fig.width=12, fig.height=12}
 source(here("R/winter_run_chinook_plot_STARS_withoutfacetedyears.R"))
 ```
-
 
 ## Figure 3. Juvenile Production Estimate (JPE) – Percent Loss
 
@@ -74,7 +72,7 @@ source(here("R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R"))
 source(here("R/winter_run_chinook_plot_count_genetic_lad_loss_jpe.R"))
 ```
 
-### Figure 4b.  Cumulative Length-At-Date (LAD) loss of the JPE
+### Figure 4b. Cumulative Length-At-Date (LAD) loss of the JPE
 
 ```{r, load_plot4b, fig.width=10, fig.height=6}
 source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R"))
@@ -82,13 +80,13 @@ source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R"))
 
 ## Figure 5. Single Year Thresholds
 
-### Figure 5a. Cumulative Genetic Loss for Current Water Year 
+### Figure 5a. Cumulative Genetic Loss for Current Water Year
 
 ```{r, load_plot5a, fig.width=10, fig.height=6}
 source(here("R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R"))
 ```
 
-### Figure 5b. Cumulative LAD Loss for Current Water Year 
+### Figure 5b. Cumulative LAD Loss for Current Water Year
 
 ```{r, load_plot5b, fig.width=10, fig.height=6}
 source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R"))

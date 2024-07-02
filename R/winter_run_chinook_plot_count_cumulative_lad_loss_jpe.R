@@ -46,8 +46,9 @@ source(here("R/utils_fct_wday_to_month.R"))
                 hydro_type %in% c("Below Normal", "Dry", "Critical") ~ "Below Normal, Dry, & Critical" )
       )
     
-    # extract current year
-    current_year<-year(today())
+    #set current year
+    source(here("R/utils_fct_assign_current_water_year.R"))
+           current_year <- assign_current_water_year()
     
     # extract maximum cumloss for the current year
     max_cumloss_current_year <- lad_cumulative_loss_data %>%

@@ -21,7 +21,9 @@ source(here("R/utils_fct_wday_to_month.R"))
 #load data file
 load(here::here("data", "STARS_data.rda"))
 
-current_year <- year(today())
+#set current year
+source(here("R/utils_fct_assign_current_water_year.R"))
+       current_year <- assign_current_water_year()
 
 #plot STARS data
 # Overall Survival
@@ -68,7 +70,8 @@ p3 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
   theme_minimal() +
   theme(panel.border = element_rect(color = "grey", fill = NA, linewidth = .25),
         panel.grid.minor = element_blank(), 
-        panel.grid.major.y = element_blank())
+        panel.grid.major.y = element_blank(),
+        text = element_text(size = 15))
 
 
 # Combined plots

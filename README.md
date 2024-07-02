@@ -1,6 +1,8 @@
-# track-a-cohort-qmd-website
+# Track-a-Cohort 
 
-A webpage that includes requested plots for winter run chinook salmon and steelhead
+*product in development*
+
+A webpage that includes requested plots for winter run chinook salmon and steelhead in Sacramento River
 
 ## Installation Instructions
 

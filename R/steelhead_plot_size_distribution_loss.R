@@ -11,8 +11,10 @@
 # load data
 load(here("data/steelhead_loss_data.rda"))
 
+
 #set current year
-current_year <- year(today())
+source(here("R/utils_fct_assign_current_water_year.R"))
+current_year <- assign_current_water_year()
 
 #plot
 p <- steelhead_loss_data %>% 
@@ -27,7 +29,9 @@ p <- steelhead_loss_data %>%
                  alpha = 0.7) +
   labs(x = 'Fork Length (mm)', 
        y = 'Density', 
-       title = paste0("Current water year (WY",current_year,") size distribution compared to historical size distribution by rear type")) +
+       title = "Current and Historical Size Distribution By Rear Type",
+       subtitle = paste0("Current Water Year: ", current_year,
+                         "\nHistorical Water Years: ", min(steelhead_loss_data$WY) , " to ",max(steelhead_loss_data$WY) )) +
   scale_fill_manual(values = c("grey30", "grey70")) +
   scale_color_manual(values = c("grey30", "grey70")) +
   facet_wrap(~adipose_clip, ncol = 1) +

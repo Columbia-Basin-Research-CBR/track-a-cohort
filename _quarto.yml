@@ -1,23 +1,20 @@
 project:
   type: website
   render: 
-    - www/index.qmd
-    - www/about.qmd
-    - www/TAC_steelhead_figures.qmd
     - www/TAC_chinook_figures.qmd
+    - www/TAC_steelhead_figures.qmd
+    - www/about.qmd
 
 website:
   title: "Track-a-Cohort"
   navbar:
     left:
-      - href: www/index.qmd
-        text: Home
-      - href: www/about.qmd
-        text: About
       - href: www/TAC_chinook_figures.qmd
         text:  Winter-run
       - href: www/TAC_steelhead_figures.qmd
         text:  Steelhead
+      - href: www/about.qmd
+        text: About
 
 
 

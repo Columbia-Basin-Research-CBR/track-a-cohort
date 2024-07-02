@@ -22,8 +22,9 @@ genetic_cumulative_loss_data <- jpe_genetic_loss_data$genetic_cumulative_loss_da
 # import wDay to month function
 source(here("R/utils_fct_wday_to_month.R"))
 
-# extract current year
-current_year<-year(today())
+#set current year
+source(here("R/utils_fct_assign_current_water_year.R"))
+current_year <- assign_current_water_year()
 
 # calculate the maximum pct_cumloss for the current year
 max_pct_cumloss_current_year <- genetic_cumulative_loss_data %>%

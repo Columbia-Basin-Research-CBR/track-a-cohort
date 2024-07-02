@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -89,20 +123,16 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../www/index.html"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="../www/about.html" aria-current="page"> 
-<span class="menu-text">About</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../www/TAC_chinook_figures.html"> 
 <span class="menu-text">Winter-run</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../www/TAC_steelhead_figures.html"> 
 <span class="menu-text">Steelhead</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../www/about.html" aria-current="page"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -140,7 +170,25 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>About this site - pending</p>
+<p>This document includes plots requested by Bureau of Reclamation for the “Track-a-Cohort” page in development on <a href="https://www.cbr.washington.edu/sacramento/">SacPAS: Central Valley Prediction &amp; Assessment of Salmon</a> website developed and maintained by Columbia Basin Research, University of Washington.</p>
+<p>All code used to develop this quarto webpage are available via the Columbia Basin Research GitHub repository: <a href="https://github.com/caitobrien/TAC">Columbia-Basin-Research-CBR</a> and can be used in total or individual plots can be generated using the code provided.</p>
+<p>How to use:</p>
+<ul>
+<li><p>To view the code used to generate individual plots, navigate to the <code>R</code> folder within the repository.</p></li>
+<li><p>To view the final data used to generate the plots, navigate to the <code>data</code> folder within the repository. Raw data that supports the plots are available in the <code>data-raw</code> folder.</p></li>
+<li><p>To access the final individual plots, navigate to the <code>_site</code> folder within the repository. The rendered plots are available in respective species <code>TAC_species_figures_files</code> folder.</p></li>
+<li><p>To render the complete quarto webpage, download the repository to <code>R</code> and run the following code in the R console:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"devtools"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"https://github.com/caitobrien/TAC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Within the console, you’ll be prompted to update or install packages as needed to run the webpage. Once complete, navigate to the terminal and run the following code: <code>quarto render</code> to render the complete webpage. This may take a moment to complete. Within the <code>_site</code> folder, you’ll find the rendered webpage: <code>index.html</code>. Open in browser to view the complete webpage.</p>
+<p>Please direct general questions to: <a href="mailto:web@cbr.washington.edu?subject=Feedback&amp;body=Hi%20there,">web@cbr.washington.edu</a></p>
 
 
 

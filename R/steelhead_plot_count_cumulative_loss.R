@@ -19,7 +19,8 @@ source(here("R/utils_fct_wday_to_month.R"))
 #wrangle data
 
 #set current year
-current_year <- lubridate::year(today())
+source(here("R/utils_fct_assign_current_water_year.R"))
+current_year <- assign_current_water_year()
 
 #extract max cumloss of 2024 to adjust color 
 max2024LAD <- steelhead_loss_data %>% 

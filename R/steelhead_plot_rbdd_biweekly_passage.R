@@ -10,7 +10,8 @@
 load(here("data/rbdd_biweekly_passage_data.rda"))
 
 #set current year
-current_year <- year(today())
+source(here("R/utils_fct_assign_current_water_year.R"))
+current_year <- assign_current_water_year()
 
 # Create a data frame of biweekly periods
 

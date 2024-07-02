@@ -69,7 +69,8 @@ load(here::here("data", "STARS_data.rda"))
       theme_minimal() +
       theme(panel.border = element_rect(color = "grey", fill = NA, linewidth = .25),
             panel.grid.minor = element_blank(), 
-            panel.grid.major.y = element_blank())
+            panel.grid.major.y = element_blank(),
+            text = element_text(size = 15))
 
 
 # Combined plots

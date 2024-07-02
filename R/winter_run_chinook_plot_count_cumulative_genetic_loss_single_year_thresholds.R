@@ -22,8 +22,9 @@ load(here("data/jpe_genetic_loss_data.rda"))
 # import wDay to month function
 source(here("R/utils_fct_wday_to_month.R"))
 
-# extract current year and most up to date day
-current_year<-year(today())
+#set current year
+source(here("R/utils_fct_assign_current_water_year.R"))
+current_year <- assign_current_water_year()
 
 #current date
 date <- today()

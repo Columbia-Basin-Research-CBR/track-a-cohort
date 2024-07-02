@@ -2,4 +2,34 @@
 title: "About"
 ---
 
-About this site - pending
+This document includes plots requested by Bureau of Reclamation for the "Track-a-Cohort" page in development on [SacPAS: Central Valley Prediction & Assessment of Salmon](https://www.cbr.washington.edu/sacramento/) website developed and maintained by Columbia Basin Research, University of Washington.
+
+All code used to develop this quarto webpage are available via the Columbia Basin Research GitHub repository: [Columbia-Basin-Research-CBR](https://github.com/caitobrien/TAC) and can be used in total or individual plots can be generated using the code provided.
+
+How to use:
+
+-   To view the code used to generate individual plots, navigate to the `R` folder within the repository.
+
+-   To view the final data used to generate the plots, navigate to the `data` folder within the repository. Raw data that supports the plots are available in the `data-raw` folder.
+
+-   To access the final individual plots, navigate to the `_site` folder within the repository. The rendered plots are available in respective species `TAC_species_figures_files` folder.
+
+-   To render the complete quarto webpage, download the repository to `R` and run the following code in the R console:
+
+```{r, eval = FALSE}
+
+# Load necessary packages
+if (!requireNamespace("devtools", quietly = TRUE)) {
+  install.packages("devtools")
+}
+
+devtools::install_github("https://github.com/caitobrien/TAC")
+```
+
+Within the console, you'll be prompted to update or install packages as needed to run the webpage. Once complete, navigate to the terminal and run the following code:
+`quarto render` to render the complete webpage. This may take a moment to complete. Within the `_site` folder, you'll find the rendered webpage: `index.html`. Open in browser to view the complete webpage.
+
+
+
+
+Please direct general questions to: [web@cbr.washington.edu](mailto:web@cbr.washington.edu?subject=Feedback&body=Hi%20there,)
