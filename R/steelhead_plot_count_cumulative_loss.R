@@ -6,7 +6,7 @@
 #' @import scales
 #' @import gghighlight
 #' @import ggrepel
-#' @import ggh4x
+#' @importFrom ggh4x facet_nested
 #' @import here
 #' @importFrom magrittr %>% 
 

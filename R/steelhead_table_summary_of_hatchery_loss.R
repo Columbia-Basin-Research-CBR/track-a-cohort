@@ -3,7 +3,7 @@
 #' @import dplyr
 #' @import here
 #' @import knitr
-#' @import kableExtra
+#' @importFrom kableExtra kable_styling
 #' @import scales
 #' @importFrom magrittr %>%
 #' 

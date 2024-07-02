@@ -13,7 +13,7 @@ url <- "https://www.cbr.washington.edu/sacramento/data/php/rpt/juv_loss_detail.p
 steelhead_loss_raw<- read.csv(url, header = TRUE, stringsAsFactors = FALSE)
 
 # load hydrological classification data
-wytype <- read.csv(here("data-raw/WYtype.csv"))
+wytype <- read.csv(here("data/WYtype.csv"))
 
 steelhead_loss_data<- steelhead_loss_raw %>% 
   janitor::clean_names() %>% 
