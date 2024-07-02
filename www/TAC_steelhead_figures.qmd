@@ -12,23 +12,80 @@ editor: visual
 bibliography: ../www/refs/references.bib
 ---
 
-## Quarto
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo = FALSE, warning = FALSE, error = FALSE, message = FALSE)
 ```
 
-You can add options to executable code like this
+## Background
 
-```{r}
-#| echo: false
-2 * 2
+Objective: Using shared resources via [BDO github](https://github.com/BDO-Science/track-a-cohort) from BOR, replicate figures and adjust to include dynamic data. See [Track a cohort_Steelhead.docx](https://github.com/BDO-Science/track-a-cohort/blob/main/SH_Cohort/Track%20a%20Cohort_Steelhead.docx) for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp
+
+```{r, include=FALSE}
+library(here)
+source(here("R/load_dependencies.R"))
+
+# extract current year
+current_year<-year(today())
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+## Figure 1. RBDD Juvenile Passage Estimates Steelhead
+
+```{r, load_plot_01, fig.width=10, fig.height=6}
+source(here("R/steelhead_plot_rbdd_biweekly_passage.R"))
+```
+
+
+## Figure 2. Survival and Routing Probabilites
+
+Note: Using Winter-run Chinook as a surrogate for Steelhead
+
+### Facetted by year
+
+```{r, load_plot_02, fig.width=12, fig.height=12 }
+source(here("R/winter_run_chinook_plot_STARS.R"))
+```
+
+
+### Without faceted years
+
+```{r,  load_plot_02_alt, fig.width=12, fig.height=12}
+source(here("R/winter_run_chinook_plot_STARS_withoutfacetedyears.R"))
+```
+
+
+## Figure 3. Comparison of Clipped and Unclipped Steelhead Loss
+
+### Figure 3a. Current and Historical Total Loss of Clipped and Unclipped Steelhead
+
+```{r load_plot_03a, fig.width=10, fig.height=6}
+source(here("R/steelhead_plot_count_total_loss.R"))
+```
+
+### Figure 3b. Size Distribution of Steelhead Loss
+
+```{r load_plot_03b, fig.width=10, fig.height=6, fig.cap="Underlying density plot shows historical (WY1994 to WY2023) size distribution by rear type. Current year (WY2024) size distribution is shown as a histogram by rear type. Fork lengths below 750 mm were included"}
+source(here("R/steelhead_plot_size_distribution_loss.R"))
+```
+
+### Figure 3c. Size Distribution of Steelhead Loss By Year
+
+```{r load_plot_03c, fig.width=6, fig.height=10}
+source(here("R/steelhead_plot_size_distribution_by_year_loss.R"))
+```
+
+## Figure 4. Cumulative Steelhead Loss
+
+```{r load_plot_04, fig.width=10, fig.height=10}
+source(here("R/steelhead_plot_count_cumulative_loss.R"))
+```
+
+## Table 1. Minimization of Cumulative Loss of Hatchery Steelhead
+ *Pending steelhead hatchery release information
+```{r load_table_01, results='asis'}
+source(here("R/steelhead_table_summary_of_hatchery_loss.R"))
+
+```
+
+

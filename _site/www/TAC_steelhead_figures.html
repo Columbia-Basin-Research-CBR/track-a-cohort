@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -155,8 +121,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link active" data-scroll-target="#quarto">Quarto</a></li>
-  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code">Running Code</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  <li><a href="#figure-1.-rbdd-juvenile-passage-estimates-steelhead" id="toc-figure-1.-rbdd-juvenile-passage-estimates-steelhead" class="nav-link" data-scroll-target="#figure-1.-rbdd-juvenile-passage-estimates-steelhead">Figure 1. RBDD Juvenile Passage Estimates Steelhead</a></li>
+  <li><a href="#figure-2.-survival-and-routing-probabilites" id="toc-figure-2.-survival-and-routing-probabilites" class="nav-link" data-scroll-target="#figure-2.-survival-and-routing-probabilites">Figure 2. Survival and Routing Probabilites</a>
+  <ul class="collapse">
+  <li><a href="#facetted-by-year" id="toc-facetted-by-year" class="nav-link" data-scroll-target="#facetted-by-year">Facetted by year</a></li>
+  <li><a href="#without-faceted-years" id="toc-without-faceted-years" class="nav-link" data-scroll-target="#without-faceted-years">Without faceted years</a></li>
+  </ul></li>
+  <li><a href="#figure-3.-comparison-of-clipped-and-unclipped-steelhead-loss" id="toc-figure-3.-comparison-of-clipped-and-unclipped-steelhead-loss" class="nav-link" data-scroll-target="#figure-3.-comparison-of-clipped-and-unclipped-steelhead-loss">Figure 3. Comparison of Clipped and Unclipped Steelhead Loss</a>
+  <ul class="collapse">
+  <li><a href="#figure-3a.-current-and-historical-total-loss-of-clipped-and-unclipped-steelhead" id="toc-figure-3a.-current-and-historical-total-loss-of-clipped-and-unclipped-steelhead" class="nav-link" data-scroll-target="#figure-3a.-current-and-historical-total-loss-of-clipped-and-unclipped-steelhead">Figure 3a. Current and Historical Total Loss of Clipped and Unclipped Steelhead</a></li>
+  <li><a href="#figure-3b.-size-distribution-of-steelhead-loss" id="toc-figure-3b.-size-distribution-of-steelhead-loss" class="nav-link" data-scroll-target="#figure-3b.-size-distribution-of-steelhead-loss">Figure 3b. Size Distribution of Steelhead Loss</a></li>
+  <li><a href="#figure-3c.-size-distribution-of-steelhead-loss-by-year" id="toc-figure-3c.-size-distribution-of-steelhead-loss-by-year" class="nav-link" data-scroll-target="#figure-3c.-size-distribution-of-steelhead-loss-by-year">Figure 3c. Size Distribution of Steelhead Loss By Year</a></li>
+  </ul></li>
+  <li><a href="#figure-4.-cumulative-steelhead-loss" id="toc-figure-4.-cumulative-steelhead-loss" class="nav-link" data-scroll-target="#figure-4.-cumulative-steelhead-loss">Figure 4. Cumulative Steelhead Loss</a></li>
+  <li><a href="#table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead" id="toc-table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead" class="nav-link" data-scroll-target="#table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead">Table 1. Minimization of Cumulative Loss of Hatchery Steelhead</a></li>
   </ul>
 </nav>
     </div>
@@ -188,26 +167,105 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>Objective: Using shared resources via <a href="https://github.com/BDO-Science/track-a-cohort">BDO github</a> from BOR, replicate figures and adjust to include dynamic data. See <a href="https://github.com/BDO-Science/track-a-cohort/blob/main/SH_Cohort/Track%20a%20Cohort_Steelhead.docx">Track a cohort_Steelhead.docx</a> for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp</p>
 </section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
+<section id="figure-1.-rbdd-juvenile-passage-estimates-steelhead" class="level2">
+<h2 class="anchored" data-anchor-id="figure-1.-rbdd-juvenile-passage-estimates-steelhead">Figure 1. RBDD Juvenile Passage Estimates Steelhead</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_steelhead_figures_files/figure-html/load_plot_01-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
 </div>
 </div>
-<p>You can add options to executable code like this</p>
+</div>
+</section>
+<section id="figure-2.-survival-and-routing-probabilites" class="level2">
+<h2 class="anchored" data-anchor-id="figure-2.-survival-and-routing-probabilites">Figure 2. Survival and Routing Probabilites</h2>
+<p>Note: Using Winter-run Chinook as a surrogate for Steelhead</p>
+<section id="facetted-by-year" class="level3">
+<h3 class="anchored" data-anchor-id="facetted-by-year">Facetted by year</h3>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_steelhead_figures_files/figure-html/load_plot_02-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
 </div>
 </div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+</div>
+</section>
+<section id="without-faceted-years" class="level3">
+<h3 class="anchored" data-anchor-id="without-faceted-years">Without faceted years</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_steelhead_figures_files/figure-html/load_plot_02_alt-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="figure-3.-comparison-of-clipped-and-unclipped-steelhead-loss" class="level2">
+<h2 class="anchored" data-anchor-id="figure-3.-comparison-of-clipped-and-unclipped-steelhead-loss">Figure 3. Comparison of Clipped and Unclipped Steelhead Loss</h2>
+<section id="figure-3a.-current-and-historical-total-loss-of-clipped-and-unclipped-steelhead" class="level3">
+<h3 class="anchored" data-anchor-id="figure-3a.-current-and-historical-total-loss-of-clipped-and-unclipped-steelhead">Figure 3a. Current and Historical Total Loss of Clipped and Unclipped Steelhead</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_steelhead_figures_files/figure-html/load_plot_03a-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="figure-3b.-size-distribution-of-steelhead-loss" class="level3">
+<h3 class="anchored" data-anchor-id="figure-3b.-size-distribution-of-steelhead-loss">Figure 3b. Size Distribution of Steelhead Loss</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TAC_steelhead_figures_files/figure-html/load_plot_03b-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Underlying density plot shows historical (WY1994 to WY2023) size distribution by rear type. Current year (WY2024) size distribution is shown as a histogram by rear type. Fork lengths below 750 mm were included</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="figure-3c.-size-distribution-of-steelhead-loss-by-year" class="level3">
+<h3 class="anchored" data-anchor-id="figure-3c.-size-distribution-of-steelhead-loss-by-year">Figure 3c. Size Distribution of Steelhead Loss By Year</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_steelhead_figures_files/figure-html/load_plot_03c-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="figure-4.-cumulative-steelhead-loss" class="level2">
+<h2 class="anchored" data-anchor-id="figure-4.-cumulative-steelhead-loss">Figure 4. Cumulative Steelhead Loss</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_steelhead_figures_files/figure-html/load_plot_04-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead" class="level2">
+<h2 class="anchored" data-anchor-id="table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead">Table 1. Minimization of Cumulative Loss of Hatchery Steelhead</h2>
+<p>*Pending steelhead hatchery release information</p>
 
 
 </section>

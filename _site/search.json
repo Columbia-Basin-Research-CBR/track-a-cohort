@@ -25,7 +25,7 @@
     "href": "www/TAC_chinook_figures.html#figure-2.-survival-and-routing-probabilites-for-winter-run-chinook",
     "title": "Track-a-Cohort: Winter-run Chinook Figures",
     "section": "Figure 2. Survival and Routing Probabilites for Winter-run Chinook",
-    "text": "Figure 2. Survival and Routing Probabilites for Winter-run Chinook"
+    "text": "Figure 2. Survival and Routing Probabilites for Winter-run Chinook\n\nFacetted by year\n\n\n\n\n\n\n\n\n\n\n\nWithout faceted years"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-3.-juvenile-production-estimate-jpe-percent-loss",
@@ -81,20 +81,48 @@
     "href": "www/TAC_steelhead_figures.html",
     "title": "Track-a-Cohort: Steelhead Figures",
     "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "text": "Objective: Using shared resources via BDO github from BOR, replicate figures and adjust to include dynamic data. See Track a cohort_Steelhead.docx for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp"
   },
   {
-    "objectID": "www/TAC_steelhead_figures.html#quarto",
-    "href": "www/TAC_steelhead_figures.html#quarto",
+    "objectID": "www/TAC_steelhead_figures.html#background",
+    "href": "www/TAC_steelhead_figures.html#background",
     "title": "Track-a-Cohort: Steelhead Figures",
     "section": "",
-    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+    "text": "Objective: Using shared resources via BDO github from BOR, replicate figures and adjust to include dynamic data. See Track a cohort_Steelhead.docx for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp"
   },
   {
-    "objectID": "www/TAC_steelhead_figures.html#running-code",
-    "href": "www/TAC_steelhead_figures.html#running-code",
+    "objectID": "www/TAC_steelhead_figures.html#figure-1.-rbdd-juvenile-passage-estimates-steelhead",
+    "href": "www/TAC_steelhead_figures.html#figure-1.-rbdd-juvenile-passage-estimates-steelhead",
     "title": "Track-a-Cohort: Steelhead Figures",
-    "section": "Running Code",
-    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+    "section": "Figure 1. RBDD Juvenile Passage Estimates Steelhead",
+    "text": "Figure 1. RBDD Juvenile Passage Estimates Steelhead"
+  },
+  {
+    "objectID": "www/TAC_steelhead_figures.html#figure-2.-survival-and-routing-probabilites",
+    "href": "www/TAC_steelhead_figures.html#figure-2.-survival-and-routing-probabilites",
+    "title": "Track-a-Cohort: Steelhead Figures",
+    "section": "Figure 2. Survival and Routing Probabilites",
+    "text": "Figure 2. Survival and Routing Probabilites\nNote: Using Winter-run Chinook as a surrogate for Steelhead\n\nFacetted by year\n\n\n\n\n\n\n\n\n\n\n\nWithout faceted years"
+  },
+  {
+    "objectID": "www/TAC_steelhead_figures.html#figure-3.-comparison-of-clipped-and-unclipped-steelhead-loss",
+    "href": "www/TAC_steelhead_figures.html#figure-3.-comparison-of-clipped-and-unclipped-steelhead-loss",
+    "title": "Track-a-Cohort: Steelhead Figures",
+    "section": "Figure 3. Comparison of Clipped and Unclipped Steelhead Loss",
+    "text": "Figure 3. Comparison of Clipped and Unclipped Steelhead Loss\n\nFigure 3a. Current and Historical Total Loss of Clipped and Unclipped Steelhead\n\n\n\n\n\n\n\n\n\n\n\nFigure 3b. Size Distribution of Steelhead Loss\n\n\n\n\n\nUnderlying density plot shows historical (WY1994 to WY2023) size distribution by rear type. Current year (WY2024) size distribution is shown as a histogram by rear type. Fork lengths below 750 mm were included\n\n\n\n\n\n\nFigure 3c. Size Distribution of Steelhead Loss By Year"
+  },
+  {
+    "objectID": "www/TAC_steelhead_figures.html#figure-4.-cumulative-steelhead-loss",
+    "href": "www/TAC_steelhead_figures.html#figure-4.-cumulative-steelhead-loss",
+    "title": "Track-a-Cohort: Steelhead Figures",
+    "section": "Figure 4. Cumulative Steelhead Loss",
+    "text": "Figure 4. Cumulative Steelhead Loss"
+  },
+  {
+    "objectID": "www/TAC_steelhead_figures.html#table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead",
+    "href": "www/TAC_steelhead_figures.html#table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead",
+    "title": "Track-a-Cohort: Steelhead Figures",
+    "section": "Table 1. Minimization of Cumulative Loss of Hatchery Steelhead",
+    "text": "Table 1. Minimization of Cumulative Loss of Hatchery Steelhead\n*Pending steelhead hatchery release information"
   }
 ]

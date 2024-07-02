@@ -2,6 +2,7 @@
 library(gghighlight)
 library(ggplot2)
 library(ggrepel)
+library(ggridges)
 library(here)
 library(janitor)
 library(patchwork)

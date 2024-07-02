@@ -38,14 +38,14 @@ source(here("R/winter_run_chinook_plot_annual_jpe.R"))
 ## Figure 2. Survival and Routing Probabilites for Winter-run Chinook
 
 
-# Facetted by year
+### Facetted by year
 
 ```{r, load_plot_02, fig.width=12, fig.height=12 }
 source(here("R/winter_run_chinook_plot_STARS.R"))
 ```
 
 
-# Without faceted years
+### Without faceted years
 
 ```{r,  load_plot_02_alt, fig.width=12, fig.height=12}
 source(here("R/winter_run_chinook_plot_STARS_withoutfacetedyears.R"))

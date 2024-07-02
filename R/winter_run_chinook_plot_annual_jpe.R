@@ -1,4 +1,4 @@
-#' Figure 1: Juvenile Production Estimate (JPE) Winter-run Chinook
+#' @title Figure 1: Juvenile Production Estimate (JPE) Winter-run Chinook
 #' @description duplicate of annual JPE barplot on SacPas.Includes annual JPE estimate with highlighted methods used for each annual estimate.
 #' @details To access the data file, navigate to the `data` directory located at the
 #' project's root. The file is named `jpe_annual_data.rda` and is sourced from `data-raw >import_jpe_annual_data.R`. 
