@@ -36,28 +36,26 @@ current_year <- assign_current_water_year()
 source(here("R/winter_run_chinook_plot_annual_jpe.R"))
 ```
 
-- Issues: 
-  - update genetic data as it becomes available
-  - Update method naming conventions as needed
-
+-   Issues:
+    -   update genetic data as it becomes available
+    -   Update method naming conventions as needed
 
 ## Figure 2. Survival and Routing Probabilites
 
 ### Facetted by year
 
-```{r, load_plot_02, fig.width=12, fig.height=12 }
+```{r, load_plot_02, fig.width=12, fig.height=14 }
 source(here("R/winter_run_chinook_plot_STARS.R"))
 ```
 
 ### Without faceted years
 
-```{r,  load_plot_02_alt, fig.width=12, fig.height=12}
+```{r,  load_plot_02_alt, fig.width=12, fig.height=14}
 source(here("R/winter_run_chinook_plot_STARS_withoutfacetedyears.R"))
 ```
 
-
-- Future additions: 
-  - Add ShinyApp for interactive capabilities (i.e, hydrological classification).
+-   Future additions:
+    -   Add ShinyApp for interactive capabilities (i.e, hydrological classification).
 
 ## Figure 3. Juvenile Production Estimate (JPE) – Percent Loss
 
@@ -73,15 +71,14 @@ source(here("R/winter_run_chinook_plot_pct_genetic_lad_loss_jpe.R"))
 source(here("R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R"))
 ```
 
-- Issues: 
-  - Confirm use of Water Year over Brood Year - both were used in word doc shared
-  - Confirm missing 2008 JPE data 
-  - Update genetic data as it becomes available
-  - Update method naming conventions as needed
-  - Confirm loss URL sourced from SacPas
-  - add ShinyApp for interactive capabilities (i.e., hydrological classifications, plotly filtering of data, etc.)
-  
-  
+-   Issues:
+    -   Confirm use of Water Year over Brood Year - both were used in word doc shared
+    -   Confirm missing 2008 JPE data
+    -   Update genetic data as it becomes available
+    -   Update method naming conventions as needed
+    -   Confirm loss URL sourced from SacPas
+    -   add ShinyApp for interactive capabilities (i.e., hydrological classifications, plotly filtering of data, etc.)
+
 ## Figure 4. Juvenile Production Estimate (JPE) – Number Loss
 
 ### Figure 4a. Genetic vs Length-At-Date (LAD) Historical Loss of the JPE
@@ -96,12 +93,11 @@ source(here("R/winter_run_chinook_plot_count_genetic_lad_loss_jpe.R"))
 source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R"))
 ```
 
-- Issues: 
-  - Update genetic data as it becomes available
-  - Update method naming conventions as needed
-  - Confirm loss URL sourced from SacPas
-  
-  
+-   Issues:
+    -   Update genetic data as it becomes available
+    -   Update method naming conventions as needed
+    -   Confirm loss URL sourced from SacPas
+
 ## Figure 5. Single Year Thresholds
 
 ### Figure 5a. Cumulative Genetic Loss for Current Water Year
@@ -116,23 +112,21 @@ source(here("R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year
 source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R"))
 ```
 
-- Issues: 
-  - Confirm loss URL sourced from SacPas
-  - Confirm single year threshold and naming conventions
-  
-  
+-   Issues:
+    -   Confirm loss URL sourced from SacPas
+    -   Confirm single year threshold and naming conventions
+
 ## Figure 6. Hatchery Percent Confirmed Loss
 
 ```{r load_plot6, fig.width=10, fig.height=12}
 source(here("R/winter_run_chinook_hatchery_plot_pct_loss.R"))
 ```
 
-- Issues: 
-  - Confirm data import URL sourced from SacPas when it becomes available
-  
+-   Issues:
+    -   Confirm data import URL sourced from SacPas when it becomes available
+
 ## Figure 7. Tillotson predicted loss with OMR scenarios
 
 -pending
 
-Issues: 
-  - Confirm Tillotson predicted loss with OMR scenarios -- pull from SacPas or other use Tillotson.R code?
+Issues: - Confirm Tillotson predicted loss with OMR scenarios -- pull from SacPas or other use Tillotson.R code?
