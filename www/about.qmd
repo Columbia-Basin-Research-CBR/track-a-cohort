@@ -12,9 +12,9 @@ How to use:
 
 -   To view the final data used to generate the plots, navigate to the `data` folder within the repository. Raw data that supports the data for generating plots and/or tables are available in the `data-raw` folder.
 
--   To access the final individual plots (.png), navigate to the `_site` folder within the repository. The rendered plots are available in respective species folders, `TAC_insertspecies_figures_files>figure-html`.
+-   To access the final individual plots (.png), navigate to the `docs` folder within the repository. The rendered plots are available in respective species folders, `TAC_insertspecies_figures_files>figure-html`.
 
--   To render the complete quarto webpage, download the repository to `R` and run the following code in the R console to download all packages required:
+-   To render the complete quarto webpage locally, download the repository to `R` and run the following code in the R console to download all packages required:
 
 ```{r, eval = FALSE}
 
@@ -26,6 +26,6 @@ if (!requireNamespace("devtools", quietly = TRUE)) {
 devtools::install_github("https://github.com/caitobrien/TAC")
 ```
 
-Within the console, you'll be prompted to update or install packages as needed to run the webpage. Once complete, navigate to the terminal and run the following code: `quarto render` to render the complete webpage. This may take a moment to complete. Within the `_site` folder, you'll find the rendered webpage: `index.html`. Open in browser to view the complete webpage.
+Within the console, you'll be prompted to update or install packages as needed to run the webpage. Once complete, navigate to the terminal and run the following code: `quarto render` to render the complete webpage. This may take a moment to complete. Within the `docs` folder, you'll find the rendered webpage: `index.html`. Open in browser to view the complete webpage.
 
 Please direct general questions to: [web\@cbr.washington.edu](mailto:web@cbr.washington.edu?subject=Feedback&body=Hi%20there,)
