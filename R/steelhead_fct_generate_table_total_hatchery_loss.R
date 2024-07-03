@@ -1,5 +1,5 @@
 #' @title Minimization of Total Loss of Hatchery Steelhead
-#' @description This function generates a HTML table summarizing cumulative loss of hatchery steelhead releases and loss. 
+#' @description This function generates a HTML table summarizing total loss of hatchery steelhead releases and loss. 
 #' Included as a function so that the html will be generated in the .qmd file versus trying to save a html and import to .qmd. 
 #' @import dplyr
 #' @import here

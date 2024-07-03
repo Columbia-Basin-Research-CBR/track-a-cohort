@@ -77,7 +77,7 @@ p3 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
 
 
 # Combined plots
-p <- p1 / (p2 + p3)
+p <- p1 / p2 / p3
 
 # Add title and caption
 p_stars_combined <- p +  

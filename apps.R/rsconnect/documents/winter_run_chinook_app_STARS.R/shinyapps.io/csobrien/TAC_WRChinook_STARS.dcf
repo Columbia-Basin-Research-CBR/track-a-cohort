@@ -1,0 +1,12 @@
+name: TAC_WRChinook_STARS
+title: TAC_WRChinook_STARS
+username: csobrien
+account: csobrien
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 12271518
+bundleId: 8821240
+url: https://csobrien.shinyapps.io/TAC_WRChinook_STARS/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

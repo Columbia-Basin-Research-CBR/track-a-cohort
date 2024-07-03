@@ -174,10 +174,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>All code used to develop this quarto webpage are available via the Columbia Basin Research GitHub repository: <a href="https://github.com/caitobrien/TAC">Columbia-Basin-Research-CBR</a> and can be used in total or individual plots can be generated using the code provided.</p>
 <p>How to use:</p>
 <ul>
-<li><p>To view the code used to generate individual plots, navigate to the <code>R</code> folder within the repository.</p></li>
-<li><p>To view the final data used to generate the plots, navigate to the <code>data</code> folder within the repository. Raw data that supports the plots are available in the <code>data-raw</code> folder.</p></li>
-<li><p>To access the final individual plots, navigate to the <code>_site</code> folder within the repository. The rendered plots are available in respective species <code>TAC_species_figures_files</code> folder.</p></li>
-<li><p>To render the complete quarto webpage, download the repository to <code>R</code> and run the following code in the R console:</p></li>
+<li><p>To view the code used to generate individual plots, navigate to the <code>R</code> folder within the repository. Each file includes the necessary information to load the data and directs user to which libraries are needed to run the script. Alternatively, you can run the <code>load_dependencies.R</code> script to load all packages required or install via devtools, <code>devtools::install_github("https://github.com/caitobrien/TAC")</code>.</p></li>
+<li><p>To view the final data used to generate the plots, navigate to the <code>data</code> folder within the repository. Raw data that supports the data for generating plots and/or tables are available in the <code>data-raw</code> folder.</p></li>
+<li><p>To access the final individual plots (.png), navigate to the <code>_site</code> folder within the repository. The rendered plots are available in respective species folders, <code>TAC_insertspecies_figures_files&gt;figure-html</code>.</p></li>
+<li><p>To render the complete quarto webpage, download the repository to <code>R</code> and run the following code in the R console to download all packages required:</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary packages</span></span>

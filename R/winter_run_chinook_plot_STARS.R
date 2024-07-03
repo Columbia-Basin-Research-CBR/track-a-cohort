@@ -76,7 +76,7 @@ load(here::here("data", "STARS_data.rda"))
 
 
 # Combined plots
-p <- p1 / (p2 + p3)
+p <- p1 / p2 / p3
 
 # Add title and caption
 p_stars_combined <- p +  
