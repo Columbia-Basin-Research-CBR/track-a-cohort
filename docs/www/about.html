@@ -176,8 +176,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>To view the code used to generate individual plots, navigate to the <code>R</code> folder within the repository. Each file includes the necessary information to load the data and directs user to which libraries are needed to run the script. Alternatively, you can run the <code>load_dependencies.R</code> script to load all packages required or install via devtools, <code>devtools::install_github("https://github.com/caitobrien/TAC")</code>.</p></li>
 <li><p>To view the final data used to generate the plots, navigate to the <code>data</code> folder within the repository. Raw data that supports the data for generating plots and/or tables are available in the <code>data-raw</code> folder.</p></li>
-<li><p>To access the final individual plots (.png), navigate to the <code>_site</code> folder within the repository. The rendered plots are available in respective species folders, <code>TAC_insertspecies_figures_files&gt;figure-html</code>.</p></li>
-<li><p>To render the complete quarto webpage, download the repository to <code>R</code> and run the following code in the R console to download all packages required:</p></li>
+<li><p>To access the final individual plots (.png), navigate to the <code>docs</code> folder within the repository. The rendered plots are available in respective species folders, <code>TAC_insertspecies_figures_files&gt;figure-html</code>.</p></li>
+<li><p>To render the complete quarto webpage locally, download the repository to <code>R</code> and run the following code in the R console to download all packages required:</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary packages</span></span>
@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"https://github.com/caitobrien/TAC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Within the console, you’ll be prompted to update or install packages as needed to run the webpage. Once complete, navigate to the terminal and run the following code: <code>quarto render</code> to render the complete webpage. This may take a moment to complete. Within the <code>_site</code> folder, you’ll find the rendered webpage: <code>index.html</code>. Open in browser to view the complete webpage.</p>
+<p>Within the console, you’ll be prompted to update or install packages as needed to run the webpage. Once complete, navigate to the terminal and run the following code: <code>quarto render</code> to render the complete webpage. This may take a moment to complete. Within the <code>docs</code> folder, you’ll find the rendered webpage: <code>index.html</code>. Open in browser to view the complete webpage.</p>
 <p>Please direct general questions to: <a href="mailto:web@cbr.washington.edu?subject=Feedback&amp;body=Hi%20there,">web@cbr.washington.edu</a></p>
 
 

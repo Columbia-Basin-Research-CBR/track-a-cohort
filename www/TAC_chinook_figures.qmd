@@ -143,7 +143,7 @@ Issues:
 ```
 
 -   Issues:
-    -   Confirm this plot is even wanted or an accidental addition to the .docx shared (second labelled fig 5 in shared .docx).
+    -   Confirm this plot is even wanted or an accidental addition to the `Track a cohort_WR_plots docx` shared. Named Fig 5 in .docx
 
     -   Confirm data import URL sourced from SacPas when it becomes available
 
