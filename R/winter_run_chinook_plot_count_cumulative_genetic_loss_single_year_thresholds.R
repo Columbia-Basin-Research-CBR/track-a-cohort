@@ -43,7 +43,7 @@ wDay_to_date <- function(wDay, WY) {
 genetic_cumulative_loss_data <- jpe_genetic_loss_data$genetic_cumulative_loss_data
 
 #convert back to CY date
-genetic_cumulative_loss_data$date <- ymd(mapply(wDay_to_date, genetic_cumulative_loss_data$wDay, genetic_cumulative_loss_data$WY))
+genetic_cumulative_loss_data$date <- as_date(mapply(wDay_to_date, genetic_cumulative_loss_data$wDay, genetic_cumulative_loss_data$WY))
 
 # extract maximum cumloss for the current year
 cumloss_current_year <- genetic_cumulative_loss_data %>%
