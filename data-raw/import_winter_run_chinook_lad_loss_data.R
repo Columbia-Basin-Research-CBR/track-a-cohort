@@ -23,7 +23,7 @@ loss.wch <- read.csv(url) %>%
 df_lad_loss <- loss.wch %>%
   select(Sample.Time, Facility, LAD.Race, DNA.Race, nfish, Loss) %>%
   janitor::clean_names() %>%
-  mutate(date = as.Date(sample_time)) %>%
+  mutate(date = ymd_hms(sample_time)) %>%
   arrange(date) %>%
   mutate(
     WY = year(date) + (month(date) >= 10),

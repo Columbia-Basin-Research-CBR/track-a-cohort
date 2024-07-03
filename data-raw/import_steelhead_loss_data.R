@@ -18,7 +18,7 @@ wytype <- read.csv(here("data/WYtype.csv"))
 steelhead_loss_data<- steelhead_loss_raw %>% 
   janitor::clean_names() %>% 
   select(sample_time, facility, adipose_clip, length, nfish, loss) %>%
-  mutate(date = as.Date(sample_time)) %>%
+  mutate(date = ymd_hms(sample_time)) %>%
   arrange(date) %>%
   mutate(WY = year(date) + (month(date) >= 10),
          wday = if_else(month(date) >= 10, yday(date) - 273, yday(date) + 92),

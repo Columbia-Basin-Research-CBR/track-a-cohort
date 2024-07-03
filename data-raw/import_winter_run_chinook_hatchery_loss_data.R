@@ -17,7 +17,7 @@ hatchery_loss_raw <- read.csv(url, header = TRUE, stringsAsFactors = FALSE)
 hatchery_loss <- hatchery_loss_raw %>%
   janitor::clean_names() %>%
   filter(cwt_tag_race == "Winter") %>%
-  mutate(date = as.Date(release_start, format = "%Y-%m-%d")) %>%
+  mutate(date = ymd(release_start)) %>%
   arrange(date) %>%
   mutate(
     WY = year(date) + (month(date) >= 10),

@@ -31,7 +31,7 @@ wDay_today <- if_else(month(date) >= 10, yday(date) - 273, yday(date) + 92)
 
 # Function to convert wDay to actual date
 wDay_to_date <- function(wDay, WY) {
-  start_date <- as.Date(paste0(WY - 1, "-10-01")) # Water year starts on Oct 1 of the previous calendar year
+  start_date <- ymd(paste0(WY - 1, "-10-01")) # Water year starts on Oct 1 of the previous calendar year
   return(start_date + days(wDay - 1))
 }
 
@@ -41,7 +41,7 @@ wDay_to_date <- function(wDay, WY) {
 lad_cumulative_loss_data <- jpe_lad_loss_data$lad_cumulative_loss_data 
 
 #convert back to CY date
-lad_cumulative_loss_data$date <- as.Date(mapply(wDay_to_date, lad_cumulative_loss_data$wDay, lad_cumulative_loss_data$WY))
+lad_cumulative_loss_data$date <- ymd(mapply(wDay_to_date, lad_cumulative_loss_data$wDay, lad_cumulative_loss_data$WY))
 
 # extract maximum cumloss for the current year
 cumloss_current_year <- lad_cumulative_loss_data %>%

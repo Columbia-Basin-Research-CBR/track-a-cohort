@@ -20,7 +20,7 @@ rbdd_biweekly_raw <-read.csv(url)
 rbdd_biweekly <- rbdd_biweekly_raw %>% 
   janitor::clean_names() %>% 
   rename( biweek_total = biweek_total_2_3) %>% 
-  mutate(date = as.Date(date_yyyy_mm_dd, format = "%Y-%m-%d")) %>% 
+  mutate(date = ymd(date_yyyy_mm_dd)) %>% 
   filter(!is.na(date))
 
 # save the data
