@@ -1,5 +1,5 @@
 #' @title Import hatchery loss data
-#' @description Import hatchery loss data from SacPas CWT database tables -- use confirmed hatchery loss only.
+#' @description Import hatchery loss data from SacPAS CWT database tables -- use confirmed hatchery loss only.
 #' @import dplyr
 #' @import janitor
 #' @import lubridate
@@ -9,7 +9,7 @@
 
 
 # Update required: link to confirmed hatchery loss .csv with all years-- currently set to only pull one year
-# import hatchery loss directly from SacPas
+# import hatchery loss directly from SacPAS
 url <- "https://www.cbr.washington.edu/sacramento/tmp/deltacwttable_1719846904_849.csv"
 hatchery_loss_raw <- read.csv(url, header = TRUE, stringsAsFactors = FALSE)
 

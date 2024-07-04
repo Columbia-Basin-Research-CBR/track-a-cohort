@@ -36,7 +36,7 @@ current_year <- assign_current_water_year()
 source(here("R/winter_run_chinook_plot_annual_jpe.R"))
 ```
 
-Related links: [SacPas Page](https://www.cbr.washington.edu/sacramento/data/jpe_data.html), [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_annual_jpe.R)
+Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/data/jpe_data.html), [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_annual_jpe.R)
 
 -   Issues:
     -   Update genetic data as it becomes available
@@ -56,7 +56,7 @@ source(here("R/winter_run_chinook_plot_STARS.R"))
 source(here("R/winter_run_chinook_plot_STARS_withoutfacetedyears.R"))
 ```
 
-Related links: SacPas Page, [Interactive Plot](https://csobrien.shinyapps.io/TAC_WRChinook_STARS/), [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R), [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/)
+Related links: SacPAS Page, [Interactive Plot](https://csobrien.shinyapps.io/TAC_WRChinook_STARS/), [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R), [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/)
 
 ## Figure 3. Juvenile Production Estimate (JPE) – Percent Loss
 
@@ -66,7 +66,7 @@ Related links: SacPas Page, [Interactive Plot](https://csobrien.shinyapps.io/TAC
 source(here("R/winter_run_chinook_plot_pct_genetic_lad_loss_jpe.R"))
 ```
 
-Related links: SacPas Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_pct_genetic_lad_loss_jpe.R)
+Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_pct_genetic_lad_loss_jpe.R)
 
 ### Figure 3b. Cumulative Genetic Percent Loss of JPE
 
@@ -74,14 +74,14 @@ Related links: SacPas Page, [GitHub Repo Code](https://github.com/caitobrien/TAC
 source(here("R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R"))
 ```
 
-Related links: SacPas Page, ShinyApp, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R)
+Related links: SacPAS Page, ShinyApp, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R)
 
 -   Issues:
     -   Confirm use of Water Year over Brood Year - both were used in word doc shared
     -   Confirm missing 2008 JPE data
     -   Update genetic data as it becomes available
     -   Update method naming conventions as needed
-    -   Confirm loss URL sourced from SacPas
+    -   Confirm loss URL sourced from SacPAS
     -   add ShinyApp for interactive capabilities for 3b (i.e., hydrological classifications, plotly filtering of data, etc.)
 
 ## Figure 4. Juvenile Production Estimate (JPE) – Number Loss
@@ -92,7 +92,7 @@ Related links: SacPas Page, ShinyApp, [GitHub Repo Code](https://github.com/cait
 source(here("R/winter_run_chinook_plot_count_genetic_lad_loss_jpe.R"))
 ```
 
-Related links: SacPas Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_genetic_lad_loss_jpe.R)
+Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_genetic_lad_loss_jpe.R)
 
 ### Figure 4b. Cumulative Length-At-Date (LAD) loss of the JPE
 
@@ -100,12 +100,12 @@ Related links: SacPas Page, [GitHub Repo Code](https://github.com/caitobrien/TAC
 source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R"))
 ```
 
-Related links: SacPas Page, ShinyApp, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R)
+Related links: SacPAS Page, ShinyApp, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R)
 
 -   Issues:
     -   Update genetic data as it becomes available
     -   Update method naming conventions as needed
-    -   Confirm loss URL sourced from SacPas
+    -   Confirm loss URL sourced from SacPAS
     -   add ShinyApp for interactive capabilities for 3b (i.e., hydrological classifications, plotly filtering of data, etc.)
 
 ## Figure 5. Single Year Thresholds
@@ -122,10 +122,10 @@ source(here("R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year
 source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R"))
 ```
 
-Related links: [SacPas Page](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss), ShinyApp, [GitHub Repo Code: cumul_genetic_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R) , [GitHub Repo Code: cumul_lad_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R) ,
+Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss), ShinyApp, [GitHub Repo Code: cumul_genetic_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R) , [GitHub Repo Code: cumul_lad_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R) ,
 
 -   Issues:
-    -   Confirm loss URL sourced from SacPas
+    -   Confirm loss URL sourced from SacPAS
     -   Confirm single year threshold and naming conventions
 
 ## Figure 6. Tillotson predicted loss with OMR scenarios
@@ -134,7 +134,7 @@ Related links: [SacPas Page](https://www.cbr.washington.edu/sacramento/workgroup
 
 Issues:
 
--   Confirm Tillotson predicted loss with OMR scenarios -- pull from SacPas or other use Tillotson.R code?
+-   Confirm Tillotson predicted loss with OMR scenarios -- pull from SacPAS or other use Tillotson.R code?
 
 ## Figure 7. Hatchery Percent Loss
 
@@ -145,6 +145,6 @@ Issues:
 -   Issues:
     -   Confirm this plot is even wanted or an accidental addition to the `Track a cohort_WR_plots docx` shared. Named Fig 5 in .docx
 
-    -   Confirm data import URL sourced from SacPas when it becomes available
+    -   Confirm data import URL sourced from SacPAS when it becomes available
 
     -   Update figure with additional years as data becomes available

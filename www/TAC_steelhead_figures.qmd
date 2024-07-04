@@ -36,7 +36,7 @@ current_year <- assign_current_water_year()
 source(here("R/steelhead_plot_rbdd_biweekly_passage.R"))
 ```
 
-Related links: [SacPas Page](https://www.cbr.washington.edu/sacramento/tmp/redbluffdaily_1714603318_94.html), [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_annual_jpe.R)
+Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/tmp/redbluffdaily_1714603318_94.html), [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_annual_jpe.R)
 
 -   Issues:
     -   Update biweekly shaded areas based on SI generated methods
@@ -57,7 +57,7 @@ source(here("R/winter_run_chinook_plot_STARS.R"))
 source(here("R/winter_run_chinook_plot_STARS_withoutfacetedyears.R"))
 ```
 
-Related links: [SacPas Page](pending), [Interactive Plot](https://csobrien.shinyapps.io/TAC_WRChinook_STARS/), [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R), [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/)
+Related links: [SacPAS Page](pending), [Interactive Plot](https://csobrien.shinyapps.io/TAC_WRChinook_STARS/), [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R), [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/)
 
 ## Figure 3. Comparison of Clipped and Unclipped Loss
 
@@ -67,7 +67,7 @@ Related links: [SacPas Page](pending), [Interactive Plot](https://csobrien.shiny
 source(here("R/steelhead_plot_count_total_loss.R"))
 ```
 
-Related links: SacPas Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_count_total_loss.R)
+Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_count_total_loss.R)
 
 ### Figure 3b. Size Distribution of Loss
 
@@ -75,7 +75,7 @@ Related links: SacPas Page, [GitHub Repo Code](https://github.com/caitobrien/TAC
 source(here("R/steelhead_plot_size_distribution_loss.R"))
 ```
 
-Related links: SacPas Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_size_distribution_loss.R)
+Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_size_distribution_loss.R)
 
 ### Figure 3c. Size Distribution of Steelhead Loss By Year
 
@@ -83,7 +83,7 @@ Related links: SacPas Page, [GitHub Repo Code](https://github.com/caitobrien/TAC
 source(here("R/steelhead_plot_size_distribution_by_year_loss.R"))
 ```
 
-Related links: SacPas Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_size_distribution_by_year_loss.R)
+Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_size_distribution_by_year_loss.R)
 
 ## Figure 4. Cumulative Loss
 
@@ -91,7 +91,7 @@ Related links: SacPas Page, [GitHub Repo Code](https://github.com/caitobrien/TAC
 source(here("R/steelhead_plot_count_cumulative_loss.R"))
 ```
 
-Related links: SacPas Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_count_cumulative_loss.R)
+Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_count_cumulative_loss.R)
 
 ## Figure 5. Cumulative Loss with Single-Year Thresholds
 
@@ -99,7 +99,7 @@ Related links: SacPas Page, [GitHub Repo Code](https://github.com/caitobrien/TAC
 source(here("R/steehead_plot_count_cumulative_loss_single_year_thresholds.R"))
 ```
 
-Related links: [SacPas Page](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss:~:text=Chinook%20Salmon%20Loss-,Natural%20Central%20Valley%20Steelhead,-Daily%20Loss%20Table), ShinyApp, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steehead_plot_count_cumulative_loss_single_year_thresholds.R)
+Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss:~:text=Chinook%20Salmon%20Loss-,Natural%20Central%20Valley%20Steelhead,-Daily%20Loss%20Table), ShinyApp, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steehead_plot_count_cumulative_loss_single_year_thresholds.R)
 
 -   Issues:
     -   Confirm Single-Year-Thresholds and update to generate automatically
@@ -121,7 +121,7 @@ generate_table_steelhead_total_hatchery_loss(steelhead_loss_data)
 
 ```
 
-Related links: SacPas Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_fct_generate_table_total_hatchery_loss.R)
+Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_fct_generate_table_total_hatchery_loss.R)
 
 -   Issues:
     -   Update with steelhead hatchery release information when becomes available
@@ -132,14 +132,14 @@ Related links: SacPas Page, [GitHub Repo Code](https://github.com/caitobrien/TAC
 source(here("R/steelhead_plot_daily_loss_export.R"))
 ```
 
-Related links: SacPas Page, ShinyApp, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_daily_loss_export.R)
+Related links: SacPAS Page, ShinyApp, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_daily_loss_export.R)
 
 -   Issues:
-    -   Update with SacPas generated link for Export data per Facility, closest data found: <https://www.cbr.washington.edu/sacramento/tmp/juvloss_1719955580_301.html>, which is used in figure. Does not delineate between facility. Also, requires selection of current year, species and rear-type, and management year type. Update with query string that can pull current year data for steelhead.
+    -   Update with SacPAS generated link for Export data per Facility, closest data found: <https://www.cbr.washington.edu/sacramento/tmp/juvloss_1719955580_301.html>, which is used in figure. Does not delineate between facility. Also, requires selection of current year, species and rear-type, and management year type. Update with query string that can pull current year data for steelhead.
 
 ## Figure 7. Tillotson Steelhead Loss
 
-Related links: SacPas Page, [SacPas Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/), GitHub Repo Code
+Related links: SacPAS Page, [SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/), GitHub Repo Code
 
 -   Issues:
     -   Run model or pull Tillotson data from tool?
@@ -158,4 +158,4 @@ generate_table_steelhead_pred_obs_loss(steelhead_loss_export_data)
 
 ```
 
-Related links: SacPas Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_fct_generate_table_predicted_observed_loss.R) - Issues: - Confirm table uses unclipped for summary - Identify methods used for predicted column - Confirm table should include weekly? averages for current water year. How are averages calculated? - Confirm OMR or OMRI is used, alternatively include both?
+Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_fct_generate_table_predicted_observed_loss.R) - Issues: - Confirm table uses unclipped for summary - Identify methods used for predicted column - Confirm table should include weekly? averages for current water year. How are averages calculated? - Confirm OMR or OMRI is used, alternatively include both?

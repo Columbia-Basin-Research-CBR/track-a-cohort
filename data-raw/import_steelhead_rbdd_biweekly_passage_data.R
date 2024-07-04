@@ -1,4 +1,4 @@
-#' @title Import Steelhead Bi-Weekly Passage data from SacPas generated URL
+#' @title Import Steelhead Bi-Weekly Passage data from SacPAS generated URL
 #' @import dplyr
 #' @import lubridate
 #' @import janitor

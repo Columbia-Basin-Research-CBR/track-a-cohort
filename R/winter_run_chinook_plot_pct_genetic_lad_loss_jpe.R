@@ -1,5 +1,5 @@
 #' Figure 3a: JPE percent loss - compare genetic and LAD loss estimates
-#' @description Barplot comparing percent JPE loss: genetic vs LAD loss estimates. Includes shared genetic data and LAD loss data from SacPas. Update underlying data files as needed
+#' @description Barplot comparing percent JPE loss: genetic vs LAD loss estimates. Includes shared genetic data and LAD loss data from SacPAS. Update underlying data files as needed
 #' @import ggplot2
 #' @import dplyr
 #' @import here
@@ -59,6 +59,6 @@ p <- jpe_genetic_lad_data %>%
 print(p)
 
 # Notes:
-# currently missing 2007 JPE data from SacPas
+# currently missing 2007 JPE data from SacPAS
 # filter WY data to match genetic data years provided by BOR
 # plot by BY or WY?

@@ -1,5 +1,5 @@
 #' @title import LAD loss data for winter-run chinook
-#' @description This script includes wrangling of lad data imported directly from SacPas.
+#' @description This script includes wrangling of lad data imported directly from SacPAS.
 #' The lad loss data is joined with the JPE annual data to calculate cumulative loss and percent loss of the JPE.
 #' Needs confirmation of numbers/link from SI/MC since numbers differ from BOR shared flat file.
 #'  @details To calculate cumulative genetic loss, the JPE data is imported via `data` >`JPE_annual_data.R` wrangled via `data-raw` >`import_jpe_annual_data.R`.
@@ -11,7 +11,7 @@
 #' @importFrom magrittr %>%
 
 
-# import LAD loss directly from SacPas (include genetic when available)
+# import LAD loss directly from SacPAS (include genetic when available)
 
 url <- "https://www.cbr.washington.edu/sacramento/data/php/rpt/juv_loss_detail.php?sc=1&outputFormat=default&year=all&species=1%3Af&dnaOnly=no&age=no"
 

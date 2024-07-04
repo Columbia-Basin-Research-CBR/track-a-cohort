@@ -1,4 +1,4 @@
-#' import JPE estimate data directly from SacPas
+#' import JPE estimate data directly from SacPAS
 #'  @return writes a .rda to the data folder including wrangled annual jpe estimate data 
 #'  @import dplyr
 #'  @importFrom magrittr %>% 
@@ -9,7 +9,7 @@
 #load dependencies
 source(here("R/load_dependencies.R"))
 
-# import JPE estimate data directly from SacPas
+# import JPE estimate data directly from SacPAS
 jpe_url<- "https://www.cbr.washington.edu/sacramento/data/graphics/jpedata_Natural_1.txt"
 jpe_raw <- data.table::fread(jpe.url) 
 

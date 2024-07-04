@@ -1,4 +1,4 @@
-#' @title import steelhead loss and export data from SacPas
+#' @title import steelhead loss and export data from SacPAS
 #' @description This script is more of a holder space for future data query url that will include export per facility and loss per facility to be used in the steelhead Figure 6 barplot and linegraph.
 #' Current url download requires year, spp, and year type selection to then download a csv with total daily loss and export for both facilities
 #' @import dplyr

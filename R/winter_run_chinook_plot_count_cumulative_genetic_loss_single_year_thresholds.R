@@ -13,7 +13,7 @@
 #' @importFrom magrittr %>%
 
 # import data file
-#loss data from sacpas
+#loss data from SacPAS
 load(here("data/jpe_genetic_loss_data.rda"))
 
 

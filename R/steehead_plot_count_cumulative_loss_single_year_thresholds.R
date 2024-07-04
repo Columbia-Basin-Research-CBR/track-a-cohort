@@ -13,7 +13,7 @@
 #' @importFrom magrittr %>%
 
 # import data file
-#loss data from sacpas
+#loss data from SacPAS
 load(here("data/steelhead_loss_data.rda"))
 
 
@@ -63,7 +63,7 @@ cumloss_current_year <- steelhead_loss_data_unclipped %>%
 set_text_date <- min(cumloss_current_year$date) - weeks(2)
 
 # Update to set 100% loss limit when known
-current_year_100pct <- 1414 + 1552 # setting 100% loss limit for steelhead at Dec-June loss reported on SacPas
+current_year_100pct <- 1414 + 1552 # setting 100% loss limit for steelhead at Dec-June loss reported on SacPAS
 current_year_75pct <- current_year_100pct*.75
 current_year_50pct <- current_year_100pct*.50
 

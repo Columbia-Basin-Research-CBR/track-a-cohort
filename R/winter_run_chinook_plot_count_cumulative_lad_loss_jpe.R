@@ -16,7 +16,7 @@
 #' @noRd
 
 # import data file
-#loss data from sacpas
+#loss data from SacPAS
 load(here("data/jpe_lad_loss_data.rda"))
 # extract genetic cumulative loss data
 lad_cumulative_loss_data <- jpe_lad_loss_data$lad_cumulative_loss_data

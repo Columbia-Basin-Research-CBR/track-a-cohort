@@ -1,5 +1,5 @@
-#' @title Import steelhead loss from SacPas
-#' @description This script imports steelhead loss data from the Sacramento River using the SacPas website. Confirm link is correct
+#' @title Import steelhead loss from SacPAS
+#' @description This script imports steelhead loss data from the Sacramento River using the SacPAS website. Confirm link is correct
 #' @import dplyr
 #' @import lubridate
 #' @import janitor

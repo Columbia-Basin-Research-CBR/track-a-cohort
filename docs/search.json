@@ -25,49 +25,49 @@
     "href": "www/TAC_chinook_figures.html#figure-1.-juvenile-production-estimate",
     "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 1. Juvenile Production Estimate",
-    "text": "Figure 1. Juvenile Production Estimate\n\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, GitHub Repo Code\n\nIssues:\n\nUpdate genetic data as it becomes available\nUpdate method naming conventions as needed"
+    "text": "Figure 1. Juvenile Production Estimate\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code\n\nIssues:\n\nUpdate genetic data as it becomes available\nUpdate method naming conventions as needed"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-2.-survival-and-routing-probabilites",
     "href": "www/TAC_chinook_figures.html#figure-2.-survival-and-routing-probabilites",
     "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 2. Survival and Routing Probabilites",
-    "text": "Figure 2. Survival and Routing Probabilites\n\nOption 1: Facetted by year\n\n\n\n\n\n\n\n\n\n\n\nOption 2: Without faceted years\n\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, Interactive Plot, GitHub Repo Code, STARS ShinyApp"
+    "text": "Figure 2. Survival and Routing Probabilites\n\nOption 1: Facetted by year\n\n\n\n\n\n\n\n\n\n\n\nOption 2: Without faceted years\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, Interactive Plot, GitHub Repo Code, STARS ShinyApp"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-3.-juvenile-production-estimate-jpe-percent-loss",
     "href": "www/TAC_chinook_figures.html#figure-3.-juvenile-production-estimate-jpe-percent-loss",
     "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 3. Juvenile Production Estimate (JPE) – Percent Loss",
-    "text": "Figure 3. Juvenile Production Estimate (JPE) – Percent Loss\n\nFigure 3a. Genetic vs Length-At-Date (LAD) Historical Percent Loss of JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, GitHub Repo Code\n\n\nFigure 3b. Cumulative Genetic Percent Loss of JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, ShinyApp, GitHub Repo Code\n\nIssues:\n\nConfirm use of Water Year over Brood Year - both were used in word doc shared\nConfirm missing 2008 JPE data\nUpdate genetic data as it becomes available\nUpdate method naming conventions as needed\nConfirm loss URL sourced from SacPas\nadd ShinyApp for interactive capabilities for 3b (i.e., hydrological classifications, plotly filtering of data, etc.)"
+    "text": "Figure 3. Juvenile Production Estimate (JPE) – Percent Loss\n\nFigure 3a. Genetic vs Length-At-Date (LAD) Historical Percent Loss of JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code\n\n\nFigure 3b. Cumulative Genetic Percent Loss of JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, ShinyApp, GitHub Repo Code\n\nIssues:\n\nConfirm use of Water Year over Brood Year - both were used in word doc shared\nConfirm missing 2008 JPE data\nUpdate genetic data as it becomes available\nUpdate method naming conventions as needed\nConfirm loss URL sourced from SacPAS\nadd ShinyApp for interactive capabilities for 3b (i.e., hydrological classifications, plotly filtering of data, etc.)"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-4.-juvenile-production-estimate-jpe-number-loss",
     "href": "www/TAC_chinook_figures.html#figure-4.-juvenile-production-estimate-jpe-number-loss",
     "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 4. Juvenile Production Estimate (JPE) – Number Loss",
-    "text": "Figure 4. Juvenile Production Estimate (JPE) – Number Loss\n\nFigure 4a. Genetic vs Length-At-Date (LAD) Historical Loss of the JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, GitHub Repo Code\n\n\nFigure 4b. Cumulative Length-At-Date (LAD) loss of the JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, ShinyApp, GitHub Repo Code\n\nIssues:\n\nUpdate genetic data as it becomes available\nUpdate method naming conventions as needed\nConfirm loss URL sourced from SacPas\nadd ShinyApp for interactive capabilities for 3b (i.e., hydrological classifications, plotly filtering of data, etc.)"
+    "text": "Figure 4. Juvenile Production Estimate (JPE) – Number Loss\n\nFigure 4a. Genetic vs Length-At-Date (LAD) Historical Loss of the JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code\n\n\nFigure 4b. Cumulative Length-At-Date (LAD) loss of the JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, ShinyApp, GitHub Repo Code\n\nIssues:\n\nUpdate genetic data as it becomes available\nUpdate method naming conventions as needed\nConfirm loss URL sourced from SacPAS\nadd ShinyApp for interactive capabilities for 3b (i.e., hydrological classifications, plotly filtering of data, etc.)"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-5.-single-year-thresholds",
     "href": "www/TAC_chinook_figures.html#figure-5.-single-year-thresholds",
     "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 5. Single Year Thresholds",
-    "text": "Figure 5. Single Year Thresholds\n\nFigure 5a. Cumulative Genetic Loss for Current Water Year\n\n\n\n\n\n\n\n\n\n\n\nFigure 5b. Cumulative LAD Loss for Current Water Year\n\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, ShinyApp, GitHub Repo Code: cumul_genetic_loss , GitHub Repo Code: cumul_lad_loss ,\n\nIssues:\n\nConfirm loss URL sourced from SacPas\nConfirm single year threshold and naming conventions"
+    "text": "Figure 5. Single Year Thresholds\n\nFigure 5a. Cumulative Genetic Loss for Current Water Year\n\n\n\n\n\n\n\n\n\n\n\nFigure 5b. Cumulative LAD Loss for Current Water Year\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, ShinyApp, GitHub Repo Code: cumul_genetic_loss , GitHub Repo Code: cumul_lad_loss ,\n\nIssues:\n\nConfirm loss URL sourced from SacPAS\nConfirm single year threshold and naming conventions"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-6.-tillotson-predicted-loss-with-omr-scenarios",
     "href": "www/TAC_chinook_figures.html#figure-6.-tillotson-predicted-loss-with-omr-scenarios",
     "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 6. Tillotson predicted loss with OMR scenarios",
-    "text": "Figure 6. Tillotson predicted loss with OMR scenarios\n-pending\nIssues:\n\nConfirm Tillotson predicted loss with OMR scenarios – pull from SacPas or other use Tillotson.R code?"
+    "text": "Figure 6. Tillotson predicted loss with OMR scenarios\n-pending\nIssues:\n\nConfirm Tillotson predicted loss with OMR scenarios – pull from SacPAS or other use Tillotson.R code?"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-7.-hatchery-percent-loss",
     "href": "www/TAC_chinook_figures.html#figure-7.-hatchery-percent-loss",
     "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 7. Hatchery Percent Loss",
-    "text": "Figure 7. Hatchery Percent Loss\n\n\n\n\n\n\n\n\n\n\nIssues:\n\nConfirm this plot is even wanted or an accidental addition to the Track a cohort_WR_plots docx shared. Named Fig 5 in .docx\nConfirm data import URL sourced from SacPas when it becomes available\nUpdate figure with additional years as data becomes available"
+    "text": "Figure 7. Hatchery Percent Loss\n\n\n\n\n\n\n\n\n\n\nIssues:\n\nConfirm this plot is even wanted or an accidental addition to the Track a cohort_WR_plots docx shared. Named Fig 5 in .docx\nConfirm data import URL sourced from SacPAS when it becomes available\nUpdate figure with additional years as data becomes available"
   },
   {
     "objectID": "www/TAC_steelhead_figures.html",
@@ -88,62 +88,62 @@
     "href": "www/TAC_steelhead_figures.html#figure-1.-rbdd-juvenile-passage-estimates",
     "title": "Track-a-Cohort: Steelhead",
     "section": "Figure 1. RBDD Juvenile Passage Estimates",
-    "text": "Figure 1. RBDD Juvenile Passage Estimates\n\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, GitHub Repo Code\n\nIssues:\n\nUpdate biweekly shaded areas based on SI generated methods"
+    "text": "Figure 1. RBDD Juvenile Passage Estimates\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code\n\nIssues:\n\nUpdate biweekly shaded areas based on SI generated methods"
   },
   {
     "objectID": "www/TAC_steelhead_figures.html#figure-2.-survival-and-routing-probabilites",
     "href": "www/TAC_steelhead_figures.html#figure-2.-survival-and-routing-probabilites",
     "title": "Track-a-Cohort: Steelhead",
     "section": "Figure 2. Survival and Routing Probabilites",
-    "text": "Figure 2. Survival and Routing Probabilites\nNote: Using Winter-run Chinook as a surrogate for Steelhead\n\nOption 1: Facetted by year\n\n\n\n\n\n\n\n\n\n\n\nOption 2: Without faceted years\n\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, Interactive Plot, GitHub Repo Code, STARS ShinyApp"
+    "text": "Figure 2. Survival and Routing Probabilites\nNote: Using Winter-run Chinook as a surrogate for Steelhead\n\nOption 1: Facetted by year\n\n\n\n\n\n\n\n\n\n\n\nOption 2: Without faceted years\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, Interactive Plot, GitHub Repo Code, STARS ShinyApp"
   },
   {
     "objectID": "www/TAC_steelhead_figures.html#figure-3.-comparison-of-clipped-and-unclipped-loss",
     "href": "www/TAC_steelhead_figures.html#figure-3.-comparison-of-clipped-and-unclipped-loss",
     "title": "Track-a-Cohort: Steelhead",
     "section": "Figure 3. Comparison of Clipped and Unclipped Loss",
-    "text": "Figure 3. Comparison of Clipped and Unclipped Loss\n\nFigure 3a. Total Loss of Clipped and Unclipped Steelhead\n\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, GitHub Repo Code\n\n\nFigure 3b. Size Distribution of Loss\n\n\n\n\n\nFigure includes density plots that highlight historical (WY1994 to WY2023) size distribution and histogram of current year (WY2024) size distribution by rear type. Fork lengths below 750 mm were included in dataset.\n\n\n\n\nRelated links: SacPas Page, GitHub Repo Code\n\n\nFigure 3c. Size Distribution of Steelhead Loss By Year\n\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, GitHub Repo Code"
+    "text": "Figure 3. Comparison of Clipped and Unclipped Loss\n\nFigure 3a. Total Loss of Clipped and Unclipped Steelhead\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code\n\n\nFigure 3b. Size Distribution of Loss\n\n\n\n\n\nFigure includes density plots that highlight historical (WY1994 to WY2023) size distribution and histogram of current year (WY2024) size distribution by rear type. Fork lengths below 750 mm were included in dataset.\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code\n\n\nFigure 3c. Size Distribution of Steelhead Loss By Year\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code"
   },
   {
     "objectID": "www/TAC_steelhead_figures.html#figure-4.-cumulative-loss",
     "href": "www/TAC_steelhead_figures.html#figure-4.-cumulative-loss",
     "title": "Track-a-Cohort: Steelhead",
     "section": "Figure 4. Cumulative Loss",
-    "text": "Figure 4. Cumulative Loss\n\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, GitHub Repo Code"
+    "text": "Figure 4. Cumulative Loss\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code"
   },
   {
     "objectID": "www/TAC_steelhead_figures.html#figure-5.-cumulative-loss-with-single-year-thresholds",
     "href": "www/TAC_steelhead_figures.html#figure-5.-cumulative-loss-with-single-year-thresholds",
     "title": "Track-a-Cohort: Steelhead",
     "section": "Figure 5. Cumulative Loss with Single-Year Thresholds",
-    "text": "Figure 5. Cumulative Loss with Single-Year Thresholds\n\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, ShinyApp, GitHub Repo Code\n\nIssues:\n\nConfirm Single-Year-Thresholds and update to generate automatically\nConfirm only including unclipped"
+    "text": "Figure 5. Cumulative Loss with Single-Year Thresholds\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, ShinyApp, GitHub Repo Code\n\nIssues:\n\nConfirm Single-Year-Thresholds and update to generate automatically\nConfirm only including unclipped"
   },
   {
     "objectID": "www/TAC_steelhead_figures.html#table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead",
     "href": "www/TAC_steelhead_figures.html#table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead",
     "title": "Track-a-Cohort: Steelhead",
     "section": "Table 1. Minimization of Cumulative Loss of Hatchery Steelhead",
-    "text": "Table 1. Minimization of Cumulative Loss of Hatchery Steelhead\n*Pending steelhead hatchery release information\n\n\n\n\nMinimization of Total Loss of Hatchery Steelhead by Water Year\n\n\nWater Year\nTotal Loss\nTotal released\nPercent of fish released lost to facilities\nBrood Year\n\n\n\n\n1994\n125.25\nNA\nNA\n1993\n\n\n1995\n146.72\nNA\nNA\n1994\n\n\n1996\n330.74\nNA\nNA\n1995\n\n\n1997\n4.33\nNA\nNA\n1996\n\n\n1998\n496.44\nNA\nNA\n1997\n\n\n1999\n555.64\nNA\nNA\n1998\n\n\n2000\n18795.42\nNA\nNA\n1999\n\n\n2001\n24779.83\nNA\nNA\n2000\n\n\n2002\n5957.45\nNA\nNA\n2001\n\n\n2003\n24077.48\nNA\nNA\n2002\n\n\n2004\n18643.98\nNA\nNA\n2003\n\n\n2005\n6661.86\nNA\nNA\n2004\n\n\n2006\n2758.54\nNA\nNA\n2005\n\n\n2007\n4173.84\nNA\nNA\n2006\n\n\n2008\n6558.86\nNA\nNA\n2007\n\n\n2009\n2439.11\nNA\nNA\n2008\n\n\n2010\n6548.28\nNA\nNA\n2009\n\n\n2011\n2823.07\nNA\nNA\n2010\n\n\n2012\n1141.16\nNA\nNA\n2011\n\n\n2013\n1901.95\nNA\nNA\n2012\n\n\n2014\n327.83\nNA\nNA\n2013\n\n\n2015\n1841.19\nNA\nNA\n2014\n\n\n2016\n3566.87\nNA\nNA\n2015\n\n\n2017\n164.29\nNA\nNA\n2016\n\n\n2018\n2462.90\nNA\nNA\n2017\n\n\n2019\n5777.70\nNA\nNA\n2018\n\n\n2020\n659.44\nNA\nNA\n2019\n\n\n2021\n341.69\nNA\nNA\n2020\n\n\n2022\n639.79\nNA\nNA\n2021\n\n\n2023\n3650.30\nNA\nNA\n2022\n\n\n2024\n2828.56\nNA\nNA\n2023\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, GitHub Repo Code\n\nIssues:\n\nUpdate with steelhead hatchery release information when becomes available"
+    "text": "Table 1. Minimization of Cumulative Loss of Hatchery Steelhead\n*Pending steelhead hatchery release information\n\n\n\n\nMinimization of Total Loss of Hatchery Steelhead by Water Year\n\n\nWater Year\nTotal Loss\nTotal released\nPercent of fish released lost to facilities\nBrood Year\n\n\n\n\n1994\n125.25\nNA\nNA\n1993\n\n\n1995\n146.72\nNA\nNA\n1994\n\n\n1996\n330.74\nNA\nNA\n1995\n\n\n1997\n4.33\nNA\nNA\n1996\n\n\n1998\n496.44\nNA\nNA\n1997\n\n\n1999\n555.64\nNA\nNA\n1998\n\n\n2000\n18795.42\nNA\nNA\n1999\n\n\n2001\n24779.83\nNA\nNA\n2000\n\n\n2002\n5957.45\nNA\nNA\n2001\n\n\n2003\n24077.48\nNA\nNA\n2002\n\n\n2004\n18643.98\nNA\nNA\n2003\n\n\n2005\n6661.86\nNA\nNA\n2004\n\n\n2006\n2758.54\nNA\nNA\n2005\n\n\n2007\n4173.84\nNA\nNA\n2006\n\n\n2008\n6558.86\nNA\nNA\n2007\n\n\n2009\n2439.11\nNA\nNA\n2008\n\n\n2010\n6548.28\nNA\nNA\n2009\n\n\n2011\n2823.07\nNA\nNA\n2010\n\n\n2012\n1141.16\nNA\nNA\n2011\n\n\n2013\n1901.95\nNA\nNA\n2012\n\n\n2014\n327.83\nNA\nNA\n2013\n\n\n2015\n1841.19\nNA\nNA\n2014\n\n\n2016\n3566.87\nNA\nNA\n2015\n\n\n2017\n164.29\nNA\nNA\n2016\n\n\n2018\n2462.90\nNA\nNA\n2017\n\n\n2019\n5777.70\nNA\nNA\n2018\n\n\n2020\n659.44\nNA\nNA\n2019\n\n\n2021\n341.69\nNA\nNA\n2020\n\n\n2022\n639.79\nNA\nNA\n2021\n\n\n2023\n3650.30\nNA\nNA\n2022\n\n\n2024\n2828.56\nNA\nNA\n2023\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code\n\nIssues:\n\nUpdate with steelhead hatchery release information when becomes available"
   },
   {
     "objectID": "www/TAC_steelhead_figures.html#figure-6.-daily-loss-exports-and-pumping-rates-by-facility",
     "href": "www/TAC_steelhead_figures.html#figure-6.-daily-loss-exports-and-pumping-rates-by-facility",
     "title": "Track-a-Cohort: Steelhead",
     "section": "Figure 6. Daily Loss, Exports, and Pumping Rates by Facility",
-    "text": "Figure 6. Daily Loss, Exports, and Pumping Rates by Facility\n\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, ShinyApp, GitHub Repo Code\n\nIssues:\n\nUpdate with SacPas generated link for Export data per Facility, closest data found: https://www.cbr.washington.edu/sacramento/tmp/juvloss_1719955580_301.html, which is used in figure. Does not delineate between facility. Also, requires selection of current year, species and rear-type, and management year type. Update with query string that can pull current year data for steelhead."
+    "text": "Figure 6. Daily Loss, Exports, and Pumping Rates by Facility\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, ShinyApp, GitHub Repo Code\n\nIssues:\n\nUpdate with SacPAS generated link for Export data per Facility, closest data found: https://www.cbr.washington.edu/sacramento/tmp/juvloss_1719955580_301.html, which is used in figure. Does not delineate between facility. Also, requires selection of current year, species and rear-type, and management year type. Update with query string that can pull current year data for steelhead."
   },
   {
     "objectID": "www/TAC_steelhead_figures.html#figure-7.-tillotson-steelhead-loss",
     "href": "www/TAC_steelhead_figures.html#figure-7.-tillotson-steelhead-loss",
     "title": "Track-a-Cohort: Steelhead",
     "section": "Figure 7. Tillotson Steelhead Loss",
-    "text": "Figure 7. Tillotson Steelhead Loss\nRelated links: SacPas Page, SacPas Tillotson Tool, GitHub Repo Code\n\nIssues:\n\nRun model or pull Tillotson data from tool?"
+    "text": "Figure 7. Tillotson Steelhead Loss\nRelated links: SacPAS Page, SacPAS Tillotson Tool, GitHub Repo Code\n\nIssues:\n\nRun model or pull Tillotson data from tool?"
   },
   {
     "objectID": "www/TAC_steelhead_figures.html#table-2.-predicted-and-observed-loss",
     "href": "www/TAC_steelhead_figures.html#table-2.-predicted-and-observed-loss",
     "title": "Track-a-Cohort: Steelhead",
     "section": "Table 2. Predicted and Observed Loss",
-    "text": "Table 2. Predicted and Observed Loss\n\n\n\n\nPredicted and Observed Total Loss of Hatchery Steelhead with weekly OMR flow and export\n\n\nDate\nTotal Daily Loss\nAverage Export (TAF)\nAverage OMRI (cfs)\nAverage OMR (cfs); 5d USGS tidally filtered\n\n\n\n\n2023-10-07\nNA\n9.597429\n-4049.2857\n-6004.0000\n\n\n2023-10-14\nNA\n5.380429\n-1941.2857\n-3771.4286\n\n\n2023-10-21\nNA\n2.448143\n-600.8571\n-2033.5714\n\n\n2023-10-28\nNA\n7.471429\n-2581.1429\n-2551.0000\n\n\n2023-11-04\nNA\n10.736429\n-4486.4286\n-5678.2857\n\n\n2023-11-11\nNA\n7.710857\n-3255.5714\n-4953.1429\n\n\n2023-11-18\nNA\n8.408143\nNA\n-4167.2857\n\n\n2023-11-25\nNA\n9.031143\n-3914.4286\n-5231.7143\n\n\n2023-12-02\nNA\n8.649000\nNA\n-4157.7143\n\n\n2023-12-09\nNA\n11.088857\n-5030.1429\n-5887.7143\n\n\n2023-12-16\nNA\n12.738571\n-5740.5714\n-6134.8571\n\n\n2023-12-23\nNA\n15.283714\n-6747.7143\nNA\n\n\n2023-12-30\nNA\n13.266714\n-5791.0000\nNA\n\n\n2024-01-06\nNA\n11.889714\n-4983.1429\n-5618.8571\n\n\n2024-01-13\nNA\n10.801714\n-4324.4286\n-5259.1429\n\n\n2024-01-20\nNA\n8.813000\n-2932.1429\n-4535.4286\n\n\n2024-01-27\nNA\n7.499714\n-2004.1429\n-2835.8571\n\n\n2024-02-03\nNA\n12.286143\n-3059.7143\n-3832.0000\n\n\n2024-02-10\nNA\n14.461571\nNA\n-4415.7143\n\n\n2024-02-17\nNA\n13.103000\n-2402.1429\n-3691.1429\n\n\n2024-02-24\nNA\n14.003000\nNA\n-3390.2857\n\n\n2024-03-02\nNA\n14.502143\n-2477.8571\n-3290.8571\n\n\n2024-03-09\nNA\n8.983000\n-992.8571\n-2597.2857\n\n\n2024-03-16\nNA\n5.741000\n-505.1429\n-1290.2857\n\n\n2024-03-23\nNA\n6.851429\n-972.8571\n-2946.2857\n\n\n2024-03-30\nNA\n7.733857\n-1652.2857\n-3190.2857\n\n\n2024-04-06\nNA\n5.976000\n-904.0000\n-2213.5714\n\n\n2024-04-13\nNA\n3.086143\n641.0000\n-15.0000\n\n\n2024-04-20\nNA\n3.164857\n470.5714\n-304.8571\n\n\n2024-04-27\nNA\n4.293429\n-342.1429\n-849.1429\n\n\n2024-05-04\nNA\n2.911000\n157.4286\n-1005.8571\n\n\n2024-05-11\nNA\n5.321000\n-127.4286\n-864.4286\n\n\n2024-05-18\nNA\n6.249429\n173.7143\n-1322.1429\n\n\n2024-05-25\nNA\n8.153857\n-1798.2857\n-2593.1429\n\n\n2024-06-01\nNA\n9.821000\n-3758.5714\n-4588.5714\n\n\n2024-06-08\nNA\n11.456000\n-5027.8571\n-6044.5714\n\n\n2024-06-15\nNA\n10.427286\n-4690.8571\n-5902.2857\n\n\n2024-06-22\nNA\n11.994857\n-5199.5714\n-6220.8571\n\n\n2024-06-29\nNA\nNA\nNA\nNA\n\n\n\n\n\n\n\n\nRelated links: SacPas Page, GitHub Repo Code - Issues: - Confirm table uses unclipped for summary - Identify methods used for predicted column - Confirm table should include weekly? averages for current water year. How are averages calculated? - Confirm OMR or OMRI is used, alternatively include both?"
+    "text": "Table 2. Predicted and Observed Loss\n\n\n\n\nPredicted and Observed Total Loss of Hatchery Steelhead with weekly OMR flow and export\n\n\nDate\nTotal Daily Loss\nAverage Export (TAF)\nAverage OMRI (cfs)\nAverage OMR (cfs); 5d USGS tidally filtered\n\n\n\n\n2023-10-07\nNA\n9.597429\n-4049.2857\n-6004.0000\n\n\n2023-10-14\nNA\n5.380429\n-1941.2857\n-3771.4286\n\n\n2023-10-21\nNA\n2.448143\n-600.8571\n-2033.5714\n\n\n2023-10-28\nNA\n7.471429\n-2581.1429\n-2551.0000\n\n\n2023-11-04\nNA\n10.736429\n-4486.4286\n-5678.2857\n\n\n2023-11-11\nNA\n7.710857\n-3255.5714\n-4953.1429\n\n\n2023-11-18\nNA\n8.408143\nNA\n-4167.2857\n\n\n2023-11-25\nNA\n9.031143\n-3914.4286\n-5231.7143\n\n\n2023-12-02\nNA\n8.649000\nNA\n-4157.7143\n\n\n2023-12-09\nNA\n11.088857\n-5030.1429\n-5887.7143\n\n\n2023-12-16\nNA\n12.738571\n-5740.5714\n-6134.8571\n\n\n2023-12-23\nNA\n15.283714\n-6747.7143\nNA\n\n\n2023-12-30\nNA\n13.266714\n-5791.0000\nNA\n\n\n2024-01-06\nNA\n11.889714\n-4983.1429\n-5618.8571\n\n\n2024-01-13\nNA\n10.801714\n-4324.4286\n-5259.1429\n\n\n2024-01-20\nNA\n8.813000\n-2932.1429\n-4535.4286\n\n\n2024-01-27\nNA\n7.499714\n-2004.1429\n-2835.8571\n\n\n2024-02-03\nNA\n12.286143\n-3059.7143\n-3832.0000\n\n\n2024-02-10\nNA\n14.461571\nNA\n-4415.7143\n\n\n2024-02-17\nNA\n13.103000\n-2402.1429\n-3691.1429\n\n\n2024-02-24\nNA\n14.003000\nNA\n-3390.2857\n\n\n2024-03-02\nNA\n14.502143\n-2477.8571\n-3290.8571\n\n\n2024-03-09\nNA\n8.983000\n-992.8571\n-2597.2857\n\n\n2024-03-16\nNA\n5.741000\n-505.1429\n-1290.2857\n\n\n2024-03-23\nNA\n6.851429\n-972.8571\n-2946.2857\n\n\n2024-03-30\nNA\n7.733857\n-1652.2857\n-3190.2857\n\n\n2024-04-06\nNA\n5.976000\n-904.0000\n-2213.5714\n\n\n2024-04-13\nNA\n3.086143\n641.0000\n-15.0000\n\n\n2024-04-20\nNA\n3.164857\n470.5714\n-304.8571\n\n\n2024-04-27\nNA\n4.293429\n-342.1429\n-849.1429\n\n\n2024-05-04\nNA\n2.911000\n157.4286\n-1005.8571\n\n\n2024-05-11\nNA\n5.321000\n-127.4286\n-864.4286\n\n\n2024-05-18\nNA\n6.249429\n173.7143\n-1322.1429\n\n\n2024-05-25\nNA\n8.153857\n-1798.2857\n-2593.1429\n\n\n2024-06-01\nNA\n9.821000\n-3758.5714\n-4588.5714\n\n\n2024-06-08\nNA\n11.456000\n-5027.8571\n-6044.5714\n\n\n2024-06-15\nNA\n10.427286\n-4690.8571\n-5902.2857\n\n\n2024-06-22\nNA\n11.994857\n-5199.5714\n-6220.8571\n\n\n2024-06-29\nNA\nNA\nNA\nNA\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code - Issues: - Confirm table uses unclipped for summary - Identify methods used for predicted column - Confirm table should include weekly? averages for current water year. How are averages calculated? - Confirm OMR or OMRI is used, alternatively include both?"
   }
 ]

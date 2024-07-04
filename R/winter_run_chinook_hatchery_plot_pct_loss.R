@@ -9,7 +9,7 @@
 #' 
 
 # import data file
-# loss data from sacpas
+# loss data from SacPAS
 load(here("data/winter_run_chinook_hatchery_loss_data.rda"))
 
 current_year<-year(today())
