@@ -56,7 +56,7 @@ source(here("R/winter_run_chinook_plot_STARS.R"))
 source(here("R/winter_run_chinook_plot_STARS_withoutfacetedyears.R"))
 ```
 
-Related links: SacPAS Page, [Interactive Plot](https://csobrien.shinyapps.io/TAC_WRChinook_STARS/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
+Related links: SacPAS Page, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/TAC_WRChinook_STARS/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
 
 ## Figure 3. Juvenile Production Estimate (JPE) – Percent Loss
 
@@ -122,7 +122,7 @@ source(here("R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year
 source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R"))
 ```
 
-Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss){target="_blank"}, ShinyApp, [GitHub Repo Code: cumul_genetic_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R){target="_blank"} , [GitHub Repo Code: cumul_lad_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R){target="_blank"} ,
+Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss){target="_blank"}, ShinyApp, [GitHub Repo Code: cumul_genetic_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R){target="_blank"} , [GitHub Repo Code: cumul_lad_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R){target="_blank"}
 
 -   Issues:
     -   Confirm loss URL sourced from SacPAS
