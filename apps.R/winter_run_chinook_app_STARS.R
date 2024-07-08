@@ -3,7 +3,9 @@ library(shinydashboard)
 library(plotly)
 library(tidyverse)
 library(xts)
+library(zoo)
 library(gghighlight)
+library(fresh)
 
 # Function to convert DOY to month name
 doy_to_month <- function(doy, year_type) {
@@ -88,13 +90,16 @@ fct_stars_survival_plot <- function(data, x_var, year, metric, hydro, hydro_type
 return(p)
 }
 
-ui <- dashboardPage(
-  dashboardHeader(title = "STARS Survival Plot"),
-  dashboardSidebar(disable = TRUE),
-  dashboardBody(
+ui <- shinydashboard::dashboardPage(
+  shinydashboard::dashboardHeader(title = "STARS Survival Plot"),
+  shinydashboard::dashboardSidebar(disable = TRUE),
+  shinydashboard::dashboardBody(
+    #add CSS SacPAS global theme
+    fresh::use_theme(SacPAStheme),
     fluidRow(
-      box(
+      shinydashboard::box(
         width = 12,
+        status = "info",
         fluidRow(
         column(width = 3,
         selectInput(
@@ -124,8 +129,9 @@ ui <- dashboardPage(
       )
       )
       ),
-    box(
+      shinydashboard::box(
       width = 12,
+      status = "success",
       fluidRow(
         column(
           width = 9
@@ -141,19 +147,19 @@ ui <- dashboardPage(
       )
       ),
       uiOutput("plot_caption"),
-      plotlyOutput("plot")
+      plotly::plotlyOutput("plot")
       )
     )
     )
   )
 
 server <- function(input, output, session) {
-  output$plot <- renderPlotly({
+  output$plot <- plotly::renderPlotly({
     # Load data
-    load(here::here("data/STARS.shinyinputs.Rdata")) #COB removed verbose=T to run with here::here
+    load(here::here("apps.R/data/STARS.shinyinputs.Rdata")) #COB removed verbose=T to run with here::here
     
     # Subset the data and convert to tibble
-    df_stars_raw <- as_tibble(WR_xts[,c("Survival Interior Delta Est", 
+    df_stars_raw <- tibble::as_tibble(WR_xts[,c("Survival Interior Delta Est", 
                                     "Survival Interior Delta LCL 80", 
                                     "Survival Interior Delta UCL 80",
                                     "Routing Probability Interior Delta Est",    
@@ -163,27 +169,27 @@ server <- function(input, output, session) {
                                     "Survival Overall LCL 80",
                                     "Survival Overall UCL 80")]) %>%
       # Add the first date as a new column
-      mutate(date = index(WR_xts)) %>%
+      dplyr::mutate(date = zoo::index(WR_xts)) %>%
       # Make date the first column
-      select(date, everything()) %>%
-      rename( surv =  "Survival Overall Est", survL80 =  "Survival Overall LCL 80", survU80 =  "Survival Overall UCL 80", 
+      dplyr::select(date, dplyr::everything()) %>%
+      dplyr::rename( surv =  "Survival Overall Est", survL80 =  "Survival Overall LCL 80", survU80 =  "Survival Overall UCL 80", 
               idsurv = "Survival Interior Delta Est", idsurvL80 = "Survival Interior Delta LCL 80", idsurvU80 = "Survival Interior Delta UCL 80", 
               idRoute = "Routing Probability Interior Delta Est", idRouteL80 =  "Routing Probability Interior Delta LCL 80", idRouteU80 =  "Routing Probability Interior Delta UCL 80") %>%
       # convert date to WY, wday
-      arrange(date) %>% 
-      mutate(WY = year(date) + (month(date) >= 10),
-             wDay = if_else(month(date) >= 10, yday(date) - 273, yday(date) + 92),
-             doy = yday(date),
-             CY = year(date),
-             wDate = if_else(month(date) >= 10, date + years(1), date))
+      dplyr::arrange(date) %>% 
+      dplyr::mutate(WY = lubridate::year(date) + (lubridate::month(date) >= 10),
+             wDay = if_else(lubridate::month(date) >= 10, lubridate::yday(date) - 273, lubridate::yday(date) + 92),
+             doy = lubridate::yday(date),
+             CY = lubridate::year(date),
+             wDate = if_else(lubridate::month(date) >= 10, date + lubridate::years(1), date))
     
     #pull in shared wytype.csv
-    wytype <- read_csv(here::here('data/WYtype.csv')) %>% filter(Basin == "SacramentoValley")
+    wytype <- read.csv(here::here('data/WYtype.csv')) %>%  dplyr::filter(Basin == "SacramentoValley")
     
     #append wytype to stars results
     df_stars<-df_stars_raw %>% 
-      inner_join(select(wytype, WY, hydro_type = `Yr-type`), by = "WY") %>% 
-      mutate( hydro_type = factor(hydro_type, levels = c("W", "AN", "BN", "D", "C"), labels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical")))
+      dplyr::inner_join(select(wytype, WY, hydro_type = `Yr.type`), by = "WY") %>% 
+      dplyr::mutate( hydro_type = factor(hydro_type, levels = c("W", "AN", "BN", "D", "C"), labels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical")))
     
     # Add this reactive expression
     output$plot_caption <- renderUI({
@@ -204,7 +210,7 @@ server <- function(input, output, session) {
            df_stars
     } else {
       filtered_data <- df_stars %>% 
-        filter(WY == input$select_year , CY == input$select_year)
+        dplyr::filter(WY == input$select_year , CY == input$select_year)
     }
     
     # if(input$select_yeartype == "Water Year") {
