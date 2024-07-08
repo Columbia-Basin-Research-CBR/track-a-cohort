@@ -26,18 +26,18 @@ current_year <- assign_current_water_year()
 max2024LAD <- steelhead_loss_data %>% 
   group_by(WY) %>% 
   filter(WY == current_year) %>% 
-  summarise(max_cumloss = max(cum_loss)) %>% 
+  summarise(max_cumloss = max(cumloss)) %>% 
   pull(max_cumloss)
 
 #extract maximum cumloss for each year (for labels)
 max_cumloss_per_year <- steelhead_loss_data %>%
   filter(!is.na(hydro_type_grp)) %>% #currently removes WY2023 or year prior to current year since no hydro assigned
   group_by(WY) %>%
-  filter(cum_loss == max(cum_loss)) %>% 
+  filter(cumloss == max(cumloss)) %>% 
   distinct()
 
 #appending current water year results for each facet regardless of year
-loss_current_year <- steelhead_loss_data %>% filter(WY == current_year) %>% select(wday, cum_loss)
+loss_current_year <- steelhead_loss_data %>% filter(WY == current_year) %>% select(wday, cumloss)
 
 # plot
 p<- steelhead_loss_data %>%
@@ -46,13 +46,13 @@ p<- steelhead_loss_data %>%
   #currently removes WY2023 or year prior to current year since no hydro assigned - consider alternative
   filter(!is.na(hydro_type_grp)) %>% 
   ggplot() +
-  geom_line( data = . %>% filter(WY == current_year ), aes(x = wday, y = cum_loss, group = WY), color = "black") +
-  geom_line( data = . %>% filter(WY != current_year ), aes(x = wday, y = cum_loss, group = WY, color =  hydro_type_grp)) +
+  geom_line( data = . %>% filter(WY == current_year ), aes(x = wday, y = cumloss, group = WY), color = "black") +
+  geom_line( data = . %>% filter(WY != current_year ), aes(x = wday, y = cumloss, group = WY, color =  hydro_type_grp)) +
   geom_hline(yintercept = max2024LAD, linetype = "dashed", color = "black") +
   geom_text(aes(x = 330, y = max2024LAD), label = "WY2024 cumulative loss", size = 2.5, vjust = -0.5, fontface = "plain" ) +
   gghighlight::gghighlight() +
-  ggrepel::geom_text_repel(data = subset(max_cumloss_per_year, cum_loss >= max2024LAD ), #& WY !=2001
-                           aes(x = wday, y = cum_loss, label = WY), 
+  ggrepel::geom_text_repel(data = subset(max_cumloss_per_year, cumloss >= max2024LAD ), #& WY !=2001
+                           aes(x = wday, y = cumloss, label = WY), 
                            size = 3, direction = "y",vjust = 1,  nudge_y = 1, min.segment.length = 0, force = 15) +
   # geom_text(data = year2001_data, 
   #           aes(x = 170, y = 9500, label = "*2001\nmax value = 20,062"), 
@@ -65,7 +65,7 @@ p<- steelhead_loss_data %>%
   scale_y_continuous(labels = scales::comma,limits = c(0, 40000),  expand = c(0, 0)) +
   scale_color_manual(values = c( "sienna4", "steelblue4"))+
   ggh4x::facet_nested(hydro_type_grp ~ status ) + 
-  geom_line(data = loss_current_year, aes(x = wday, y = cum_loss), color = "black") +
+  geom_line(data = loss_current_year, aes(x = wday, y = cumloss), color = "black") +
   theme_minimal() +
   theme(
     axis.line = element_line(color = "grey"),

@@ -29,7 +29,7 @@ steelhead_loss_data<- steelhead_loss_raw %>%
   mutate(total_loss = sum(loss)) %>%
   ungroup() %>% 
   group_by(WY) %>%
-  mutate(cum_loss = cumsum(loss)) %>%
+  mutate(cumloss = cumsum(loss)) %>%
   mutate(status = case_when(WY < 2009 ~ 'Pre-2009 BiOp\n(1994 to 2008)',
                             WY > 2008 ~ '2009 & 2019 BiOp\n(2009 to present)')) %>%
   #set order of factor levels
