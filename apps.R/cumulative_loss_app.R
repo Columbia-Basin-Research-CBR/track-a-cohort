@@ -8,19 +8,9 @@ library(zoo)
 library(gghighlight)
 library(fresh)
 
-# Function to convert DOY to month name
-doy_to_month <- function(doy, year_type) {
-  # Adjust the DOY based on the year type
-  adjusted_doy <- if (year_type == "WY") {
-    (doy + 273) %% 365 + 1
-  } else {
-    doy
-  }
-  # Convert the adjusted DOY to a date
-  date <- as.Date(paste(2000, adjusted_doy), format = "%Y %j")
-  # Return the month name
-  return(format(date, "%b"))
-}
+source(here::here("apps.R/utils_SacPAStheme.R"))
+source(here::here("apps.R/mod_fct_plot_cumulative_loss.R"))
+
 
 
 ui <- shinydashboard::dashboardPage(
@@ -73,7 +63,7 @@ ui <- shinydashboard::dashboardPage(
         shinyWidgets::materialSwitch(
           inputId = "select_hydro", 
           label = "Show Hydrologic Year Type", 
-          value = TRUE,
+          value = FALSE,
           status = "primary"
         )
       ),
@@ -82,13 +72,13 @@ ui <- shinydashboard::dashboardPage(
         shinyWidgets::materialSwitch(
           inputId = "select_biop", 
           label = "Show BiOp Year Type", 
-          value = TRUE,
+          value = FALSE,
           status = "primary"
         )
       )
       ),
       uiOutput("plot_caption"),
-      plotly::plotlyOutput("plot")
+      plotly::plotlyOutput("plot", height = "100%")
       )
     )
     )
@@ -130,13 +120,10 @@ server <- function(input, output, session) {
       data <- steelhead_loss_data
     }
     
-   p<- wrangle_plot_data(data = data, selected_loss = input$select_loss)
+   p<- wrangle_plot_data(data = data, selected_loss = input$select_loss, selected_hydro = input$select_hydro, selected_biop = input$select_biop)
     
-    #pull in shared wytype.csv
-    # wytype <- read.csv(here::here('data/WYtype.csv')) %>%  dplyr::filter(Basin == "SacramentoValley")
     
-   
-  
+
     
    return(p)
     
