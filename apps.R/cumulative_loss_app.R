@@ -1,0 +1,153 @@
+library(shiny)
+library(shinydashboard)
+library(shinyWidgets)
+library(plotly)
+library(tidyverse)
+library(xts)
+library(zoo)
+library(gghighlight)
+library(fresh)
+
+# Function to convert DOY to month name
+doy_to_month <- function(doy, year_type) {
+  # Adjust the DOY based on the year type
+  adjusted_doy <- if (year_type == "WY") {
+    (doy + 273) %% 365 + 1
+  } else {
+    doy
+  }
+  # Convert the adjusted DOY to a date
+  date <- as.Date(paste(2000, adjusted_doy), format = "%Y %j")
+  # Return the month name
+  return(format(date, "%b"))
+}
+
+
+ui <- shinydashboard::dashboardPage(
+  shinydashboard::dashboardHeader(title = "Cumulative Loss Plot"),
+  shinydashboard::dashboardSidebar(disable = TRUE),
+  shinydashboard::dashboardBody(
+    #add CSS SacPAS global theme
+    fresh::use_theme(SacPAStheme),
+    fluidRow(
+      shinydashboard::box(
+        width = 12,
+        status = "info",
+        fluidRow(
+        column(width = 3,
+        selectInput(
+        inputId = "select_species",
+        label = "Select Species:", 
+        choices = c("Winter-run Chinook", "Steelhead"),
+        multiple = FALSE)
+        ),
+        column(
+          width = 3,
+          selectInput(
+                  inputId = "select_metric", 
+                  label = "Select Run Designation Method:", 
+                  choices = c("Genetic", "LAD", "Not Applicable"),
+                  multiple = FALSE)
+      )
+      )
+      ),
+      shinydashboard::box(
+      width = 12,
+      status = "success",
+      fluidRow(
+        column(
+          width = 9
+        ),
+        column(
+          width = 3,
+        shinyWidgets::materialSwitch(
+          inputId = "select_loss", 
+          label = "Select Percent or Count Loss", 
+          value = TRUE,
+          status = "primary"
+        ),
+        textOutput(outputId = "switch_message")
+      ),
+      column(
+        width = 3,
+        shinyWidgets::materialSwitch(
+          inputId = "select_hydro", 
+          label = "Show Hydrologic Year Type", 
+          value = TRUE,
+          status = "primary"
+        )
+      ),
+      column(
+        width = 3,
+        shinyWidgets::materialSwitch(
+          inputId = "select_biop", 
+          label = "Show BiOp Year Type", 
+          value = TRUE,
+          status = "primary"
+        )
+      )
+      ),
+      uiOutput("plot_caption"),
+      plotly::plotlyOutput("plot")
+      )
+    )
+    )
+  )
+
+server <- function(input, output, session) {
+  #update data selection choices based on species input
+  observe({
+    if (input$select_species == "Winter-run Chinook") {
+      updateSelectInput(session, "select_metric", choices = c("Genetic", "LAD"))
+      # Optionally, reset the switch to its original state if needed
+      shinyWidgets::updateMaterialSwitch(session, "select_loss", value = TRUE)
+      output$switch_message <- renderText({""})  # Clear the message
+    } else if (input$select_species == "Steelhead") {
+      updateSelectInput(session, "select_metric", choices = "Not Applicable")
+      shinyWidgets::updateMaterialSwitch(session, "select_loss", value = FALSE)  # Force switch to FALSE
+      output$switch_message <- renderText({"Only count data available for Steelhead."})
+    }
+  })
+  
+  #plotly code
+  output$plot <- plotly::renderPlotly({
+    
+    # Load data
+    load(here("data/jpe_genetic_loss_data.rda"))
+    genetic_cumulative_loss_data <- jpe_genetic_loss_data$genetic_cumulative_loss_data
+    load(here("data/jpe_lad_loss_data.rda"))
+    lad_cumulative_loss_data <- jpe_lad_loss_data$lad_cumulative_loss_data
+    load(here("data/steelhead_loss_data.rda"))
+    
+    # Assign data based on species and metric selection
+    if (input$select_species == "Winter-run Chinook") {
+      if (input$select_metric == "Genetic") {
+        data <- genetic_cumulative_loss_data
+      } else {
+        data <- lad_cumulative_loss_data
+      }
+    } else {
+      data <- steelhead_loss_data
+    }
+    
+   p<- wrangle_plot_data(data = data, selected_loss = input$select_loss)
+    
+    #pull in shared wytype.csv
+    # wytype <- read.csv(here::here('data/WYtype.csv')) %>%  dplyr::filter(Basin == "SacramentoValley")
+    
+   
+  
+    
+   return(p)
+    
+  })
+  
+  # Display the message below the material switch
+  output$switch_message_ui <- renderUI({
+    textOutput("switch_message")
+  })
+  
+  
+}
+
+shinyApp(ui, server)
