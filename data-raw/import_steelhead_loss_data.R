@@ -21,7 +21,7 @@ steelhead_loss_data<- steelhead_loss_raw %>%
   mutate(date = ymd_hms(sample_time)) %>%
   arrange(date) %>%
   mutate(WY = year(date) + (month(date) >= 10),
-         wday = if_else(month(date) >= 10, yday(date) - 273, yday(date) + 92),
+         wDay = if_else(month(date) >= 10, yday(date) - 273, yday(date) + 92),
          doy = yday(date),
          CY = year(date),
          wdate = if_else(month(date) >= 10, date + years(1), date)) %>% 
