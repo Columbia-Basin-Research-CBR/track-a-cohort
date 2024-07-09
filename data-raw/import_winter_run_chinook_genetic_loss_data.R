@@ -51,12 +51,37 @@ genetic_total_loss_data <- df_genetic_loss %>%
   mutate(pct_total_loss = (total_loss / jpe))
 
 
-
 # consolidate data into list
 jpe_genetic_loss_data <- list(
   genetic_cumulative_loss_data = genetic_cumulative_loss_data,
   genetic_total_loss_data = genetic_total_loss_data
 )
+
+
+#add hydro type classification and BiOp year designation -- used in ShinyApp
+# load hydrological classification data
+wytype <- read.csv(here::here("data/WYtype.csv")) %>%
+  dplyr::filter(Basin == "SacramentoValley")
+
+add_variables_df <- function(df) {
+  df %>%
+    mutate(status = case_when(
+      WY < 2009 ~ 'Pre-2009 BiOp\n(1994 to 2008)',
+      WY >= 2009 ~ '2009 & 2019 BiOp\n(2009 to present)'
+    )) %>%
+    mutate(status = factor(status, levels = c('Pre-2009 BiOp\n(1994 to 2008)', '2009 & 2019 BiOp\n(2009 to present)'))) %>%
+    left_join(select(wytype, WY, Yr.type), by = "WY") %>%
+    filter(!is.na(date)) %>%
+    mutate(hydro_type = factor(Yr.type, levels = c("W", "AN", "BN", "D", "C"), labels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical")),
+           hydro_type_grp = case_when(
+             hydro_type %in% c("Wet", "Above Normal") ~ "Wet, Above Normal",
+             hydro_type %in% c("Below Normal", "Dry", "Critical") ~ "Below Normal, Dry, & Critical"
+           ))
+}
+
+# Apply transformation to each data frame
+jpe_genetic_loss_data <- lapply(jpe_genetic_loss_data, add_variables_df)
+
 
 
 # save data
