@@ -119,23 +119,28 @@ wrangle_plot_data<- function(data, selected_loss, selected_hydro = "TRUE", selec
       
       # Define a function to create a plot for a given subset of data
       create_plot <- function(subset_data, title_suffix) {
-        plot_ly(subset_data, x = ~wDay, y = as.formula(paste0("~", y_col)), type = 'scatter', mode = 'lines',
+        p <- plot_ly(subset_data, x = ~wDay, y = as.formula(paste0("~", y_col)), type = 'scatter', mode = 'lines',
                 color = ~hydro_type_grp, colors = color,
-                line = list(dash = "solid"), name = ~as.character(WY)) %>%
-          layout(
+                line = list(dash = "solid"), name = ~as.character(WY))
+        
+        p <- p %>% add_lines(data_current_year, x = ~wDay, y = as.formula(paste0("~", y_col)), type = 'scatter', mode = 'lines',
+                             line = list(dash = "solid", color = "black"), name = ~as.character(WY))
+        
+         p <- p %>%  layout(
                  xaxis = list(title = "Month (Water Year)", tickvals = tick_positions, ticktext = month_labels),
                  yaxis = list(title = list_y_data$title, tickformat = list_y_data$format), 
-                 margin = .2) %>% 
-          add_lines(data_current_year, x = ~wDay, y = as.formula(paste0("~", y_col)), type = 'scatter', mode = 'lines',
-                    line = list(dash = "solid", color = "black"), name = ~as.character(WY))
+                 margin = .2) 
+         
+         return(p)
         #currently causing error due to uneven columns of xy and namecolor - troubleshoot later
           # add_lines(x = range(subset_data$wDay), y = rep(max_current_year, 2), #c(max_current_year, max_current_year),
           #           line = list(color = "black", dash = "dash"), showlegend = FALSE)
       }
       
       # Create plots for each subset
-      plot_pre_2009 <- create_plot(data_pre_2009, "Pre-2009 BiOp (1994 to 2008)")
-      plot_post_2009 <- create_plot(data_post_2009, "2009 & 2019 BiOp (2009 to present)") #title_suffix still being dropped- remove if not using
+      plot_pre_2009 <- create_plot(data_pre_2009, "Pre-2009 BiOp (1994 to 2008)") 
+      
+      plot_post_2009 <- create_plot(data_post_2009, "2009 & 2019 BiOp (2009 to present)") 
       
       # Combine plots using subplot, ensuring both titles are kept
       p <- subplot(plot_pre_2009, plot_post_2009, nrows = 2, shareX = TRUE, shareY = FALSE, titleX = TRUE, titleY = TRUE) 
