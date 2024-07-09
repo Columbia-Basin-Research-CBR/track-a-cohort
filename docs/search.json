@@ -32,7 +32,7 @@
     "href": "www/TAC_chinook_figures.html#figure-2.-survival-and-routing-probabilites",
     "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 2. Survival and Routing Probabilites",
-    "text": "Figure 2. Survival and Routing Probabilites\n\nOption 1: Facetted by year\n\n\n\n\n\n\n\n\n\n\n\nOption 2: Without faceted years\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, Interactive Plot, GitHub Repo Code, STARS ShinyApp"
+    "text": "Figure 2. Survival and Routing Probabilites\n\nOption 1: Facetted by year\n\n\n\n\n\n\n\n\n\n\n\nOption 2: Without faceted years\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, Interactive Plot - ShinyApp, GitHub Repo Code, STARS ShinyApp"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-3.-juvenile-production-estimate-jpe-percent-loss",
@@ -53,7 +53,7 @@
     "href": "www/TAC_chinook_figures.html#figure-5.-single-year-thresholds",
     "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 5. Single Year Thresholds",
-    "text": "Figure 5. Single Year Thresholds\n\nFigure 5a. Cumulative Genetic Loss for Current Water Year\n\n\n\n\n\n\n\n\n\n\n\nFigure 5b. Cumulative LAD Loss for Current Water Year\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, ShinyApp, GitHub Repo Code: cumul_genetic_loss , GitHub Repo Code: cumul_lad_loss ,\n\nIssues:\n\nConfirm loss URL sourced from SacPAS\nConfirm single year threshold and naming conventions"
+    "text": "Figure 5. Single Year Thresholds\n\nFigure 5a. Cumulative Genetic Loss for Current Water Year\n\n\n\n\n\n\n\n\n\n\n\nFigure 5b. Cumulative LAD Loss for Current Water Year\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, ShinyApp, GitHub Repo Code: cumul_genetic_loss , GitHub Repo Code: cumul_lad_loss\n\nIssues:\n\nConfirm loss URL sourced from SacPAS\nConfirm single year threshold and naming conventions"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-6.-tillotson-predicted-loss-with-omr-scenarios",

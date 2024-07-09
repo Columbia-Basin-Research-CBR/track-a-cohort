@@ -99,7 +99,8 @@ p <- cumloss_current_year %>%
   geom_label_repel(data = max_loss_by_period,
                    aes(x = max_date, 
                        y = max_cum_loss_mgt, 
-                       label = paste0("Cumulative loss: ", max_cum_loss_mgt,"\n% of Single-Year Threshold: ", round((max_cum_loss_mgt/current_year_100pct)*100, 2), "%")),                   size = 3, 
+                       label = paste0("Cumulative loss: ", max_cum_loss_mgt,"\n% of Single-Year Threshold: ", round((max_cum_loss_mgt/current_year_100pct)*100, 2), "%")),
+                   size = 3, 
                    nudge_x = 1, # Adjust nudge_x and nudge_y as needed to position the label
                    nudge_y = 400, 
                    hjust = 0,
