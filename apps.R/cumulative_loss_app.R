@@ -45,9 +45,9 @@ ui <- shinydashboard::dashboardPage(
       width = 12,
       status = "success",
       fluidRow(
-        column(
-          width = 9
-        ),
+        # column(
+        #   width = 9
+        # ),
         column(
           width = 3,
         shinyWidgets::materialSwitch(
@@ -56,7 +56,7 @@ ui <- shinydashboard::dashboardPage(
           value = TRUE,
           status = "primary"
         ),
-        textOutput(outputId = "switch_message")
+        textOutput(outputId = "switch_message_loss")
       ),
       column(
         width = 3,
@@ -75,6 +75,16 @@ ui <- shinydashboard::dashboardPage(
           value = FALSE,
           status = "primary"
         )
+      ),
+      column(
+        width = 3,
+        shinyWidgets::materialSwitch(
+          inputId = "select_outlier", 
+          label = "Remove outlier years", 
+          value = FALSE,
+          status = "primary"
+        ),
+        textOutput(outputId = "switch_message_outlier")
       )
       ),
       uiOutput("plot_caption"),
@@ -84,20 +94,22 @@ ui <- shinydashboard::dashboardPage(
     )
   )
 
-server <- function(input, output, session) {
+server <- function(input, output, session, data) {
+  
   #update data selection choices based on species input
   observe({
     if (input$select_species == "Winter-run Chinook") {
       updateSelectInput(session, "select_metric", choices = c("Genetic", "LAD"))
       # Optionally, reset the switch to its original state if needed
       shinyWidgets::updateMaterialSwitch(session, "select_loss", value = TRUE)
-      output$switch_message <- renderText({""})  # Clear the message
+      output$switch_message_loss <- renderText({""})  # Clear the message
     } else if (input$select_species == "Steelhead") {
       updateSelectInput(session, "select_metric", choices = "Not Applicable")
       shinyWidgets::updateMaterialSwitch(session, "select_loss", value = FALSE)  # Force switch to FALSE
-      output$switch_message <- renderText({"Only count data available for Steelhead."})
+      output$switch_message_loss <- renderText({"Only count data available for Steelhead."})
     }
   })
+  
   
   #plotly code
   output$plot <- plotly::renderPlotly({
@@ -120,20 +132,43 @@ server <- function(input, output, session) {
       data <- steelhead_loss_data
     }
     
-   p<- wrangle_plot_data(data = data, selected_loss = input$select_loss, selected_hydro = input$select_hydro, selected_biop = input$select_biop)
+   wrangle_plot_data<- wrangle_plot_data(data = data, selected_loss = input$select_loss, selected_hydro = input$select_hydro, selected_biop = input$select_biop, selected_outlier = input$select_outlier)
     
     
 
     
-   return(p)
-    
+   return(wrangle_plot_data$plot)
+
   })
+
+  observe({
+    if (input$select_outlier == TRUE) {
+       output$switch_message_outlier <- renderText({"Outlier years greater than double the mean were removed."})
+    } else {
+      output$switch_message_outlier <- renderText({""})
+    }
+  })
+  
   
   # Display the message below the material switch
   output$switch_message_ui <- renderUI({
-    textOutput("switch_message")
+    textOutput("switch_message_loss")
+  })
+  # Display the message below the material switch
+  output$switch_message_ui <- renderUI({
+    textOutput("switch_message_outlier")
   })
   
+  observe({
+    if (input$select_outlier == TRUE) {
+     # output$switch_message_outlier <- renderText({paste("Outlier years greater than double the mean were removed. Includes:", paste(wrangle_plot_data$outlier_years_reactive, collapse = ", "))})
+      # outlier_years <- wrangle_plot_data$outlier_years_reactive  # Call it as a function
+      # outlier_years()
+      } else {
+      output$switch_message_outlier <- renderText({""})
+    }
+  })
+
   
 }
 
