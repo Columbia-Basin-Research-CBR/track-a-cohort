@@ -3,9 +3,6 @@ library(shinydashboard)
 library(shinyWidgets)
 library(plotly)
 library(tidyverse)
-library(xts)
-library(zoo)
-library(gghighlight)
 library(fresh)
 
 source(here::here("apps.R/utils_SacPAStheme.R"))
@@ -94,7 +91,7 @@ ui <- shinydashboard::dashboardPage(
     )
   )
 
-server <- function(input, output, session, data) {
+server <- function(input, output, session) {
   
   #update data selection choices based on species input
   observe({
