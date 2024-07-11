@@ -4,9 +4,10 @@ library(shinyWidgets)
 library(plotly)
 library(tidyverse)
 library(fresh)
+library(here)
 
-source(here::here("apps.R/utils_SacPAStheme.R"))
-source(here::here("apps.R/mod_fct_plot_cumulative_loss.R"))
+source(here::here("utils_SacPAStheme.R"))
+source(here::here("mod_fct_plot_cumulative_loss.R"))
 
 
 
@@ -112,11 +113,11 @@ server <- function(input, output, session) {
   output$plot <- plotly::renderPlotly({
     
     # Load data
-    load(here("data/jpe_genetic_loss_data.rda"))
+    load(here("jpe_genetic_loss_data.rda"))
     genetic_cumulative_loss_data <- jpe_genetic_loss_data$genetic_cumulative_loss_data
-    load(here("data/jpe_lad_loss_data.rda"))
+    load(here("jpe_lad_loss_data.rda"))
     lad_cumulative_loss_data <- jpe_lad_loss_data$lad_cumulative_loss_data
-    load(here("data/steelhead_loss_data.rda"))
+    load(here("steelhead_loss_data.rda"))
     
     # Assign data based on species and metric selection
     if (input$select_species == "Winter-run Chinook") {

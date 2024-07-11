@@ -30,21 +30,20 @@ source(here("R/utils_fct_wday_to_month.R"))
 
 # wrangle base data for plot
 
-    lad_cumulative_loss_data <- lad_cumulative_loss_data %>% 
-      #designate pre/post 2009 BiOp
-      mutate(status = case_when(WY < 2009 ~ 'Pre-2009 BiOp\n(1994 to 2008)',
-                                WY > 2008 ~ '2009 & 2019 BiOp\n(2009 to present)')) %>%
-      #set order of factor levels
-      mutate(status = factor(status, levels = c('Pre-2009 BiOp\n(1994 to 2008)', '2009 & 2019 BiOp\n(2009 to present)'))) %>% 
-      #join with wytype to designate wet/dry year (Hydrologic Classification Index?)
-      left_join(select(wytype,WY, "hydro_type" = `Yr.type`) , by = 'WY') %>%
-      #remove date na's
-      # assign hydro_type grouping
-      mutate( hydro_type = factor(hydro_type, levels = c("W", "AN", "BN", "D", "C"), labels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical")),
-              hydro_type_grp = case_when(
-                hydro_type %in% c("Wet", "Above Normal") ~ "Wet, Above Normal",
-                hydro_type %in% c("Below Normal", "Dry", "Critical") ~ "Below Normal, Dry, & Critical" )
-      )
+    # lad_cumulative_loss_data <- lad_cumulative_loss_data %>% 
+    #   #designate pre/post 2009 BiOp
+    #   mutate(status = case_when(WY < 2009 ~ 'Pre-2009 BiOp\n(1994 to 2008)',
+    #                             WY > 2008 ~ '2009 & 2019 BiOp\n(2009 to present)')) %>%
+    #   #set order of factor levels
+    #   mutate(status = factor(status, levels = c('Pre-2009 BiOp\n(1994 to 2008)', '2009 & 2019 BiOp\n(2009 to present)'))) %>% 
+    #   #join with wytype to designate wet/dry year (Hydrologic Classification Index?)
+    #   left_join(select(wytype,WY, "hydro_type" = `Yr.type`) , by = 'WY') %>%
+    #   # assign hydro_type grouping
+    #   mutate( hydro_type = factor(hydro_type, levels = c("W", "AN", "BN", "D", "C"), labels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical")),
+    #           hydro_type_grp = case_when(
+    #             hydro_type %in% c("Wet", "Above Normal") ~ "Wet, Above Normal",
+    #             hydro_type %in% c("Below Normal", "Dry", "Critical") ~ "Below Normal, Dry, & Critical" )
+    #   )
     
     #set current year
     source(here("R/utils_fct_assign_current_water_year.R"))

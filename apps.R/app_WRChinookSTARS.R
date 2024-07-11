@@ -6,8 +6,9 @@ library(xts)
 library(zoo)
 library(gghighlight)
 library(fresh)
+library(here)
 
-source(here::here("apps.R/utils_SacPAStheme.R"))
+source(here::here("utils_SacPAStheme.R"))
 
 # Function to convert DOY to month name
 doy_to_month <- function(doy, year_type) {
@@ -158,7 +159,7 @@ ui <- shinydashboard::dashboardPage(
 server <- function(input, output, session) {
   output$plot <- plotly::renderPlotly({
     # Load data
-    load(here::here("apps.R/data/STARS.shinyinputs.Rdata")) #COB removed verbose=T to run with here::here
+    load(here::here("STARS.shinyinputs.Rdata")) #COB removed verbose=T to run with here::here
     
     # Subset the data and convert to tibble
     df_stars_raw <- tibble::as_tibble(WR_xts[,c("Survival Interior Delta Est", 
@@ -186,7 +187,7 @@ server <- function(input, output, session) {
              wDate = if_else(lubridate::month(date) >= 10, date + lubridate::years(1), date))
     
     #pull in shared wytype.csv
-    wytype <- read.csv(here::here('data/WYtype.csv')) %>%  dplyr::filter(Basin == "SacramentoValley")
+    wytype <- read.csv(here::here('WYtype.csv')) %>%  dplyr::filter(Basin == "SacramentoValley")
     
     #append wytype to stars results
     df_stars<-df_stars_raw %>% 

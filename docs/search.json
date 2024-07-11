@@ -39,21 +39,21 @@
     "href": "www/TAC_chinook_figures.html#figure-3.-juvenile-production-estimate-jpe-percent-loss",
     "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 3. Juvenile Production Estimate (JPE) – Percent Loss",
-    "text": "Figure 3. Juvenile Production Estimate (JPE) – Percent Loss\n\nFigure 3a. Genetic vs Length-At-Date (LAD) Historical Percent Loss of JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code\n\n\nFigure 3b. Cumulative Genetic Percent Loss of JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, ShinyApp, GitHub Repo Code\n\nIssues:\n\nConfirm use of Water Year over Brood Year - both were used in word doc shared\nConfirm missing 2008 JPE data\nUpdate genetic data as it becomes available\nUpdate method naming conventions as needed\nConfirm loss URL sourced from SacPAS\nadd ShinyApp for interactive capabilities for 3b (i.e., hydrological classifications, plotly filtering of data, etc.)"
+    "text": "Figure 3. Juvenile Production Estimate (JPE) – Percent Loss\n\nFigure 3a. Genetic vs Length-At-Date (LAD) Historical Percent Loss of JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code\n\n\nFigure 3b. Cumulative Genetic Percent Loss of JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, ShinyApp, GitHub Repo Code, Interactive Plot - ShinyApp\n\nIssues:\n\nConfirm use of Water Year over Brood Year - both were used in word doc shared\nConfirm missing 2008 JPE data\nUpdate genetic data as it becomes available\nUpdate method naming conventions as needed\nConfirm loss URL sourced from SacPAS\nadd ShinyApp for interactive capabilities for 3b (i.e., hydrological classifications, plotly filtering of data, etc.)"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-4.-juvenile-production-estimate-jpe-number-loss",
     "href": "www/TAC_chinook_figures.html#figure-4.-juvenile-production-estimate-jpe-number-loss",
     "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 4. Juvenile Production Estimate (JPE) – Number Loss",
-    "text": "Figure 4. Juvenile Production Estimate (JPE) – Number Loss\n\nFigure 4a. Genetic vs Length-At-Date (LAD) Historical Loss of the JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code\n\n\nFigure 4b. Cumulative Length-At-Date (LAD) loss of the JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, ShinyApp, GitHub Repo Code\n\nIssues:\n\nUpdate genetic data as it becomes available\nUpdate method naming conventions as needed\nConfirm loss URL sourced from SacPAS\nadd ShinyApp for interactive capabilities for 3b (i.e., hydrological classifications, plotly filtering of data, etc.)"
+    "text": "Figure 4. Juvenile Production Estimate (JPE) – Number Loss\n\nFigure 4a. Genetic vs Length-At-Date (LAD) Historical Loss of the JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code\n\n\nFigure 4b. Cumulative Length-At-Date (LAD) loss of the JPE\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, ShinyApp, GitHub Repo Code, Interactive Plot - ShinyApp\n\nIssues:\n\nUpdate genetic data as it becomes available\nUpdate method naming conventions as needed\nConfirm loss URL sourced from SacPAS\nadd ShinyApp for interactive capabilities for 3b (i.e., hydrological classifications, plotly filtering of data, etc.)"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-5.-single-year-thresholds",
     "href": "www/TAC_chinook_figures.html#figure-5.-single-year-thresholds",
     "title": "Track-a-Cohort: Winter-run Chinook",
     "section": "Figure 5. Single Year Thresholds",
-    "text": "Figure 5. Single Year Thresholds\n\nFigure 5a. Cumulative Genetic Loss for Current Water Year\n\n\n\n\n\n\n\n\n\n\n\nFigure 5b. Cumulative LAD Loss for Current Water Year\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, ShinyApp, GitHub Repo Code: cumul_genetic_loss , GitHub Repo Code: cumul_lad_loss\n\nIssues:\n\nConfirm loss URL sourced from SacPAS\nConfirm single year threshold and naming conventions"
+    "text": "Figure 5. Single Year Thresholds\n\nFigure 5a. Cumulative Genetic Loss for Current Water Year\n\n\n\n\n\n\n\n\n\n\n\nFigure 5b. Cumulative LAD Loss for Current Water Year\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, ShinyApp, GitHub Repo Code: cumul_genetic_loss , GitHub Repo Code: cumul_lad_loss, Interactive Plot - ShinyApp\n\nIssues:\n\nConfirm loss URL sourced from SacPAS\nConfirm single year threshold and naming conventions"
   },
   {
     "objectID": "www/TAC_chinook_figures.html#figure-6.-tillotson-predicted-loss-with-omr-scenarios",
@@ -109,14 +109,14 @@
     "href": "www/TAC_steelhead_figures.html#figure-4.-cumulative-loss",
     "title": "Track-a-Cohort: Steelhead",
     "section": "Figure 4. Cumulative Loss",
-    "text": "Figure 4. Cumulative Loss\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code"
+    "text": "Figure 4. Cumulative Loss\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, GitHub Repo Code, Interactive Plot - ShinyApp"
   },
   {
     "objectID": "www/TAC_steelhead_figures.html#figure-5.-cumulative-loss-with-single-year-thresholds",
     "href": "www/TAC_steelhead_figures.html#figure-5.-cumulative-loss-with-single-year-thresholds",
     "title": "Track-a-Cohort: Steelhead",
     "section": "Figure 5. Cumulative Loss with Single-Year Thresholds",
-    "text": "Figure 5. Cumulative Loss with Single-Year Thresholds\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, ShinyApp, GitHub Repo Code\n\nIssues:\n\nConfirm Single-Year-Thresholds and update to generate automatically\nConfirm only including unclipped"
+    "text": "Figure 5. Cumulative Loss with Single-Year Thresholds\n\n\n\n\n\n\n\n\n\nRelated links: SacPAS Page, ShinyApp, GitHub Repo Code, Interactive Plot - ShinyApp\n\nIssues:\n\nConfirm Single-Year-Thresholds and update to generate automatically\nConfirm only including unclipped"
   },
   {
     "objectID": "www/TAC_steelhead_figures.html#table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead",

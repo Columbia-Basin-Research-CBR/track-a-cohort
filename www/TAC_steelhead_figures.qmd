@@ -91,7 +91,7 @@ Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC
 source(here("R/steelhead_plot_count_cumulative_loss.R"))
 ```
 
-Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_count_cumulative_loss.R){target="_blank"}
+Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_count_cumulative_loss.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="_blank}
 
 ## Figure 5. Cumulative Loss with Single-Year Thresholds
 
@@ -99,7 +99,7 @@ Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC
 source(here("R/steehead_plot_count_cumulative_loss_single_year_thresholds.R"))
 ```
 
-Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss:~:text=Chinook%20Salmon%20Loss-,Natural%20Central%20Valley%20Steelhead,-Daily%20Loss%20Table){target="_blank"}, ShinyApp, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steehead_plot_count_cumulative_loss_single_year_thresholds.R){target="_blank"}
+Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss:~:text=Chinook%20Salmon%20Loss-,Natural%20Central%20Valley%20Steelhead,-Daily%20Loss%20Table){target="_blank"}, ShinyApp, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steehead_plot_count_cumulative_loss_single_year_thresholds.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLossSingleYearThreshold/){target="_blank}
 
 -   Issues:
     -   Confirm Single-Year-Thresholds and update to generate automatically
