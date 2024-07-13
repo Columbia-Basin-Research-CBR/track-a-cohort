@@ -57,7 +57,7 @@ source(here("R/winter_run_chinook_plot_STARS.R"))
 source(here("R/winter_run_chinook_plot_STARS_withoutfacetedyears.R"))
 ```
 
-Related links: SacPAS Page, [Interactive Plot](https://csobrien.shinyapps.io/TAC_WRChinook_STARS/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
+Related links: SacPAS Page, [Interactive Plot](https://csobrien.shinyapps.io/WRChinookSTARS/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
 
 ## Figure 3. Comparison of Clipped and Unclipped Loss
 

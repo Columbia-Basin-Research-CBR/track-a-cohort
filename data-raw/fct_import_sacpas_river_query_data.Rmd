@@ -1,0 +1,126 @@
+---
+title: "Import Sacramento River Environment Data"
+date: "Last update: `r format(Sys.Date())`"
+output: 
+  html_document:
+    code_folding: show
+---
+
+## **A function to imported river data via [SacPAS](https://www.cbr.washington.edu/sacramento/data/query_river_graph.html)**
+
+
+
+
+### *Packages needed*
+
+```{r packages, warning=FALSE, error=FALSE, message=FALSE}
+library(data.table) #read url to import data into R
+library(tidyverse) #data wrangling
+library(here) #filepath designation
+library(lubridate) #format time
+```
+
+
+
+### *Function*
+
+Code below can be used to directly import river environment data directly from SacPAS and then save output as site specific .cvs files as well as a combined site file. User can select **site, year, and metrics** of interest. 
+
+```{r func_import, warning=FALSE, error=FALSE, eval=FALSE}
+fct_import_SacPAS_query <- function(sites, years, metrics, output_folder = "raw_data_folder") {
+  
+  # Create the output folder if it doesn't exist
+  if (!dir.exists(output_folder)) {
+    dir.create(output_folder)
+  }
+  
+  # Create an empty list to store wrangled data
+  wrangled_data_list <- list()
+  
+  for (site in sites) {
+    tryCatch({
+      # Generate URL with the specified code, years, and metrics: uses Download CSV Only [single data pt/row] 
+      url <- paste0("https://www.cbr.washington.edu/sacramento/data/php/rpt/mg.php?sc=1&mgconfig=river&outputFormat=csvSingle&hafilter=All&",
+                    paste0("year%5B%5D=", paste(years, collapse = "&year%5B%5D=")),
+                    "&loc%5B%5D=", paste(site, collapse = "&loc%5B%5D="),
+                    "&data%5B%5D=", paste(metrics, collapse = "&data%5B%5D="),
+                    "&tempUnit=F&startdate=1%2F1&enddate=12%2F31&avgyear=0&consolidate=1&grid=1&y1min=&y1max=&y2min=&y2max=&size=medium")
+      
+      # Read data using fread
+      raw_data <- data.table::fread(url)
+      
+      # wrangle data
+      wrangled_data <- raw_data %>%
+        filter(!is.na(value)) %>% # exclude rows where value is NA
+        separate("mm-dd", c("mm", "dd")) %>%
+        mutate(
+          year = as.numeric(year),
+          mm = as.numeric(mm),
+          dd = as.numeric(dd)
+        ) %>%
+        mutate(YMD = lubridate::ymd(paste(year, mm, dd, sep = "-"))) %>%
+        mutate(DOY = lubridate::yday(YMD))
+      
+      # Check if wrangled data is empty
+      if (nrow(wrangled_data) == 0) {
+        cat("No data found for site code", site, "\n")
+        next  # Skip to the next site code
+      }
+      
+      # Save wrangled data to the list
+      wrangled_data_list[[site]] <- wrangled_data
+      
+      # Save raw data to a CSV file in the designated folder
+      file_name <- file.path(output_folder, paste0(site, "_raw_data.csv"))
+      write.csv(raw_data, file_name, row.names = FALSE)
+      
+      # output message for successful download
+      cat("Raw data for", site, "downloaded and saved", "\n")
+    }, error = function(e) {
+      # output message for Handle errors (e.g., URL not found)--denote which site did not run
+      cat("Error occurred for site code", site, ":", conditionMessage(e), "\n")
+    })
+  }
+  
+  # Bind all wrangled dataframes together
+  combined_data <- bind_rows(wrangled_data_list)
+  
+  # save combined file 
+  write.csv(combined_data, file = here::here("data_exploration/data", "SacPAS_river_covariates_combined_sites.csv"), row.names = FALSE)
+  
+  return(combined_data)
+}
+```
+
+
+### Site, Year, Metric Selection
+
+Once function and package is loaded, select the site, years, and metrics of interest by substituting code as needed. 
+
+For sites and metric codes see [SacPAS](https://www.cbr.washington.edu/sacramento/data/query_river_graph.html). The [River Query Map](https://www.cbr.washington.edu/sacramento/data/query_river_map/) is helpful for noting which data types have site and year data available. 
+
+See code below for an example pulling from a list of X sites, from 2013 to 2022 and pulls flow,  turbidity, water temp, and daily max water temp. 
+
+```{r func_import_select covariates, eval = FALSE }
+
+#select covariates of interest:
+  # List of 3-letter site codes: must be uppercase, codes selected from SacPAS>River Conditions Graph & Text Query
+  code_list <- c("KWK")
+
+#set years of interest
+  years <- c(2013:2022)
+
+#selected metrics of interest
+  metrics <- c("Flow", "WaterTemperature", "Turbidity") #"DissolvedOxygen","Turbidity", "DailyMax"
+  
+# Run the function with the code list, years, and metrics
+df<-fct_import_SacPAS_query(sites = code_list, years = years, metrics = metrics, output_folder = here::here("data_exploration/data/by_site_raw_data"))
+
+```
+
+
+*Pending additions:*
+
+-  If no data associated with river metrics, then function doesn't run properly. *Look into troubleshooting further.* 
+
+- future edit would be an option(or another function) scripting in code to pull all sites with data present without having to designate site and metric 

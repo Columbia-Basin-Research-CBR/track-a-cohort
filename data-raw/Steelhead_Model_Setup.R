@@ -116,13 +116,11 @@ hurdle.model <- function(data, response,
   return(list(binary.model,quantile.model,prediction))
 }
 
-names(df.ss)
-names(df.ss[c(2:4,17:21,29)])
 
-WR_Simple_Combined <- hurdle.model(data = df.ss,
-                                      response = "winter",
+Stlhd_Simple_Combined <- hurdle.model(data = df.ss,
+                                      response = "stlhd_loss",
                                       binary.predictors = NA,
-                                      quantile.predictors = c(2:4,17:21,27),
+                                      quantile.predictors = c(2:4,17:21,29),
                                       binary.form = "none",
                                       quantile.form = "qrf",
                                       which.quant = c(0.01,0.05,.1,.25,.5,.75,.9,.95,.99),
@@ -134,10 +132,10 @@ WR_Simple_Combined <- hurdle.model(data = df.ss,
 
 
 #Facilities Separated
-WR_Simple_CVP <- hurdle.model(data = df.ss,
-                                 response = "winter_cvp",
+Stlhd_Simple_CVP <- hurdle.model(data = df.ss,
+                                 response = "stlhd_loss_cvp",
                                  binary.predictors = NA,
-                                 quantile.predictors = c(2:4,17:21,30),
+                                 quantile.predictors = c(2:4,17:21,32),
                                  binary.form = "none",
                                  quantile.form = "qrf",
                                  which.quant = c(0.01,0.05,.1,.25,.5,.75,.9,.95,.99),
@@ -146,10 +144,10 @@ WR_Simple_CVP <- hurdle.model(data = df.ss,
                                  pres.only=F
 )
 
-WR_Simple_SWP <- hurdle.model(data = df.ss,
-                                 response = "winter",
+Stlhd_Simple_SWP <- hurdle.model(data = df.ss,
+                                 response = "stlhd_loss_swp",
                                  binary.predictors = NA,
-                                 quantile.predictors = c(2:4,17:21,33),
+                                 quantile.predictors = c(2:4,17:21,35),
                                  binary.form = "none",
                                  quantile.form = "qrf",
                                  which.quant = c(0.01,0.05,.1,.25,.5,.75,.9,.95,.99),
