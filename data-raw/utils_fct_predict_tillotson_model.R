@@ -8,6 +8,9 @@
 
 source(here("R/utils_fct_assign_current_water_year.R"))
 source(here("data-raw/utils_fct_import_river_data.R"))
+source(here("R/brt.functions.r"))
+load(here("R/ITMData.rda"))
+
 
 current_year <- assign_current_water_year()
 
@@ -26,12 +29,25 @@ calculateWYWeek <- function(date) {
   return(weekNumber)
 }
 
-process_data_for_species <- function(species_url, species_filter, model_script, species.pw) {
+fct_process_and_run_tillotson_model <- function(species_url, species_filter, model_script, species.pw) {
+  
 
 #  weekly loss totals differ from BOR supplied code -- need to verify discrepancies
-  df_fish <- read_csv(species_url) %>%
-    janitor::clean_names() %>%
-    filter(species_filter ) %>%
+  df_fish_raw <- read_csv(species_url) %>%
+    janitor::clean_names()
+
+  # Apply species filter based on the species_filter argument
+  if (species_filter == "STL") {
+    df_fish <- df_fish_raw %>% filter(species == "Rainbow / Steelhead Trout")
+    species_column_name <- "stlhd_loss.pw"
+    model_to_use <- Stlhd_Simple_Combined[[2]]
+  } else if (species_filter == "WCH") {
+    df_fish <- df_fish_raw %>% filter(lad_race == "Winter")
+    species_column_name <- "winter.pw"
+    model_to_use <- WR_Simple_Combine[[2]]
+  }
+  
+  df_fish <- df_fish %>%
     mutate(sample_time = ymd_hms(sample_time),
            date = date(sample_time)) %>%
     group_by(date) %>%
@@ -86,7 +102,7 @@ process_data_for_species <- function(species_url, species_filter, model_script, 
 
 
   df_combined<- df_fish %>% 
-    left_join(df_river, by = "week")
+    left_join(df_river, by = "week") 
   
   # Run the model script
   source(here::here(paste0("data-raw/",model_script)))
@@ -106,7 +122,12 @@ process_data_for_species <- function(species_url, species_filter, model_script, 
       daily_exports = df_combined$weekly_avg_export[i],
       species.pw = df_combined$total_weekly_loss[i]
     )
-  pred <- predict(WR_Simple_Combined[[2]], newdata = NewData, what = c(0.05, 0.5, 0.95))
+    
+    # Dynamically rename the species.pw column
+    names(NewData)[names(NewData) == "species.pw"] <- species_column_name
+    
+    
+  pred <- predict(model_to_use, newdata = NewData, what = c(0.05, 0.5, 0.95))
   predictions <- data.frame(lowerCI = pred[,1], median = pred[,2], upperCI = pred[,3],
                             week = df_combined$week[i],
                             OMR = df_combined$weekly_avg_omr[i],
@@ -114,6 +135,7 @@ process_data_for_species <- function(species_url, species_filter, model_script, 
                             ObservedLoss = df_combined$total_weekly_loss[i]
   )
   tillotsonList[[i]] <- predictions
+
 }
 
   return(bind_rows(tillotsonList))
@@ -124,20 +146,16 @@ process_data_for_species <- function(species_url, species_filter, model_script, 
 # Winter-run
 winter_run_url <- paste0("https://www.cbr.washington.edu/sacramento/data/php/rpt/juv_loss_detail.php?sc=1&outputFormat=csv&year=", current_year, "&species=1%3Af&dnaOnly=no&age=no")
 winter_run_script <- "WR_Model_Setup.R"
-
-winter_run_tillotson_output <- process_data_for_species( species_url = winter_run_url, species_filter =  "lad_race == `Winter`", model_script = winter_run_script, species.pw = "winter.pw")
+winter_run_tillotson_output <- fct_process_and_run_tillotson_model( species_url = winter_run_url, species_filter =  "WCH", model_script = winter_run_script, model_call = winter_run_call, species.pw = "winter.pw")
 
 # Steelhead
 steelhead_url <- paste0("https://www.cbr.washington.edu/sacramento/data/php/rpt/juv_loss_detail.php?sc=1&outputFormat=csv&year=", current_year, "&species=2%3Af&dnaOnly=no&age=no")
 steelhead_script <- "Steelhead_Model_Setup.R"
-steelhead_tillotson_output <- process_data_for_species(species_url = steelhead_url, species_name = "Steelhead", model_script = steelhead_script, species.pw = "stlhd_loss.pw")
+steelhead_tillotson_output <- fct_process_and_run_tillotson_model(species_url = steelhead_url, species_filter = "STL", model_script = steelhead_script, species.pw = "stlhd_loss.pw")
 
 # Combine outputs
-tillotson_prediction_output <- list(winter_run_tillotson_output, steelhead_tillotson_output)
+tillotson_prediction_output <- list(winter_run_tillotson_output = winter_run_tillotson_output, steelhead_tillotson_output = steelhead_tillotson_output)
 
-
-#Combine list items into one dataframe
-tillotson_prediction_output<- bind_rows(tillotsonList)
 
 usethis::use_data(tillotson_prediction_output, overwrite = TRUE)
 

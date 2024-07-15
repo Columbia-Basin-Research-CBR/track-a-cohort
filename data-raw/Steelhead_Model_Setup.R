@@ -5,9 +5,9 @@ require(stringr)
 require(lubridate)
 require(zoo)
 require(caret)
-source("brt.functions.r")
+source(here::here("R/brt.functions.r"))
 select <- dplyr::select
-load("ITMData.rda")
+load(here::here("R/ITMData.rda"))
 
 df.ss <- df.ss%>%mutate(dcc= if_else(dcc==2,"open","closed"))
 
