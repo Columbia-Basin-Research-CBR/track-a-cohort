@@ -2,8 +2,8 @@
 library(here)
 source(here("R/load_dependencies.R"))
 # source each data-raw script
-source(here("data-raw/utils_fct_predict_tillotson_model.R"))
 source(here("data-raw/import_STARS_data.R"))
+source(here("data-raw/utils_fct_predict_tillotson_model.R"))
 source(here("data-raw/import_jpe_annual_data.R"))
 source(here("data-raw/import_winter_run_chinook_lad_loss_data.R"))
 source(here("data-raw/import_winter_run_chinook_genetic_loss_data.R"))
