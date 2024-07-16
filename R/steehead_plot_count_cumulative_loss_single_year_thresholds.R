@@ -14,7 +14,7 @@
 
 # import data file
 #loss data from SacPAS
-source(here("data-raw/import_steelhead_loss_data.R"))
+
 load(here("data/steelhead_loss_data.rda"))
 
 

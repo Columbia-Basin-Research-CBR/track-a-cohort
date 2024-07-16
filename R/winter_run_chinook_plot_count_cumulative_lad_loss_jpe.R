@@ -16,7 +16,6 @@
 #' @noRd
 
 # import data file
-source(here("data-raw/import_winter_run_chinook_lad_loss_data.R"))
 load(here("data/jpe_lad_loss_data.rda"))
 # extract genetic cumulative loss data
 lad_cumulative_loss_data <- jpe_lad_loss_data$lad_cumulative_loss_data

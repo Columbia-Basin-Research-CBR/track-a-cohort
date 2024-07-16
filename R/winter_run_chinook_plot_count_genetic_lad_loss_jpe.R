@@ -12,11 +12,9 @@
 # import data file
 
 ## Genetic total loss data
-source(here("data-raw/import_winter_run_chinook_genetic_loss_data.R"))
 load(here("data/jpe_genetic_loss_data.rda"))
 genetic_total_loss_data <- jpe_genetic_loss_data$genetic_total_loss_data
 ## LAD total loss data
-source(here("data-raw/import_winter_run_chinook_lad_loss_data.R"))
 load(here("data/jpe_lad_loss_data.rda"))
 lad_total_loss_data <- jpe_lad_loss_data$lad_total_loss_data
 

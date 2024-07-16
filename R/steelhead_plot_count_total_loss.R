@@ -8,7 +8,7 @@
 #' 
 
 # load data
-source(here("data-raw/import_steelhead_loss_data.R"))
+
 load(here::here("data/steelhead_loss_data.rda"))
 
 p <- steelhead_loss_data %>% 

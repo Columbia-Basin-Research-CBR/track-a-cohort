@@ -13,7 +13,6 @@
 #' @importFrom magrittr %>%
 
 # import data file
-source(here("data-raw/import_winter_run_chinook_genetic_loss_data.R"))
 load(here("data/jpe_genetic_loss_data.rda"))
 
 

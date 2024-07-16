@@ -8,7 +8,7 @@
 
 
 # Load the data
-source(here("data-raw/import_steelhead_daily_loss_export_data.R"))
+
 load(here::here("data/steelhead_loss_export_data.rda"))
 
 # adding horizontal lines -- provided by BOR. Confirm how these are designated

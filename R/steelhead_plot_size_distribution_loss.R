@@ -9,7 +9,6 @@
 #' 
 
 # load data
-source(here("data-raw/import_steelhead_loss_data.R"))
 load(here("data/steelhead_loss_data.rda"))
 
 

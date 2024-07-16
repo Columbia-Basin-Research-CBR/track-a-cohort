@@ -6,7 +6,6 @@
 #' @importFrom magrittr %>%
 
 # load data files
-source(here("data-raw/utils_fct_predict_tillotson_model.R"))
 load(here("data", "tillotson_prediction_output.rda"))
 steelhead_tillotson_output <- tillotson_prediction_output$steelhead_tillotson_output
 

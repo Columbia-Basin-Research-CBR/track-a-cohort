@@ -112,7 +112,6 @@ Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroup
 
 ```{r, load_data_table_01, include=FALSE}
 # Load the data
-source(here("data-raw/import_steelhead_loss_data.R"))
 load(here("data/steelhead_loss_data.rda"))
 ```
 
@@ -161,7 +160,6 @@ Issues:
 
 ```{r, load_table_02, fig.width=10, fig.height=6}
 # Load the data
-source(here("data-raw/utils_fct_predict_tillotson_model.R"))
 load(here("data/tillotson_prediction_output.rda"))
 
 data <- tillotson_prediction_output$steelhead_tillotson_output
