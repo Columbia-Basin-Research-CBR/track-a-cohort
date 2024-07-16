@@ -11,7 +11,7 @@ source(here("R/load_dependencies.R"))
 
 # import JPE estimate data directly from SacPAS
 jpe_url<- "https://www.cbr.washington.edu/sacramento/data/graphics/jpedata_Natural_1.txt"
-jpe_raw <- data.table::fread(jpe.url) 
+jpe_raw <- data.table::fread(jpe_url) 
 
 # wrangle data
 jpe_annual_data <- jpe_raw %>% 

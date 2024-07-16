@@ -1,0 +1,13 @@
+name: DailyLossExports
+title: DailyLossExports
+username: csobrien
+account: csobrien
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 12326682
+bundleId: 8871802
+url: https://csobrien.shinyapps.io/DailyLossExports/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: app_CumulativeLoss.R|app_CumulativeLossSingleYearThreshold.R|app_WRChinookSTARS.R|import_app_steelhead_loss_data.R|jpe_genetic_loss_data.rda|jpe_lad_loss_data.rda|mod_fct_plot_cumulative_loss_single_year_threshold.R|mod_fct_plot_cumulative_loss.R|STARS.shinyinputs.Rdata|steelhead_loss_current_year_data.rda|steelhead_loss_data.rda|utils_fct_assign_current_water_year.R|utils_fct_wday_to_month.R|WYtype.csv

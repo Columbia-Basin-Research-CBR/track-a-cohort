@@ -31,7 +31,7 @@ df_stars_raw <- tibble::as_tibble(WR_xts[,c("Survival Interior Delta Est",
                                     "Survival Overall LCL 80",
                                     "Survival Overall UCL 80")]) %>%
   # Add the first date as a new column
-  mutate(date = xts::index(WR_xts)) %>%
+  mutate(date = zoo::index(WR_xts)) %>%
   # Make date the first column
   select(date, everything()) %>%
   rename( surv =  "Survival Overall Est", survL80 =  "Survival Overall LCL 80", survU80 =  "Survival Overall UCL 80", 

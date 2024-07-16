@@ -1,3 +1,5 @@
+#' @title Predict Tillotson model for Winter-run Chinook and Steelhead
+#' @description This function processes the Tillotson model for Winter-run Chinook and Steelhead species and returns both predicted results for each species in a list. 
 #' @import lubridate
 #' @import dplyr
 #' @import tidyr
@@ -27,6 +29,9 @@ calculateWYWeek <- function(date) {
   weekNumber <- ceiling(daysSinceStart / 7)
   return(weekNumber)
 }
+
+currentWY <- 2024
+previousWY <- current_year - 1
 
 fct_process_and_run_tillotson_model <- function(species_url, species_filter, model_script, species.pw) {
   # Load the model script
@@ -73,7 +78,7 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
   }
   previousWY <- currentWY - 1
   # return years of interest
-  years <- print(previousWY:currentWY)
+  years <- previousWY:currentWY
 
   # select sites of interest: Flow, OMR, Export, Temperature
   code_list <- c("FPT", "VNS", "MAL", "TRP", "HRO")

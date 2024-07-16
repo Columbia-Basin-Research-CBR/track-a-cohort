@@ -109,11 +109,15 @@ Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroup
 
 \*Pending steelhead hatchery release information
 
-```{r, load_table_01}
+```{r, load_data_table_01, include=FALSE}
 # Load the data
+source(here("data-raw/import_steelhead_loss_data.R"))
 load(here("data/steelhead_loss_data.rda"))
+```
 
-#load function to wrangle into table format
+
+```{r, load_table_01}
+#load function to wrangle into table format}
 source(here("R/steelhead_fct_generate_table_total_hatchery_loss.R"))
 
 # generate HTML table
@@ -132,19 +136,17 @@ Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC
 source(here("R/steelhead_plot_daily_loss_export.R"))
 ```
 
-Related links: SacPAS Page, ShinyApp, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_daily_loss_export.R){target="_blank"}
+Related links: SacPAS Page, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_daily_loss_export.R){target="_blank"}
 
 -   Issues:
-    - Confirm OMRI is value wanted - different from tillotson model. Based on shared code and description in Assessment pdf's OMRI is used for management.
-    - Confirm if OMR/OMRI vertical bars are designated by value or dates, is there a rule to be applied? Shared code is static values, but notes within [assessment pdf](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.usbr.gov/mp/bdo/docs/20240528-proposed-action-assessment.pdf) states: "Vertical black bars are approximate dates when OMRI controlling factors change." 
+    -   Confirm OMRI is value wanted - different from tillotson model. Based on shared code and description in Assessment pdf's OMRI is used for management.
+    -   Confirm if OMR/OMRI vertical bars are designated by value or dates, is there a rule to be applied? Shared code is static values, but notes within [assessment pdf](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.usbr.gov/mp/bdo/docs/20240528-proposed-action-assessment.pdf) states: "Vertical black bars are approximate dates when OMRI controlling factors change."
 
 ## Figure 7. Tillotson Steelhead Loss
 
-
 ```{r, load_plot6, fig.width=10, fig.height=6}
-source(here("R/winter_run_chinook_plot_tillotson_predicted_loss.R"))
+source(here("R/steelhead_plot_tillotson_predicted_loss.R"))
 ```
-
 
 Related links: SacPAS Page, [SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [plot output](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_tillotson_predicted_loss.R){target="_blank"}
 
@@ -152,12 +154,13 @@ Issues:
 
 -   Currently using BOR supplied code to run model, confirm same output with NB code
 -   Confirm shared code is duplicate of Tillotson code. If not, update to reflect Tillotson model
+-   Confirm mean() is used for all averages within tillotson code and not rolling average.
 
 ## Table 2. Predicted and Observed Loss
 
 ```{r, load_table_02}
 # Load the data
-# load(here("data/steelhead_loss_export_data.rda"))
+source(here("data-raw/utils_fct_predict_tillotson_model.R"))
 load(here("data/tillotson_prediction_output.rda"))
 
 data <- tillotson_prediction_output$steelhead_tillotson_output
@@ -170,11 +173,7 @@ generate_table_steelhead_pred_obs_loss(data)
 
 ```
 
-Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_fct_generate_table_predicted_observed_loss.R){target="_blank"} - Issues: - Confirm table uses unclipped for summary - Identify methods used for predicted column - Confirm table should include weekly? averages for current water year. How are averages calculated? - Confirm OMR or OMRI is used, alternatively include both?
+Related links: SacPAS Page,[SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"} [Table configuration](https://github.com/caitobrien/TAC/blob/main/R/steelhead_fct_generate_table_predicted_observed_loss.R){target="_blank"}
 
-- Issues: 
-  - Confirm table uses unclipped for summary
-  - Identify methods used for predicted column. Word doc denotes used table values for prediction, does that mean those values were input to Tillotson Model?
-  - Table is using weekly averages with mean(), use rolling average for values? Use SacPAS pre-averaged results for OMR/OMRI?
-  - Confirm OMR is used, especially if tillotson model is being used to predict losss
-  - Confirm export is sum of both facilities, or if Export (TAF) shouldbe used
+-   Issues:
+    -   Confirm model output weekly averages. Table/Model is using weekly averages with mean(), confirm paper doesn't use a rolling average.

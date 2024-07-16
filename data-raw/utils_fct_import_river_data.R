@@ -13,7 +13,7 @@ fct_import_SacPAS_river_conditions_query <- function(sites, years, metrics) {
   wrangled_data_list <- list()
   
   for (site in sites) {
-    tryCatch({
+    # tryCatch({
       # Generate URL with the specified code, years, and metrics: uses Download CSV Only [single data pt/row] 
       url <- paste0("https://www.cbr.washington.edu/sacramento/data/php/rpt/mg.php?sc=1&mgconfig=river&outputFormat=csvSingle&hafilter=All&",
                     paste0("year%5B%5D=", paste(years, collapse = "&year%5B%5D=")),
@@ -38,7 +38,7 @@ fct_import_SacPAS_river_conditions_query <- function(sites, years, metrics) {
       
       # Check if wrangled data is empty
       if (nrow(wrangled_data) == 0) {
-        cat("No data found for site code", site, "\n")
+        # cat("No data found for site code", site, "\n")
         next  # Skip to the next site code
       }
       
@@ -49,12 +49,12 @@ fct_import_SacPAS_river_conditions_query <- function(sites, years, metrics) {
       # file_name <- file.path(output_folder, paste0(site, "_raw_data.csv"))
       # write.csv(raw_data, file_name, row.names = FALSE)
       
-      # output message for successful download
-      cat("Raw data for", site, "downloaded and saved", "\n")
-    }, error = function(e) {
-      # output message for Handle errors (e.g., URL not found)--denote which site did not run
-      cat("Error occurred for site code", site, ":", conditionMessage(e), "\n")
-    })
+    #   # output message for successful download
+    #   cat("Raw data for", site, "downloaded and saved", "\n")
+    # }, error = function(e) {
+    #   # output message for Handle errors (e.g., URL not found)--denote which site did not run
+    #   cat("Error occurred for site code", site, ":", conditionMessage(e), "\n")
+    # })
   }
   
   # Bind all wrangled dataframes together

@@ -130,10 +130,10 @@ Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroup
 
 ## Figure 6. Tillotson predicted loss with OMR scenarios
 
-
 ```{r, load_plot6, fig.width=10, fig.height=6}
 source(here("R/winter_run_chinook_plot_tillotson_predicted_loss.R"))
 ```
+
 Related links: SacPAS Page, [SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/caitobrien/TAC/blob/main/data-raw/WR_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [plot output](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_tillotson_predicted_loss.R){target="_blank"}
 
 Issues:
@@ -142,13 +142,15 @@ Issues:
 
 ## Figure 7. Hatchery Percent Loss
 
+pending data source & table/figure requested
+
 ```{r, load_plot7, fig.width=10, fig.height=12}
- source(here("R/winter_run_chinook_hatchery_plot_pct_loss.R"))
+ #source(here("R/winter_run_chinook_hatchery_plot_pct_loss.R"))
 ```
 
 -   Issues:
-    -   Confirm this plot is even wanted or an accidental addition to the `Track a cohort_WR_plots docx` shared. Named Fig 5 in .docx
+    -   Currently waiting on issues to move forward:
 
-    -   Confirm data import URL sourced from SacPAS when it becomes available
+        -   Confirm this plot or table is wanted. Confirm firm type of figure and or table (similar to steelhead request)
 
-    -   Update figure with additional years as data becomes available
+        -   Confirm data import URL sourced from SacPAS when it becomes available
