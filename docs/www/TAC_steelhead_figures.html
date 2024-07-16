@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-07-11">
+<meta name="dcterms.date" content="2024-07-15">
 
 <title>Track-a-Cohort - Track-a-Cohort: Steelhead</title>
 <style>
@@ -68,7 +68,9 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+
 <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
 
 <link rel="stylesheet" href="styles.css">
@@ -157,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 11, 2024</p>
+      <p class="date">July 15, 2024</p>
     </div>
   </div>
   
@@ -218,7 +220,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Related links: SacPAS Page, <a href="https://csobrien.shinyapps.io/TAC_WRChinook_STARS/" target="_blank">Interactive Plot</a>, <a href="https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R" target="_blank">GitHub Repo Code</a>, <a href="https://www.cbr.washington.edu/shiny/STARS/" target="_blank">STARS ShinyApp</a></p>
+<p>Related links: SacPAS Page, <a href="https://csobrien.shinyapps.io/WRChinookSTARS/" target="_blank">Interactive Plot</a>, <a href="https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R" target="_blank">GitHub Repo Code</a>, <a href="https://www.cbr.washington.edu/shiny/STARS/" target="_blank">STARS ShinyApp</a></p>
 </section>
 </section>
 <section id="figure-3.-comparison-of-clipped-and-unclipped-loss" class="level2">
@@ -562,18 +564,27 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Issues:
 <ul>
-<li>Update with SacPAS generated link for Export data per Facility, closest data found: <a href="https://www.cbr.washington.edu/sacramento/tmp/juvloss_1719955580_301.html" class="uri">https://www.cbr.washington.edu/sacramento/tmp/juvloss_1719955580_301.html</a>, which is used in figure. Does not delineate between facility. Also, requires selection of current year, species and rear-type, and management year type. Update with query string that can pull current year data for steelhead.</li>
+<li>Confirm OMRI is value wanted - different from tillotson model. Based on shared code and description in Assessment pdf’s OMRI is used for management.</li>
+<li>Confirm if OMR/OMRI vertical bars are designated by value or dates, is there a rule to be applied? Shared code is static values, but notes within <a href="chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.usbr.gov/mp/bdo/docs/20240528-proposed-action-assessment.pdf">assessment pdf</a> states: “Vertical black bars are approximate dates when OMRI controlling factors change.”</li>
 </ul></li>
 </ul>
 </section>
 <section id="figure-7.-tillotson-steelhead-loss" class="level2">
 <h2 class="anchored" data-anchor-id="figure-7.-tillotson-steelhead-loss">Figure 7. Tillotson Steelhead Loss</h2>
-<p>Related links: SacPAS Page, <a href="https://www.cbr.washington.edu/sacramento/lossandsalvage/" target="_blank">SacPAS Tillotson Tool</a>, GitHub Repo Code</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TAC_steelhead_figures_files/figure-html/load_plot6-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Related links: SacPAS Page, <a href="https://www.cbr.washington.edu/sacramento/lossandsalvage/" target="_blank">SacPAS Tillotson Tool</a>, GitHub Repo Code: <a href="https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R" target="_blank">Tillotson model</a>, <a href="https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R" target="_black">data wrangling and prediction output</a>, <a href="https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_tillotson_predicted_loss.R" target="_blank">plot output</a></p>
+<p>Issues:</p>
 <ul>
-<li>Issues:
-<ul>
-<li>Run model or pull Tillotson data from tool?</li>
-</ul></li>
+<li>Currently using BOR supplied code to run model, confirm same output with NB code</li>
+<li>Confirm shared code is duplicate of Tillotson code. If not, update to reflect Tillotson model</li>
 </ul>
 </section>
 <section id="table-2.-predicted-and-observed-loss" class="level2">
@@ -585,286 +596,303 @@ ul.task-list li input[type="checkbox"] {
 <caption>Predicted and Observed Total Loss of Hatchery Steelhead with weekly OMR flow and export</caption>
 <thead>
 <tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Water Year Week</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Date</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Total Daily Loss</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Average Export (TAF)</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Average OMRI (cfs)</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Average OMR (cfs); 5d USGS tidally filtered</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Observed Loss</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">OMR USGS Tidally Filtered</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Export, SWP &amp; CVP (CFS)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">avg flow at Sacramento (CFS)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">avg flow at San Joaquin (CFS)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">avg water temperature at Mallard Island (C)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Weekly Predicted Loss (median, lower CI, upper CI)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">2023-10-07</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">9.597429</td>
-<td style="text-align: left;">-4049.2857</td>
-<td style="text-align: left;">-6004.0000</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">11-05-23</td>
+<td style="text-align: left;">0.68</td>
+<td style="text-align: left;">-5124.29</td>
+<td style="text-align: left;">4743.14</td>
+<td style="text-align: left;">8124.49</td>
+<td style="text-align: left;">1629.03</td>
+<td style="text-align: left;">16.41</td>
+<td style="text-align: left;">(0, 0, 17.32)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2023-10-14</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">5.380429</td>
-<td style="text-align: left;">-1941.2857</td>
-<td style="text-align: left;">-3771.4286</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">12-24-23</td>
+<td style="text-align: left;">2.72</td>
+<td style="text-align: left;">-7810.00</td>
+<td style="text-align: left;">8251.57</td>
+<td style="text-align: left;">16180.07</td>
+<td style="text-align: left;">1351.61</td>
+<td style="text-align: left;">11.46</td>
+<td style="text-align: left;">(0, 0, 105.19)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2023-10-21</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2.448143</td>
-<td style="text-align: left;">-600.8571</td>
-<td style="text-align: left;">-2033.5714</td>
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">12-31-23</td>
+<td style="text-align: left;">2.72</td>
+<td style="text-align: left;">-5632.86</td>
+<td style="text-align: left;">5712.00</td>
+<td style="text-align: left;">21761.74</td>
+<td style="text-align: left;">1419.25</td>
+<td style="text-align: left;">11.38</td>
+<td style="text-align: left;">(0, 0, 99.59)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2023-10-28</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">7.471429</td>
-<td style="text-align: left;">-2581.1429</td>
-<td style="text-align: left;">-2551.0000</td>
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">01-07-24</td>
+<td style="text-align: left;">40.08</td>
+<td style="text-align: left;">-5512.86</td>
+<td style="text-align: left;">5986.71</td>
+<td style="text-align: left;">16860.78</td>
+<td style="text-align: left;">1859.91</td>
+<td style="text-align: left;">10.40</td>
+<td style="text-align: left;">(11.38, 0, 155.99)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2023-11-04</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">10.736429</td>
-<td style="text-align: left;">-4486.4286</td>
-<td style="text-align: left;">-5678.2857</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">01-14-24</td>
+<td style="text-align: left;">14.28</td>
+<td style="text-align: left;">-5300.00</td>
+<td style="text-align: left;">5388.57</td>
+<td style="text-align: left;">23745.35</td>
+<td style="text-align: left;">1908.47</td>
+<td style="text-align: left;">10.04</td>
+<td style="text-align: left;">(17.32, 0, 147.84)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2023-11-11</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">7.710857</td>
-<td style="text-align: left;">-3255.5714</td>
-<td style="text-align: left;">-4953.1429</td>
+<td style="text-align: left;">17</td>
+<td style="text-align: left;">01-21-24</td>
+<td style="text-align: left;">28.81</td>
+<td style="text-align: left;">-2805.71</td>
+<td style="text-align: left;">3931.57</td>
+<td style="text-align: left;">40931.59</td>
+<td style="text-align: left;">3442.51</td>
+<td style="text-align: left;">10.95</td>
+<td style="text-align: left;">(22.76, 0, 194.1)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2023-11-18</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">8.408143</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">-4167.2857</td>
+<td style="text-align: left;">18</td>
+<td style="text-align: left;">01-28-24</td>
+<td style="text-align: left;">217.83</td>
+<td style="text-align: left;">-3189.57</td>
+<td style="text-align: left;">3938.71</td>
+<td style="text-align: left;">39896.78</td>
+<td style="text-align: left;">3793.21</td>
+<td style="text-align: left;">12.09</td>
+<td style="text-align: left;">(143.22, 8.16, 575.89)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2023-11-25</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">9.031143</td>
-<td style="text-align: left;">-3914.4286</td>
-<td style="text-align: left;">-5231.7143</td>
+<td style="text-align: left;">19</td>
+<td style="text-align: left;">02-04-24</td>
+<td style="text-align: left;">418.98</td>
+<td style="text-align: left;">-4537.14</td>
+<td style="text-align: left;">7296.14</td>
+<td style="text-align: left;">61321.77</td>
+<td style="text-align: left;">7148.49</td>
+<td style="text-align: left;">11.54</td>
+<td style="text-align: left;">(307.26, 25.98, 864.5)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2023-12-02</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">8.649000</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">-4157.7143</td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">02-11-24</td>
+<td style="text-align: left;">192.57</td>
+<td style="text-align: left;">-4202.86</td>
+<td style="text-align: left;">6703.14</td>
+<td style="text-align: left;">52035.15</td>
+<td style="text-align: left;">6661.49</td>
+<td style="text-align: left;">11.02</td>
+<td style="text-align: left;">(160.21, 8.16, 555.4)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2023-12-09</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">11.088857</td>
-<td style="text-align: left;">-5030.1429</td>
-<td style="text-align: left;">-5887.7143</td>
+<td style="text-align: left;">21</td>
+<td style="text-align: left;">02-18-24</td>
+<td style="text-align: left;">860.00</td>
+<td style="text-align: left;">-3310.00</td>
+<td style="text-align: left;">7049.71</td>
+<td style="text-align: left;">65318.05</td>
+<td style="text-align: left;">9071.54</td>
+<td style="text-align: left;">12.01</td>
+<td style="text-align: left;">(572.15, 116.63, 2395.95)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2023-12-16</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">12.738571</td>
-<td style="text-align: left;">-5740.5714</td>
-<td style="text-align: left;">-6134.8571</td>
+<td style="text-align: left;">22</td>
+<td style="text-align: left;">02-25-24</td>
+<td style="text-align: left;">374.82</td>
+<td style="text-align: left;">-3432.86</td>
+<td style="text-align: left;">6731.71</td>
+<td style="text-align: left;">66389.38</td>
+<td style="text-align: left;">8099.43</td>
+<td style="text-align: left;">12.62</td>
+<td style="text-align: left;">(222.66, 24.37, 680.24)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2023-12-23</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">15.283714</td>
-<td style="text-align: left;">-6747.7143</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;">23</td>
+<td style="text-align: left;">03-03-24</td>
+<td style="text-align: left;">440.63</td>
+<td style="text-align: left;">-3248.57</td>
+<td style="text-align: left;">7551.43</td>
+<td style="text-align: left;">62429.96</td>
+<td style="text-align: left;">9599.09</td>
+<td style="text-align: left;">11.80</td>
+<td style="text-align: left;">(242.76, 24.37, 678.94)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2023-12-30</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">13.266714</td>
-<td style="text-align: left;">-5791.0000</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;">24</td>
+<td style="text-align: left;">03-10-24</td>
+<td style="text-align: left;">139.03</td>
+<td style="text-align: left;">-1377.86</td>
+<td style="text-align: left;">3261.86</td>
+<td style="text-align: left;">54301.79</td>
+<td style="text-align: left;">5447.43</td>
+<td style="text-align: left;">12.57</td>
+<td style="text-align: left;">(131.12, 9.34, 575.89)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2024-01-06</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">11.889714</td>
-<td style="text-align: left;">-4983.1429</td>
-<td style="text-align: left;">-5618.8571</td>
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">03-17-24</td>
+<td style="text-align: left;">191.74</td>
+<td style="text-align: left;">-2051.71</td>
+<td style="text-align: left;">2893.57</td>
+<td style="text-align: left;">42966.66</td>
+<td style="text-align: left;">5248.03</td>
+<td style="text-align: left;">14.07</td>
+<td style="text-align: left;">(143.22, 22.65, 527.04)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2024-01-13</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">10.801714</td>
-<td style="text-align: left;">-4324.4286</td>
-<td style="text-align: left;">-5259.1429</td>
+<td style="text-align: left;">26</td>
+<td style="text-align: left;">03-24-24</td>
+<td style="text-align: left;">449.92</td>
+<td style="text-align: left;">-3552.14</td>
+<td style="text-align: left;">3750.86</td>
+<td style="text-align: left;">40745.52</td>
+<td style="text-align: left;">5164.58</td>
+<td style="text-align: left;">14.44</td>
+<td style="text-align: left;">(215.23, 30.31, 704.96)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2024-01-20</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">8.813000</td>
-<td style="text-align: left;">-2932.1429</td>
-<td style="text-align: left;">-4535.4286</td>
+<td style="text-align: left;">27</td>
+<td style="text-align: left;">03-31-24</td>
+<td style="text-align: left;">640.34</td>
+<td style="text-align: left;">-2424.86</td>
+<td style="text-align: left;">4132.71</td>
+<td style="text-align: left;">39568.84</td>
+<td style="text-align: left;">4592.15</td>
+<td style="text-align: left;">14.32</td>
+<td style="text-align: left;">(403.41, 56.72, 1040.63)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2024-01-27</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">7.499714</td>
-<td style="text-align: left;">-2004.1429</td>
-<td style="text-align: left;">-2835.8571</td>
+<td style="text-align: left;">28</td>
+<td style="text-align: left;">04-07-24</td>
+<td style="text-align: left;">455.76</td>
+<td style="text-align: left;">-1043.00</td>
+<td style="text-align: left;">2141.29</td>
+<td style="text-align: left;">30951.90</td>
+<td style="text-align: left;">5046.74</td>
+<td style="text-align: left;">15.12</td>
+<td style="text-align: left;">(116.91, 16.32, 660.07)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2024-02-03</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">12.286143</td>
-<td style="text-align: left;">-3059.7143</td>
-<td style="text-align: left;">-3832.0000</td>
+<td style="text-align: left;">29</td>
+<td style="text-align: left;">04-14-24</td>
+<td style="text-align: left;">292.08</td>
+<td style="text-align: left;">154.14</td>
+<td style="text-align: left;">1532.43</td>
+<td style="text-align: left;">31798.17</td>
+<td style="text-align: left;">5372.36</td>
+<td style="text-align: left;">16.32</td>
+<td style="text-align: left;">(99.59, 9.34, 315.57)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2024-02-10</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">14.461571</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">-4415.7143</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">04-21-24</td>
+<td style="text-align: left;">184.66</td>
+<td style="text-align: left;">-880.29</td>
+<td style="text-align: left;">1806.29</td>
+<td style="text-align: left;">31001.37</td>
+<td style="text-align: left;">5082.57</td>
+<td style="text-align: left;">17.50</td>
+<td style="text-align: left;">(75.83, 0, 292.94)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2024-02-17</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">13.103000</td>
-<td style="text-align: left;">-2402.1429</td>
-<td style="text-align: left;">-3691.1429</td>
+<td style="text-align: left;">31</td>
+<td style="text-align: left;">04-28-24</td>
+<td style="text-align: left;">98.70</td>
+<td style="text-align: left;">-846.57</td>
+<td style="text-align: left;">1936.43</td>
+<td style="text-align: left;">24835.78</td>
+<td style="text-align: left;">4574.49</td>
+<td style="text-align: left;">17.74</td>
+<td style="text-align: left;">(25.98, 0, 193.14)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2024-02-24</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">14.003000</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">-3390.2857</td>
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">05-05-24</td>
+<td style="text-align: left;">24.37</td>
+<td style="text-align: left;">-939.71</td>
+<td style="text-align: left;">1469.00</td>
+<td style="text-align: left;">29168.95</td>
+<td style="text-align: left;">4512.28</td>
+<td style="text-align: left;">17.60</td>
+<td style="text-align: left;">(30.4, 0, 118.37)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2024-03-02</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">14.502143</td>
-<td style="text-align: left;">-2477.8571</td>
-<td style="text-align: left;">-3290.8571</td>
+<td style="text-align: left;">33</td>
+<td style="text-align: left;">05-12-24</td>
+<td style="text-align: left;">28.81</td>
+<td style="text-align: left;">-1188.14</td>
+<td style="text-align: left;">3540.00</td>
+<td style="text-align: left;">24148.72</td>
+<td style="text-align: left;">7460.78</td>
+<td style="text-align: left;">18.50</td>
+<td style="text-align: left;">(37.36, 0, 194.85)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2024-03-09</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">8.983000</td>
-<td style="text-align: left;">-992.8571</td>
-<td style="text-align: left;">-2597.2857</td>
+<td style="text-align: left;">34</td>
+<td style="text-align: left;">05-19-24</td>
+<td style="text-align: left;">23.80</td>
+<td style="text-align: left;">-1735.00</td>
+<td style="text-align: left;">3211.57</td>
+<td style="text-align: left;">21611.11</td>
+<td style="text-align: left;">8042.48</td>
+<td style="text-align: left;">19.17</td>
+<td style="text-align: left;">(25.98, 0, 194.85)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2024-03-16</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">5.741000</td>
-<td style="text-align: left;">-505.1429</td>
-<td style="text-align: left;">-1290.2857</td>
+<td style="text-align: left;">35</td>
+<td style="text-align: left;">05-26-24</td>
+<td style="text-align: left;">16.32</td>
+<td style="text-align: left;">-3665.71</td>
+<td style="text-align: left;">4140.43</td>
+<td style="text-align: left;">17635.37</td>
+<td style="text-align: left;">4448.11</td>
+<td style="text-align: left;">20.09</td>
+<td style="text-align: left;">(13.42, 0, 210.56)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2024-03-23</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">6.851429</td>
-<td style="text-align: left;">-972.8571</td>
-<td style="text-align: left;">-2946.2857</td>
+<td style="text-align: left;">36</td>
+<td style="text-align: left;">06-02-24</td>
+<td style="text-align: left;">3.72</td>
+<td style="text-align: left;">-5717.14</td>
+<td style="text-align: left;">5548.43</td>
+<td style="text-align: left;">15894.70</td>
+<td style="text-align: left;">3185.75</td>
+<td style="text-align: left;">21.20</td>
+<td style="text-align: left;">(0, 0, 155.88)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2024-03-30</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">7.733857</td>
-<td style="text-align: left;">-1652.2857</td>
-<td style="text-align: left;">-3190.2857</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024-04-06</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">5.976000</td>
-<td style="text-align: left;">-904.0000</td>
-<td style="text-align: left;">-2213.5714</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2024-04-13</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">3.086143</td>
-<td style="text-align: left;">641.0000</td>
-<td style="text-align: left;">-15.0000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024-04-20</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">3.164857</td>
-<td style="text-align: left;">470.5714</td>
-<td style="text-align: left;">-304.8571</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2024-04-27</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">4.293429</td>
-<td style="text-align: left;">-342.1429</td>
-<td style="text-align: left;">-849.1429</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024-05-04</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2.911000</td>
-<td style="text-align: left;">157.4286</td>
-<td style="text-align: left;">-1005.8571</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2024-05-11</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">5.321000</td>
-<td style="text-align: left;">-127.4286</td>
-<td style="text-align: left;">-864.4286</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024-05-18</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">6.249429</td>
-<td style="text-align: left;">173.7143</td>
-<td style="text-align: left;">-1322.1429</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2024-05-25</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">8.153857</td>
-<td style="text-align: left;">-1798.2857</td>
-<td style="text-align: left;">-2593.1429</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024-06-01</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">9.821000</td>
-<td style="text-align: left;">-3758.5714</td>
-<td style="text-align: left;">-4588.5714</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2024-06-08</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">11.456000</td>
-<td style="text-align: left;">-5027.8571</td>
-<td style="text-align: left;">-6044.5714</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024-06-15</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">10.427286</td>
-<td style="text-align: left;">-4690.8571</td>
-<td style="text-align: left;">-5902.2857</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2024-06-22</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">11.994857</td>
-<td style="text-align: left;">-5199.5714</td>
-<td style="text-align: left;">-6220.8571</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024-06-29</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;">37</td>
+<td style="text-align: left;">06-09-24</td>
+<td style="text-align: left;">8.66</td>
+<td style="text-align: left;">-6012.86</td>
+<td style="text-align: left;">5633.57</td>
+<td style="text-align: left;">15473.27</td>
+<td style="text-align: left;">2264.37</td>
+<td style="text-align: left;">21.57</td>
+<td style="text-align: left;">(0, 0, 155.88)</td>
 </tr>
 </tbody>
 </table>
@@ -874,6 +902,16 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>Related links: SacPAS Page, <a href="https://github.com/caitobrien/TAC/blob/main/R/steelhead_fct_generate_table_predicted_observed_loss.R" target="_blank">GitHub Repo Code</a> - Issues: - Confirm table uses unclipped for summary - Identify methods used for predicted column - Confirm table should include weekly? averages for current water year. How are averages calculated? - Confirm OMR or OMRI is used, alternatively include both?</p>
+<ul>
+<li>Issues:
+<ul>
+<li>Confirm table uses unclipped for summary</li>
+<li>Identify methods used for predicted column. Word doc denotes used table values for prediction, does that mean those values were input to Tillotson Model?</li>
+<li>Table is using weekly averages with mean(), use rolling average for values? Use SacPAS pre-averaged results for OMR/OMRI?</li>
+<li>Confirm OMR is used, especially if tillotson model is being used to predict losss</li>
+<li>Confirm export is sum of both facilities, or if Export (TAF) shouldbe used</li>
+</ul></li>
+</ul>
 
 
 </section>
