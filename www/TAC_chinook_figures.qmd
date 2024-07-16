@@ -58,9 +58,9 @@ source(here("R/winter_run_chinook_plot_STARS_withoutfacetedyears.R"))
 
 Related links: SacPAS Page, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/WRChinookSTARS/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
 
-- Issues:
-    - Confirm option preferred, update static and interactive plot to reflect choice
-    
+-   Issues:
+    -   Confirm option preferred, update static and interactive plot to reflect choice
+
 ## Figure 3. Juvenile Production Estimate (JPE) – Percent Loss
 
 ### Figure 3a. Genetic vs Length-At-Date (LAD) Historical Percent Loss of JPE
@@ -148,6 +148,7 @@ Issues:
 ```
 
 -   Currently waiting on issues to move forward:
-  
-  -   Confirm this plot or table is wanted. Confirm firm type of figure and or table (similar to steelhead request)
-  -   Confirm data import URL sourced from SacPAS when it becomes available
+
+-   Confirm this plot or table is wanted. Confirm firm type of figure and or table (similar to steelhead request)
+
+-   Confirm data import URL sourced from SacPAS when it becomes available

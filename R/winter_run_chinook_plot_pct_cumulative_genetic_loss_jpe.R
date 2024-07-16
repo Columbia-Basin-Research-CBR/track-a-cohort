@@ -14,7 +14,7 @@
 #' @noRd
 
 # import data file
-sload(here("data/jpe_genetic_loss_data.rda"))
+load(here("data/jpe_genetic_loss_data.rda"))
 
 # extract genetic cumulative loss data
 genetic_cumulative_loss_data <- jpe_genetic_loss_data$genetic_cumulative_loss_data

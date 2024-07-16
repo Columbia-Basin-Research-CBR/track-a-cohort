@@ -1,5 +1,6 @@
 # Script to prompt Makefile to update data prior to each build
-
+library(here)
+source(here("R/load_dependencies.R"))
 # source each data-raw script
 source(here("data-raw/utils_fct_predict_tillotson_model.R"))
 source(here("data-raw/import_STARS_data.R"))
