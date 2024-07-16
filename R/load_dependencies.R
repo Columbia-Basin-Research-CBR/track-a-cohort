@@ -11,7 +11,12 @@ library(lubridate)
 library(patchwork)
 library(readr)
 library(scales)
-library(tidyverse) #if in package form pull out specific libraries -- dplyr, ggplot2, tidyr, lubridate, etc
+library(tidyverse) #if in package form pull out specific libraries -- dplyr, ggplot2, tidyr, lubridate, library(stringr) etc
 library(usethis) 
 library(xts)
 library(zoo)
+# Tillotson Model
+library(randomForest)
+library(quantregForest)
+library(caret)
+library(gbm)

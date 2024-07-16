@@ -11,8 +11,10 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 Imports: 
+    caret,
     data.table,
     dplyr,
+    gbm,
     gghighlight,
     ggplot2,
     ggrepel,
@@ -24,6 +26,8 @@ Imports:
     lubridate,
     magrittr,
     patchwork,
+    quantregForest,
+    randomForest,
     readr,
     scales,
     stringr,
