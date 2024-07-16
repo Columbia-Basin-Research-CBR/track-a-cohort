@@ -134,7 +134,10 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
       week = df_combined$week[i],
       OMR = df_combined$weekly_avg_omr[i],
       Export = df_combined$weekly_avg_export[i],
-      ObservedLoss = df_combined$total_weekly_loss[i]
+      ObservedLoss = df_combined$total_weekly_loss[i],
+      weekly_avg_mal_wtemp = df_combined$weekly_avg_mal_wtemp[i],
+      weekly_avg_fpt_flow = df_combined$weekly_avg_fpt_flow[i],
+      weekly_avg_vns_flow = df_combined$weekly_avg_vns_flow[i]
     )
     tillotsonList[[i]] <- predictions
   }
