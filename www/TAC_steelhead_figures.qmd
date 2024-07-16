@@ -40,10 +40,11 @@ Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/tmp/redbl
 
 -   Issues:
     -   Update biweekly shaded areas based on SI generated methods
+    -   mimic the same 0 line cutoff as on SacPAS, update to show points at 0 line?
 
 ## Figure 2. Survival and Routing Probabilites
 
-Note: Using Winter-run Chinook as a surrogate for Steelhead
+Note: Plots below use Winter-run Chinook as a surrogate for Steelhead
 
 ### Option 1: Facetted by year
 
@@ -130,9 +131,9 @@ Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC
 -   Issues:
     -   Update with steelhead hatchery release information when becomes available
 
-## Figure 6. Daily Loss, Exports, and Pumping Rates by Facility
+## Figure 6. Daily Loss and Export by Pumping Facility
 
-```{r, load_plot_06, fig.width=10, fig.height=10}
+```{r, load_plot_06, fig.width=12, fig.height=10}
 source(here("R/steelhead_plot_daily_loss_export.R"))
 ```
 
@@ -142,7 +143,7 @@ Related links: SacPAS Page, [Interactive Plot - ShinyApp](https://csobrien.shiny
     -   Confirm OMRI is value wanted - different from tillotson model. Based on shared code and description in Assessment pdf's OMRI is used for management.
     -   Confirm if OMR/OMRI vertical bars are designated by value or dates, is there a rule to be applied? Shared code is static values, but notes within [assessment pdf](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.usbr.gov/mp/bdo/docs/20240528-proposed-action-assessment.pdf) states: "Vertical black bars are approximate dates when OMRI controlling factors change."
 
-## Figure 7. Tillotson Steelhead Loss
+## Figure 7. Predicted and Observed Weekly Loss - Tillotson Model
 
 ```{r, load_plot6, fig.width=10, fig.height=6}
 source(here("R/steelhead_plot_tillotson_predicted_loss.R"))
@@ -153,12 +154,12 @@ Related links: SacPAS Page, [SacPAS Tillotson Tool](https://www.cbr.washington.e
 Issues:
 
 -   Currently using BOR supplied code to run model, confirm same output with NB code
--   Confirm shared code is duplicate of Tillotson code. If not, update to reflect Tillotson model
+-   Further, confirm shared code is duplicate of Tillotson code. If not, update to reflect Tillotson model
 -   Confirm mean() is used for all averages within tillotson code and not rolling average.
 
-## Table 2. Predicted and Observed Loss
+## Table 2. Model inputs and predictions - Tillotson Model
 
-```{r, load_table_02}
+```{r, load_table_02, fig.width=10, fig.height=6}
 # Load the data
 source(here("data-raw/utils_fct_predict_tillotson_model.R"))
 load(here("data/tillotson_prediction_output.rda"))

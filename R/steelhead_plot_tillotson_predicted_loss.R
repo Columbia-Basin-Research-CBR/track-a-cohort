@@ -41,7 +41,7 @@ p <- steelhead_tillotson_output %>%
   guides(fill = guide_legend(order = 1),
          color = guide_legend(order = 1)) +
   theme_minimal() +
-  theme(element_text(size = 15)
+  theme(text = element_text(size = 15)
         )
 
 print(p)

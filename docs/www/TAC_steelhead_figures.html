@@ -135,9 +135,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#figure-4.-cumulative-loss" id="toc-figure-4.-cumulative-loss" class="nav-link" data-scroll-target="#figure-4.-cumulative-loss">Figure 4. Cumulative Loss</a></li>
   <li><a href="#figure-5.-cumulative-loss-with-single-year-thresholds" id="toc-figure-5.-cumulative-loss-with-single-year-thresholds" class="nav-link" data-scroll-target="#figure-5.-cumulative-loss-with-single-year-thresholds">Figure 5. Cumulative Loss with Single-Year Thresholds</a></li>
   <li><a href="#table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead" id="toc-table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead" class="nav-link" data-scroll-target="#table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead">Table 1. Minimization of Cumulative Loss of Hatchery Steelhead</a></li>
-  <li><a href="#figure-6.-daily-loss-exports-and-pumping-rates-by-facility" id="toc-figure-6.-daily-loss-exports-and-pumping-rates-by-facility" class="nav-link" data-scroll-target="#figure-6.-daily-loss-exports-and-pumping-rates-by-facility">Figure 6. Daily Loss, Exports, and Pumping Rates by Facility</a></li>
-  <li><a href="#figure-7.-tillotson-steelhead-loss" id="toc-figure-7.-tillotson-steelhead-loss" class="nav-link" data-scroll-target="#figure-7.-tillotson-steelhead-loss">Figure 7. Tillotson Steelhead Loss</a></li>
-  <li><a href="#table-2.-predicted-and-observed-loss" id="toc-table-2.-predicted-and-observed-loss" class="nav-link" data-scroll-target="#table-2.-predicted-and-observed-loss">Table 2. Predicted and Observed Loss</a></li>
+  <li><a href="#figure-6.-daily-loss-and-export-by-pumping-facility" id="toc-figure-6.-daily-loss-and-export-by-pumping-facility" class="nav-link" data-scroll-target="#figure-6.-daily-loss-and-export-by-pumping-facility">Figure 6. Daily Loss and Export by Pumping Facility</a></li>
+  <li><a href="#figure-7.-predicted-and-observed-weekly-loss---tillotson-model" id="toc-figure-7.-predicted-and-observed-weekly-loss---tillotson-model" class="nav-link" data-scroll-target="#figure-7.-predicted-and-observed-weekly-loss---tillotson-model">Figure 7. Predicted and Observed Weekly Loss - Tillotson Model</a></li>
+  <li><a href="#table-2.-model-inputs-and-predictions---tillotson-model" id="toc-table-2.-model-inputs-and-predictions---tillotson-model" class="nav-link" data-scroll-target="#table-2.-model-inputs-and-predictions---tillotson-model">Table 2. Model inputs and predictions - Tillotson Model</a></li>
   </ul>
 </nav>
     </div>
@@ -189,12 +189,13 @@ ul.task-list li input[type="checkbox"] {
 <li>Issues:
 <ul>
 <li>Update biweekly shaded areas based on SI generated methods</li>
+<li>mimic the same 0 line cutoff as on SacPAS, update to show points at 0 line?</li>
 </ul></li>
 </ul>
 </section>
 <section id="figure-2.-survival-and-routing-probabilites" class="level2">
 <h2 class="anchored" data-anchor-id="figure-2.-survival-and-routing-probabilites">Figure 2. Survival and Routing Probabilites</h2>
-<p>Note: Using Winter-run Chinook as a surrogate for Steelhead</p>
+<p>Note: Plots below use Winter-run Chinook as a surrogate for Steelhead</p>
 <section id="option-1-facetted-by-year" class="level3">
 <h3 class="anchored" data-anchor-id="option-1-facetted-by-year">Option 1: Facetted by year</h3>
 <div class="cell">
@@ -547,13 +548,13 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="figure-6.-daily-loss-exports-and-pumping-rates-by-facility" class="level2">
-<h2 class="anchored" data-anchor-id="figure-6.-daily-loss-exports-and-pumping-rates-by-facility">Figure 6. Daily Loss, Exports, and Pumping Rates by Facility</h2>
+<section id="figure-6.-daily-loss-and-export-by-pumping-facility" class="level2">
+<h2 class="anchored" data-anchor-id="figure-6.-daily-loss-and-export-by-pumping-facility">Figure 6. Daily Loss and Export by Pumping Facility</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="TAC_steelhead_figures_files/figure-html/load_plot_06-1.png" class="img-fluid figure-img" width="960"></p>
+<p><img src="TAC_steelhead_figures_files/figure-html/load_plot_06-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -567,8 +568,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="figure-7.-tillotson-steelhead-loss" class="level2">
-<h2 class="anchored" data-anchor-id="figure-7.-tillotson-steelhead-loss">Figure 7. Tillotson Steelhead Loss</h2>
+<section id="figure-7.-predicted-and-observed-weekly-loss---tillotson-model" class="level2">
+<h2 class="anchored" data-anchor-id="figure-7.-predicted-and-observed-weekly-loss---tillotson-model">Figure 7. Predicted and Observed Weekly Loss - Tillotson Model</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -582,12 +583,12 @@ ul.task-list li input[type="checkbox"] {
 <p>Issues:</p>
 <ul>
 <li>Currently using BOR supplied code to run model, confirm same output with NB code</li>
-<li>Confirm shared code is duplicate of Tillotson code. If not, update to reflect Tillotson model</li>
+<li>Further, confirm shared code is duplicate of Tillotson code. If not, update to reflect Tillotson model</li>
 <li>Confirm mean() is used for all averages within tillotson code and not rolling average.</li>
 </ul>
 </section>
-<section id="table-2.-predicted-and-observed-loss" class="level2">
-<h2 class="anchored" data-anchor-id="table-2.-predicted-and-observed-loss">Table 2. Predicted and Observed Loss</h2>
+<section id="table-2.-model-inputs-and-predictions---tillotson-model" class="level2">
+<h2 class="anchored" data-anchor-id="table-2.-model-inputs-and-predictions---tillotson-model">Table 2. Model inputs and predictions - Tillotson Model</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div class="table-responsive">
@@ -616,7 +617,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">8124.49</td>
 <td style="text-align: left;">1629.03</td>
 <td style="text-align: left;">16.41</td>
-<td style="text-align: left;">(0, 0, 8.16)</td>
+<td style="text-align: left;">(0, 0, 17.32)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">13</td>
@@ -627,7 +628,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">16180.07</td>
 <td style="text-align: left;">1351.61</td>
 <td style="text-align: left;">11.46</td>
-<td style="text-align: left;">(0, 0, 82.27)</td>
+<td style="text-align: left;">(0, 0, 108.25)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">14</td>
@@ -638,7 +639,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">21761.74</td>
 <td style="text-align: left;">1419.25</td>
 <td style="text-align: left;">11.38</td>
-<td style="text-align: left;">(0, 0, 92.23)</td>
+<td style="text-align: left;">(0, 0, 61.83)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">15</td>
@@ -649,7 +650,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">16860.78</td>
 <td style="text-align: left;">1859.91</td>
 <td style="text-align: left;">10.40</td>
-<td style="text-align: left;">(8.66, 0, 154.38)</td>
+<td style="text-align: left;">(8.66, 0, 148.94)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">16</td>
@@ -671,7 +672,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">40931.59</td>
 <td style="text-align: left;">3442.51</td>
 <td style="text-align: left;">10.95</td>
-<td style="text-align: left;">(25.98, 0, 225.52)</td>
+<td style="text-align: left;">(25.98, 0, 224.16)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">18</td>
@@ -682,7 +683,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">39896.78</td>
 <td style="text-align: left;">3793.21</td>
 <td style="text-align: left;">12.09</td>
-<td style="text-align: left;">(143.22, 7.97, 603.2)</td>
+<td style="text-align: left;">(133.23, 1.29, 575.89)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">19</td>
@@ -693,7 +694,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">61321.77</td>
 <td style="text-align: left;">7148.49</td>
 <td style="text-align: left;">11.54</td>
-<td style="text-align: left;">(243.81, 22.76, 761.24)</td>
+<td style="text-align: left;">(313.02, 24.37, 774.32)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">20</td>
@@ -704,7 +705,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">52035.15</td>
 <td style="text-align: left;">6661.49</td>
 <td style="text-align: left;">11.02</td>
-<td style="text-align: left;">(160.21, 14.28, 555.4)</td>
+<td style="text-align: left;">(160.21, 8.16, 555.4)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">21</td>
@@ -715,7 +716,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">65318.05</td>
 <td style="text-align: left;">9071.54</td>
 <td style="text-align: left;">12.01</td>
-<td style="text-align: left;">(572.15, 68.38, 1854.74)</td>
+<td style="text-align: left;">(572.15, 56.72, 2395.95)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">22</td>
@@ -726,7 +727,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">66389.38</td>
 <td style="text-align: left;">8099.43</td>
 <td style="text-align: left;">12.62</td>
-<td style="text-align: left;">(215, 24.37, 678.94)</td>
+<td style="text-align: left;">(242.76, 24.37, 704.96)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">23</td>
@@ -737,7 +738,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">62429.96</td>
 <td style="text-align: left;">9599.09</td>
 <td style="text-align: left;">11.80</td>
-<td style="text-align: left;">(242.76, 25.42, 660.07)</td>
+<td style="text-align: left;">(242.76, 24.37, 704.96)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">24</td>
@@ -748,7 +749,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">54301.79</td>
 <td style="text-align: left;">5447.43</td>
 <td style="text-align: left;">12.57</td>
-<td style="text-align: left;">(131.12, 0, 575.89)</td>
+<td style="text-align: left;">(131.12, 8.16, 575.89)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">25</td>
@@ -759,7 +760,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">42966.66</td>
 <td style="text-align: left;">5248.03</td>
 <td style="text-align: left;">14.07</td>
-<td style="text-align: left;">(141.28, 14.03, 484.58)</td>
+<td style="text-align: left;">(141.28, 17.27, 575.89)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">26</td>
@@ -770,7 +771,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">40745.52</td>
 <td style="text-align: left;">5164.58</td>
 <td style="text-align: left;">14.44</td>
-<td style="text-align: left;">(215.23, 34, 678.94)</td>
+<td style="text-align: left;">(242.76, 30.89, 704.96)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">27</td>
@@ -781,7 +782,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">39568.84</td>
 <td style="text-align: left;">4592.15</td>
 <td style="text-align: left;">14.32</td>
-<td style="text-align: left;">(411.51, 56.72, 1040.63)</td>
+<td style="text-align: left;">(403.41, 56.72, 1040.63)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">28</td>
@@ -792,7 +793,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">30951.90</td>
 <td style="text-align: left;">5046.74</td>
 <td style="text-align: left;">15.12</td>
-<td style="text-align: left;">(126.23, 16.32, 660.07)</td>
+<td style="text-align: left;">(114.37, 17.32, 598.37)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">29</td>
@@ -803,7 +804,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">31798.17</td>
 <td style="text-align: left;">5372.36</td>
 <td style="text-align: left;">16.32</td>
-<td style="text-align: left;">(86.6, 15.97, 246.81)</td>
+<td style="text-align: left;">(81.95, 16.32, 292.94)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">30</td>
@@ -814,7 +815,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">31001.37</td>
 <td style="text-align: left;">5082.57</td>
 <td style="text-align: left;">17.50</td>
-<td style="text-align: left;">(73.61, 0, 292.94)</td>
+<td style="text-align: left;">(74.72, 0, 292.94)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">31</td>
@@ -825,7 +826,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">24835.78</td>
 <td style="text-align: left;">4574.49</td>
 <td style="text-align: left;">17.74</td>
-<td style="text-align: left;">(30.31, 0, 171.89)</td>
+<td style="text-align: left;">(30.92, 0, 192.85)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">32</td>
@@ -836,7 +837,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">29168.95</td>
 <td style="text-align: left;">4512.28</td>
 <td style="text-align: left;">17.60</td>
-<td style="text-align: left;">(30.92, 0, 122.93)</td>
+<td style="text-align: left;">(30.4, 0, 117)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">33</td>
@@ -847,7 +848,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">24148.72</td>
 <td style="text-align: left;">7460.78</td>
 <td style="text-align: left;">18.50</td>
-<td style="text-align: left;">(38.97, 0, 199.51)</td>
+<td style="text-align: left;">(30.92, 0, 192.95)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">34</td>
@@ -858,7 +859,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">21611.11</td>
 <td style="text-align: left;">8042.48</td>
 <td style="text-align: left;">19.17</td>
-<td style="text-align: left;">(37.36, 0, 215.23)</td>
+<td style="text-align: left;">(17.32, 0, 199.27)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">35</td>
@@ -869,7 +870,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">17635.37</td>
 <td style="text-align: left;">4448.11</td>
 <td style="text-align: left;">20.09</td>
-<td style="text-align: left;">(8.41, 0, 199.27)</td>
+<td style="text-align: left;">(13.42, 0, 171.8)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">36</td>

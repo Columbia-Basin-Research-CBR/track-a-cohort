@@ -58,6 +58,9 @@ source(here("R/winter_run_chinook_plot_STARS_withoutfacetedyears.R"))
 
 Related links: SacPAS Page, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/WRChinookSTARS/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
 
+- Issues:
+    - Confirm option preferred, update static and interactive plot to reflect choice
+    
 ## Figure 3. Juvenile Production Estimate (JPE) – Percent Loss
 
 ### Figure 3a. Genetic vs Length-At-Date (LAD) Historical Percent Loss of JPE
@@ -81,8 +84,7 @@ Related links: SacPAS Page, ShinyApp, [GitHub Repo Code](https://github.com/cait
     -   Confirm missing 2008 JPE data
     -   Update genetic data as it becomes available
     -   Update method naming conventions as needed
-    -   Confirm loss URL sourced from SacPAS
-    -   add ShinyApp for interactive capabilities for 3b (i.e., hydrological classifications, plotly filtering of data, etc.)
+    -   Confirm loss URL sourced from SacPAS, no age restriction added [url](https://www.cbr.washington.edu/sacramento/data/query_loss_detail.html)
 
 ## Figure 4. Juvenile Production Estimate (JPE) – Number Loss
 
@@ -105,8 +107,7 @@ Related links: SacPAS Page, ShinyApp, [GitHub Repo Code](https://github.com/cait
 -   Issues:
     -   Update genetic data as it becomes available
     -   Update method naming conventions as needed
-    -   Confirm loss URL sourced from SacPAS
-    -   add ShinyApp for interactive capabilities for 3b (i.e., hydrological classifications, plotly filtering of data, etc.)
+    -   Confirm loss URL sourced from SacPAS, no age restriction added [url](https://www.cbr.washington.edu/sacramento/data/query_loss_detail.html)
 
 ## Figure 5. Single Year Thresholds
 
@@ -125,10 +126,10 @@ source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thr
 Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss){target="_blank"}, ShinyApp, [GitHub Repo Code: cumul_genetic_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R){target="_blank"} , [GitHub Repo Code: cumul_lad_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLossSingleYearThreshold/){target="\"_blank"}
 
 -   Issues:
-    -   Confirm loss URL sourced from SacPAS
+    -   Confirm loss URL sourced from SacPAS, no age restriction added [url](https://www.cbr.washington.edu/sacramento/data/query_loss_detail.html)
     -   Confirm single year threshold and naming conventions
 
-## Figure 6. Tillotson predicted loss with OMR scenarios
+## Figure 6. Predicted and Observed Weekly Loss - Tillotson Model
 
 ```{r, load_plot6, fig.width=10, fig.height=6}
 source(here("R/winter_run_chinook_plot_tillotson_predicted_loss.R"))
@@ -142,15 +143,11 @@ Issues:
 
 ## Figure 7. Hatchery Percent Loss
 
-pending data source & table/figure requested
-
 ```{r, load_plot7, fig.width=10, fig.height=12}
  #source(here("R/winter_run_chinook_hatchery_plot_pct_loss.R"))
 ```
 
--   Issues:
-    -   Currently waiting on issues to move forward:
-
-        -   Confirm this plot or table is wanted. Confirm firm type of figure and or table (similar to steelhead request)
-
-        -   Confirm data import URL sourced from SacPAS when it becomes available
+-   Currently waiting on issues to move forward:
+  
+  -   Confirm this plot or table is wanted. Confirm firm type of figure and or table (similar to steelhead request)
+  -   Confirm data import URL sourced from SacPAS when it becomes available
