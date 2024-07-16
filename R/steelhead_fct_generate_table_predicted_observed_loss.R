@@ -44,9 +44,9 @@ df_tbl<- data %>%
          `Observed Loss` = ObservedLoss, 
          `OMR USGS Tidally Filtered` = OMR,
          `Export, SWP & CVP (CFS)` = Export,
-         `avg flow at Sacramento (CFS)` = weekly_avg_fpt_flow,
-         `avg flow at San Joaquin (CFS)` = weekly_avg_vns_flow,
-         `avg water temperature at Mallard Island (C)` = weekly_avg_mal_wtemp,
+         `Avg flow at Sacramento (CFS)` = weekly_avg_fpt_flow,
+         `Avg flow at San Joaquin (CFS)` = weekly_avg_vns_flow,
+         `Avg water temperature at Mallard Island (C)` = weekly_avg_mal_wtemp,
          `Weekly Predicted Loss (median, lower CI, upper CI)` = `Predicted loss`
          )
 
@@ -54,7 +54,8 @@ df_tbl<- data %>%
 row.names(df_tbl) <- NULL
 
 # create table
-tbl<-knitr::kable(df_tbl, caption = "Predicted and Observed Total Loss of Hatchery Steelhead with weekly OMR flow and export", align = "l") %>%
+tbl<-knitr::kable(df_tbl, caption = "Tillotson et al., (2022) model output of predicted weekly losses for Natural-origin Steelhead with model weekly average inputs including 
+                  observed loss, Old and Middle Rivers (OMR), USGS tidally filtered flow (CFS), combined exports from CVP & SWP facilities (CFS),  flow at Sacramento and San Joaquin (CFS), and water temperature at Mallard Island (C).", align = "l") %>%
   kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F)
 
 

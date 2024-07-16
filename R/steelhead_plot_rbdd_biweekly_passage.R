@@ -7,6 +7,7 @@
 #' @importFrom magrittr %>%
 
 # load data file
+source(here("data-raw/import_steelhead_rbdd_biweekly_passage_data.R"))
 load(here("data/rbdd_biweekly_passage_data.rda"))
 
 #set current year

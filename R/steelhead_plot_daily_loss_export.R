@@ -8,16 +8,17 @@
 
 
 # Load the data
+source(here("data-raw/import_steelhead_daily_loss_export_data.R"))
 load(here::here("data/steelhead_loss_export_data.rda"))
 
 # adding horizontal lines -- provided by BOR. Confirm how these are designated
-omrValues <- data.frame(label = c('-5000 OMR','-3500','-2000','-5000','-3500','-2500','-500','-1500','-2500','COA 8.17'),
-                        x = as.Date(c('2024-01-01', '2024-01-14', '2024-01-23', '2024-02-04', '2024-02-08',
+omrValues <- data.frame(value = c(-5000,-3500,-2000,-5000,-3500,-2500,-500,-1500,-2500, "COA 8.17"),#,'COA 8.17'
+                        date = lubridate::ymd(c('2024-01-01', '2024-01-14', '2024-01-23', '2024-02-04', '2024-02-08',
                                       '2024-02-17', '2024-03-11', '2024-02-26', '2024-04-01', '2024-04-09')))
 
 #Determine addition of OMR values -- how to set? Based on OMR management rule?
-omrValues<- steelhead_loss_export_data %>% 
-  filter(!is.na(OMR_14d))
+# omrValues<- steelhead_loss_export_data %>% 
+#   filter(!is.na(OMR_14d))
 
 # Calculate the ratio for the secondary axis
 ratio <- max(steelhead_loss_export_data$daily_total_loss) / max(steelhead_loss_export_data$pumping_discharge_cfs)
@@ -27,9 +28,11 @@ p1 <- steelhead_loss_export_data %>%
   geom_bar(aes(y = daily_total_loss, fill = facility), stat = "identity", position = position_dodge2(preserve = "total", width = .6)) + # Changed color to fill for bar
   geom_line(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
   geom_vline(omrValues, mapping = aes(xintercept = date), color = '#999999') +
-  geom_text(omrValues, mapping = aes(x = date, y = 200, label = paste("OMR:", OMR_14d)), color = '#999999', angle = -90, size = 3, vjust = 1) +
-  labs(title = "Steelhead Daily Loss and Export",
-       subtitle = "Comparison of facilities, CVP and SWP",
+  geom_text(omrValues, mapping = aes(x = date, y = 200, label = paste("OMR:", value)), color = '#999999', angle = -90, size = 3, vjust = 1) +
+  labs(title = "Daily Loss and Export",
+       subtitle = paste("Species: Steelhead",
+                        "\nCurrent Water Year:", current_year,
+                        "\n\nComparison of facilities, CVP and SWP"),
        x = NULL,
        y = "Daily loss",
        y.sec = "Pumping Discharge (cfs)",
@@ -44,7 +47,8 @@ p1 <- steelhead_loss_export_data %>%
         plot.subtitle =  element_text(face = "plain", size = 12),
         text = element_text(size = 15),
         # axis.text.x = element_text(angle = 90, vjust = 0.5),
-        panel.grid.minor.y = element_blank())
+        panel.grid.minor.y = element_blank(),
+        panel.border = element_rect(color = "grey", fill = NA, size = 0.5))
 
 
 
@@ -67,7 +71,8 @@ p2 <- steelhead_loss_export_data %>%
   theme(legend.position = "bottom",
         text = element_text(size = 15),
         # axis.text.x = element_text(angle = 90, vjust = 0.5),
-        panel.grid.minor.y = element_blank())
+        panel.grid.minor.y = element_blank(),
+        panel.border = element_rect(color = "grey", fill = NA, size = 0.5))
 
 p <- p1  / p2
 

@@ -14,6 +14,7 @@
 
 # import data file
 #loss data from SacPAS
+source(here("data-raw/import_steelhead_loss_data.R"))
 load(here("data/steelhead_loss_data.rda"))
 
 
@@ -99,7 +100,7 @@ p <- cumloss_current_year %>%
   geom_label_repel(data = max_loss_by_period,
                    aes(x = max_date, 
                        y = max_cum_loss_mgt, 
-                       label = paste0("Cumulative loss: ", max_cum_loss_mgt,"\n% of Single-Year Threshold: ", round((max_cum_loss_mgt/current_year_100pct)*100, 2), "%")),
+                       label = paste0("Cumulative loss: ", round(max_cum_loss_mgt,2),"\n% of Single-Year Threshold: ", round((max_cum_loss_mgt/current_year_100pct)*100, 2), "%")),
                    size = 3, 
                    nudge_x = 1, # Adjust nudge_x and nudge_y as needed to position the label
                    nudge_y = 400, 
@@ -108,8 +109,8 @@ p <- cumloss_current_year %>%
   scale_x_date(date_labels = "%m/%d", date_breaks = "1 month") +
   # scale_y_continuous(expand = c(0,NA), limits = c(0,5000)) +
   labs(title = "Cumulative LAD Loss for Current Water Year with Single-Year Thresholds",
-       subtitle = paste0("Species: Steelhead\nCumulative loss 12/31-3/31: ", filter(max_loss_by_period, management_period == 	"12/1 - 3/31")$max_cum_loss_mgt,
-                         "\nCumulative loss 4/1-6/15: ", filter(max_loss_by_period, management_period == "4/1 - 6/15")$max_cum_loss_mgt),
+       subtitle = paste0("Species: Steelhead\nCumulative loss 12/31-3/31: ", round(filter(max_loss_by_period, management_period == 	"12/1 - 3/31")$max_cum_loss_mgt,2),
+                         "\nCumulative loss 4/1-6/15: ", round(filter(max_loss_by_period, management_period == "4/1 - 6/15")$max_cum_loss_mgt),2),
        x = "Date",
        y = "Cumulative Loss") +
   theme_minimal() +

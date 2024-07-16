@@ -11,6 +11,7 @@
 #' @importFrom magrittr %>% 
 
 # load data
+source(here("data-raw/import_steelhead_loss_data.R"))
 load(here("data/steelhead_loss_data.rda"))
 # load wDay to month function
 source(here("R/utils_fct_wday_to_month.R"))
@@ -60,7 +61,8 @@ p<- steelhead_loss_data %>%
   labs(x = 'Date \n(Water Year: Oct-Dec of year [t-1], Jan-Sep of year [t])', 
        y = 'Cumulative Loss', 
        title = 'Cumulative Loss by BiOp Status and Hydrologic Classification Index',
-       subtitle = paste0("Species: Steelhead\nData Years: WY",min(steelhead_loss_data$WY), " to WY", max(steelhead_loss_data$WY))) +
+       subtitle = paste0("Species: Steelhead\nData Years: WY",min(steelhead_loss_data$WY), " to WY", max(steelhead_loss_data$WY),
+                         "\nCurrent Cumulative loss: ", round(max2024LAD,2))) +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
   scale_y_continuous(labels = scales::comma,limits = c(0, 40000),  expand = c(0, 0)) +
   scale_color_manual(values = c( "sienna4", "steelblue4"))+

@@ -6,6 +6,7 @@
 #' @importFrom magrittr %>%
 
 # load data files
+source(here("data-raw/utils_fct_predict_tillotson_model.R"))
 load(here("data", "tillotson_prediction_output.rda"))
 winter_run_tillotson_output <- tillotson_prediction_output$winter_run_tillotson_output
 
@@ -21,9 +22,9 @@ p <- winter_run_tillotson_output %>%
   mutate(date = start_date + (week-1)*7) %>%  #returns the monday of the start_date week
   ggplot(aes(x = date)) +
   geom_point(aes(y = ObservedLoss, shape = "Observed Weekly Loss"), color = "black") +
-  geom_ribbon(aes(ymin = lowerCI, ymax = upperCI, fill = "Predicted loss\nMedian with 90% CI"), alpha = 0.3) +
-  geom_line(aes(y = median, color = "Predicted loss\nMedian with 90% CI")) +
-  geom_point(aes(y = median, color = "Predicted loss\nMedian with 90% CI")) +
+  geom_ribbon(aes(ymin = lowerCI, ymax = upperCI, fill = "Predicted loss,\nmedian with 90% CI"), alpha = 0.3) +
+  geom_line(aes(y = median, color = "Predicted loss,\nmedian with 90% CI")) +
+  geom_point(aes(y = median, color = "Predicted loss,\nmedian with 90% CI")) +
   labs(title = "Predicted Weekly Losses - Tillotson et al. (2022)",
        subtitle = paste("Species: Winter-run Chinook\nWater Year:", current_year),
        x = "Week",
@@ -33,10 +34,10 @@ p <- winter_run_tillotson_output %>%
        shape = NULL) +
   scale_shape_manual(values = c("Observed Weekly Loss" = 21),
                      breaks = c("Observed Weekly Loss")) +
-  scale_color_manual(values = c("Predicted loss\nMedian with 90% CI" = "steelblue"),
-                     breaks = c("Predicted loss\nMedian with 90% CI", "Observed Weekly Loss")) +
-  scale_fill_manual(values = c("Predicted loss\nMedian with 90% CI" = "steelblue"),
-                    breaks = c("Predicted loss\nMedian with 90% CI")) +
+  scale_color_manual(values = c("Predicted loss,\nmedian with 90% CI" = "steelblue"),
+                     breaks = c("Predicted loss,\nmedian with 90% CI", "Observed Weekly Loss")) +
+  scale_fill_manual(values = c("Predicted loss,\nmedian with 90% CI" = "steelblue"),
+                    breaks = c("Predicted loss,\nmedian with 90% CI")) +
   guides(fill = guide_legend(order = 1),
          color = guide_legend(order = 1)) +
   theme_minimal() +

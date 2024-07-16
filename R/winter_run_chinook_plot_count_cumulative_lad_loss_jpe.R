@@ -16,7 +16,7 @@
 #' @noRd
 
 # import data file
-#loss data from SacPAS
+source(here("data-raw/import_winter_run_chinook_lad_loss_data.R"))
 load(here("data/jpe_lad_loss_data.rda"))
 # extract genetic cumulative loss data
 lad_cumulative_loss_data <- jpe_lad_loss_data$lad_cumulative_loss_data
@@ -26,24 +26,6 @@ wytype <- read.csv(here::here('data/WYtype.csv')) %>% filter(Basin == "Sacrament
 
 # import wDay to month function
 source(here("R/utils_fct_wday_to_month.R"))
-
-
-# wrangle base data for plot
-
-    # lad_cumulative_loss_data <- lad_cumulative_loss_data %>% 
-    #   #designate pre/post 2009 BiOp
-    #   mutate(status = case_when(WY < 2009 ~ 'Pre-2009 BiOp\n(1994 to 2008)',
-    #                             WY > 2008 ~ '2009 & 2019 BiOp\n(2009 to present)')) %>%
-    #   #set order of factor levels
-    #   mutate(status = factor(status, levels = c('Pre-2009 BiOp\n(1994 to 2008)', '2009 & 2019 BiOp\n(2009 to present)'))) %>% 
-    #   #join with wytype to designate wet/dry year (Hydrologic Classification Index?)
-    #   left_join(select(wytype,WY, "hydro_type" = `Yr.type`) , by = 'WY') %>%
-    #   # assign hydro_type grouping
-    #   mutate( hydro_type = factor(hydro_type, levels = c("W", "AN", "BN", "D", "C"), labels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical")),
-    #           hydro_type_grp = case_when(
-    #             hydro_type %in% c("Wet", "Above Normal") ~ "Wet, Above Normal",
-    #             hydro_type %in% c("Below Normal", "Dry", "Critical") ~ "Below Normal, Dry, & Critical" )
-    #   )
     
     #set current year
     source(here("R/utils_fct_assign_current_water_year.R"))
@@ -92,7 +74,8 @@ source(here("R/utils_fct_wday_to_month.R"))
     labs(x = 'Date \n(Water Year: Oct-Dec of year [t-1], Jan-Sep of year [t])', 
          y = 'Cumulative Loss', 
          title = 'Cumulative Loss by BiOp Status and Hydrologic Classification Index',
-         subtitle = paste0("Species: Winter-run Chinook\nData Years: WY", min(lad_cumulative_loss_data$WY), " to WY", current_year)) + 
+         subtitle = paste0("Species: Winter-run Chinook\nData Years: WY", min(lad_cumulative_loss_data$WY), " to WY", current_year,
+                           "\nCurrent Cumulative loss: ", round(max_cumloss_current_year,2))) +
     scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
     scale_y_continuous(labels = scales::comma, breaks = seq(0, 10000, by = 2000), limits = c(0, 10000), expand = c(0, 0)) +
     scale_color_manual(values = c("sienna4", "steelblue4")) +

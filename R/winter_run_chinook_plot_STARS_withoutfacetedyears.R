@@ -19,6 +19,7 @@
 source(here("R/utils_fct_wday_to_month.R"))
 
 #load data file
+source(here("data-raw/import_STARS_data.R"))
 load(here::here("data", "STARS_data.rda"))
 
 #set current year

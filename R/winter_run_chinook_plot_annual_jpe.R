@@ -11,6 +11,7 @@
 #' @noRd
 
 #load data file
+source(here("data-raw/import_jpe_annual_data.R"))
 load(here("data/jpe_annual_data.rda"))
 
 #bar plot of annual JPE                 
