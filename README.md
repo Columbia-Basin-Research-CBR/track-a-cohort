@@ -1,22 +1,17 @@
-# Track-a-Cohort 
+# Track-a-Cohort
 
 *product in development*
 
 A webpage that includes requested plots for winter run chinook salmon and steelhead in Sacramento River
 
-## Installation Instructions
-
-This package can be installed directly from its GitHub repository (replace `your_github_username` with the actual username and `TAC` with your repository name if different). This method will automatically install all necessary dependencies.
-
-1.  **Install `devtools` Package (if not already installed):**
-
-First, ensure that you have the `devtools` package installed. Open R or RStudio and run the following command:
+To run the complete quarto webpage or individual R scripts, first you must install the dependencies and update the data supporting the R scripts. To do so, follow the instructions below.
 
 ``` r
-if (!requireNamespace("devtools", quietly = TRUE)) {
-  install.packages("devtools")
-}
+# Install dependencies
+source(file.path(getwd(), "R/load_dependencies.R"))
 
-devtools::install_github("https://github.com/caitobrien/TAC")
+# Update data
+source(file.path(getwd(), "R/update_data.R"))
 ```
 
+Once dependencies are installed and data is updated, you can run the complete quarto webpage by running the following code `make` in the terminal, or clicking `Build` in the panel tabs within your R environment. For individual plots, select individual R scripts within R/ folder or run the following code in the terminal `Rscript R/SCRIPT_NAME.R`.
