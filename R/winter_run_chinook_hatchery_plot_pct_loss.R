@@ -1,12 +1,11 @@
 #' @title Winter- run Chinook Hatchery Percent Confirmed Loss
-#' @import ggplot2
-#' @import lubridate
-#' @import dplyr
-#' @import scales
-#' @import here
-#' @import patchwork
-#' @importFrom magrittr %>%
-#' 
+require(ggplot2
+require(lubridate
+require(tidyverse)
+require(scales)
+require(here)
+require(patchwork)
+
 
 # import data file
 # loss data from SacPAS

@@ -1,14 +1,12 @@
 #' @title Current and Historical Cumulative Steelhead Loss
 #' @description This script generates a plot of current and historical cumulative steelhead loss data. The plot includes the cumulative loss data for each water year (WY) from 1994 to the current year. The data is faceted by hydrologic type and status. The current year's cumulative loss data is plotted in black, while historical data is plotted in color. The plot also includes a dashed line indicating the maximum cumulative loss for the current year. The maximum cumulative loss for each year is labeled on the plot.
-#' @import ggplot2
-#' @import dplyr
-#' @import lubridate
-#' @import scales
-#' @import gghighlight
-#' @import ggrepel
-#' @importFrom ggh4x facet_nested
-#' @import here
-#' @importFrom magrittr %>% 
+require(tidyverse)
+require(scales)
+require(gghighlight)
+require(ggrepel)
+require(here)
+require(ggh4x)
+
 
 # load data
 

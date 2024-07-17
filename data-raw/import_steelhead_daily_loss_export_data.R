@@ -1,12 +1,10 @@
 #' @title import steelhead loss and export data from SacPAS
 #' @description This script is used to import daily loss, export per facility, and OMRI values to be used in the steelhead Figure 6 barplot and linegraph.
 #'
-#' @import dplyr
-#' @import lubridate
-#' @import janitor
-#' @import usethis
-#' @importFrom magrittr %>%
-#' 
+require(tidyverse)
+require(janitor)
+require(usethis)
+require(here)
 
 source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()

@@ -3,15 +3,12 @@
 #' The current water year is black and the past years are grey. Could Include color by hydrological water year type.
 #' @details The data is sourced from `data` > `jpe_genetic_loss_data.rda > genetic_cumulative_loss_data` and is wrangled in `data-raw` > `import_winter_run_chinook_genetic_loss_data.R`.
 #' @return A static plot comparing the cumulative genetic loss of the JPE for the current water year compared to historical years.
-#' @import ggplot2
-#' @import dplyr
-#' @import here
-#' @import scales
-#' @import gghighlight
-#' @import ggrepel
-#' @import lubridate
-#' @importFrom magrittr %>%
-#' @noRd
+
+require(tidyverse)
+require(here)
+require(scales)
+require(gghighlight)
+require(ggrepel)
 
 # import data file
 load(here("data/jpe_genetic_loss_data.rda"))

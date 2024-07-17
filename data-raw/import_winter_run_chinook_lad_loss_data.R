@@ -4,11 +4,10 @@
 #' Needs confirmation of numbers/link from SI/MC since numbers differ from BOR shared flat file.
 #'  @details To calculate cumulative genetic loss, the JPE data is imported via `data` >`JPE_annual_data.R` wrangled via `data-raw` >`import_jpe_annual_data.R`.
 #' @return writes a .rda list  with two data frames: 1) cumulative lad loss pct and numerical, and 2) total lad loss, pct and numerical. Final .rda is saved to the `data` folder
-#' @import dplyr
-#' @import lubridate
-#' @import janitor
-#' @import usethis
-#' @importFrom magrittr %>%
+require(tidyverse)
+require(janitor)
+require(usethis)
+
 
 
 # import LAD loss directly from SacPAS (include genetic when available)

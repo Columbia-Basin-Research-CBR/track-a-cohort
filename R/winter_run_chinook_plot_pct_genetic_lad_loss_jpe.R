@@ -1,11 +1,10 @@
 #' Figure 3a: JPE percent loss - compare genetic and LAD loss estimates
 #' @description Barplot comparing percent JPE loss: genetic vs LAD loss estimates. Includes shared genetic data and LAD loss data from SacPAS. Update underlying data files as needed
-#' @import ggplot2
-#' @import dplyr
-#' @import here
-#' @import scales
-#' @importFrom magrittr %>%
 #' @noRd
+
+require(tidyverse)
+require(here)
+require(scales)
 
 # import data file
 ## Genetic total loss data

@@ -4,13 +4,12 @@
 #' Incluedes:  average flow at Sacramento and San Joaquin, with average export and OMR. Also includes,
 #'  predicted and observed steelhead loss.   
 #' Included as a function so that the html will be generated in the .qmd file versus trying to save a html and import to .qmd. 
-#' @import dplyr
-#' @import here
-#' @import knitr
-#' @importFrom kableExtra kable_styling
-#' @import scales
-#' @importFrom magrittr %>%
-#' 
+require(tidyverse)
+require(here)
+require(knitr)
+require(kableExtra)
+require(scales)
+
 
 
 generate_table_steelhead_pred_obs_loss <- function(data){

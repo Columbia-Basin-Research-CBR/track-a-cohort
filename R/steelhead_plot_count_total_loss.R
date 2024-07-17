@@ -1,11 +1,9 @@
 #' @title Current and Historical Total Loss of Clipped and Non-clipped Steelhead
 #' @description This plot shows the total loss of clipped and non-clipped steelhead by water year.
-#' @import ggplot2
-#' @import scales
-#' @import dplyr
-#' @import here
-#' @importFrom magrittr %>%
-#' 
+require(tidyverse)
+require(scales)
+require(here)
+
 
 # load data
 

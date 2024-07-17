@@ -1,11 +1,9 @@
 #' @title Predict Tillotson model for Winter-run Chinook and Steelhead
 #' @description This function processes the Tillotson model for Winter-run Chinook and Steelhead species and returns both predicted results for each species in a list. 
-#' @import lubridate
-#' @import dplyr
-#' @import tidyr
-#' @import janitor
-#' @import here
-#' @import fread
+require(tidyverse)
+require(janitor)
+require(here)
+require(fread)
 
 source(here("R/utils_fct_assign_current_water_year.R"))
 source(here("data-raw/utils_fct_import_river_data.R"))

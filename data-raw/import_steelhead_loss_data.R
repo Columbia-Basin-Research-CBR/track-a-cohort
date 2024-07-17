@@ -1,11 +1,9 @@
 #' @title Import steelhead loss from SacPAS
 #' @description This script imports steelhead loss data from the Sacramento River using the SacPAS website. Confirm link is correct
-#' @import dplyr
-#' @import lubridate
-#' @import janitor
-#' @import here
-#' @import usethis
-#' @importFrom magrittr %>%
+require(tidyverse)
+require(janitor)
+require(usethis)
+require(here)
 
 # load in data from url (confirm url is correct information)
 url <- "https://www.cbr.washington.edu/sacramento/data/php/rpt/juv_loss_detail.php?sc=1&outputFormat=default&year=all&species=2%3Aall&dnaOnly=no&age=no"

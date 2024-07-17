@@ -1,6 +1,9 @@
+#' @title Function to import river conditions data from SacPAS
+#' @description Import river conditions data from SacPAS River Conditions Data: includes Freeport (FPT) & Vernalis (VNS) river flow (cfs), OMR USGS tidally filtered flow, and Export (pumping discharge flow, cfs) at Tracy (TRP) and Harvey O. Banks (HRO) sites
 
+require(data.table)
+require(tidyverse)
 
-# Import SacPAS River Conditions Data: includes Freeport (FPT) & Vernalis (VNS) river flow (cfs), OMR USGS tidally filtered flow, and Export (pumping discharge flow, cfs) at Tracy (TRP) and Harvey O. Banks (HRO) sites
 
 fct_import_SacPAS_river_conditions_query <- function(sites, years, metrics) {
   

@@ -1,9 +1,9 @@
 #' @title Import Steelhead Bi-Weekly Passage data from SacPAS generated URL
-#' @import dplyr
-#' @import lubridate
-#' @import janitor
-#' @import usethis
-#' @importFrom magrittr %>%
+require(tidyverse)
+require(janitor)
+require(usethis)
+
+
 
 
 # load data via URL

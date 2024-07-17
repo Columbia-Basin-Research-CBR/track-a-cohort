@@ -1,9 +1,8 @@
 #' @title Figure 7. Prediction of Weekly Losses of Winter-run Chinook 
 #' @description Plots the predicted weekly losses of winter-run Chinook salmon in the Sacramento River from the Tillotson et al. (2022) model
-#' @import ggplot2
-#' @import dplyr
-#' @import here
-#' @importFrom magrittr %>%
+
+require(tidyverse)
+require(here)
 
 # load data files
 load(here("data", "tillotson_prediction_output.rda"))

@@ -1,10 +1,9 @@
 #' import JPE estimate data directly from SacPAS
 #'  @return writes a .rda to the data folder including wrangled annual jpe estimate data 
-#'  @import dplyr
-#'  @importFrom magrittr %>% 
-#'  @import stringr
-#'  @importFrom data.table fread 
-#'  @import usethis
+require(tidyverse)
+require(usethis)
+require(here)
+require(data.table)
 
 #load dependencies
 source(here("R/load_dependencies.R"))

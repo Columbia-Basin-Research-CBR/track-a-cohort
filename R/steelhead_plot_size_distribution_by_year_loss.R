@@ -1,12 +1,10 @@
 #' @title Size Distribution of Clipped and Non-clipped Steelhead Loss By Year
 #' @description This plot shows the size distribution by year of the clipped and non-clipped steelhead loss.
-#' @import ggplot2
-#' @import scales
-#' @import dplyr
-#' @import here
-#' @import ggridges
-#' @importFrom magrittr %>%
-#' 
+require(tidyverse)
+require(scales)
+require(here)
+require(ggridges)
+
 
 # load data
 load(here::here("data/steelhead_loss_data.rda"))

@@ -3,17 +3,12 @@
 #' @details To access the data file, navigate to the `data` directory located at the
 #' project's root. The file is named `STARS_data.rda` and is sourced from `data-raw >import_STARS_data.R` which includes `data-raw >STARS.shinyinputs.Rdata`. 
 #' @return ggplot barplot of annual JPE estimate with highlighted methods used for annual estimate
-#' @import ggplot2
-#' @import dplyr
-#' @import here
-#' @import gghighlight
-#' @import lubridate
-#' @import patchwork
-#' @importFrom magrittr %>%
-#' @seealso \code{\link{wDay_to_month}} for converting water day to month
 #' @noRd
 #' 
-#' 
+require(tidyverse)
+require(here)
+require(gghighlight)
+require(patchwork)
 
 #fct to convert water day to month
 source(here("R/utils_fct_wday_to_month.R"))

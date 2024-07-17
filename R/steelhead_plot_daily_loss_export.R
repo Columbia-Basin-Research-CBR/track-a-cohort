@@ -1,14 +1,12 @@
 #' @title Figure 6. Steelhead Daily Loss and Export (per Facility pending)
 #' @description This script is more of a holder space for plot that will include export per facility and loss per facility for steelhead
 #' Current data shows total daily loss and export for both facilities
-#' @import dplyr
-#' @import here
-#' @import ggplot2
-#' @importFrom magrittr %>%
+#' 
+require(tidyverse)
+require(here)
 
 
 # Load the data
-
 load(here::here("data/steelhead_loss_export_data.rda"))
 
 # adding horizontal lines -- provided by BOR. Confirm how these are designated

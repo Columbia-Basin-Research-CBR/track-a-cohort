@@ -1,7 +1,7 @@
 #' function to assign current water year based on today's date
 #' 
 #' @return water year in numeric format
-#' @import lubridate
+require(lubridate
 
 
 

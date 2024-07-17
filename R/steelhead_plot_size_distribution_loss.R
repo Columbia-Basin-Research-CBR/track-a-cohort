@@ -1,12 +1,9 @@
 #' @title Size Distribution of Clipped and Non-clipped Steelhead Loss
 #' @description This plot shows the total loss of clipped and non-clipped steelhead by water year.
-#' @import ggplot2
-#' @import scales
-#' @import dplyr
-#' @import here
-#' @import lubridate
-#' @importFrom magrittr %>%
-#' 
+require(tidyverse)
+require(scales)
+require(here)
+
 
 # load data
 load(here("data/steelhead_loss_data.rda"))

@@ -1,11 +1,9 @@
 #' @title Import hatchery loss data
 #' @description Import hatchery loss data from SacPAS CWT database tables -- use confirmed hatchery loss only.
-#' @import dplyr
-#' @import janitor
-#' @import lubridate
-#' @import here
-#' @import usethis
-#' @importFrom magrittr %>%
+require(tidyverse)
+require(janitor)
+require(usethis)
+require(here)
 
 source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()

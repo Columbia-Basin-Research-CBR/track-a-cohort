@@ -1,9 +1,7 @@
 #' @title Figure 7. Prediction of Weekly Losses of Steelhead
 #' @description Plots the predicted weekly losses of Steelhead salmon in the Sacramento River from the Tillotson et al. (2022) model
-#' @import ggplot2
-#' @import dplyr
-#' @import here
-#' @importFrom magrittr %>%
+require(tidyverse)
+require(here)
 
 # load data files
 load(here("data", "tillotson_prediction_output.rda"))

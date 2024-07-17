@@ -3,11 +3,10 @@
 #' Currently using a flat file provided by BOR that will be updated once genetic data
 #' is shared with SacPAS. The LAD loss data is imported directly from SacPAS.
 #' @return static barplot comparing JPE loss: genetic v LAD loss estimates
-#' @import ggplot2
-#' @import dplyr
-#' @import here
-#' @importFrom magrittr %>%
-#' @noRd
+
+require(tidyverse)
+require(here)
+
 
 # import data file
 

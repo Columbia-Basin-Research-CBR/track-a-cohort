@@ -3,12 +3,10 @@
 #' @details To access the data file, navigate to the `data` directory located at the
 #' project's root. The file is named `jpe_annual_data.rda` and is sourced from `data-raw >import_jpe_annual_data.R`. 
 #' @return static ggplot barplot object
-#' @import ggplot2
-#' @import scales
-#' @import dplyr
-#' @import here
-#' @importFrom magrittr %>%
-#' @noRd
+require(tidyverse)
+require(scales)
+require(here)
+
 
 #load data file
 load(here("data/jpe_annual_data.rda"))

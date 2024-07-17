@@ -1,13 +1,12 @@
 #' @title Minimization of Total Loss of Hatchery Steelhead
 #' @description This function generates a HTML table summarizing total loss of hatchery steelhead releases and loss. 
 #' Included as a function so that the html will be generated in the .qmd file versus trying to save a html and import to .qmd. 
-#' @import dplyr
-#' @import here
-#' @import knitr
-#' @importFrom kableExtra kable_styling
-#' @import scales
-#' @importFrom magrittr %>%
-#' 
+require(tidyverse)
+require(here)
+require(knitr)
+require(kableExtra)
+require(scales)
+ 
 
 
 generate_table_steelhead_total_hatchery_loss <- function(data){

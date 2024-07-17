@@ -1,14 +1,11 @@
 #'import STARS data from ShinyApp
 #'@description This script imports up to date STARS data from the ShinyApp and saves it to the data folder for use in other scripts. Code provided by Nick Beer.
 #'@return STARS_data.rda
-#'@import dplyr
-#'@import lubridate
-#'@import tibble
-#'@import here
-#'@importFrom xts index
-#'@import usethis
-#'@importFrom magrittr %>%
-#'
+require(tidyverse)
+require(usethis)
+require(here)
+require(xts)
+require(zoo)
 
 
 # grab.stars.R

@@ -41,6 +41,7 @@ Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/tmp/redbl
 -   Issues:
     -   Update biweekly shaded areas based on SI generated methods
     -   mimic the same 0 line cutoff as on SacPAS, update to show points at 0 line?
+    -   Confirm Calendar Year or Water Year. Currently code only pulls current year based on today's date. To look at water year will need to adjust code to include query link.
 
 ## Figure 2. Survival and Routing Probabilites
 
@@ -114,7 +115,6 @@ Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroup
 # Load the data
 load(here("data/steelhead_loss_data.rda"))
 ```
-
 
 ```{r, load_table_01}
 #load function to wrangle into table format}

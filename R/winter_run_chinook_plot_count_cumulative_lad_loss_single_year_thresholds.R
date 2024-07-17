@@ -6,11 +6,9 @@
 #' Natural Central Valley Steelhead from December through March (loss =1,414)
 #' Natural Central Valley Steelhead from April through June 15 (loss = 1,552)
 #' (More information on PA 4-70, 2019 BiOP)
-#' @import ggplot2
-#' @import dplyr
-#' @import here
-#' @import lubridate
-#' @importFrom magrittr %>%
+require(tidyverse)
+require(here)
+
 
 # import data file
 load(here("data/jpe_lad_loss_data.rda"))
