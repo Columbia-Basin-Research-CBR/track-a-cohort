@@ -17,9 +17,9 @@ library(knitr)
 opts_chunk$set(echo = FALSE, warning = FALSE, error = FALSE, message = FALSE)
 ```
 
-## Objective
+## Background
 
-Using shared resources via [BDO github](https://github.com/BDO-Science/track-a-cohort){target="_blank"} from BOR, replicate figures and adjust to include dynamic data. See [Track a cohort_Steelhead.docx](https://github.com/BDO-Science/track-a-cohort/blob/main/SH_Cohort/Track%20a%20Cohort_Steelhead.docx){target="_blank"} for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp
+This document uses shared resources via [BDO github](https://github.com/BDO-Science/track-a-cohort){target="_blank"} from BOR to replicate figures requested and adjust underlying code to include dynamic data. See [Track a cohort_Steelhead.docx](https://github.com/BDO-Science/track-a-cohort/blob/main/SH_Cohort/Track%20a%20Cohort_Steelhead.docx){target="_blank"} for figures requested. Certain figures include a link to more interactive plot types using Shiny (in development) and all figures include a link to code in separate CBR developed [github repo](https://github.com/caitobrien/TAC){target="_blank"}.
 
 ```{r, include=FALSE}
 library(here)
@@ -40,7 +40,7 @@ Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/tmp/redbl
 
 -   Issues:
     -   Update biweekly shaded areas based on SI generated methods
-    -   mimic the same 0 line cutoff as on SacPAS, update to show points at 0 line?
+    -   Continue to match the same 0 line cutoff as on SacPAS or leave space to show points at 0 line?
     -   Confirm Calendar Year or Water Year. Currently code only pulls current year based on today's date. To look at water year will need to adjust code to include query link.
 
 ## Figure 2. Survival and Routing Probabilites
@@ -73,7 +73,7 @@ Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC
 
 ### Figure 3b. Size Distribution of Loss
 
-```{r load_plot_03b, fig.width=10, fig.height=6, fig.cap="Figure includes density plots that highlight historical (WY1994 to WY2023) size distribution and histogram of current year (WY2024) size distribution by rear type. Fork lengths below 750 mm were included in dataset."}
+```{r load_plot_03b, fig.width=10, fig.height=6, fig.cap="Figure compares density plots that highlight historical (WY1994 to WY2023) size distribution and histogram of current year (WY2024) size distribution by rear type (dark grey = unclipped; light grey = clipped). Fork lengths below 750 mm were included in dataset."}
 source(here("R/steelhead_plot_size_distribution_loss.R"))
 ```
 
@@ -89,7 +89,7 @@ Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC
 
 ## Figure 4. Cumulative Loss
 
-```{r load_plot_04, fig.width=10, fig.height=10}
+```{r load_plot_04, fig.width=10, fig.height=10, fig.cap="The figure shows cumulative loss by BiOp Status and Hydrological Classification Index (HCI). Each quadrant of the faceted plot includes grey lines for historical years, colored lines (blue for wet years, red for dry years) for years within the BiOp status and HCI type, a black line for the current year, and a dashed horizontal line indicating the current cumulative loss maximum."}
 source(here("R/steelhead_plot_count_cumulative_loss.R"))
 ```
 
@@ -106,29 +106,6 @@ Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroup
 -   Issues:
     -   Confirm Single-Year-Thresholds and update to generate automatically
     -   Confirm only including unclipped
-
-## Table 1. Minimization of Cumulative Loss of Hatchery Steelhead
-
-\*Pending steelhead hatchery release information
-
-```{r, load_data_table_01, include=FALSE}
-# Load the data
-load(here("data/steelhead_loss_data.rda"))
-```
-
-```{r, load_table_01}
-#load function to wrangle into table format}
-source(here("R/steelhead_fct_generate_table_total_hatchery_loss.R"))
-
-# generate HTML table
-generate_table_steelhead_total_hatchery_loss(steelhead_loss_data)
-
-```
-
-Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_fct_generate_table_total_hatchery_loss.R){target="_blank"}
-
--   Issues:
-    -   Update with steelhead hatchery release information when becomes available
 
 ## Figure 6. Daily Loss and Export by Pumping Facility
 
@@ -150,29 +127,30 @@ source(here("R/steelhead_plot_tillotson_predicted_loss.R"))
 
 Related links: SacPAS Page, [SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [plot output](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_tillotson_predicted_loss.R){target="_blank"}
 
-Issues:
+- Issues:
 
--   Currently using BOR supplied code to run model, confirm same output with NB code
--   Further, confirm shared code is duplicate of Tillotson code. If not, update to reflect Tillotson model
--   Confirm mean() is used for all averages within tillotson code and not rolling average.
+  -   Currently using BOR supplied code to run model, confirm same output with NB code
+  -   Further, confirm shared code is duplicate of Tillotson code. If not, update to reflect Tillotson model
+  -   Confirm mean() is used for all averages within tillotson code and not rolling average.
+  -   Confirm change in plot design
 
-## Table 2. Model inputs and predictions - Tillotson Model
+## Table 1. Model inputs and predictions - Tillotson Model
 
-```{r, load_table_02, fig.width=10, fig.height=6}
+```{r, load_table_01, fig.width=10, fig.height=6}
 # Load the data
 load(here("data/tillotson_prediction_output.rda"))
 
 data <- tillotson_prediction_output$steelhead_tillotson_output
 
 #load function to wrangle into table format
-source(here("R/steelhead_fct_generate_table_predicted_observed_loss.R"))
+source(here("R/utils_fct_generate_table_predicted_observed_loss.R"))
 
 # generate HTML table
-generate_table_steelhead_pred_obs_loss(data)
+generate_table_pred_obs_loss(data, species = "Steelhead")
 
 ```
 
-Related links: SacPAS Page,[SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"} [Table configuration](https://github.com/caitobrien/TAC/blob/main/R/steelhead_fct_generate_table_predicted_observed_loss.R){target="_blank"}
+Related links: SacPAS Page,[SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"} [Table configuration](https://github.com/caitobrien/TAC/blob/main/R/utils_fct_generate_table_predicted_observed_loss.R){target="_blank"}
 
 -   Issues:
     -   Confirm model output weekly averages. Table/Model is using weekly averages with mean(), confirm paper doesn't use a rolling average.

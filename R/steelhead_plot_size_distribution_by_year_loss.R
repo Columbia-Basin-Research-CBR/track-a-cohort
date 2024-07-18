@@ -17,7 +17,7 @@ p <- steelhead_loss_data %>%
   ggplot(aes(x = length, y = factor(WY))) +
   ggridges::geom_density_ridges( aes(fill = adipose_clip, color = adipose_clip), draw_baseline = FALSE, scale = 1.5 ) +
   labs(x = 'Fork Length (mm)', 
-       y = 'Water Year\n(Oct-Dec of year [t-1], Jan-Sep of year [t])', 
+       y = 'Water Year', 
        subtitle = "Historical Steelhead Size Distribution by Rear Type", 
        fill = NULL, color = NULL) +
   scale_fill_manual(values = c("grey30", adjustcolor("grey70", alpha.f = .7))) +

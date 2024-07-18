@@ -24,7 +24,7 @@ source(here("R/utils_fct_assign_current_water_year.R"))
 # Overall Survival
 p1 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
   geom_line(aes(y = surv)) +
-  labs(x = 'Month\n(Water Year: Oct-Dec of year [t-1], Jan-Sep of year [t])', 
+  labs(x = 'Month', 
        y = 'Apparent survival probability', 
        title = 'Overall Survival', 
        subtitle = "Median survival of daily cohorts for all routes combined.") +
@@ -40,7 +40,7 @@ p1 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
 # Interior Delta Route-specific Survival Probability
 p2 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
   geom_line(aes(y = idsurv)) +
-  labs(x = 'Month\n(Water Year: Oct-Dec of year [t-1], Jan-Sep of year [t])', 
+  labs(x = 'Month', 
        y = 'Apparent survival probability', 
        title = 'Interior Delta Route-specific Survival Probability', 
        subtitle = "Median route-specific survival of daily cohorts using the Interior Delta route") +
@@ -57,7 +57,7 @@ p2 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
 # Interior Delta Route-specific Probability
 p3 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
   geom_line(aes(y = idsurv)) +
-  labs(x = 'Month\n(Water Year: Oct-Dec of year [t-1], Jan-Sep of year [t])', 
+  labs(x = 'Month', 
        y = 'Route probability', 
        title = 'Interior Delta Route-specific Probability', 
        subtitle = "Proportion of daily cohorts using the Interior Delta route") +

@@ -42,7 +42,7 @@ p1 <- steelhead_loss_export_data %>%
   scale_fill_manual(values = c("#E1BE6A", "#40B0A6")) +
   theme_minimal() + 
   theme(legend.position = "none",
-        plot.subtitle =  element_text(face = "plain", size = 12),
+        plot.subtitle =  element_text(face = "plain", size = 13),
         text = element_text(size = 15),
         # axis.text.x = element_text(angle = 90, vjust = 0.5),
         panel.grid.minor.y = element_blank(),

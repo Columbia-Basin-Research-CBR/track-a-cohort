@@ -12,7 +12,7 @@ require(scales)
 
 
 
-generate_table_steelhead_pred_obs_loss <- function(data){
+generate_table_pred_obs_loss <- function(data, species){
   
   # Function to calculate the start date of the Water Year
   startOfWY <- function(date) {
@@ -38,23 +38,23 @@ df_tbl<- data %>%
           "Date" = mapply(weekStartDate, week, today())) %>%
   mutate(across(-c(week, Date, ObservedLoss,`Predicted loss`), ~round(., 2))) %>% 
   select(#`Water Year` = WY, 
-         `Water Year Week` = week,
+         `Water year week` = week,
           Date,
-         `Observed Loss` = ObservedLoss, 
-         `OMR USGS Tidally Filtered` = OMR,
+         `Observed loss` = ObservedLoss, 
+         `OMR USGS tidally filtered` = OMR,
          `Export, SWP & CVP (CFS)` = Export,
          `Avg flow at Sacramento (CFS)` = weekly_avg_fpt_flow,
          `Avg flow at San Joaquin (CFS)` = weekly_avg_vns_flow,
-         `Avg water temperature at Mallard Island (C)` = weekly_avg_mal_wtemp,
-         `Weekly Predicted Loss (median, lower CI, upper CI)` = `Predicted loss`
+         `Avg water temperature at Mallard Island (°C)` = weekly_avg_mal_wtemp,
+         `Weekly predicted loss (median, lower CI, upper CI)` = `Predicted loss`
          )
 
 #remove index row names
 row.names(df_tbl) <- NULL
 
 # create table
-tbl<-knitr::kable(df_tbl, caption = "Tillotson et al., (2022) model output of predicted weekly losses for Natural-origin Steelhead with model weekly average inputs including 
-                  observed loss, Old and Middle Rivers (OMR), USGS tidally filtered flow (CFS), combined exports from CVP & SWP facilities (CFS),  flow at Sacramento and San Joaquin (CFS), and water temperature at Mallard Island (C).", align = "l") %>%
+tbl<-knitr::kable(df_tbl, caption = paste("Tillotson et al., (2022) model output of predicted weekly losses for Natural-origin", species, "with model weekly average inputs including 
+                  observed loss, Old and Middle Rivers (OMR), USGS tidally filtered flow (CFS), combined exports from CVP & SWP facilities (CFS),  flow at Sacramento and San Joaquin (CFS), and water temperature at Mallard Island (°C)."), align = "l") %>%
   kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F)
 
 

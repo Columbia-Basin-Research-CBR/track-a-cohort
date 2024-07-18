@@ -50,7 +50,7 @@ p <- genetic_cumulative_loss_data %>%
   geom_line( data = . %>% filter( WY != current_year), aes(x=wDay, y = pct_cumloss, group = WY ), lwd = 1)+ #color = hydro_type_grp
   geom_line( data = . %>% filter( WY == current_year), aes( x=wDay, y = pct_cumloss, group = WY, linetype = as.factor(WY)), color = "black", lwd = 2)+
   geom_line(aes(x = 1, y = 0, color = paste0(min(genetic_cumulative_loss_data$WY), " to ", current_year-1)),  data = data.frame(x = NA), show.legend = TRUE) +
-  labs(x = 'Date \n(Water Year: Oct-Dec of year [t-1], Jan-Sep of year [t])', 
+  labs(x = 'Date', 
        y = 'Percent Cumulative Loss', 
        title = 'Current and Historical Percent Cumulative Genetic Loss of JPE',
        subtitle = paste0("Species: Winter-run Chinook\nData Years: WY", min(genetic_cumulative_loss_data$WY), " to WY", current_year-1),

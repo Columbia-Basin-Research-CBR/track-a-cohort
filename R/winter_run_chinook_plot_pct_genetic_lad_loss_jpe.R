@@ -35,7 +35,7 @@ p <- jpe_genetic_lad_data %>%
   labs(
     title = "Genetic vs Length-At-Date (LAD) Percent Loss of JPE by Water Year",
     subtitle = "Species: Winter-run Chinook",
-    x = "Water Year\n(Oct-Dec of year [t-1], Jan-Sep of year [t])",
+    x = "Water Year",
     y = "Percent Loss",
     fill = NULL
   ) +

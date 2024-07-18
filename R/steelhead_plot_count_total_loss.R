@@ -13,7 +13,7 @@ p <- steelhead_loss_data %>%
   ggplot( aes(x = as.factor(WY), y = total_loss, fill = adipose_clip)) + 
   geom_bar(stat = "identity", position = "dodge", width = .8) + 
   labs(title = "Total Loss of Clipped and Unclipped Steelhead by Water Year",
-       x = "Water Year\n(Oct-Dec of year [t-1], Jan-Sep of year [t])",
+       x = "Water Year",
        y = "Total Loss", 
        fill = NULL) +
   scale_fill_manual(values = c("grey30", "grey80")) +

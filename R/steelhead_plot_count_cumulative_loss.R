@@ -56,16 +56,16 @@ p<- steelhead_loss_data %>%
   # geom_text(data = year2001_data, 
   #           aes(x = 170, y = 9500, label = "*2001\nmax value = 20,062"), 
   #           size = 3, fontface = "plain") +
-  labs(x = 'Date \n(Water Year: Oct-Dec of year [t-1], Jan-Sep of year [t])', 
+  labs(x = 'Date', 
        y = 'Cumulative Loss', 
        title = 'Cumulative Loss by BiOp Status and Hydrologic Classification Index',
        subtitle = paste0("Species: Steelhead\nData Years: WY",min(steelhead_loss_data$WY), " to WY", max(steelhead_loss_data$WY),
-                         "\nCurrent Cumulative loss: ", round(max2024LAD,2))) +
+                         "\nCurrent Cumulative Loss: ", round(max2024LAD,2))) +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
   scale_y_continuous(labels = scales::comma,limits = c(0, 40000),  expand = c(0, 0)) +
   scale_color_manual(values = c( "sienna4", "steelblue4"))+
   ggh4x::facet_nested(hydro_type_grp ~ status ) + 
-  geom_line(data = loss_current_year, aes(x = wDay, y = cumloss), color = "black") +
+  geom_line(data = loss_current_year, aes(x = wDay, y = cumloss), color = "black",size = 1) +
   theme_minimal() +
   theme(
     axis.line = element_line(color = "grey"),

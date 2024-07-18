@@ -17,9 +17,9 @@ library(knitr)
 opts_chunk$set(echo = FALSE, warning = FALSE, error = FALSE, message = FALSE)
 ```
 
-## Objective
+## Background
 
-Using shared resources via [BDO github](https://github.com/BDO-Science/track-a-cohort) from BOR, replicate figures and adjust to include dynamic data. See [Track a cohort_WR_plots.docx](https://github.com/BDO-Science/track-a-cohort/blob/main/Track%20a%20Cohort_WR_plots.docx) for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp. Figures below are in development and require updates as data becomes available.
+This document uses shared resources via [BDO github](https://github.com/BDO-Science/track-a-cohort){target="_blank"} from BOR to replicate figures requested and adjust underlying code to include dynamic data. See [Track a cohort_WR_plots.docx](https://github.com/BDO-Science/track-a-cohort/blob/main/Track%20a%20Cohort_WR_plots.docx) for figures requested. Certain figures include a link to more interactive plot types using Shiny (in development) and all figures include a link to code in separate CBR developed [github repo](https://github.com/caitobrien/TAC){target="_blank"}.
 
 ```{r, include=FALSE}
 library(here)
@@ -77,10 +77,10 @@ Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC
 source(here("R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R"))
 ```
 
-Related links: SacPAS Page, ShinyApp, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
+Related links: SacPAS Page,[GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
 
 -   Issues:
-    -   Confirm use of Water Year over Brood Year - both were used in word doc shared
+    -   Confirm use of Water Year over Brood Year in Fig 3a- both were used in word doc shared
     -   Confirm missing 2008 JPE data
     -   Update genetic data as it becomes available
     -   Update method naming conventions as needed
@@ -98,7 +98,7 @@ Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC
 
 ### Figure 4b. Cumulative Length-At-Date (LAD) loss of the JPE
 
-```{r, load_plot4b, fig.width=10, fig.height=10}
+```{r, load_plot4b, fig.width=10, fig.height=10, fig.cap="The figure shows cumulative loss by BiOp Status and Hydrological Classification Index (HCI). Each quadrant of the faceted plot includes grey lines for historical years, colored lines (blue for wet years, red for dry years) for years within the BiOp status and HCI type, a black line for the current year, and a dashed horizontal line indicating the current cumulative loss maximum."}
 source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R"))
 ```
 
@@ -141,14 +141,24 @@ Issues:
 
 -   Currently using BOR supplied code to run model, confirm same output with NB code
 
-## Figure 7. Hatchery Percent Loss
 
-```{r, load_plot7, fig.width=10, fig.height=12}
- #source(here("R/winter_run_chinook_hatchery_plot_pct_loss.R"))
+## Table 1. Model inputs and predictions - Tillotson Model
+
+```{r, load_table_01, fig.width=10, fig.height=6}
+# Load the data
+load(here("data/tillotson_prediction_output.rda"))
+
+data <- tillotson_prediction_output$winter_run_tillotson_output
+
+#load function to wrangle into table format
+source(here("R/utils_fct_generate_table_predicted_observed_loss.R"))
+
+# generate HTML table
+generate_table_pred_obs_loss(data, species = "Winter-run Chinook")
+
 ```
 
--   Currently waiting on issues to move forward:
+Related links: SacPAS Page,[SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"} [Table configuration](https://github.com/caitobrien/TAC/blob/main/R/utils_fct_generate_table_predicted_observed_loss.R){target="_blank"}
 
--   Confirm this plot or table is wanted. Confirm firm type of figure and or table (similar to steelhead request)
-
--   Confirm data import URL sourced from SacPAS when it becomes available
+-   Issues:
+    -   Confirm model output weekly averages. Table/Model is using weekly averages with mean(), confirm paper doesn't use a rolling average.
