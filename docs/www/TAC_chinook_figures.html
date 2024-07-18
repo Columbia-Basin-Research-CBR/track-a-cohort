@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-07-16">
+<meta name="dcterms.date" content="2024-07-18">
 
 <title>Track-a-Cohort - Track-a-Cohort: Winter-run Chinook</title>
 <style>
@@ -67,6 +67,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -117,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective">Objective</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
   <li><a href="#figure-1.-juvenile-production-estimate" id="toc-figure-1.-juvenile-production-estimate" class="nav-link" data-scroll-target="#figure-1.-juvenile-production-estimate">Figure 1. Juvenile Production Estimate</a></li>
   <li><a href="#figure-2.-survival-and-routing-probabilites" id="toc-figure-2.-survival-and-routing-probabilites" class="nav-link" data-scroll-target="#figure-2.-survival-and-routing-probabilites">Figure 2. Survival and Routing Probabilites</a>
   <ul class="collapse">
@@ -140,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#figure-5b.-cumulative-lad-loss-for-current-water-year" id="toc-figure-5b.-cumulative-lad-loss-for-current-water-year" class="nav-link" data-scroll-target="#figure-5b.-cumulative-lad-loss-for-current-water-year">Figure 5b. Cumulative LAD Loss for Current Water Year</a></li>
   </ul></li>
   <li><a href="#figure-6.-predicted-and-observed-weekly-loss---tillotson-model" id="toc-figure-6.-predicted-and-observed-weekly-loss---tillotson-model" class="nav-link" data-scroll-target="#figure-6.-predicted-and-observed-weekly-loss---tillotson-model">Figure 6. Predicted and Observed Weekly Loss - Tillotson Model</a></li>
-  <li><a href="#figure-7.-hatchery-percent-loss" id="toc-figure-7.-hatchery-percent-loss" class="nav-link" data-scroll-target="#figure-7.-hatchery-percent-loss">Figure 7. Hatchery Percent Loss</a></li>
+  <li><a href="#table-1.-model-inputs-and-predictions---tillotson-model" id="toc-table-1.-model-inputs-and-predictions---tillotson-model" class="nav-link" data-scroll-target="#table-1.-model-inputs-and-predictions---tillotson-model">Table 1. Model inputs and predictions - Tillotson Model</a></li>
   </ul>
 </nav>
     </div>
@@ -160,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 16, 2024</p>
+      <p class="date">July 18, 2024</p>
     </div>
   </div>
   
@@ -172,9 +174,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="objective" class="level2">
-<h2 class="anchored" data-anchor-id="objective">Objective</h2>
-<p>Using shared resources via <a href="https://github.com/BDO-Science/track-a-cohort">BDO github</a> from BOR, replicate figures and adjust to include dynamic data. See <a href="https://github.com/BDO-Science/track-a-cohort/blob/main/Track%20a%20Cohort_WR_plots.docx">Track a cohort_WR_plots.docx</a> for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp. Figures below are in development and require updates as data becomes available.</p>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>This document uses shared resources via <a href="https://github.com/BDO-Science/track-a-cohort" target="_blank">BDO github</a> from BOR to replicate figures requested and adjust underlying code to include dynamic data. See <a href="https://github.com/BDO-Science/track-a-cohort/blob/main/Track%20a%20Cohort_WR_plots.docx">Track a cohort_WR_plots.docx</a> for figures requested. Certain figures include a link to more interactive plot types using Shiny (in development) and all figures include a link to code in separate CBR developed <a href="https://github.com/caitobrien/TAC" target="_blank">github repo</a>.</p>
 </section>
 <section id="figure-1.-juvenile-production-estimate" class="level2">
 <h2 class="anchored" data-anchor-id="figure-1.-juvenile-production-estimate">Figure 1. Juvenile Production Estimate</h2>
@@ -256,11 +258,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Related links: SacPAS Page, ShinyApp, <a href="https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R" target="_blank">GitHub Repo Code</a>, <a href="https://csobrien.shinyapps.io/CumulativeLoss/" target="&quot;_blank">Interactive Plot - ShinyApp</a></p>
+<p>Related links: SacPAS Page,<a href="https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R" target="_blank">GitHub Repo Code</a>, <a href="https://csobrien.shinyapps.io/CumulativeLoss/" target="&quot;_blank">Interactive Plot - ShinyApp</a></p>
 <ul>
 <li>Issues:
 <ul>
-<li>Confirm use of Water Year over Brood Year - both were used in word doc shared</li>
+<li>Confirm use of Water Year over Brood Year in Fig 3a- both were used in word doc shared</li>
 <li>Confirm missing 2008 JPE data</li>
 <li>Update genetic data as it becomes available</li>
 <li>Update method naming conventions as needed</li>
@@ -288,9 +290,10 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="figure-4b.-cumulative-length-at-date-lad-loss-of-the-jpe">Figure 4b. Cumulative Length-At-Date (LAD) loss of the JPE</h3>
 <div class="cell">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="TAC_chinook_figures_files/figure-html/load_plot4b-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>The figure shows cumulative loss by BiOp Status and Hydrological Classification Index (HCI). Each quadrant of the faceted plot includes grey lines for historical years, colored lines (blue for wet years, red for dry years) for years within the BiOp status and HCI type, a black line for the current year, and a dashed horizontal line indicating the current cumulative loss maximum.</figcaption>
 </figure>
 </div>
 </div>
@@ -353,17 +356,226 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>Related links: SacPAS Page, <a href="https://www.cbr.washington.edu/sacramento/lossandsalvage/" target="_blank">SacPAS Tillotson Tool</a>, GitHub Repo Code: <a href="https://github.com/caitobrien/TAC/blob/main/data-raw/WR_Model_Setup.R" target="_blank">Tillotson model</a>, <a href="https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R" target="_black">data wrangling and prediction output</a>, <a href="https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_tillotson_predicted_loss.R" target="_blank">plot output</a></p>
-<p>Issues:</p>
+<ul>
+<li>Issues:
 <ul>
 <li>Currently using BOR supplied code to run model, confirm same output with NB code</li>
+<li>Further, confirm shared code is duplicate of Tillotson code. If not, update to reflect Tillotson model</li>
+<li>Confirm mean() is used for all averages within tillotson code and not rolling average.</li>
+<li>Confirm change in plot design</li>
+</ul></li>
 </ul>
 </section>
-<section id="figure-7.-hatchery-percent-loss" class="level2">
-<h2 class="anchored" data-anchor-id="figure-7.-hatchery-percent-loss">Figure 7. Hatchery Percent Loss</h2>
+<section id="table-1.-model-inputs-and-predictions---tillotson-model" class="level2">
+<h2 class="anchored" data-anchor-id="table-1.-model-inputs-and-predictions---tillotson-model">Table 1. Model inputs and predictions - Tillotson Model</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Tillotson et al., (2022) model output of predicted weekly losses for Natural-origin Winter-run Chinook with model weekly average inputs including observed loss, Old and Middle Rivers (OMR), USGS tidally filtered flow (CFS), combined exports from CVP &amp; SWP facilities (CFS), flow at Sacramento and San Joaquin (CFS), and water temperature at Mallard Island (°C).</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Water year week</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Date</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Observed loss</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">OMR USGS tidally filtered</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Export, SWP &amp; CVP (CFS)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Avg flow at Sacramento (CFS)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Avg flow at San Joaquin (CFS)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Avg water temperature at Mallard Island (°C)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Weekly predicted loss (median, lower CI, upper CI)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">01-07-24</td>
+<td style="text-align: left;">23.08</td>
+<td style="text-align: left;">-5512.86</td>
+<td style="text-align: left;">5986.71</td>
+<td style="text-align: left;">16860.78</td>
+<td style="text-align: left;">1859.91</td>
+<td style="text-align: left;">10.40</td>
+<td style="text-align: left;">(17.3, 0, 118.62)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">01-14-24</td>
+<td style="text-align: left;">7.21</td>
+<td style="text-align: left;">-5300.00</td>
+<td style="text-align: left;">5388.57</td>
+<td style="text-align: left;">23745.35</td>
+<td style="text-align: left;">1908.47</td>
+<td style="text-align: left;">10.04</td>
+<td style="text-align: left;">(12.96, 0, 116.95)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">17</td>
+<td style="text-align: left;">01-21-24</td>
+<td style="text-align: left;">34.18</td>
+<td style="text-align: left;">-2805.71</td>
+<td style="text-align: left;">3931.57</td>
+<td style="text-align: left;">40931.59</td>
+<td style="text-align: left;">3442.51</td>
+<td style="text-align: left;">10.95</td>
+<td style="text-align: left;">(17.17, 0, 145.62)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">18</td>
+<td style="text-align: left;">01-28-24</td>
+<td style="text-align: left;">126.88</td>
+<td style="text-align: left;">-3189.57</td>
+<td style="text-align: left;">3938.71</td>
+<td style="text-align: left;">39896.78</td>
+<td style="text-align: left;">3793.21</td>
+<td style="text-align: left;">12.09</td>
+<td style="text-align: left;">(64.44, 0, 818.07)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">19</td>
+<td style="text-align: left;">02-04-24</td>
+<td style="text-align: left;">402.82</td>
+<td style="text-align: left;">-4537.14</td>
+<td style="text-align: left;">7296.14</td>
+<td style="text-align: left;">61321.77</td>
+<td style="text-align: left;">7148.49</td>
+<td style="text-align: left;">11.54</td>
+<td style="text-align: left;">(327.92, 27.5, 1150.26)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">02-11-24</td>
+<td style="text-align: left;">69.26</td>
+<td style="text-align: left;">-4202.86</td>
+<td style="text-align: left;">6703.14</td>
+<td style="text-align: left;">52035.15</td>
+<td style="text-align: left;">6661.49</td>
+<td style="text-align: left;">11.02</td>
+<td style="text-align: left;">(109.39, 0, 465.27)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">21</td>
+<td style="text-align: left;">02-18-24</td>
+<td style="text-align: left;">710.88</td>
+<td style="text-align: left;">-3310.00</td>
+<td style="text-align: left;">7049.71</td>
+<td style="text-align: left;">65318.05</td>
+<td style="text-align: left;">9071.54</td>
+<td style="text-align: left;">12.01</td>
+<td style="text-align: left;">(446.79, 27.5, 1496.13)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">22</td>
+<td style="text-align: left;">02-25-24</td>
+<td style="text-align: left;">294.65</td>
+<td style="text-align: left;">-3432.86</td>
+<td style="text-align: left;">6731.71</td>
+<td style="text-align: left;">66389.38</td>
+<td style="text-align: left;">8099.43</td>
+<td style="text-align: left;">12.62</td>
+<td style="text-align: left;">(394.09, 27.5, 1496.13)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">23</td>
+<td style="text-align: left;">03-03-24</td>
+<td style="text-align: left;">627.96</td>
+<td style="text-align: left;">-3248.57</td>
+<td style="text-align: left;">7551.43</td>
+<td style="text-align: left;">62429.96</td>
+<td style="text-align: left;">9599.09</td>
+<td style="text-align: left;">11.80</td>
+<td style="text-align: left;">(455.98, 27.5, 1496.13)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24</td>
+<td style="text-align: left;">03-10-24</td>
+<td style="text-align: left;">336.82</td>
+<td style="text-align: left;">-1377.86</td>
+<td style="text-align: left;">3261.86</td>
+<td style="text-align: left;">54301.79</td>
+<td style="text-align: left;">5447.43</td>
+<td style="text-align: left;">12.57</td>
+<td style="text-align: left;">(330.47, 27.5, 1040.01)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">03-17-24</td>
+<td style="text-align: left;">389.74</td>
+<td style="text-align: left;">-2051.71</td>
+<td style="text-align: left;">2893.57</td>
+<td style="text-align: left;">42966.66</td>
+<td style="text-align: left;">5248.03</td>
+<td style="text-align: left;">14.07</td>
+<td style="text-align: left;">(166.69, 3.88, 1040.01)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">26</td>
+<td style="text-align: left;">03-24-24</td>
+<td style="text-align: left;">721.31</td>
+<td style="text-align: left;">-3552.14</td>
+<td style="text-align: left;">3750.86</td>
+<td style="text-align: left;">40745.52</td>
+<td style="text-align: left;">5164.58</td>
+<td style="text-align: left;">14.44</td>
+<td style="text-align: left;">(188.56, 3.88, 1040.01)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">27</td>
+<td style="text-align: left;">03-31-24</td>
+<td style="text-align: left;">360.55</td>
+<td style="text-align: left;">-2424.86</td>
+<td style="text-align: left;">4132.71</td>
+<td style="text-align: left;">39568.84</td>
+<td style="text-align: left;">4592.15</td>
+<td style="text-align: left;">14.32</td>
+<td style="text-align: left;">(67.81, 2.74, 1040.01)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">28</td>
+<td style="text-align: left;">04-07-24</td>
+<td style="text-align: left;">86.81</td>
+<td style="text-align: left;">-1043.00</td>
+<td style="text-align: left;">2141.29</td>
+<td style="text-align: left;">30951.90</td>
+<td style="text-align: left;">5046.74</td>
+<td style="text-align: left;">15.12</td>
+<td style="text-align: left;">(20.84, 0, 222.9)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">29</td>
+<td style="text-align: left;">04-14-24</td>
+<td style="text-align: left;">8.66</td>
+<td style="text-align: left;">154.14</td>
+<td style="text-align: left;">1532.43</td>
+<td style="text-align: left;">31798.17</td>
+<td style="text-align: left;">5372.36</td>
+<td style="text-align: left;">16.32</td>
+<td style="text-align: left;">(0, 0, 25.94)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">05-05-24</td>
+<td style="text-align: left;">4.33</td>
+<td style="text-align: left;">-939.71</td>
+<td style="text-align: left;">1469.00</td>
+<td style="text-align: left;">29168.95</td>
+<td style="text-align: left;">4512.28</td>
+<td style="text-align: left;">17.60</td>
+<td style="text-align: left;">(0, 0, 18)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+</div>
+</div>
+<p>Related links: SacPAS Page,<a href="https://www.cbr.washington.edu/sacramento/lossandsalvage/" target="_blank">SacPAS Tillotson Tool</a>, GitHub Repo Code: <a href="https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R" target="_blank">Tillotson model</a>, <a href="https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R" target="_black">data wrangling and prediction output</a>, <a href="https://github.com/caitobrien/TAC/blob/main/R/utils_fct_generate_table_predicted_observed_loss.R" target="_blank">Table configuration</a></p>
 <ul>
-<li><p>Currently waiting on issues to move forward:</p></li>
-<li><p>Confirm this plot or table is wanted. Confirm firm type of figure and or table (similar to steelhead request)</p></li>
-<li><p>Confirm data import URL sourced from SacPAS when it becomes available</p></li>
+<li>Issues:
+<ul>
+<li>Confirm model output weekly averages. Table/Model is using weekly averages with mean(), confirm paper doesn’t use a rolling average.</li>
+</ul></li>
 </ul>
 
 

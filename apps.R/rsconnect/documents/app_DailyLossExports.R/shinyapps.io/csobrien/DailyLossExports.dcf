@@ -5,7 +5,7 @@ account: csobrien
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 12326682
-bundleId: 8871802
+bundleId: 8880647
 url: https://csobrien.shinyapps.io/DailyLossExports/
 version: 1
 asMultiple: FALSE

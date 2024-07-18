@@ -34,7 +34,7 @@ p <- steelhead_loss_data %>%
   facet_wrap(~adipose_clip, ncol = 1) +
   theme_minimal() +
   theme(text = element_text(size = 15),
-        legend.position = "bottom",
+        legend.position = "none",
         panel.border= element_rect(color = "grey80", fill = NA), 
         panel.grid.minor = element_blank(),
         panel.grid.major.x = element_blank(), axis.ticks = element_line(size = .25, color = "grey80"))

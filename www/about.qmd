@@ -8,24 +8,12 @@ All code used to develop this quarto webpage are available via the Columbia Basi
 
 How to use:
 
--   To view the code used to generate individual plots, navigate to the `R` folder within the repository. Each file includes the necessary information to load the data and directs user to which libraries are needed to run the script. Alternatively, you can run the `load_dependencies.R` script to load all packages required or install via devtools, `devtools::install_github("https://github.com/caitobrien/TAC")`.
-
--   To view the final data used to generate the plots, navigate to the `data` folder within the repository. Raw data that supports the data for generating plots and/or tables are available in the `data-raw` folder.
+-   To view the code used to generate individual plots, navigate to the `R` folder within the repository or run the following code in the terminal `Rscript R/SCRIPT_NAME.R.` Each file includes the necessary information to load the data and directs user to which libraries are needed to run the script.
 
 -   To access the final individual plots (.png), navigate to the `docs` folder within the repository. The rendered plots are available in respective species folders, `TAC_insertspecies_figures_files>figure-html`.
 
--   To render the complete quarto webpage locally, download the repository to `R` and run the following code in the R console to download all packages required:
+-   To view the final data used to generate the plots, navigate to the `data` folder within the repository. Raw data that supports the data for generating plots and/or tables are available in the `data-raw` folder and can all be updated at once using the `R/update_data.R` script. Alternatively, the data will be prompted to update with each new build of the quarto webpage.
 
-```{r, eval = FALSE}
-
-# Load necessary packages
-if (!requireNamespace("devtools", quietly = TRUE)) {
-  install.packages("devtools")
-}
-
-devtools::install_github("https://github.com/caitobrien/TAC")
-```
-
-Within the console, you'll be prompted to update or install packages as needed to run the webpage. Once complete, navigate to the terminal and run the following code: `quarto render` to render the complete webpage. This may take a moment to complete. Within the `docs` folder, you'll find the rendered webpage: `index.html`. Open in browser to view the complete webpage.
+-   To render the complete quarto webpage locally, download the repository to `R` and running the code `make` in the terminal, or clicking `Build` in the panel tabs within your R environment. Once complete, navigate to the `docs/` folder where you'll find the rendered webpage: `index.html`. Open in browser to view the complete webpage.
 
 Please direct general questions to: [web\@cbr.washington.edu](mailto:web@cbr.washington.edu?subject=Feedback&body=Hi%20there,)

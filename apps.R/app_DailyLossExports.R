@@ -60,7 +60,7 @@ server <- function(input, output) {
         barmode = "group",
         yaxis = list(title = "Daily Loss"),
         xaxis = list(title = "Date", type = "date"),
-        legend = list(title = list(text = "Facility"), x = 1.05),
+        legend = list(title = list(text = "Facility"), x = 1.1),
         margin = list(l = 60, r = 200, t = 50, b = 50)
       )
     

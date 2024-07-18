@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-07-16">
+<meta name="dcterms.date" content="2024-07-18">
 
 <title>Track-a-Cohort - Track-a-Cohort: Steelhead</title>
 <style>
@@ -119,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective">Objective</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
   <li><a href="#figure-1.-rbdd-juvenile-passage-estimates" id="toc-figure-1.-rbdd-juvenile-passage-estimates" class="nav-link" data-scroll-target="#figure-1.-rbdd-juvenile-passage-estimates">Figure 1. RBDD Juvenile Passage Estimates</a></li>
   <li><a href="#figure-2.-survival-and-routing-probabilites" id="toc-figure-2.-survival-and-routing-probabilites" class="nav-link" data-scroll-target="#figure-2.-survival-and-routing-probabilites">Figure 2. Survival and Routing Probabilites</a>
   <ul class="collapse">
@@ -134,10 +134,9 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#figure-4.-cumulative-loss" id="toc-figure-4.-cumulative-loss" class="nav-link" data-scroll-target="#figure-4.-cumulative-loss">Figure 4. Cumulative Loss</a></li>
   <li><a href="#figure-5.-cumulative-loss-with-single-year-thresholds" id="toc-figure-5.-cumulative-loss-with-single-year-thresholds" class="nav-link" data-scroll-target="#figure-5.-cumulative-loss-with-single-year-thresholds">Figure 5. Cumulative Loss with Single-Year Thresholds</a></li>
-  <li><a href="#table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead" id="toc-table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead" class="nav-link" data-scroll-target="#table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead">Table 1. Minimization of Cumulative Loss of Hatchery Steelhead</a></li>
   <li><a href="#figure-6.-daily-loss-and-export-by-pumping-facility" id="toc-figure-6.-daily-loss-and-export-by-pumping-facility" class="nav-link" data-scroll-target="#figure-6.-daily-loss-and-export-by-pumping-facility">Figure 6. Daily Loss and Export by Pumping Facility</a></li>
   <li><a href="#figure-7.-predicted-and-observed-weekly-loss---tillotson-model" id="toc-figure-7.-predicted-and-observed-weekly-loss---tillotson-model" class="nav-link" data-scroll-target="#figure-7.-predicted-and-observed-weekly-loss---tillotson-model">Figure 7. Predicted and Observed Weekly Loss - Tillotson Model</a></li>
-  <li><a href="#table-2.-model-inputs-and-predictions---tillotson-model" id="toc-table-2.-model-inputs-and-predictions---tillotson-model" class="nav-link" data-scroll-target="#table-2.-model-inputs-and-predictions---tillotson-model">Table 2. Model inputs and predictions - Tillotson Model</a></li>
+  <li><a href="#table-1.-model-inputs-and-predictions---tillotson-model" id="toc-table-1.-model-inputs-and-predictions---tillotson-model" class="nav-link" data-scroll-target="#table-1.-model-inputs-and-predictions---tillotson-model">Table 1. Model inputs and predictions - Tillotson Model</a></li>
   </ul>
 </nav>
     </div>
@@ -157,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 16, 2024</p>
+      <p class="date">July 18, 2024</p>
     </div>
   </div>
   
@@ -169,9 +168,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="objective" class="level2">
-<h2 class="anchored" data-anchor-id="objective">Objective</h2>
-<p>Using shared resources via <a href="https://github.com/BDO-Science/track-a-cohort" target="_blank">BDO github</a> from BOR, replicate figures and adjust to include dynamic data. See <a href="https://github.com/BDO-Science/track-a-cohort/blob/main/SH_Cohort/Track%20a%20Cohort_Steelhead.docx" target="_blank">Track a cohort_Steelhead.docx</a> for figures requested. Also consider future additions including more interactive capabilities to certain graphs in form of Rmarkdown and/or shinyapp</p>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>This document uses shared resources via <a href="https://github.com/BDO-Science/track-a-cohort" target="_blank">BDO github</a> from BOR to replicate figures requested and adjust underlying code to include dynamic data. See <a href="https://github.com/BDO-Science/track-a-cohort/blob/main/SH_Cohort/Track%20a%20Cohort_Steelhead.docx" target="_blank">Track a cohort_Steelhead.docx</a> for figures requested. Certain figures include a link to more interactive plot types using Shiny (in development) and all figures include a link to code in separate CBR developed <a href="https://github.com/caitobrien/TAC" target="_blank">github repo</a>.</p>
 </section>
 <section id="figure-1.-rbdd-juvenile-passage-estimates" class="level2">
 <h2 class="anchored" data-anchor-id="figure-1.-rbdd-juvenile-passage-estimates">Figure 1. RBDD Juvenile Passage Estimates</h2>
@@ -189,7 +188,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Issues:
 <ul>
 <li>Update biweekly shaded areas based on SI generated methods</li>
-<li>mimic the same 0 line cutoff as on SacPAS, update to show points at 0 line?</li>
+<li>Continue to match the same 0 line cutoff as on SacPAS or leave space to show points at 0 line?</li>
+<li>Confirm Calendar Year or Water Year. Currently code only pulls current year based on today’s date. To look at water year will need to adjust code to include query link.</li>
 </ul></li>
 </ul>
 </section>
@@ -244,7 +244,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="TAC_steelhead_figures_files/figure-html/load_plot_03b-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure includes density plots that highlight historical (WY1994 to WY2023) size distribution and histogram of current year (WY2024) size distribution by rear type. Fork lengths below 750 mm were included in dataset.</figcaption>
+<figcaption>Figure compares density plots that highlight historical (WY1994 to WY2023) size distribution and histogram of current year (WY2024) size distribution by rear type (dark grey = unclipped; light grey = clipped). Fork lengths below 750 mm were included in dataset.</figcaption>
 </figure>
 </div>
 </div>
@@ -269,9 +269,10 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="figure-4.-cumulative-loss">Figure 4. Cumulative Loss</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="TAC_steelhead_figures_files/figure-html/load_plot_04-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>The figure shows cumulative loss by BiOp Status and Hydrological Classification Index (HCI). Each quadrant of the faceted plot includes grey lines for historical years, colored lines (blue for wet years, red for dry years) for years within the BiOp status and HCI type, a black line for the current year, and a dashed horizontal line indicating the current cumulative loss maximum.</figcaption>
 </figure>
 </div>
 </div>
@@ -295,256 +296,6 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Confirm Single-Year-Thresholds and update to generate automatically</li>
 <li>Confirm only including unclipped</li>
-</ul></li>
-</ul>
-</section>
-<section id="table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead" class="level2">
-<h2 class="anchored" data-anchor-id="table-1.-minimization-of-cumulative-loss-of-hatchery-steelhead">Table 1. Minimization of Cumulative Loss of Hatchery Steelhead</h2>
-<p>*Pending steelhead hatchery release information</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
-<caption>Minimization of Total Loss of Hatchery Steelhead by Water Year</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Water Year</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Total Loss</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Total released</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Percent of fish released lost to facilities</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Brood Year</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">1994</td>
-<td style="text-align: left;">125.25</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">1993</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">1995</td>
-<td style="text-align: left;">146.72</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">1994</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">1996</td>
-<td style="text-align: left;">330.74</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">1995</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">1997</td>
-<td style="text-align: left;">4.33</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">1996</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">1998</td>
-<td style="text-align: left;">496.44</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">1997</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">1999</td>
-<td style="text-align: left;">555.64</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">1998</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2000</td>
-<td style="text-align: left;">18795.42</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">1999</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2001</td>
-<td style="text-align: left;">24779.83</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2002</td>
-<td style="text-align: left;">5957.45</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2001</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2003</td>
-<td style="text-align: left;">24077.48</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2002</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2004</td>
-<td style="text-align: left;">18643.98</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2003</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2005</td>
-<td style="text-align: left;">6661.86</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2004</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2006</td>
-<td style="text-align: left;">2758.54</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2005</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2007</td>
-<td style="text-align: left;">4173.84</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2006</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2008</td>
-<td style="text-align: left;">6558.86</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2007</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2009</td>
-<td style="text-align: left;">2439.11</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2008</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2010</td>
-<td style="text-align: left;">6548.28</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2009</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2011</td>
-<td style="text-align: left;">2823.07</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2010</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2012</td>
-<td style="text-align: left;">1141.16</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2011</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2013</td>
-<td style="text-align: left;">1901.95</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2012</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2014</td>
-<td style="text-align: left;">327.83</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2013</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2015</td>
-<td style="text-align: left;">1841.19</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2014</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">3566.87</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2015</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">164.29</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2016</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2018</td>
-<td style="text-align: left;">2462.90</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2017</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2019</td>
-<td style="text-align: left;">5777.70</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2018</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2020</td>
-<td style="text-align: left;">659.44</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2019</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2021</td>
-<td style="text-align: left;">341.69</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2020</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2022</td>
-<td style="text-align: left;">639.79</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2021</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2023</td>
-<td style="text-align: left;">3650.30</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2022</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2024</td>
-<td style="text-align: left;">2828.56</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2023</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-
-</div>
-</div>
-<p>Related links: SacPAS Page, <a href="https://github.com/caitobrien/TAC/blob/main/R/steelhead_fct_generate_table_total_hatchery_loss.R" target="_blank">GitHub Repo Code</a></p>
-<ul>
-<li>Issues:
-<ul>
-<li>Update with steelhead hatchery release information when becomes available</li>
 </ul></li>
 </ul>
 </section>
@@ -580,31 +331,34 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>Related links: SacPAS Page, <a href="https://www.cbr.washington.edu/sacramento/lossandsalvage/" target="_blank">SacPAS Tillotson Tool</a>, GitHub Repo Code: <a href="https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R" target="_blank">Tillotson model</a>, <a href="https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R" target="_black">data wrangling and prediction output</a>, <a href="https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_tillotson_predicted_loss.R" target="_blank">plot output</a></p>
-<p>Issues:</p>
+<ul>
+<li><p>Issues:</p>
 <ul>
 <li>Currently using BOR supplied code to run model, confirm same output with NB code</li>
 <li>Further, confirm shared code is duplicate of Tillotson code. If not, update to reflect Tillotson model</li>
 <li>Confirm mean() is used for all averages within tillotson code and not rolling average.</li>
+<li>Confirm change in plot design</li>
+</ul></li>
 </ul>
 </section>
-<section id="table-2.-model-inputs-and-predictions---tillotson-model" class="level2">
-<h2 class="anchored" data-anchor-id="table-2.-model-inputs-and-predictions---tillotson-model">Table 2. Model inputs and predictions - Tillotson Model</h2>
+<section id="table-1.-model-inputs-and-predictions---tillotson-model" class="level2">
+<h2 class="anchored" data-anchor-id="table-1.-model-inputs-and-predictions---tillotson-model">Table 1. Model inputs and predictions - Tillotson Model</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div class="table-responsive">
 <table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
-<caption>Tillotson et al., (2022) model output of predicted weekly losses for Natural-origin Steelhead with model weekly average inputs including observed loss, Old and Middle Rivers (OMR), USGS tidally filtered flow (CFS), combined exports from CVP &amp; SWP facilities (CFS), flow at Sacramento and San Joaquin (CFS), and water temperature at Mallard Island (C).</caption>
+<caption>Tillotson et al., (2022) model output of predicted weekly losses for Natural-origin Steelhead with model weekly average inputs including observed loss, Old and Middle Rivers (OMR), USGS tidally filtered flow (CFS), combined exports from CVP &amp; SWP facilities (CFS), flow at Sacramento and San Joaquin (CFS), and water temperature at Mallard Island (°C).</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Water Year Week</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Water year week</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Date</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Observed Loss</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">OMR USGS Tidally Filtered</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Observed loss</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">OMR USGS tidally filtered</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Export, SWP &amp; CVP (CFS)</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Avg flow at Sacramento (CFS)</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Avg flow at San Joaquin (CFS)</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Avg water temperature at Mallard Island (C)</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Weekly Predicted Loss (median, lower CI, upper CI)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Avg water temperature at Mallard Island (°C)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Weekly predicted loss (median, lower CI, upper CI)</th>
 </tr>
 </thead>
 <tbody>
@@ -628,7 +382,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">16180.07</td>
 <td style="text-align: left;">1351.61</td>
 <td style="text-align: left;">11.46</td>
-<td style="text-align: left;">(0, 0, 87.4)</td>
+<td style="text-align: left;">(0, 0, 100.24)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">14</td>
@@ -639,7 +393,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">21761.74</td>
 <td style="text-align: left;">1419.25</td>
 <td style="text-align: left;">11.38</td>
-<td style="text-align: left;">(0, 0, 99.59)</td>
+<td style="text-align: left;">(0, 0, 86.58)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">15</td>
@@ -650,7 +404,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">16860.78</td>
 <td style="text-align: left;">1859.91</td>
 <td style="text-align: left;">10.40</td>
-<td style="text-align: left;">(15.21, 0, 165.16)</td>
+<td style="text-align: left;">(17.32, 0, 156.1)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">16</td>
@@ -661,7 +415,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">23745.35</td>
 <td style="text-align: left;">1908.47</td>
 <td style="text-align: left;">10.04</td>
-<td style="text-align: left;">(17.32, 0, 222.73)</td>
+<td style="text-align: left;">(17.32, 0, 224.16)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">17</td>
@@ -672,7 +426,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">40931.59</td>
 <td style="text-align: left;">3442.51</td>
 <td style="text-align: left;">10.95</td>
-<td style="text-align: left;">(25.98, 0, 233.41)</td>
+<td style="text-align: left;">(28.7, 0, 225.52)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">18</td>
@@ -683,7 +437,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">39896.78</td>
 <td style="text-align: left;">3793.21</td>
 <td style="text-align: left;">12.09</td>
-<td style="text-align: left;">(133.23, 4.34, 566.05)</td>
+<td style="text-align: left;">(133.23, 0, 660.07)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">19</td>
@@ -694,7 +448,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">61321.77</td>
 <td style="text-align: left;">7148.49</td>
 <td style="text-align: left;">11.54</td>
-<td style="text-align: left;">(266.46, 24.37, 761.66)</td>
+<td style="text-align: left;">(243.81, 24.37, 866.27)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">20</td>
@@ -705,7 +459,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">52035.15</td>
 <td style="text-align: left;">6661.49</td>
 <td style="text-align: left;">11.02</td>
-<td style="text-align: left;">(165.15, 8.16, 555.4)</td>
+<td style="text-align: left;">(160.21, 8.16, 555.4)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">21</td>
@@ -716,7 +470,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">65318.05</td>
 <td style="text-align: left;">9071.54</td>
 <td style="text-align: left;">12.01</td>
-<td style="text-align: left;">(572.15, 56.72, 1798.68)</td>
+<td style="text-align: left;">(572.15, 56.72, 1800.06)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">22</td>
@@ -727,7 +481,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">66389.38</td>
 <td style="text-align: left;">8099.43</td>
 <td style="text-align: left;">12.62</td>
-<td style="text-align: left;">(242.76, 34.62, 704.96)</td>
+<td style="text-align: left;">(223.91, 24.37, 678.94)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">23</td>
@@ -738,7 +492,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">62429.96</td>
 <td style="text-align: left;">9599.09</td>
 <td style="text-align: left;">11.80</td>
-<td style="text-align: left;">(242.76, 24.37, 661.01)</td>
+<td style="text-align: left;">(225.52, 24.37, 661.01)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">24</td>
@@ -749,7 +503,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">54301.79</td>
 <td style="text-align: left;">5447.43</td>
 <td style="text-align: left;">12.57</td>
-<td style="text-align: left;">(131.12, 16.18, 575.89)</td>
+<td style="text-align: left;">(132.93, 14.03, 575.89)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">25</td>
@@ -760,7 +514,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">42966.66</td>
 <td style="text-align: left;">5248.03</td>
 <td style="text-align: left;">14.07</td>
-<td style="text-align: left;">(141.28, 16.32, 515.95)</td>
+<td style="text-align: left;">(143.22, 16.32, 575.89)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">26</td>
@@ -771,7 +525,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">40745.52</td>
 <td style="text-align: left;">5164.58</td>
 <td style="text-align: left;">14.44</td>
-<td style="text-align: left;">(242.76, 45.27, 678.94)</td>
+<td style="text-align: left;">(242.76, 34.64, 704.96)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">27</td>
@@ -782,7 +536,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">39568.84</td>
 <td style="text-align: left;">4592.15</td>
 <td style="text-align: left;">14.32</td>
-<td style="text-align: left;">(403.41, 56.72, 1040.63)</td>
+<td style="text-align: left;">(464.64, 56.72, 1040.63)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">28</td>
@@ -793,7 +547,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">30951.90</td>
 <td style="text-align: left;">5046.74</td>
 <td style="text-align: left;">15.12</td>
-<td style="text-align: left;">(110.58, 16.32, 583.68)</td>
+<td style="text-align: left;">(114.5, 16.32, 599.44)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">29</td>
@@ -804,7 +558,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">31798.17</td>
 <td style="text-align: left;">5372.36</td>
 <td style="text-align: left;">16.32</td>
-<td style="text-align: left;">(86.6, 15.97, 284.17)</td>
+<td style="text-align: left;">(81.52, 16.32, 315.42)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">30</td>
@@ -815,7 +569,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">31001.37</td>
 <td style="text-align: left;">5082.57</td>
 <td style="text-align: left;">17.50</td>
-<td style="text-align: left;">(75.83, 0, 292.94)</td>
+<td style="text-align: left;">(76.08, 0, 315.42)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">31</td>
@@ -826,7 +580,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">24835.78</td>
 <td style="text-align: left;">4574.49</td>
 <td style="text-align: left;">17.74</td>
-<td style="text-align: left;">(30.66, 0, 192.27)</td>
+<td style="text-align: left;">(31.42, 0, 286.14)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">32</td>
@@ -837,7 +591,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">29168.95</td>
 <td style="text-align: left;">4512.28</td>
 <td style="text-align: left;">17.60</td>
-<td style="text-align: left;">(34.14, 0, 118.02)</td>
+<td style="text-align: left;">(30.92, 0, 118.02)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">33</td>
@@ -848,7 +602,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">24148.72</td>
 <td style="text-align: left;">7460.78</td>
 <td style="text-align: left;">18.50</td>
-<td style="text-align: left;">(38.97, 0, 215.68)</td>
+<td style="text-align: left;">(38.97, 0, 198.68)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">34</td>
@@ -859,7 +613,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">21611.11</td>
 <td style="text-align: left;">8042.48</td>
 <td style="text-align: left;">19.17</td>
-<td style="text-align: left;">(25.98, 0, 210.79)</td>
+<td style="text-align: left;">(33.39, 0, 199.73)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">35</td>
@@ -892,7 +646,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">15473.27</td>
 <td style="text-align: left;">2264.37</td>
 <td style="text-align: left;">21.57</td>
-<td style="text-align: left;">(0, 0, 210.56)</td>
+<td style="text-align: left;">(0, 0, 160.72)</td>
 </tr>
 </tbody>
 </table>
@@ -901,7 +655,7 @@ ul.task-list li input[type="checkbox"] {
 
 </div>
 </div>
-<p>Related links: SacPAS Page,<a href="https://www.cbr.washington.edu/sacramento/lossandsalvage/" target="_blank">SacPAS Tillotson Tool</a>, GitHub Repo Code: <a href="https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R" target="_blank">Tillotson model</a>, <a href="https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R" target="_black">data wrangling and prediction output</a> <a href="https://github.com/caitobrien/TAC/blob/main/R/steelhead_fct_generate_table_predicted_observed_loss.R" target="_blank">Table configuration</a></p>
+<p>Related links: SacPAS Page,<a href="https://www.cbr.washington.edu/sacramento/lossandsalvage/" target="_blank">SacPAS Tillotson Tool</a>, GitHub Repo Code: <a href="https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R" target="_blank">Tillotson model</a>, <a href="https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R" target="_black">data wrangling and prediction output</a>, <a href="https://github.com/caitobrien/TAC/blob/main/R/utils_fct_generate_table_predicted_observed_loss.R" target="_blank">Table configuration</a></p>
 <ul>
 <li>Issues:
 <ul>
