@@ -8,6 +8,7 @@
 #' (More information on PA 4-70, 2019 BiOP)
 require(tidyverse)
 require(here)
+require(ggrepel)
 
 
 # import data file
@@ -79,7 +80,7 @@ p <- cumloss_current_year %>%
   geom_hline(yintercept = jpe_current_year_1.17pct*.75, linetype = "dashed", color = "orange3") +
   geom_text(aes(x = set_text_date, y = jpe_current_year_1.17pct*.75, label = paste0("75% Single-Year Threshold (1.17% of JPE): ", round(jpe_current_year_1.17pct*.75,2))), hjust = 0, vjust = 2, color = "orange3", size = 3) +
   geom_hline(yintercept = jpe_current_year_1.17pct*.50, linetype = "dashed", color = "goldenrod2") +
-  geom_text(aes(x = set_text_date, y = jpe_current_year_1.17pct*.5, label = paste0("50% Single-Year Threshold (1.17% of JPE): ", round(jpe_current_year_1.17pct*.5,2))), hjust = 0, vjust = 2, color = "goldenrod1", size = 3) +
+  geom_text(aes(x = set_text_date, y = jpe_current_year_1.17pct*.5, label = paste0("50% Single-Year Threshold (1.17% of JPE): ", round(jpe_current_year_1.17pct*.5,2))), hjust = 0, vjust = 2, color = "goldenrod3", size = 3) +
   geom_vline(xintercept = as.numeric(wDay_to_date(wDay_today, current_year)), linetype = "dashed", color = "blue2") +
   geom_label_repel(data = data.frame(date = max(cumloss_current_year$date), cumloss = max(cumloss_current_year$cumloss)),
                    aes(x = date, y = cumloss, label = paste0("Cumulative loss: ", max(cumloss),"\n% of Single-Year Threshold: ", round((cumloss/jpe_current_year_2pct)*100, 2), "%")),

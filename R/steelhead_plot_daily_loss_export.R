@@ -25,8 +25,8 @@ p1 <- steelhead_loss_export_data %>%
   ggplot(aes(x = date)) +
   geom_bar(aes(y = daily_total_loss, fill = facility), stat = "identity", position = position_dodge2(preserve = "total", width = .6)) + # Changed color to fill for bar
   geom_line(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
-  geom_vline(omrValues, mapping = aes(xintercept = date), color = '#999999') +
-  geom_text(omrValues, mapping = aes(x = date, y = 200, label = paste("OMR:", value)), color = '#999999', angle = -90, size = 3, vjust = 1) +
+  geom_vline(omrValues, mapping = aes(xintercept = date), color = 'black') +
+  geom_text(omrValues, mapping = aes(x = date, y = 200, label = paste("OMR:", value)), color = 'black', angle = -90, size = 3, vjust = 1) +
   labs(title = "Daily Loss and Export",
        subtitle = paste("Species: Steelhead",
                         "\nCurrent Water Year:", current_year,
