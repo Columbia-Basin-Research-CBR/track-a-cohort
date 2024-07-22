@@ -15,6 +15,18 @@ current_year <- assign_current_water_year()
 # back calculate date from water week with the start of the water year = 10-01
 start_date <- as.Date(paste(current_year - 1, "-10-01", sep=""))
 
+
+# Calculate the date range for plotting
+min_date <- start_date + (min(winter_run_tillotson_output$week)-1)*7
+max_date <- start_date + (max(winter_run_tillotson_output$week)-1)*7
+
+# Adjust the start limit to the beginning of the first date's month
+start_limit <- floor_date(min_date, "month")
+
+# Adjust the end limit to the end of the last date's month
+end_limit <- ceiling_date(max_date, "month")
+
+
 # plot
 p <- winter_run_tillotson_output %>% 
   mutate(date = start_date + (week-1)*7) %>%  #returns the monday of the start_date week
@@ -36,10 +48,13 @@ p <- winter_run_tillotson_output %>%
                      breaks = c("Predicted loss,\nmedian with 90% CI", "Observed Weekly Loss")) +
   scale_fill_manual(values = c("Predicted loss,\nmedian with 90% CI" = "steelblue"),
                     breaks = c("Predicted loss,\nmedian with 90% CI")) +
+  scale_x_date(date_breaks = "1 month", date_labels = "%b", limits = c(start_limit, end_limit), expand = c(0,0)) +
   guides(fill = guide_legend(order = 1),
          color = guide_legend(order = 1)) +
   theme_minimal() +
-  theme(text = element_text(size = 15)
+  theme(text = element_text(size = 15),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank()
   )
 
 print(p)
