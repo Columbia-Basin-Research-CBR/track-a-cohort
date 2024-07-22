@@ -91,9 +91,9 @@ p <- cumloss_current_year %>%
   geom_vline(xintercept = management_period, linetype = "dashed", color = "grey50") +
   geom_hline(yintercept = current_year_100pct, linetype = "dashed", color = "red4") +
   geom_text(aes(x = set_text_date, y = current_year_100pct, label = paste0("100% Single-Year Threshold: ", round(current_year_100pct,2))), hjust = 0, vjust = 2, color = "red4", size = 3) +
-  geom_hline(yintercept = current_year_75pct, linetype = "dashed", color = "orange3") +
-  geom_text(aes(x = set_text_date, y = current_year_75pct, label = paste0("75% Single-Year Threshold: ", round(current_year_75pct,2))), hjust = 0, vjust = 2, color = "orange3", size = 3) +
-  geom_hline(yintercept = current_year_50pct, linetype = "dashed", color = "goldenrod2") +
+  geom_hline(yintercept = current_year_75pct, linetype = "dashed", color = "#CC7722") +
+  geom_text(aes(x = set_text_date, y = current_year_75pct, label = paste0("75% Single-Year Threshold: ", round(current_year_75pct,2))), hjust = 0, vjust = 2, color = "#CC7722", size = 3) +
+  geom_hline(yintercept = current_year_50pct, linetype = "dashed", color = "goldenrod3") +
   geom_text(aes(x = set_text_date, y = current_year_50pct, label = paste0("50% Single-Year Threshold: ", round( current_year_50pct,2))), hjust = 0, vjust = 2, color = "goldenrod3", size = 3) +
   geom_vline(xintercept = as.numeric(wDay_to_date(wDay_today, current_year)), linetype = "dashed", color = "blue2") +
   geom_label_repel(data = max_loss_by_period,
