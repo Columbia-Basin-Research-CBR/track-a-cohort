@@ -44,22 +44,14 @@ Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/data/jpe_
 
 ## Figure 2. Survival and Routing Probabilites
 
-### Option 1: Facetted by year
-
-```{r, load_plot_02, fig.width=12, fig.height=18 }
+```{r,  load_plot_02, fig.width=12, fig.height=18}
 source(here("R/winter_run_chinook_plot_STARS.R"))
-```
-
-### Option 2: Without faceted years
-
-```{r,  load_plot_02_alt, fig.width=12, fig.height=18}
-source(here("R/winter_run_chinook_plot_STARS_withoutfacetedyears.R"))
 ```
 
 Related links: SacPAS Page, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/WRChinookSTARS/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
 
 -   Issues:
-    -   Confirm option preferred, update static and interactive plot to reflect choice
+    -   Update interactive plot to reflect choice of non faceted years
 
 ## Figure 3. Juvenile Production Estimate (JPE) – Percent Loss
 
@@ -137,12 +129,11 @@ source(here("R/winter_run_chinook_plot_tillotson_predicted_loss.R"))
 
 Related links: SacPAS Page, [SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/caitobrien/TAC/blob/main/data-raw/WR_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [plot output](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_tillotson_predicted_loss.R){target="_blank"}
 
-- Issues: 
-  -   Currently using BOR supplied code to run model, confirm same output with NB code
-  -   Further, confirm shared code is duplicate of Tillotson code. If not, update to reflect Tillotson model
-  -   Confirm mean() is used for all averages within tillotson code and not rolling average.
-  -   Confirm change in plot design
-
+-   Issues:
+    -   Currently using BOR supplied code to run model, confirm same output with NB code
+    -   Further, confirm shared code is duplicate of Tillotson code. If not, update to reflect Tillotson model
+    -   Confirm mean() is used for all averages within tillotson code and not rolling average.
+    -   Confirm change in plot design
 
 ## Table 1. Model inputs and predictions - Tillotson Model
 
