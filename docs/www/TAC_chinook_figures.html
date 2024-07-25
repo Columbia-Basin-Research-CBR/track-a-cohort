@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-07-22">
+<meta name="dcterms.date" content="2024-07-25">
 
 <title>Track-a-Cohort - Track-a-Cohort: Winter-run Chinook</title>
 <style>
@@ -68,9 +68,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
-
 <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-
 
 
 <link rel="stylesheet" href="styles.css">
@@ -160,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 22, 2024</p>
+      <p class="date">July 25, 2024</p>
     </div>
   </div>
   
@@ -342,9 +340,18 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Issues:
 <ul>
-<li>Currently using BOR supplied code to run model, confirm same output with NB code</li>
-<li>Further, confirm shared code is duplicate of Tillotson code. If not, update to reflect Tillotson model</li>
-<li>Confirm mean() is used for all averages within tillotson code and not rolling average.</li>
+<li>Currently using BOR supplied code to run model, confirm same output with NB code.
+<ul>
+<li>Update: NB believes this is updated code and will look into comparing and update Loss and Salvage Predictor Tool as needed when time allows (Estimates time in August).</li>
+</ul></li>
+<li>Confirm shared code is duplicate of the most up-to-date Tillotson code. If this is Tillotson code confirm with authors on use and confirm permissions to include model code in public facing repo. Alternatively, pull results from Loss and Salvage Predictor Tool.
+<ul>
+<li>JG or NB to reach out?</li>
+</ul></li>
+<li>Confirm mean() is used for all averages within Tillotson et al., code and not rolling average.
+<ul>
+<li>Update: NB confirms mean() used for weekly averages in Loss and Salvage Predictor Tool. Next step is to confirm Tillotson et al., matches methods.</li>
+</ul></li>
 <li>Confirm change in plot design</li>
 </ul></li>
 </ul>
@@ -379,7 +386,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">16860.78</td>
 <td style="text-align: left;">1859.91</td>
 <td style="text-align: left;">10.40</td>
-<td style="text-align: left;">(18.29, 0, 118.62)</td>
+<td style="text-align: left;">(17.17, 0, 116.87)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">16</td>
@@ -390,7 +397,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">23745.35</td>
 <td style="text-align: left;">1908.47</td>
 <td style="text-align: left;">10.04</td>
-<td style="text-align: left;">(12.96, 0, 116.78)</td>
+<td style="text-align: left;">(12.96, 0, 126.37)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">17</td>
@@ -401,7 +408,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">40931.59</td>
 <td style="text-align: left;">3442.51</td>
 <td style="text-align: left;">10.95</td>
-<td style="text-align: left;">(16.88, 0, 230.12)</td>
+<td style="text-align: left;">(16.84, 0, 128.08)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">18</td>
@@ -412,7 +419,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">39896.78</td>
 <td style="text-align: left;">3793.21</td>
 <td style="text-align: left;">12.09</td>
-<td style="text-align: left;">(72.01, 0, 818.07)</td>
+<td style="text-align: left;">(67.26, 0, 818.07)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">19</td>
@@ -423,7 +430,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">61321.77</td>
 <td style="text-align: left;">7148.49</td>
 <td style="text-align: left;">11.54</td>
-<td style="text-align: left;">(248.52, 27.5, 1359.39)</td>
+<td style="text-align: left;">(362.75, 27.5, 1359.39)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">20</td>
@@ -434,7 +441,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">52035.15</td>
 <td style="text-align: left;">6661.49</td>
 <td style="text-align: left;">11.02</td>
-<td style="text-align: left;">(99.61, 0, 553.43)</td>
+<td style="text-align: left;">(102.41, 0, 599.62)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">21</td>
@@ -456,7 +463,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">66389.38</td>
 <td style="text-align: left;">8099.43</td>
 <td style="text-align: left;">12.62</td>
-<td style="text-align: left;">(378.69, 25.98, 1040.01)</td>
+<td style="text-align: left;">(400.95, 27.5, 1496.13)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">23</td>
@@ -467,7 +474,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">62429.96</td>
 <td style="text-align: left;">9599.09</td>
 <td style="text-align: left;">11.80</td>
-<td style="text-align: left;">(455.98, 35.68, 1364.03)</td>
+<td style="text-align: left;">(448.99, 27.5, 1364.03)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24</td>
@@ -478,7 +485,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">54301.79</td>
 <td style="text-align: left;">5447.43</td>
 <td style="text-align: left;">12.57</td>
-<td style="text-align: left;">(297.22, 3.88, 1040.01)</td>
+<td style="text-align: left;">(345.43, 3.88, 1040.01)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">25</td>
@@ -489,7 +496,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">42966.66</td>
 <td style="text-align: left;">5248.03</td>
 <td style="text-align: left;">14.07</td>
-<td style="text-align: left;">(199.24, 0, 1040.01)</td>
+<td style="text-align: left;">(200.9, 3.88, 1040.01)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">26</td>
@@ -500,7 +507,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">40745.52</td>
 <td style="text-align: left;">5164.58</td>
 <td style="text-align: left;">14.44</td>
-<td style="text-align: left;">(178.35, 0, 1040.01)</td>
+<td style="text-align: left;">(178.35, 3.88, 1040.01)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">27</td>
@@ -511,7 +518,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">39568.84</td>
 <td style="text-align: left;">4592.15</td>
 <td style="text-align: left;">14.32</td>
-<td style="text-align: left;">(57.4, 0, 1040.01)</td>
+<td style="text-align: left;">(68.28, 3.03, 967.88)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">28</td>
@@ -522,7 +529,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">30951.90</td>
 <td style="text-align: left;">5046.74</td>
 <td style="text-align: left;">15.12</td>
-<td style="text-align: left;">(20.65, 0, 211.51)</td>
+<td style="text-align: left;">(17.66, 0, 205.63)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">29</td>
@@ -557,7 +564,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Issues:
 <ul>
-<li>Confirm model output weekly averages. Table/Model is using weekly averages with mean(), confirm paper doesn’t use a rolling average.</li>
+<li>See Figure 6 issues</li>
 </ul></li>
 </ul>
 

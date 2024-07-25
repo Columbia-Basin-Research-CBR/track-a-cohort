@@ -47,7 +47,6 @@ Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/tmp/redbl
 
 Note: Plots below use Winter-run Chinook as a surrogate for Steelhead
 
-
 ```{r,  load_plot_02, fig.width=12, fig.height=18}
 source(here("R/winter_run_chinook_plot_STARS.R"))
 ```
@@ -122,9 +121,12 @@ Related links: SacPAS Page, [SacPAS Tillotson Tool](https://www.cbr.washington.e
 
 -   Issues:
 
-    -   Currently using BOR supplied code to run model, confirm same output with NB code
-    -   Further, confirm shared code is duplicate of Tillotson code. If not, update to reflect Tillotson model
-    -   Confirm mean() is used for all averages within tillotson code and not rolling average.
+    -   Currently using BOR supplied code to run model, confirm same output with NB code.
+        -   Update: NB believes this is updated code and will look into comparing and update Loss and Salvage Predictor Tool as needed when time allows (Estimates time in August).
+    -   Confirm shared code is duplicate of the most up-to-date Tillotson code. If this is Tillotson code confirm with authors on use and confirm permissions to include model code in public facing repo. Alternatively, pull results from Loss and Salvage Predictor Tool.
+        -   JG or NB to reach out?
+    -   Confirm mean() is used for all averages within Tillotson et al., code and not rolling average.
+        -   Update: NB confirms mean() used for weekly averages in Loss and Salvage Predictor Tool. Next step is to confirm Tillotson et al., matches methods.
     -   Confirm change in plot design
 
 ## Table 1. Model inputs and predictions - Tillotson Model
@@ -146,4 +148,4 @@ generate_table_pred_obs_loss(data, species = "Steelhead")
 Related links: SacPAS Page,[SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [Table configuration](https://github.com/caitobrien/TAC/blob/main/R/utils_fct_generate_table_predicted_observed_loss.R){target="_blank"}
 
 -   Issues:
-    -   Confirm model output weekly averages. Table/Model is using weekly averages with mean(), confirm paper doesn't use a rolling average.
+    -   See Figure 7 issues
