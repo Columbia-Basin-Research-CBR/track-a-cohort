@@ -1,5 +1,7 @@
 #' @title Import steelhead loss from SacPAS
-#' @description This script imports steelhead loss data from the Sacramento River using the SacPAS website. Confirm link is correct
+#' @description This script imports steelhead loss data from the Sacramento River using the SacPAS website. 
+#' Confirm link is correct, no age restriction applied to data. Includes assignment of hydrological classification to each water year.
+#' @return .rda of steelhead loss data saved in `data` folder.
 require(tidyverse)
 require(janitor)
 require(usethis)

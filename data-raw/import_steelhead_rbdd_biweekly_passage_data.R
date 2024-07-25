@@ -1,4 +1,6 @@
 #' @title Import Steelhead Bi-Weekly Passage data from SacPAS generated URL
+#' @description import Steelhead Bi-Weekly Passage data from SacPAS generated URL using the current day to extract current year data from the SacPAS website
+#' @return .rda of biweekly data for current calendar year saved in `data` folder. 
 require(tidyverse)
 require(janitor)
 require(usethis)
@@ -6,10 +8,11 @@ require(usethis)
 
 
 
-# load data via URL
+# load data via SacPAS URL
 
-# select current year data
+# select current year data 
 current_year <- year(today())
+
 # Concatenate the current year into the URL
 url <- paste0("https://www.cbr.washington.edu/sacramento/data/php/rpt/redbluff_graph.php?sc=1&outputFormat=csv&byear=",current_year,"&species=Steelhead%3ANA&addData=biweek")
 

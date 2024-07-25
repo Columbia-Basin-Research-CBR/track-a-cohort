@@ -1,17 +1,24 @@
 #' @title Predict Tillotson model for Winter-run Chinook and Steelhead
-#' @description This function processes the Tillotson model for Winter-run Chinook and Steelhead species and returns both predicted results for each species in a list. 
+#' @description This function calls the shared Tillotson model for Winter-run Chinook and Steelhead
+#' and returns both predicted results for each species in a list that can be used for TAC plot and table. 
 require(tidyverse)
 require(janitor)
 require(here)
 require(fread)
 
+# assign current water year
 source(here("R/utils_fct_assign_current_water_year.R"))
+current_year <- assign_current_water_year()
+
+# import fct to import river data from SacPAS
 source(here("data-raw/utils_fct_import_river_data.R"))
+
+# import functions needed to run Tillotson model (shared by BOR)
 source(here("R/brt.functions.r"))
 load(here("R/ITMData.rda"))
 
 
-current_year <- assign_current_water_year()
+
 
 startOfWY <- function(date) {
   if (month(date) >= 10) {

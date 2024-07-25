@@ -1,6 +1,6 @@
 #'import STARS data from ShinyApp
 #'@description This script imports up to date STARS data from the ShinyApp and saves it to the data folder for use in other scripts. Code provided by Nick Beer.
-#'@return STARS_data.rda
+#'@return STARS_data.rda saved to `data` folder
 require(tidyverse)
 require(usethis)
 require(here)

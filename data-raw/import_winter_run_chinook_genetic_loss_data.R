@@ -1,8 +1,9 @@
-#' import  genetic loss data
+#'  @title Import  genetic loss data
 #'  @description This script imports the genetic loss data to be used for cumulative, total loss, and percent loss of the JPE.
 #'  The genetic loss data is joined with the JPE annual data to calculate cumulative loss and percent loss of the JPE.
 #'  As of now, genetic loss data shared by BOR as a flat file `WRGenetic.csv`.
 #'  To be updated with query link from SacPAS when data becomes available.
+#'  @return List of data frames with genetic loss data: 1) cumulative loss and 2) total loss  saved in `data` folder. 
 #'  @import dplyr
 #'  @import lubridate
 #'  @import usethis

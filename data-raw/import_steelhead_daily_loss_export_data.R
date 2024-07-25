@@ -1,6 +1,6 @@
 #' @title import steelhead loss and export data from SacPAS
 #' @description This script is used to import daily loss, export per facility, and OMRI values to be used in the steelhead Figure 6 barplot and linegraph.
-#'
+#' @return .rda of steelhead daily loss and export data saved in `data` folder.
 require(tidyverse)
 require(janitor)
 require(usethis)
@@ -12,6 +12,7 @@ current_year <- assign_current_water_year()
 #import loss data from SacPAS -- see import_steelhead_loss_data.R for more details
 load(here("data/steelhead_loss_data.rda"))
 
+#filter to include current water year and unclipped fish only
 current_year_steelhead_loss_data <- steelhead_loss_data %>% 
   filter(WY == current_year,
          adipose_clip == "Unclipped") %>% 

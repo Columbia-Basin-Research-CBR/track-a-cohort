@@ -1,3 +1,8 @@
+#' @title Winter-run Chinook Model Setup - Tillotson et al 2022
+#' @description This script was shared via BOR request to set-up Tillotson et al 2022 winter run chinook model. 
+#' Model can be run with combined facilities (Simple_Combined) or by facility (Simple_FACILITY). For TAC, the model is run with combined facility. 
+#' Main difference between species model code is the response variable, predictors are the same. 
+#' @return script is called in `utils_fct_predict_tillotson_model.R` to predict weekly loss for Winter-run Chinook.
 require(randomForest)
 require(quantregForest)
 require(tidyverse)
