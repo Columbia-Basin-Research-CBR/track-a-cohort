@@ -20,3 +20,4 @@ library(randomForest)
 library(quantregForest)
 library(caret)
 library(gbm)
+library(tinytex) #for pdf output
