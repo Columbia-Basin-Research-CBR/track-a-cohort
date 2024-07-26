@@ -97,6 +97,17 @@ Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroup
 
 -   Issues:
     -   Confirm Single-Year-Thresholds and update to generate automatically
+        -   Tillotson etl al. 2022: "Because less information is available on annual wild Central Valley Steelhead natal origin and abundance, the maximum ITL in a single year is fixed at a loss of 2,760 between December 1 and March 31, and a loss of 3,040 between April 1 and June 15 (NMFS 2019). "
+
+        -   SacPAS: Single-Year Loss Thresholds (PA 4-69): In each year, typically January/February, Reclamation and DWR propose to avoid exceeding an annual loss threshold equal to 90% of the greatest annual loss that occurred in the historical record 2010-2018 for each of:
+
+            -   Natural Winter-Run Chinook Salmon (loss= 1.17% of JPE)
+
+            -   Natural Central Valley Steelhead from December through March (loss =1,414)
+
+            -   Natural Central Valley Steelhead from April through June 15 (loss = 1,552)
+
+            (More information on 4-70)
     -   Confirm only including unclipped
 
 ## Figure 6. Daily Loss and Export by Pumping Facility
@@ -126,7 +137,7 @@ Related links: SacPAS Page, [SacPAS Tillotson Tool](https://www.cbr.washington.e
     -   Confirm shared code is duplicate of the most up-to-date Tillotson code. If this is Tillotson code confirm with authors on use and confirm permissions to include model code in public facing repo. Alternatively, pull results from Loss and Salvage Predictor Tool.
         -   JG or NB to reach out?
     -   Confirm mean() is used for all averages within Tillotson et al., code and not rolling average.
-        -   Update: NB confirms mean() used for weekly averages in Loss and Salvage Predictor Tool. Next step is to confirm Tillotson et al., matches methods.
+        -   Update: NB confirms mean() used for weekly averages in Loss and Salvage Predictor Tool. Tillotson et al., 2022 reports " we aggregated all variables from the daily observations to weekly means.."
     -   Confirm change in plot design
 
 ## Table 1. Model inputs and predictions - Tillotson Model
