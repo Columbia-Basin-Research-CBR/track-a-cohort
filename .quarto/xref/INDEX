@@ -3,7 +3,8 @@
     "index.html": "492e95a2"
   },
   "www/about.qmd": {
-    "about.html": "5b544f2c"
+    "about.html": "5b544f2c",
+    "about.tex": "fe994e6c"
   },
   "src/TAC_steelhead_figures.qmd": {
     "TAC_steelhead_figures.html": "5e6f4a26"
@@ -12,9 +13,11 @@
     "TAC_chinook_figures.html": "f2b1021b"
   },
   "www/TAC_steelhead_figures.qmd": {
-    "TAC_steelhead_figures.html": "c3d1a418"
+    "TAC_steelhead_figures.html": "c3d1a418",
+    "TAC_steelhead_figures.tex": "8b055e1d"
   },
   "www/TAC_chinook_figures.qmd": {
-    "TAC_chinook_figures.html": "147b84eb"
+    "TAC_chinook_figures.html": "147b84eb",
+    "TAC_chinook_figures.tex": "4b8f5066"
   }
 }

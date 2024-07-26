@@ -1,15 +1,6 @@
 ---
 title: "Track-a-Cohort: Steelhead"
 date: "Last updated: `r Sys.Date()`"
-format: html
-output:
-  html_document: 
-   toc: true
-   toc_float: true
-   code_folding: true
-   cache: true 
-editor: visual
-bibliography: ../www/refs/references.bib
 ---
 
 ```{r setup, include=FALSE}

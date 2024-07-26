@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -205,23 +171,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="figure-1.-rbdd-juvenile-passage-estimates" class="level2">
 <h2 class="anchored" data-anchor-id="figure-1.-rbdd-juvenile-passage-estimates">Figure 1. RBDD Juvenile Passage Estimates</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/steelhead_plot_rbdd_biweekly_passage.R"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in geom_line(aes(y = estimated_passage, color = "Daily estimate"), :
-Ignoring unknown parameters: `shape`</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The `trans` argument of `sec_axis()` is deprecated as of ggplot2 3.5.0.
-ℹ Please use the `transform` argument instead.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 31 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 76 rows containing missing values or values outside the scale range
-(`geom_pointrange()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -244,12 +193,6 @@ Ignoring unknown parameters: `shape`</code></pre>
 <h2 class="anchored" data-anchor-id="figure-2.-survival-and-routing-probabilites">Figure 2. Survival and Routing Probabilites</h2>
 <p>Note: Plots below use Winter-run Chinook as a surrogate for Steelhead</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/winter_run_chinook_plot_STARS.R"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
-3.5.0.
-ℹ Please use the `legend.position.inside` argument of `theme()` instead.</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -265,11 +208,6 @@ Ignoring unknown parameters: `shape`</code></pre>
 <section id="figure-3a.-total-loss-of-clipped-and-unclipped-steelhead" class="level3">
 <h3 class="anchored" data-anchor-id="figure-3a.-total-loss-of-clipped-and-unclipped-steelhead">Figure 3a. Total Loss of Clipped and Unclipped Steelhead</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/steelhead_plot_count_total_loss.R"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
-ℹ Please use the `linewidth` argument instead.</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -283,7 +221,6 @@ Ignoring unknown parameters: `shape`</code></pre>
 <section id="figure-3b.-size-distribution-of-loss" class="level3">
 <h3 class="anchored" data-anchor-id="figure-3b.-size-distribution-of-loss">Figure 3b. Size Distribution of Loss</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/steelhead_plot_size_distribution_loss.R"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -298,14 +235,6 @@ Ignoring unknown parameters: `shape`</code></pre>
 <section id="figure-3c.-size-distribution-of-steelhead-loss-by-year" class="level3">
 <h3 class="anchored" data-anchor-id="figure-3c.-size-distribution-of-steelhead-loss-by-year">Figure 3c. Size Distribution of Steelhead Loss By Year</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/steelhead_plot_size_distribution_by_year_loss.R"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggridges::geom_density_ridges(aes(fill = adipose_clip, color =
-adipose_clip), : Ignoring unknown parameters: `draw_baseline`</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Picking joint bandwidth of 11.3</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -320,24 +249,6 @@ adipose_clip), : Ignoring unknown parameters: `draw_baseline`</code></pre>
 <section id="figure-4.-cumulative-loss" class="level2">
 <h2 class="anchored" data-anchor-id="figure-4.-cumulative-loss">Figure 4. Cumulative Loss</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/steelhead_plot_count_cumulative_loss.R"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Adding missing grouping variables: `WY`
-label_key: WY
-Too many data series, skip labeling</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` instead.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in geom_text(aes(x = 330, y = max2024LAD), label = "WY2024 cumulative loss", : All aesthetics have length 1, but the data has 34596 rows.
-ℹ Please consider using `annotate()` or provide this layer with data containing
-  a single row.
-All aesthetics have length 1, but the data has 34596 rows.
-ℹ Please consider using `annotate()` or provide this layer with data containing
-  a single row.</code></pre>
-</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -352,22 +263,6 @@ All aesthetics have length 1, but the data has 34596 rows.
 <section id="figure-5.-cumulative-loss-with-single-year-thresholds" class="level2">
 <h2 class="anchored" data-anchor-id="figure-5.-cumulative-loss-with-single-year-thresholds">Figure 5. Cumulative Loss with Single-Year Thresholds</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/steehead_plot_count_cumulative_loss_single_year_thresholds.R"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in geom_text(aes(x = set_text_date, y = current_year_100pct, label = paste0("100% Single-Year Threshold: ", : All aesthetics have length 1, but the data has 714 rows.
-ℹ Please consider using `annotate()` or provide this layer with data containing
-  a single row.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in geom_text(aes(x = set_text_date, y = current_year_75pct, label = paste0("75% Single-Year Threshold: ", : All aesthetics have length 1, but the data has 714 rows.
-ℹ Please consider using `annotate()` or provide this layer with data containing
-  a single row.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in geom_text(aes(x = set_text_date, y = current_year_50pct, label = paste0("50% Single-Year Threshold: ", : All aesthetics have length 1, but the data has 714 rows.
-ℹ Please consider using `annotate()` or provide this layer with data containing
-  a single row.</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -398,11 +293,6 @@ All aesthetics have length 1, but the data has 34596 rows.
 <section id="figure-6.-daily-loss-and-export-by-pumping-facility" class="level2">
 <h2 class="anchored" data-anchor-id="figure-6.-daily-loss-and-export-by-pumping-facility">Figure 6. Daily Loss and Export by Pumping Facility</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/steelhead_plot_daily_loss_export.R"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
-ℹ Please use the `linewidth` argument instead.</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -423,7 +313,6 @@ All aesthetics have length 1, but the data has 34596 rows.
 <section id="figure-7.-predicted-and-observed-weekly-loss---tillotson-model" class="level2">
 <h2 class="anchored" data-anchor-id="figure-7.-predicted-and-observed-weekly-loss---tillotson-model">Figure 7. Predicted and Observed Weekly Loss - Tillotson Model</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/steelhead_plot_tillotson_predicted_loss.R"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -451,20 +340,10 @@ All aesthetics have length 1, but the data has 34596 rows.
 <section id="table-1.-model-inputs-and-predictions---tillotson-model" class="level2">
 <h2 class="anchored" data-anchor-id="table-1.-model-inputs-and-predictions---tillotson-model">Table 1. Model inputs and predictions - Tillotson Model</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">"data/tillotson_prediction_output.rda"</span>))</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> tillotson_prediction_output<span class="sc">$</span>steelhead_tillotson_output</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#load function to wrangle into table format</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/utils_fct_generate_table_predicted_observed_loss.R"</span>))</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># generate HTML table</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="fu">generate_table_pred_obs_loss</span>(data, <span class="at">species =</span> <span class="st">"Steelhead"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="table-responsive">
 <table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
-<caption>Tillotson et al., (2022) model output of predicted weekly losses for Natural-origin Steelhead with model weekly average inputs including observed loss, Old and Middle Rivers (OMR), USGS tidally filtered flow (CFS), combined exports from CVP &amp; SWP facilities (CFS), flow at Sacramento and San Joaquin (CFS), and water temperature at Mallard Island (°C).</caption>
+<caption>Tillotson et al., (2022) model output of predicted weekly losses for Natural-origin Steelhead with model weekly average inputs including observed loss, Old and Middle Rivers (OMR), USGS tidally filtered flow (CFS), combined exports from CVP and SWP facilities (CFS), flow at Sacramento and San Joaquin (CFS), and water temperature at Mallard Island (°C).</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Water year week</th>
@@ -488,7 +367,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">8124.49</td>
 <td style="text-align: left;">1629.03</td>
 <td style="text-align: left;">16.41</td>
-<td style="text-align: left;">(0, 0, 0.41)</td>
+<td style="text-align: left;">(0, 0, 8.7)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">13</td>
@@ -499,7 +378,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">16180.07</td>
 <td style="text-align: left;">1351.61</td>
 <td style="text-align: left;">11.46</td>
-<td style="text-align: left;">(0, 0, 99.59)</td>
+<td style="text-align: left;">(0, 0, 104.14)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">14</td>
@@ -510,7 +389,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">21761.74</td>
 <td style="text-align: left;">1419.25</td>
 <td style="text-align: left;">11.38</td>
-<td style="text-align: left;">(0, 0, 61.87)</td>
+<td style="text-align: left;">(0, 0, 99.59)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">15</td>
@@ -521,7 +400,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">16860.78</td>
 <td style="text-align: left;">1859.91</td>
 <td style="text-align: left;">10.40</td>
-<td style="text-align: left;">(8.66, 0, 154.45)</td>
+<td style="text-align: left;">(17.32, 0, 216)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">16</td>
@@ -532,7 +411,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">23745.35</td>
 <td style="text-align: left;">1908.47</td>
 <td style="text-align: left;">10.04</td>
-<td style="text-align: left;">(21.65, 0, 219.83)</td>
+<td style="text-align: left;">(17.32, 0, 210.56)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">17</td>
@@ -543,7 +422,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">40931.59</td>
 <td style="text-align: left;">3442.51</td>
 <td style="text-align: left;">10.95</td>
-<td style="text-align: left;">(24.92, 0, 185.88)</td>
+<td style="text-align: left;">(25.98, 0, 303.76)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">18</td>
@@ -554,7 +433,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">39896.78</td>
 <td style="text-align: left;">3793.21</td>
 <td style="text-align: left;">12.09</td>
-<td style="text-align: left;">(132.93, 0, 575.89)</td>
+<td style="text-align: left;">(133.23, 2.65, 575.89)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">19</td>
@@ -565,7 +444,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">61321.77</td>
 <td style="text-align: left;">7148.49</td>
 <td style="text-align: left;">11.54</td>
-<td style="text-align: left;">(272.83, 25.9, 864.5)</td>
+<td style="text-align: left;">(353.56, 24.37, 864.5)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">20</td>
@@ -576,7 +455,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">52035.15</td>
 <td style="text-align: left;">6661.49</td>
 <td style="text-align: left;">11.02</td>
-<td style="text-align: left;">(162.54, 21.43, 555.4)</td>
+<td style="text-align: left;">(160.21, 22.7, 566.05)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">21</td>
@@ -587,7 +466,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">65318.05</td>
 <td style="text-align: left;">9071.54</td>
 <td style="text-align: left;">12.01</td>
-<td style="text-align: left;">(572.15, 71.43, 1826.26)</td>
+<td style="text-align: left;">(572.15, 56.72, 2395.95)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">22</td>
@@ -598,7 +477,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">66389.38</td>
 <td style="text-align: left;">8099.43</td>
 <td style="text-align: left;">12.62</td>
-<td style="text-align: left;">(242.76, 38.75, 704.96)</td>
+<td style="text-align: left;">(215, 24.37, 678.94)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">23</td>
@@ -609,7 +488,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">62429.96</td>
 <td style="text-align: left;">9599.09</td>
 <td style="text-align: left;">11.80</td>
-<td style="text-align: left;">(242.76, 34.14, 680.24)</td>
+<td style="text-align: left;">(225.52, 24.37, 704.96)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">24</td>
@@ -620,7 +499,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">54301.79</td>
 <td style="text-align: left;">5447.43</td>
 <td style="text-align: left;">12.57</td>
-<td style="text-align: left;">(131.12, 8.16, 575.89)</td>
+<td style="text-align: left;">(141.28, 16.32, 575.89)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">25</td>
@@ -631,7 +510,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">42966.66</td>
 <td style="text-align: left;">5248.03</td>
 <td style="text-align: left;">14.07</td>
-<td style="text-align: left;">(132.62, 14.28, 575.89)</td>
+<td style="text-align: left;">(143.22, 20.65, 482.96)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">26</td>
@@ -642,7 +521,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">40745.52</td>
 <td style="text-align: left;">5164.58</td>
 <td style="text-align: left;">14.44</td>
-<td style="text-align: left;">(215, 28.62, 678.94)</td>
+<td style="text-align: left;">(215.23, 37.22, 704.96)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">27</td>
@@ -653,7 +532,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">39568.84</td>
 <td style="text-align: left;">4592.15</td>
 <td style="text-align: left;">14.32</td>
-<td style="text-align: left;">(403.41, 54.58, 1040.63)</td>
+<td style="text-align: left;">(403.41, 56.72, 1040.63)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">28</td>
@@ -664,7 +543,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">30951.90</td>
 <td style="text-align: left;">5046.74</td>
 <td style="text-align: left;">15.12</td>
-<td style="text-align: left;">(116.91, 20.65, 579.66)</td>
+<td style="text-align: left;">(132.62, 16.32, 660.07)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">29</td>
@@ -675,7 +554,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">31798.17</td>
 <td style="text-align: left;">5372.36</td>
 <td style="text-align: left;">16.32</td>
-<td style="text-align: left;">(99.59, 15.97, 321.19)</td>
+<td style="text-align: left;">(99.59, 15.97, 284.17)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">30</td>
@@ -686,7 +565,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">31001.37</td>
 <td style="text-align: left;">5082.57</td>
 <td style="text-align: left;">17.50</td>
-<td style="text-align: left;">(77.19, 0, 292.94)</td>
+<td style="text-align: left;">(76.08, 0, 315.42)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">31</td>
@@ -697,7 +576,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">24835.78</td>
 <td style="text-align: left;">4574.49</td>
 <td style="text-align: left;">17.74</td>
-<td style="text-align: left;">(31.42, 0, 192.85)</td>
+<td style="text-align: left;">(28.15, 0, 192.24)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">32</td>
@@ -708,7 +587,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">29168.95</td>
 <td style="text-align: left;">4512.28</td>
 <td style="text-align: left;">17.60</td>
-<td style="text-align: left;">(34.14, 0, 132.12)</td>
+<td style="text-align: left;">(34.14, 0, 134.34)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">33</td>
@@ -719,7 +598,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">24148.72</td>
 <td style="text-align: left;">7460.78</td>
 <td style="text-align: left;">18.50</td>
-<td style="text-align: left;">(38.97, 0, 215.23)</td>
+<td style="text-align: left;">(38.97, 0, 192.95)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">34</td>
@@ -730,7 +609,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">21611.11</td>
 <td style="text-align: left;">8042.48</td>
 <td style="text-align: left;">19.17</td>
-<td style="text-align: left;">(37.36, 0, 215.23)</td>
+<td style="text-align: left;">(25.98, 0, 192.95)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">35</td>
@@ -741,7 +620,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">17635.37</td>
 <td style="text-align: left;">4448.11</td>
 <td style="text-align: left;">20.09</td>
-<td style="text-align: left;">(8.16, 0, 210.56)</td>
+<td style="text-align: left;">(13.2, 0, 210.56)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">36</td>
@@ -752,7 +631,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">15894.70</td>
 <td style="text-align: left;">3185.75</td>
 <td style="text-align: left;">21.20</td>
-<td style="text-align: left;">(0, 0, 177.28)</td>
+<td style="text-align: left;">(0, 0, 155.88)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">37</td>
@@ -763,7 +642,7 @@ All aesthetics have length 1, but the data has 34596 rows.
 <td style="text-align: left;">15473.27</td>
 <td style="text-align: left;">2264.37</td>
 <td style="text-align: left;">21.57</td>
-<td style="text-align: left;">(0, 0, 177.28)</td>
+<td style="text-align: left;">(0, 0, 155.88)</td>
 </tr>
 </tbody>
 </table>
