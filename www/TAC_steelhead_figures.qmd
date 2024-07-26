@@ -136,8 +136,6 @@ Related links: SacPAS Page, [SacPAS Tillotson Tool](https://www.cbr.washington.e
         -   Update: NB believes this is updated code and will look into comparing and update Loss and Salvage Predictor Tool as needed when time allows (Estimates time in August).
     -   Confirm shared code is duplicate of the most up-to-date Tillotson code. If this is Tillotson code confirm with authors on use and confirm permissions to include model code in public facing repo. Alternatively, pull results from Loss and Salvage Predictor Tool.
         -   JG or NB to reach out?
-    -   Confirm mean() is used for all averages within Tillotson et al., code and not rolling average.
-        -   Update: NB confirms mean() used for weekly averages in Loss and Salvage Predictor Tool. Tillotson et al., 2022 reports " we aggregated all variables from the daily observations to weekly means.."
     -   Confirm change in plot design
 
 ## Table 1. Model inputs and predictions - Tillotson Model
