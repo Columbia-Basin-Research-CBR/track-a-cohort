@@ -4,4 +4,6 @@
 .Ruserdata
 data-raw/WR_Model_Setup.R
 data-raw/Steelhead_Model_Setup.R
+R/brt.functions.R
+R/ITMData.rda
 /.quarto/
