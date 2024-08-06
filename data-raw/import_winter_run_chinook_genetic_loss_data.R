@@ -4,12 +4,10 @@
 #'  As of now, genetic loss data shared by BOR as a flat file `WRGenetic.csv`.
 #'  To be updated with query link from SacPAS when data becomes available.
 #'  @return List of data frames with genetic loss data: 1) cumulative loss and 2) total loss  saved in `data` folder. 
-#'  @import dplyr
-#'  @import lubridate
-#'  @import usethis
-#'  @import here
-#'  @importFrom magrittr %>%
 
+require(tidyverse)
+require(usethis)
+require(here)
 
 # import genetic loss data (currently using BOR shared flat file)
 df_genetic_loss <- read.csv(here::here("data-raw/WRGenetic.csv")) %>%
@@ -75,7 +73,7 @@ add_variables_df <- function(df) {
     filter(!is.na(date)) %>%
     mutate(hydro_type = factor(Yr.type, levels = c("W", "AN", "BN", "D", "C"), labels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical")),
            hydro_type_grp = case_when(
-             hydro_type %in% c("Wet", "Above Normal") ~ "Wet, Above Normal",
+             hydro_type %in% c("Wet", "Above Normal") ~ "Wet & Above Normal",
              hydro_type %in% c("Below Normal", "Dry", "Critical") ~ "Below Normal, Dry, & Critical"
            ))
 }

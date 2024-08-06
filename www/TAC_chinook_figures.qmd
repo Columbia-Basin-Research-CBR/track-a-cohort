@@ -9,14 +9,8 @@ opts_chunk$set(echo = FALSE, warning = FALSE, error = FALSE, message = FALSE)
 ```
 
 ## Background
-format: html
-output:
-  html_document: 
-   toc: true
-   toc_float: true
-   code_folding: true
-   cache: true 
-editor: visual
+
+format: html output: html_document: toc: true toc_float: true code_folding: true cache: true editor: visual
 
 This document uses shared resources via [BDO github](https://github.com/BDO-Science/track-a-cohort){target="_blank"} from BOR to replicate figures requested and adjust underlying code to include dynamic data. See [Track a cohort_WR_plots.docx](https://github.com/BDO-Science/track-a-cohort/blob/main/Track%20a%20Cohort_WR_plots.docx) for figures requested. Certain figures include a link to more interactive plot types using Shiny (in development) and all figures include a link to code in separate CBR developed [github repo](https://github.com/caitobrien/TAC){target="_blank"}.
 
@@ -43,7 +37,7 @@ Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/data/jpe_
 
 ## Figure 2. Survival and Routing Probabilites
 
-```{r,  load_plot_02, fig.width=12, fig.height=18}
+```{r,  load_plot_02, fig.width=12, fig.height=8}
 source(here("R/winter_run_chinook_plot_STARS.R"))
 ```
 

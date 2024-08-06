@@ -84,7 +84,7 @@ add_variables_df <- function(df) {
     filter(!is.na(date)) %>%
     mutate(hydro_type = factor(Yr.type, levels = c("W", "AN", "BN", "D", "C"), labels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical")),
            hydro_type_grp = case_when(
-             hydro_type %in% c("Wet", "Above Normal") ~ "Wet, Above Normal",
+             hydro_type %in% c("Wet", "Above Normal") ~ "Wet & Above Normal",
              hydro_type %in% c("Below Normal", "Dry", "Critical") ~ "Below Normal, Dry, & Critical"
            ))
 }

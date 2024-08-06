@@ -68,23 +68,25 @@ source(here("R/utils_fct_wday_to_month.R"))
               aes(x = 170, y = 9500, label = paste0("*2001\nmax value = ", round(maxvalue2001))), 
               size = 3, fontface = "plain") +
     labs(x = 'Date', 
-         y = 'Cumulative Loss', 
-         title = 'Cumulative Loss by BiOp Status and Hydrologic Classification Index',
-         subtitle = paste0("Species: Winter-run Chinook\nData Years: WY", min(lad_cumulative_loss_data$WY), " to WY", current_year,
+         y = 'Cumulative LAD Loss', 
+         title = 'Cumulative LAD Loss by BiOp Status and Hydrologic Classification Index',
+         subtitle = paste0("Species: Natural Winter-run Chinook\nData Years: WY", min(lad_cumulative_loss_data$WY), " to WY", current_year,
                            "\nCurrent Cumulative Loss: ", round(max_cumloss_current_year,2))) +
     scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
     scale_y_continuous(labels = scales::comma, breaks = seq(0, 10000, by = 2000), limits = c(0, 10000), expand = c(0, 0)) +
-    scale_color_manual(values = c("sienna4", "steelblue4")) +
+    scale_color_manual(values = c("#D95F02", "#00BFFF")) +
     ggh4x::facet_nested(hydro_type_grp ~ status ) + 
     geom_line(data = loss_current_year, aes(x = wDay, y = cumloss), color = "black", size = 1) +
     theme_minimal() +
     theme(
-      axis.line = element_line(color = "grey"),
-      panel.grid.major.x = element_blank(), 
-      panel.grid.minor.y = element_blank(), 
+      # axis.line = element_line(color = "grey"),
+      panel.grid.major = element_line(linetype = "dotted"),
+
       panel.border = element_rect(color = "grey", fill = NA),
       panel.spacing = unit(.5, "cm"),
-      axis.ticks.x = element_line(color = "black"), 
+      axis.ticks = element_line(size = 0.5),
+      panel.grid.minor.x = element_blank(),
+      panel.grid.minor.y = element_blank(),
       text = element_text(size = 15))
 
 

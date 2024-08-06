@@ -48,19 +48,20 @@ p <- genetic_cumulative_loss_data %>%
   filter(pct_cumloss < .01) %>%
   ggplot() +
   geom_line( data = . %>% filter( WY != current_year), aes(x=wDay, y = pct_cumloss, group = WY ), lwd = 1)+ #color = hydro_type_grp
-  geom_line( data = . %>% filter( WY == current_year), aes( x=wDay, y = pct_cumloss, group = WY, linetype = as.factor(WY)), color = "black", lwd = 2)+
-  geom_line(aes(x = 1, y = 0, color = paste0(min(genetic_cumulative_loss_data$WY), " to ", current_year-1)),  data = data.frame(x = NA), show.legend = TRUE) +
+  geom_line( data = . %>% filter( WY == current_year), aes( x=wDay, y = pct_cumloss, group = WY, linetype = as.factor(WY)), color = "#0072B2", lwd = 2)+
+  geom_line(aes(x = 1, y = 0, color = paste0(min(genetic_cumulative_loss_data$WY), " to ", current_year-1, ", with historical WY > WY", current_year,  " labelled")),  data = data.frame(x = NA), show.legend = TRUE) +
   labs(x = 'Date', 
        y = 'Percent Cumulative Loss', 
        title = 'Current and Historical Percent Cumulative Genetic Loss of JPE',
-       subtitle = paste0("Species: Winter-run Chinook\nData Years: WY", min(genetic_cumulative_loss_data$WY), " to WY", current_year-1),
+       subtitle = paste0("Species: Natural Winter-run Chinook\nData Years: WY", min(genetic_cumulative_loss_data$WY), " to WY", current_year),
+       caption = "Data sources: Genetic loss provided by USBR. LAD loss from CDFW Salvage Database.",
        color = "Historical Water Years:",
        linetype = "Current Water Year:") +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) +
-  scale_y_continuous(labels = scales::percent_format()) +
+  scale_y_continuous(labels = scales::percent_format(), expand=c(0,0.0001)) +
   gghighlight(WY == current_year, use_direct_label = FALSE, label_key = WY) +
   # scale_color_manual(values = c("sienna4", "steelblue4", "grey"), 
-  #                    labels = c("Below Normal, Dry, & Critical", "Wet, Above Normal", "WY2023, unassigned"))+ #look into automating naming for NA
+  #                    labels = c("Below Normal, Dry, & Critical", "Wet & Above Normal", "WY2023, unassigned"))+ #look into automating naming for NA
   scale_color_manual(values = "grey") +
   ggrepel::geom_text_repel(data = max_pct_cumloss_per_year %>% 
                                   filter(pct_cumloss >= max_pct_cumloss_current_year & WY !=2001), 
@@ -77,12 +78,14 @@ p <- genetic_cumulative_loss_data %>%
             size = 3, fontface = "plain") +
   guides(linetype = guide_legend(order = 1), color = guide_legend(order = 2, override.aes = aes(label = ""))) + #override to remove "a" from geom_text_repel in legend
   theme_minimal() +
-  theme(legend.position = "bottom",
-        panel.grid.minor.x = element_blank(), 
-        panel.grid.minor.y = element_blank(), 
-        axis.line.x = element_line(color = "black", .5),
-        axis.line.y = element_line(color = "black", .5),
-        axis.ticks = element_line(color = "black"), 
-        text = element_text(size = 15))
+  theme(legend.position = "bottom", 
+        text = element_text(size = 15),
+        panel.grid.major = element_line(linetype = "dotted"),
+        panel.border = element_rect(colour = "black", fill = NA, size = 1),
+        axis.ticks = element_line(size = 0.5),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank()
+        )
+
 
 print(p)

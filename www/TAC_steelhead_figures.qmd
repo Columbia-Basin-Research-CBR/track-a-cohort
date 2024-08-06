@@ -38,7 +38,7 @@ Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/tmp/redbl
 
 Note: Plots below use Winter-run Chinook as a surrogate for Steelhead
 
-```{r,  load_plot_02, fig.width=12, fig.height=18}
+```{r,  load_plot_02, fig.width=12, fig.height=8}
 source(here("R/winter_run_chinook_plot_STARS.R"))
 ```
 

@@ -1,4 +1,4 @@
-#' Figure 3a: JPE loss - compare genetic and LAD loss estimates
+#' JPE loss - compare genetic and LAD loss estimates
 #' @description Barplot comparing JPE loss: genetic vs LAD loss estimates.
 #' Currently using a flat file provided by BOR that will be updated once genetic data
 #' is shared with SacPAS. The LAD loss data is imported directly from SacPAS.
@@ -33,35 +33,34 @@ jpe_genetic_lad_data <- genetic_total_loss_data %>%
 p <- jpe_genetic_lad_data %>%
   filter(value_type == "total_loss") %>%
   ggplot(aes(x = as.factor(WY), y = value, fill = method)) +
-  geom_bar(stat = "identity", position = position_dodge(preserve = "single")) +
+  geom_bar(stat = "identity", position = position_dodge(.7, preserve = "single")) +
   labs(
     title = "Genetic vs Length-At-Date (LAD) Loss of JPE by Water Year",
-    subtitle = "Species: Winter-run Chinook",
+    subtitle = "Species: Natural Winter-run Chinook",
+    caption = "Data sources: Genetic loss provided by USBR. LAD loss from CDFW Salvage Database.",
     x = "Water Year",
     y = "Total loss",
     fill = NULL
   ) +
-  scale_y_continuous(expand = c(0, 0), labels = scales::comma_format()) +
+  scale_y_continuous(expand = c(0, 100), labels = scales::comma_format()) +
   scale_fill_manual(
-    values = c("black", "grey"),
+    values = c("#00BFFF", "#0072B2"),
     # breaks = c("count_gen", "count_lad"),
     labels = c("Genetic", "LAD")
   ) +
   theme_minimal() +
-  theme(
-    legend.position = "bottom",
-    axis.text.x = element_text(angle = 90, hjust = 1, vjust = .5),
-    panel.grid.major.x = element_blank(),
-    axis.line.x = element_line(color = "black", .5),
-    axis.ticks.x = element_line(color = "black"),
-    text = element_text(size = 15)
-  )
+  theme(legend.position = "bottom", 
+        axis.text.x = element_text(angle = 90, vjust = .5, hjust = 1), 
+        text = element_text(size = 15),
+        panel.grid.major.y = element_line(linetype = "dotted"),
+        panel.border = element_rect(colour = "black", fill = NA, size = 1),
+        axis.ticks = element_line(size = 0.5),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.x = element_blank()
+     )
 
 print(p)
 
 
-# Notes:
-# currently missing 2007 JPE data from SacPAS
-# No 2005 genetic data
-# filter WY data to match genetic data years provided by BOR
-# plot by BY or WY?
+

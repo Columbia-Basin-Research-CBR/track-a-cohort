@@ -66,7 +66,7 @@ wrangle_plot_data<- function(data, selected_loss, selected_hydro = "TRUE", selec
   #set grouping variables as factors, renaming NA values to "Unassigned"
   filtered_data <- filtered_data %>%
     mutate(hydro_type_grp = ifelse(is.na(hydro_type_grp), "Unassigned", as.character(hydro_type_grp)),
-           hydro_type_grp = factor(hydro_type_grp, levels = c("Wet, Above Normal", "Below Normal, Dry, & Critical", "Unassigned")),
+           hydro_type_grp = factor(hydro_type_grp, levels = c("Wet & Above Normal", "Below Normal, Dry, & Critical", "Unassigned")),
            status = factor(status, levels = c('Pre-2009 BiOp\n(1994 to 2008)', '2009 & 2019 BiOp\n(2009 to present)')))
   
 
@@ -123,7 +123,7 @@ wrangle_plot_data<- function(data, selected_loss, selected_hydro = "TRUE", selec
     # Set color based on whether it's the current year or not
     unique_years <- unique(filtered_data$WY)
     filtered_data <- filtered_data %>%
-      mutate(line_color = case_when(hydro_type_grp == "Wet, Above Normal" ~ "#c3d7e2",
+      mutate(line_color = case_when(hydro_type_grp == "Wet & Above Normal" ~ "#c3d7e2",
                                     hydro_type_grp == "Below Normal, Dry, & Critical" ~ "#bcb18b",
                                     hydro_type_grp == "Unassigned" && WY != current_year ~ "grey",
                                     WY == current_year ~ "black"))
@@ -141,7 +141,7 @@ wrangle_plot_data<- function(data, selected_loss, selected_hydro = "TRUE", selec
     
     
       # # Color lines by hydro_type_grp
-      # color <-  c("Wet, Above Normal"  = "#c3d7e2", "Below Normal, Dry, & Critical" = "#bcb18b", "Unassigned" = "#000000")
+      # color <-  c("Wet & Above Normal"  = "#c3d7e2", "Below Normal, Dry, & Critical" = "#bcb18b", "Unassigned" = "#000000")
       # 
       # p <- p %>% add_trace(data = data, x = ~wDay, y = as.formula(paste0("~", y_col)), type = 'scatter', mode = 'lines',
       #                      color = ~hydro_type_grp, colors = color,
@@ -211,7 +211,7 @@ wrangle_plot_data<- function(data, selected_loss, selected_hydro = "TRUE", selec
   } else if(selected_hydro == "TRUE" && selected_biop == "TRUE") {
       # Color lines by hydro_type_grp 
     # Future update: look into assigning 2023 as grey and 2024 as black
-      color <-  c("Wet, Above Normal"  = "#c3d7e2", "Below Normal, Dry, & Critical" = "#bcb18b", "Unassigned" = "grey")
+      color <-  c("Wet & Above Normal"  = "#c3d7e2", "Below Normal, Dry, & Critical" = "#bcb18b", "Unassigned" = "grey")
       
       # Subset data based on 'status'
       data_pre_2009 <- filtered_data %>% filter(status == 'Pre-2009 BiOp\n(1994 to 2008)' & WY != current_year)
