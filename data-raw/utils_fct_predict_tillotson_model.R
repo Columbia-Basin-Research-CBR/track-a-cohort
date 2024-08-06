@@ -14,7 +14,7 @@ current_year <- assign_current_water_year()
 source(here("data-raw/utils_fct_import_river_data.R"))
 
 # import functions needed to run Tillotson model (shared by BOR)
-source(here("R/brt.functions.r"))
+source(here("R/brt.functions.R"))
 load(here("R/ITMData.rda"))
 
 
