@@ -12,7 +12,7 @@
 
 
 # import genetic loss data (currently using BOR shared flat file)
-df_genetic_loss <- read.csv(here::here("data-raw/WRgenetic.csv")) %>%
+df_genetic_loss <- read.csv(here::here("data-raw/WRGenetic.csv")) %>%
   mutate(date = mdy(SampleDateTime)) %>%
   rename(loss = "Loss_GeneticData") %>%
   arrange(date) %>%
