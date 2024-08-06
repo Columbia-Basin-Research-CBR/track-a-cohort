@@ -11,7 +11,7 @@ require(stringr)
 require(lubridate)
 require(zoo)
 require(caret)
-source(here::here("R/brt.functions.r"))
+source(here::here("R/brt.functions.R"))
 select <- dplyr::select
 load(here::here("R/ITMData.rda"))
 

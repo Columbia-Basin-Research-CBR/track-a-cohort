@@ -10,7 +10,7 @@ require(stringr)
 require(lubridate)
 require(zoo)
 require(caret)
-source(here("R/brt.functions.r"))
+source(here("R/brt.functions.R"))
 select <- dplyr::select
 load(here("R/ITMData.rda"))
 

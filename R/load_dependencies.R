@@ -1,4 +1,5 @@
 #load_dependencies.R
+library(data.table)
 library(gghighlight)
 library(ggplot2)
 library(ggrepel)
