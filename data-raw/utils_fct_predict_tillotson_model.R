@@ -4,7 +4,7 @@
 require(tidyverse)
 require(janitor)
 require(here)
-require(fread)
+require(data.table)
 
 # assign current water year
 source(here("R/utils_fct_assign_current_water_year.R"))
