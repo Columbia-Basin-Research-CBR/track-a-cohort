@@ -172,3 +172,8 @@ tillotson_prediction_output <- list(winter_run_tillotson_output = winter_run_til
 
 
 usethis::use_data(tillotson_prediction_output, overwrite = TRUE)
+
+# Save each dataset as a CSV file in the data folder (for use in SacPAS table generated on webpage)
+write.csv(tillotson_prediction_output$winter_run_tillotson_output, file = here::here("data", "winter_run_tillotson_output.csv"), row.names = FALSE)
+
+write.csv(tillotson_prediction_output$steelhead_tillotson_output, file = here::here("data", "steelhead_tillotson_output.csv"), row.names = FALSE)
