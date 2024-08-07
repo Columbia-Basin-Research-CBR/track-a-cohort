@@ -1,4 +1,4 @@
-#' @title Figure 7. Prediction of Weekly Losses of Steelhead
+#' @title Prediction of Weekly Losses of Steelhead
 #' @description Plots the predicted weekly losses of Steelhead salmon in the Sacramento River from the Tillotson et al. (2022) model
 require(tidyverse)
 require(here)
@@ -32,8 +32,8 @@ p <- steelhead_tillotson_output %>%
   geom_ribbon(aes(ymin = lowerCI, ymax = upperCI, fill = "Predicted loss,\nmedian with 90% CI"), alpha = 0.3) +
   geom_line(aes(y = median, color = "Predicted loss,\nmedian with 90% CI")) +
   geom_point(aes(y = median, color = "Predicted loss,\nmedian with 90% CI")) +
-  labs(title = "Predicted Weekly Losses - Tillotson et al. (2022)",
-       subtitle = paste("Species: Steelhead\nWater Year:", current_year),
+  labs(title = "Predicted Weekly Loss - Tillotson et al. (2022)",
+       subtitle = paste("Species: Unclipped Steelhead\nWater Year:", current_year),
        x = "Week",
        y = "Predicted Weekly Loss", 
        fill = NULL,
@@ -41,16 +41,20 @@ p <- steelhead_tillotson_output %>%
        shape = NULL) +
   scale_shape_manual(values = c("Observed Weekly Loss" = 21),
                      breaks = c("Observed Weekly Loss")) +
-  scale_color_manual(values = c("Predicted loss,\nmedian with 90% CI" = "steelblue"),
+  scale_color_manual(values = c("Predicted loss,\nmedian with 90% CI" = "#0072B2"),
                      breaks = c("Predicted loss,\nmedian with 90% CI", "Observed Weekly Loss")) +
-  scale_fill_manual(values = c("Predicted loss,\nmedian with 90% CI" = "steelblue"),
+  scale_fill_manual(values = c("Predicted loss,\nmedian with 90% CI" = "#0072B2"),
                     breaks = c("Predicted loss,\nmedian with 90% CI")) +
   scale_x_date(date_breaks = "1 month", date_labels = "%b", limits = c(start_limit, end_limit), expand = c(0,0)) +  guides(fill = guide_legend(order = 1),
          color = guide_legend(order = 1)) +
   theme_minimal() +
-  theme(text = element_text(size = 15),
+  theme(legend.position = "bottom",
+        text = element_text(size = 15),
+        panel.grid.major = element_line(linetype = "dotted"),
+        panel.border = element_rect(colour = "black", fill = NA, size = 1),
+        axis.ticks = element_line(size = 0.5),
         panel.grid.minor.x = element_blank(),
         panel.grid.minor.y = element_blank()
-        )
+  )
 
 print(p)

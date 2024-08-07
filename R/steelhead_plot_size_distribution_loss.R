@@ -15,28 +15,37 @@ current_year <- assign_current_water_year()
 
 #plot
 p <- steelhead_loss_data %>% 
-  filter(length < 750) %>%  #set limit for length -- why 750 seems big?
-  # filter(WY > 2004) %>% #why filtering WY after 2004? -- this was in shared BOR script
+  filter(length < 750) %>%  # set limit for length -- why 750 seems big?
   ggplot() +
-  geom_density( data = . %>% filter(WY != current_year), 
-                mapping = aes(x = length, fill = adipose_clip, color = adipose_clip), alpha = .25) +
   geom_histogram(data = . %>% filter(WY == current_year), 
-                 mapping = aes(x = length, y=after_stat(density), fill = adipose_clip, color = adipose_clip), 
-                 bins = 50,
-                 alpha = 0.7) +
+                 mapping = aes(x = length, y = after_stat(density), fill = adipose_clip, color = adipose_clip), 
+                 bins = 50, color = "white") +
+  geom_density(data = . %>% filter(WY != current_year), 
+               mapping = aes(x = length, fill = adipose_clip, color = adipose_clip), alpha = .25) +
+  
   labs(x = 'Fork Length (mm)', 
        y = 'Density', 
-       title = "Current and Historical Size Distribution By Rear Type",
-       subtitle = paste0("Species: Steelhead\nCurrent Water Year: ", current_year,
-                         "\nHistorical Water Years: ", min(steelhead_loss_data$WY) , " to ",max(steelhead_loss_data$WY) )) +
-  scale_fill_manual(values = c("grey30", "grey70")) +
-  scale_color_manual(values = c("grey30", "grey70")) +
+       title = "Current and Historical Size Distribution of Clipped and Unclipped Steelhead",
+       subtitle = paste0("Current Water Year: ", current_year,
+                         "\nHistorical Water Years: ", min(steelhead_loss_data$WY), " to ", max(steelhead_loss_data$WY-1)),
+       fill =  paste0("Histogram (WY", current_year, "):"), 
+       color = paste0("Density (WY", min(steelhead_loss_data$WY), "-WY", max(steelhead_loss_data$WY-1), "):"),
+       caption = "Data sources: Preliminary data from CDFW; subject to revision.") +
+  scale_fill_manual(values = c("#0072B2", "#F5C767")) +
+  scale_color_manual(values = c("#0072B2", "#F0AD1F")) +
   facet_wrap(~adipose_clip, ncol = 1) +
+  guides(fill = guide_legend(override.aes = list(color = "white")),
+         color = guide_legend(override.aes = list(alpha = 0.25, fill = c("#0072B2", "#F5C767")))) +
   theme_minimal() +
-  theme(text = element_text(size = 15),
-        legend.position = "none",
-        panel.border= element_rect(color = "grey80", fill = NA), 
-        panel.grid.minor = element_blank(),
-        panel.grid.major.x = element_blank(), axis.ticks = element_line(size = .25, color = "grey80"))
+  theme(
+    legend.position = "bottom", 
+    text = element_text(size = 15),
+    panel.grid.major.y = element_line(linetype = "dotted"),
+    panel.border = element_rect(colour = "black", fill = NA, size = 1),
+    axis.ticks = element_line(size = 0.5),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_blank()
+  )
 
 print(p)

@@ -141,6 +141,7 @@ p <- cumloss_current_year_filled %>%
   theme(
     panel.grid.major = element_line(linetype = "dotted"),
     panel.grid.minor = element_blank(),
+    axis.ticks = element_line(size = 0.5),
     panel.background = element_rect(color = "black", fill = "transparent", size = 1),
     legend.position = "bottom",
     text = element_text(size = 15))

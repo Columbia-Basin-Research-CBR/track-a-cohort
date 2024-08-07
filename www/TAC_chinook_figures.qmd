@@ -94,13 +94,13 @@ Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/
 
 ### 
 
-```{r, load_plot5a, fig.width=10, fig.height=6}
+```{r, load_plot5a, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R"))
 ```
 
 ### 
 
-```{r, load_plot5b, fig.width=10, fig.height=6}
+```{r, load_plot5b, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R"))
 ```
 

@@ -27,25 +27,26 @@ p1 <- steelhead_loss_export_data %>%
   geom_line(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
   geom_vline(omrValues, mapping = aes(xintercept = date), color = 'black') +
   geom_text(omrValues, mapping = aes(x = date, y = 200, label = paste("OMR:", value)), color = 'black', angle = -90, size = 3, vjust = 1) +
-  labs(title = "Daily Loss and Export",
-       subtitle = paste("Species: Steelhead",
+  labs(title = "Daily Loss and Export at CVP/SWP Facilities",
+       subtitle = paste("Species: Clipped and Unclipped Steelhead",
                         "\nCurrent Water Year:", current_year,
                         "\n\nComparison of facilities, CVP and SWP"),
        x = NULL,
        y = "Daily loss",
        y.sec = "Pumping Discharge (cfs)",
-       color = "Facility",
-       fill = "Facility") +
-  scale_x_date(date_breaks = "1 month", date_labels = "%m/%y") +
+       fill = "Daily loss by facility: ",
+       color = "Pumping discharge by facility:") +
+  scale_x_date(date_breaks = "2 month", date_labels = "%m/%y") +
   scale_y_continuous(sec.axis = sec_axis(~./ratio, name = "Pumping Discharge (cfs)")) + # Add secondary axis
-  scale_color_manual(values = c("#E1BE6A", "#40B0A6")) +
-  scale_fill_manual(values = c("#E1BE6A", "#40B0A6")) +
+  scale_color_manual(values = c("#F5C767", "#00BFFF")) +
+  scale_fill_manual(values = c("#CE900D","#0072B2" )) +
   theme_minimal() + 
   theme(legend.position = "none",
         plot.subtitle =  element_text(face = "plain", size = 13),
         text = element_text(size = 15),
         # axis.text.x = element_text(angle = 90, vjust = 0.5),
-        panel.grid.minor.y = element_blank(),
+        panel.grid.major = element_line(linetype = "dotted", color = "grey"),
+        panel.grid.minor = element_blank(),
         panel.border = element_rect(color = "grey", fill = NA, size = 0.5))
 
 
@@ -58,18 +59,19 @@ p2 <- steelhead_loss_export_data %>%
        x = "Date",
        y = "Daily Loss",
        y.sec = "Pumping Discharge (cfs)",
-       color = "Facility",
-       fill = "Facility") + 
+       fill = "Daily loss by facility: ",
+       color = "Pumping by facility:") + 
   scale_x_date(date_breaks = "2 month", date_labels = "%m/%y") +
   scale_y_continuous(sec.axis = sec_axis(~./ratio, name = "Pumping Discharge (cfs)")) + # Add secondary axis
-  scale_color_manual(values = c("#E1BE6A", "#40B0A6")) +
-  scale_fill_manual(values = c("#E1BE6A", "#40B0A6")) +
+  scale_color_manual(values = c("#F5C767", "#00BFFF")) +
+  scale_fill_manual(values = c("#CE900D","#0072B2" )) +
   theme_minimal() + 
   facet_grid(~facility) +
   theme(legend.position = "bottom",
         text = element_text(size = 15),
         # axis.text.x = element_text(angle = 90, vjust = 0.5),
-        panel.grid.minor.y = element_blank(),
+        panel.grid.major = element_line(linetype = "dotted"),
+        panel.grid.minor = element_blank(),
         panel.border = element_rect(color = "grey", fill = NA, size = 0.5))
 
 p <- p1  / p2

@@ -59,16 +59,22 @@ cumloss_current_year <- steelhead_loss_data_unclipped %>%
   group_by(management_period) %>%
   mutate(cum_loss_mgt = cumsum(loss))
 
-# Calculate the first date minus 2 weeks to give space for labels - adjust as needed
-set_text_date <- min(cumloss_current_year$date) - weeks(2)
 
-# Update to set 100% loss limit when known
-current_year_100pct <- 1414 + 1552 # setting 100% loss limit for steelhead at Dec-June loss reported on SacPAS
-current_year_75pct <- current_year_100pct*.75
-current_year_50pct <- current_year_100pct*.50
+# Set loss threshold for each management period
+current_year_mgmt1_100pct <- 1414  
+current_year_mgmt1_75pct <- current_year_mgmt1_100pct*.75
+current_year_mgmt1_50pct <- current_year_mgmt1_100pct*.50
+
+current_year_mgmt2_100pct <- 1552 
+current_year_mgmt2_75pct <- current_year_mgmt2_100pct*.75
+current_year_mgmt2_50pct <- current_year_mgmt2_100pct*.50
 
 # set management threshold line
-management_period <- as.numeric(ymd(paste0(current_year,"-03-31")))
+management_period_start <- as.Date(paste0(current_year,"-03-31"))
+management_period_end <- as.Date(paste0(current_year,"-06-15"))
+
+#set start date for xlim 
+start_date <- as.Date(paste0(current_year - 1, "-10-01"))
 
 # Calculate maximum cumulative loss for each management period
 max_loss_by_period <- cumloss_current_year %>%
@@ -81,44 +87,57 @@ max_loss_by_period <- cumloss_current_year %>%
 
 max_loss_by_period$management_period[1]
 
+
 # plot
 p <- cumloss_current_year %>% 
-  ggplot(aes(x= date, y = cum_loss_mgt)) +
+  ggplot(aes(x= date, y = cum_loss_mgt, group = management_period, color = management_period)) +
   geom_point(data = . %>% filter(management_period == management_period[1])) +
-  geom_line(data = . %>% filter( management_period == management_period[1])) +
-  geom_point(data = . %>% filter( management_period == management_period[2])) +
+  geom_line(data = . %>% filter(management_period == management_period[1])) +
+  geom_point(data = . %>% filter(management_period == management_period[2])) +
   geom_line(data = . %>% filter(management_period == management_period[2])) +
-  geom_vline(xintercept = management_period, linetype = "dashed", color = "grey50") +
-  geom_hline(yintercept = current_year_100pct, linetype = "dashed", color = "red4") +
-  geom_text(aes(x = set_text_date, y = current_year_100pct, label = paste0("100% Single-Year Threshold: ", round(current_year_100pct,2))), hjust = 0, vjust = 2, color = "red4", size = 3) +
-  geom_hline(yintercept = current_year_75pct, linetype = "dashed", color = "#CC7722") +
-  geom_text(aes(x = set_text_date, y = current_year_75pct, label = paste0("75% Single-Year Threshold: ", round(current_year_75pct,2))), hjust = 0, vjust = 2, color = "#CC7722", size = 3) +
-  geom_hline(yintercept = current_year_50pct, linetype = "dashed", color = "goldenrod3") +
-  geom_text(aes(x = set_text_date, y = current_year_50pct, label = paste0("50% Single-Year Threshold: ", round( current_year_50pct,2))), hjust = 0, vjust = 2, color = "goldenrod3", size = 3) +
-  geom_vline(xintercept = as.numeric(wDay_to_date(wDay_today, current_year)), linetype = "dashed", color = "blue2") +
+  geom_vline(xintercept = management_period_start, linetype = "dashed", color = "darkgrey", show.legend = TRUE) +
+  #set thresholds for management period 1
+  geom_segment(y = current_year_mgmt1_100pct, x = start_date, xend = management_period_start, linetype = "dashed", color = "red4") +
+  geom_text(aes(x = start_date, y = current_year_mgmt1_100pct, label = paste0("100% Single-Year Threshold: ", round(current_year_mgmt1_100pct,2))), hjust = 0, vjust = 2, color = "red4", size = 3) +
+  geom_segment(y = current_year_mgmt1_75pct, x = start_date, xend = management_period_start, linetype = "dashed", color = "#CC7722") +
+  geom_text(aes(x = start_date, y = current_year_mgmt1_75pct, label = paste0("75% Single-Year Threshold: ", round(current_year_mgmt1_75pct,2))), hjust = 0, vjust = 2, color = "#CC7722", size = 3) +
+  geom_segment(y = current_year_mgmt1_50pct, x = start_date, xend = management_period_start, linetype = "dashed", color = "goldenrod3") +
+  geom_text(aes(x = start_date, y = current_year_mgmt1_50pct, label = paste0("50% Single-Year Threshold: ", round( current_year_mgmt1_50pct,2))), hjust = 0, vjust = 2, color = "goldenrod3", size = 3) +
+  #set thresholds for management period 2
+  geom_segment(y = current_year_mgmt2_100pct, x = management_period_start, xend = management_period_end, linetype = "dashed", color = "red4") +
+  geom_text(aes(x = management_period_start, y = current_year_mgmt2_100pct, label = paste0("100% Single-Year Threshold: ", round(current_year_mgmt2_100pct,2))), hjust = 0, vjust = 2, color = "red4", size = 3) +
+  geom_segment(y = current_year_mgmt2_75pct, x = management_period_start, xend = management_period_end, linetype = "dashed", color = "#CC7722") +
+  geom_text(aes(x = management_period_start, y = current_year_mgmt2_75pct, label = paste0("75% Single-Year Threshold: ", round(current_year_mgmt2_75pct,2))), hjust = 0, vjust = 2, color = "#CC7722", size = 3) +
+  geom_segment(y = current_year_mgmt2_50pct, x = management_period_start, xend = management_period_end,  linetype = "dashed", color = "goldenrod3") +
+  geom_text(aes(x = management_period_start, y = current_year_mgmt2_50pct, label = paste0("50% Single-Year Threshold: ", round( current_year_mgmt2_50pct,2))), hjust = 0, vjust = 2, color = "goldenrod3", size = 3) +
+  # set current date threshold
+  # geom_vline(aes(xintercept = as.numeric(wDay_to_date(wDay_today, current_year)), color = "Current Date", linetype = "Current Date")) +
   geom_label_repel(data = max_loss_by_period,
                    aes(x = max_date, 
                        y = max_cum_loss_mgt, 
-                       label = paste0("Cumulative loss: ", round(max_cum_loss_mgt,2),"\n% of Single-Year Threshold: ", round((max_cum_loss_mgt/current_year_100pct)*100, 2), "%")),
+                       label = paste0("Cumulative loss: ", round(max_cum_loss_mgt,2),"\n% loss of Single-Year Threshold: ", ifelse(management_period == management_period[1], round((max_cum_loss_mgt/current_year_mgmt1_100pct)*100, 2), round((max_cum_loss_mgt/current_year_mgmt2_100pct)*100, 2)), "%" )),
                    size = 3, 
-                   nudge_x = 1, # Adjust nudge_x and nudge_y as needed to position the label
+                   nudge_x = 0, # Adjust nudge_x and nudge_y as needed to position the label
                    nudge_y = 400, 
                    hjust = 0,
                    color = "black") +
-  scale_x_date(date_labels = "%m/%d", date_breaks = "1 month") +
-  # scale_y_continuous(expand = c(0,NA), limits = c(0,5000)) +
-  labs(title = "Cumulative LAD Loss for Current Water Year with Single-Year Thresholds",
-       subtitle = paste0("Species: Steelhead\nCumulative loss 12/31-3/31: ", round(filter(max_loss_by_period, management_period == 	"12/1 - 3/31")$max_cum_loss_mgt,2),
-                         "\nCumulative loss 4/1-6/15: ", round(filter(max_loss_by_period, management_period == "4/1 - 6/15")$max_cum_loss_mgt),2),
+  scale_x_date(date_labels = "%m/%d", date_breaks = "1 month", limits = c(start_date,management_period_end), expand = c(.01,.01)) +
+  scale_y_continuous(expand = c(0,100)) +
+  scale_color_manual(values = c("12/1 - 3/31" = "#0072B2", "4/1 - 6/15" = "#00BFFF"), name = "Management period:") +
+  # scale_linetype_manual() +
+  labs(title = paste0("Cumulative Loss for WY", current_year, " with Single-Year Thresholds"),
+       subtitle = paste0("Species: Unclipped Steelhead\nCumulative loss 12/31-3/31: ", round(filter(max_loss_by_period, management_period == 	"12/1 - 3/31")$max_cum_loss_mgt,2),
+                         "\nCumulative loss 4/1-6/15: ", round(filter(max_loss_by_period, management_period == "4/1 - 6/15")$max_cum_loss_mgt,2)),
        x = "Date",
        y = "Cumulative Loss") +
   theme_minimal() +
   theme(
-        panel.grid.minor = element_blank(),
-        panel.background = element_rect(color = "black", fill = "transparent"),
-        # plot.background = element_rect(color = "black", fill = "white"),
-        legend.position = "bottom", 
-        text = element_text(size = 15))
+    panel.grid.major = element_line(linetype = "dotted"),
+    panel.grid.minor = element_blank(),
+    axis.ticks = element_line(size = 0.5),
+    panel.background = element_rect(color = "black", fill = "transparent", size = 1),
+    legend.position = "bottom",
+    text = element_text(size = 15))
 
 print(p)
 

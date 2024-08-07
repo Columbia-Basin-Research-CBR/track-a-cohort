@@ -59,21 +59,23 @@ p<- steelhead_loss_data %>%
   labs(x = 'Date', 
        y = 'Cumulative Loss', 
        title = 'Cumulative Loss by BiOp Status and Hydrologic Classification Index',
-       subtitle = paste0("Species: Steelhead\nData Years: WY",min(steelhead_loss_data$WY), " to WY", max(steelhead_loss_data$WY),
-                         "\nCurrent Cumulative Loss: ", round(max2024LAD,2))) +
+       subtitle = paste0("Species: Clipped and Unclipped Steelhead\nData Years: WY",min(steelhead_loss_data$WY), " to WY", max(steelhead_loss_data$WY),
+                         "\nCurrent Cumulative Loss: ", round(max2024LAD,2)),
+       caption = "Data source: Preliminary data from CDFW; subject to revision. Hydrological Classification Index from CDEC") +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
   scale_y_continuous(labels = scales::comma,limits = c(0, 40000),  expand = c(0, 0)) +
-  scale_color_manual(values = c( "sienna4", "steelblue4"))+
+  scale_color_manual(values = c("#D95F02", "#00BFFF")) +
   ggh4x::facet_nested(hydro_type_grp ~ status ) + 
   geom_line(data = loss_current_year, aes(x = wDay, y = cumloss), color = "black",size = 1) +
   theme_minimal() +
   theme(
-    axis.line = element_line(color = "grey"),
-    panel.grid.major.x = element_blank(), 
-    panel.grid.minor.y = element_blank(), 
+    # axis.line = element_line(color = "grey"),
+    panel.grid.major = element_line(linetype = "dotted"),
     panel.border = element_rect(color = "grey", fill = NA),
     panel.spacing = unit(.5, "cm"),
-    axis.ticks.x = element_line(color = "black"), 
+    axis.ticks = element_line(size = 0.5),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.minor.y = element_blank(),
     text = element_text(size = 15))
 
 print(p)

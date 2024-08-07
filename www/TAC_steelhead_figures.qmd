@@ -21,7 +21,7 @@ source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
 ```
 
-## Figure 1. RBDD Juvenile Passage Estimates
+## RBDD Juvenile Passage Estimates
 
 ```{r, load_plot_01, fig.width=10, fig.height=6}
 source(here("R/steelhead_plot_rbdd_biweekly_passage.R"))
@@ -30,11 +30,12 @@ source(here("R/steelhead_plot_rbdd_biweekly_passage.R"))
 Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/tmp/redbluffdaily_1714603318_94.html){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_annual_jpe.R){target="_blank"}
 
 -   Issues:
+    -    Remove from R code? If keeping:
     -   Update biweekly shaded areas based on SI generated methods
     -   Continue to match the same 0 line cutoff as on SacPAS or leave space to show points at 0 line?
     -   Confirm Calendar Year or Water Year. Currently code only pulls current year based on today's date. To look at water year will need to adjust code to include query link.
 
-## Figure 2. Survival and Routing Probabilites
+## Delta STARs Survival and Routing Probabilities
 
 Note: Plots below use Winter-run Chinook as a surrogate for Steelhead
 
@@ -42,35 +43,39 @@ Note: Plots below use Winter-run Chinook as a surrogate for Steelhead
 source(here("R/winter_run_chinook_plot_STARS.R"))
 ```
 
-Related links: SacPAS Page, [Interactive Plot](https://csobrien.shinyapps.io/WRChinookSTARS/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
+Related links: [Interactive Plot](https://csobrien.shinyapps.io/WRChinookSTARS/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
 
-## Figure 3. Comparison of Clipped and Unclipped Loss
+## Total Loss - Clipped and Unclipped Steelhead
 
-### Figure 3a. Total Loss of Clipped and Unclipped Steelhead
+### 
 
 ```{r load_plot_03a, fig.width=10, fig.height=6}
 source(here("R/steelhead_plot_count_total_loss.R"))
 ```
 
-Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_count_total_loss.R){target="_blank"}
+Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/data/query_loss_detail.html){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_count_total_loss.R){target="_blank"}
 
-### Figure 3b. Size Distribution of Loss
+Issues:
 
-```{r load_plot_03b, fig.width=10, fig.height=6, fig.cap="Figure compares density plots that highlight historical (WY1994 to WY2023) size distribution and histogram of current year (WY2024) size distribution by rear type (dark grey = unclipped; light grey = clipped). Fork lengths below 750 mm were included in dataset."}
+- Confirm data source footnote
+
+## Size (Fork Length) Distribution of Steelhead Loss
+
+```{r load_plot_03b, fig.width=10, fig.height=6, fig.cap="Figure compares density plots that highlight historical (WY1994 to WY2023) size distribution and histogram of current year (WY2024) size distribution by rear type (yellow = unclipped; blue = clipped). Fork lengths below 750 mm were included in dataset."}
 source(here("R/steelhead_plot_size_distribution_loss.R"))
 ```
 
-Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_size_distribution_loss.R){target="_blank"}
+Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/data/query_loss_detail.html){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_size_distribution_loss.R){target="_blank"}
 
-### Figure 3c. Size Distribution of Steelhead Loss By Year
 
-```{r load_plot_03c, fig.width=6, fig.height=10}
+
+```{r load_plot_03c, fig.width=8, fig.height=10}
 source(here("R/steelhead_plot_size_distribution_by_year_loss.R"))
 ```
 
-Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_size_distribution_by_year_loss.R){target="_blank"}
+Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/data/query_loss_detail.html){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_size_distribution_by_year_loss.R){target="_blank"}
 
-## Figure 4. Cumulative Loss
+## Cumulative Loss by BiOp Status and Hydrological Classification Index (HCI)
 
 ```{r load_plot_04, fig.width=10, fig.height=10, fig.cap="The figure shows cumulative loss by BiOp Status and Hydrological Classification Index (HCI). Each quadrant of the faceted plot includes grey lines for historical years, colored lines (blue for wet years, red for dry years) for years within the BiOp status and HCI type, a black line for the current year, and a dashed horizontal line indicating the current cumulative loss maximum."}
 source(here("R/steelhead_plot_count_cumulative_loss.R"))
@@ -78,9 +83,17 @@ source(here("R/steelhead_plot_count_cumulative_loss.R"))
 
 Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_count_cumulative_loss.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
 
-## Figure 5. Cumulative Loss with Single-Year Thresholds
+Issues: 
 
-```{r load_plot_05, fig.width=10, fig.height=6}
+- Confirm use of clipped and unclipped in dataset
+
+- Add legend key
+
+- Confirm data source footnote
+
+## Cumulative Loss with Single-Year Thresholds
+
+```{r load_plot_05, fig.width=10, fig.height=8}
 source(here("R/steehead_plot_count_cumulative_loss_single_year_thresholds.R"))
 ```
 
@@ -101,7 +114,7 @@ Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroup
             (More information on 4-70)
     -   Confirm only including unclipped
 
-## Figure 6. Daily Loss and Export by Pumping Facility
+## Daily Loss and Export by Pumping Facility
 
 ```{r, load_plot_06, fig.width=12, fig.height=10}
 source(here("R/steelhead_plot_daily_loss_export.R"))
@@ -110,10 +123,11 @@ source(here("R/steelhead_plot_daily_loss_export.R"))
 Related links: SacPAS Page, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_daily_loss_export.R){target="_blank"}
 
 -   Issues:
-    -   Confirm OMRI is value wanted - different from tillotson model. Based on shared code and description in Assessment pdf's OMRI is used for management.
-    -   Confirm if OMR/OMRI vertical bars are designated by value or dates, is there a rule to be applied? Shared code is static values, but notes within [assessment pdf](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.usbr.gov/mp/bdo/docs/20240528-proposed-action-assessment.pdf) states: "Vertical black bars are approximate dates when OMRI controlling factors change."
+    -   Confirm if OMRI vertical bars are designated by value or dates, is there a rule to be applied? Shared code is static values, but notes within [assessment pdf](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.usbr.gov/mp/bdo/docs/20240528-proposed-action-assessment.pdf) states: "Vertical black bars are approximate dates when OMRI controlling factors change."
+    
+    - Update ShinyApp
 
-## Figure 7. Predicted and Observed Weekly Loss - Tillotson Model
+## Predicted Weekly Loss - Tillotson Model
 
 ```{r, load_plot6, fig.width=10, fig.height=6}
 source(here("R/steelhead_plot_tillotson_predicted_loss.R"))
@@ -122,14 +136,12 @@ source(here("R/steelhead_plot_tillotson_predicted_loss.R"))
 Related links: SacPAS Page, [SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [plot output](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_tillotson_predicted_loss.R){target="_blank"}
 
 -   Issues:
-
     -   Currently using BOR supplied code to run model, confirm same output with NB code.
         -   Update: NB believes this is updated code and will look into comparing and update Loss and Salvage Predictor Tool as needed when time allows (Estimates time in August).
     -   Confirm shared code is duplicate of the most up-to-date Tillotson code. If this is Tillotson code confirm with authors on use and confirm permissions to include model code in public facing repo. Alternatively, pull results from Loss and Salvage Predictor Tool.
         -   JG or NB to reach out?
     -   Confirm change in plot design
 
-## Table 1. Model inputs and predictions - Tillotson Model
 
 ```{r, load_table_01, fig.width=10, fig.height=6}
 # Load the data
@@ -148,4 +160,4 @@ generate_table_pred_obs_loss(data, species = "Steelhead")
 Related links: SacPAS Page,[SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [Table configuration](https://github.com/caitobrien/TAC/blob/main/R/utils_fct_generate_table_predicted_observed_loss.R){target="_blank"}
 
 -   Issues:
-    -   See Figure 7 issues
+    -   See tillotson figure for issues
