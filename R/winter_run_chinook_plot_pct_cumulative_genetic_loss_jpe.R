@@ -49,7 +49,7 @@ p <- genetic_cumulative_loss_data %>%
   ggplot() +
   geom_line( data = . %>% filter( WY != current_year), aes(x=wDay, y = pct_cumloss, group = WY ), lwd = 1)+ #color = hydro_type_grp
   geom_line( data = . %>% filter( WY == current_year), aes( x=wDay, y = pct_cumloss, group = WY, linetype = as.factor(WY)), color = "#0072B2", lwd = 2)+
-  geom_line(aes(x = 1, y = 0, color = paste0(min(genetic_cumulative_loss_data$WY), " to ", current_year-1, ", with historical WY > WY", current_year,  " labelled")),  data = data.frame(x = NA), show.legend = TRUE) +
+  geom_line(aes(x = 1, y = 0, color = paste0(min(genetic_cumulative_loss_data$WY), " to ", current_year-1, ",\nWY > WY", current_year,  " loss labelled")),  data = data.frame(x = NA), show.legend = TRUE) +
   labs(x = 'Date', 
        y = 'Percent Cumulative Loss', 
        title = 'Current and Historical Percent Cumulative Genetic Loss of JPE',
@@ -58,7 +58,7 @@ p <- genetic_cumulative_loss_data %>%
        color = "Historical Water Years:",
        linetype = "Current Water Year:") +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) +
-  scale_y_continuous(labels = scales::percent_format(), expand=c(0,0.0001)) +
+  scale_y_continuous(labels = scales::percent_format(), expand=c(0,0.0003)) +
   gghighlight(WY == current_year, use_direct_label = FALSE, label_key = WY) +
   # scale_color_manual(values = c("sienna4", "steelblue4", "grey"), 
   #                    labels = c("Below Normal, Dry, & Critical", "Wet & Above Normal", "WY2023, unassigned"))+ #look into automating naming for NA

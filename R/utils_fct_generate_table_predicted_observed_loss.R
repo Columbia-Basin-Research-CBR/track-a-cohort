@@ -53,9 +53,10 @@ df_tbl<- data %>%
 row.names(df_tbl) <- NULL
 
 # create table
-tbl<-knitr::kable(df_tbl, caption = paste("Tillotson et al., (2022) model output of predicted weekly losses for Natural-origin", species, "with model weekly average inputs including 
+tbl<-knitr::kable(df_tbl, caption = paste("Table of Tillotson et al., (2022) model output of predicted weekly losses for Natural-origin", species, "with model weekly average inputs including 
                   observed loss, Old and Middle Rivers (OMR), USGS tidally filtered flow (CFS), combined exports from CVP and SWP facilities (CFS),  flow at Sacramento and San Joaquin (CFS), and water temperature at Mallard Island (°C)."), align = "l") %>%
-  kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F)
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F) %>% 
+  kableExtra::add_header_above(c(" " = ncol(df_tbl)), align = "l")
 
 
 return(tbl)

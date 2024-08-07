@@ -35,7 +35,7 @@ p <- winter_run_tillotson_output %>%
   geom_ribbon(aes(ymin = lowerCI, ymax = upperCI, fill = "Predicted loss,\nmedian with 90% CI"), alpha = 0.3) +
   geom_line(aes(y = median, color = "Predicted loss,\nmedian with 90% CI")) +
   geom_point(aes(y = median, color = "Predicted loss,\nmedian with 90% CI")) +
-  labs(title = "Predicted Weekly Losses - Tillotson et al. (2022)",
+  labs(title = "Predicted Weekly Loss - Tillotson et al. (2022)",
        subtitle = paste("Species: Natural Winter-run Chinook\nWater Year:", current_year),
        x = "Week",
        y = "Predicted Weekly Loss",
