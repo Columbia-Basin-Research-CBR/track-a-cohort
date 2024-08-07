@@ -3,11 +3,19 @@ wrangle_plot_data<- function(data, selected_loss, selected_hydro = "TRUE", selec
   
   # import wDay to month function
   source(here("utils_fct_wday_to_month.R"))
-  
+
   #set current year
   source(here("utils_fct_assign_current_water_year.R"))
   current_year <- assign_current_water_year()
-  
+
+  # # use for running on local computer
+  # # import wDay to month function
+  # source(here::here("apps.R/utils_fct_wday_to_month.R"))
+  # 
+  # #set current year
+  # source(here::here("apps.R/utils_fct_assign_current_water_year.R"))
+  # current_year <- assign_current_water_year()
+    
   outlier_years_reactive <- reactive({
     if(as.character(input$selected_outlier) == "TRUE") {
       # Assuming 'data' is available and reactive or passed as a parameter

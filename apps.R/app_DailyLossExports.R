@@ -10,6 +10,12 @@ library(here)
 source(here::here("utils_SacPAStheme.R"))
 # Load the data
 load(here::here("steelhead_loss_export_data.rda"))
+
+# # use if running from local computer
+# source(here::here("apps.R/utils_SacPAStheme.R"))
+# # Load the data
+# load(here::here("apps.R/steelhead_loss_export_data.rda"))
+
 # adding horizontal lines -- provided by BOR. Confirm how these are designated
 omrValues <- data.frame(value = c(-5000,-3500,-2000,-5000,-3500,-2500,-500,-1500,-2500, "COA 8.17"),#,'COA 8.17'
                         date = lubridate::ymd(c('2024-01-01', '2024-01-14', '2024-01-23', '2024-02-04', '2024-02-08',

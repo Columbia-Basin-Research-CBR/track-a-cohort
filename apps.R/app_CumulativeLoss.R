@@ -6,8 +6,26 @@ library(tidyverse)
 library(fresh)
 library(here)
 
+# Load supporting files
 source(here::here("utils_SacPAStheme.R"))
 source(here::here("mod_fct_plot_cumulative_loss.R"))
+
+# Load data
+load(here("jpe_lad_loss_data.rda"))
+load(here("steelhead_loss_data.rda"))
+genetic_cumulative_loss_data <- jpe_genetic_loss_data$genetic_cumulative_loss_data
+lad_cumulative_loss_data <- jpe_lad_loss_data$lad_cumulative_loss_data
+
+
+# # use if running from local computer
+# source(here::here("apps.R/utils_SacPAStheme.R"))
+# source(here::here("apps.R/mod_fct_plot_cumulative_loss.R"))
+# 
+# load(here("apps.R/steelhead_loss_data.rda"))
+# load(here("apps.R/jpe_genetic_loss_data.rda"))
+# load(here("apps.R/jpe_lad_loss_data.rda"))
+# genetic_cumulative_loss_data <- jpe_genetic_loss_data$genetic_cumulative_loss_data
+# lad_cumulative_loss_data <- jpe_lad_loss_data$lad_cumulative_loss_data
 
 
 
@@ -111,13 +129,7 @@ server <- function(input, output, session) {
   
   #plotly code
   output$plot <- plotly::renderPlotly({
-    
-    # Load data
-    load(here("jpe_genetic_loss_data.rda"))
-    genetic_cumulative_loss_data <- jpe_genetic_loss_data$genetic_cumulative_loss_data
-    load(here("jpe_lad_loss_data.rda"))
-    lad_cumulative_loss_data <- jpe_lad_loss_data$lad_cumulative_loss_data
-    load(here("steelhead_loss_data.rda"))
+  
     
     # Assign data based on species and metric selection
     if (input$select_species == "Winter-run Chinook") {

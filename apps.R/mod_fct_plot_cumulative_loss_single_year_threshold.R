@@ -3,10 +3,18 @@ wrangle_plot_data<- function(data, selected_species){
   
   # import wDay to month function
   source(here("utils_fct_wday_to_month.R"))
-  
+
   #set current year
   source(here("utils_fct_assign_current_water_year.R"))
   current_year <- assign_current_water_year()
+  
+  # #use if running from local computer
+  # # import wDay to month function
+  # source(here("apps.R/utils_fct_wday_to_month.R"))
+  # 
+  # #set current year
+  # source(here("apps.R/utils_fct_assign_current_water_year.R"))
+  # current_year <- assign_current_water_year()
   
   
   #adjust water year date back to CY
