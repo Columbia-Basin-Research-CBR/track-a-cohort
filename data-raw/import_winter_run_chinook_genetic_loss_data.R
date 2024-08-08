@@ -1,8 +1,13 @@
 #'  @title Import  genetic loss data
 #'  @description This script imports the genetic loss data to be used for cumulative, total loss, and percent loss of the JPE.
 #'  The genetic loss data is joined with the JPE annual data to calculate cumulative loss and percent loss of the JPE.
-#'  As of now, genetic loss data shared by BOR as a flat file `WRGenetic.csv`.
-#'  To be updated with query link from SacPAS when data becomes available.
+#'  As of now, genetic loss data shared by BOR as a flat file `WRGenetic.csv`. The data shared ranges from 1996 to 2024. 
+#'  However, SacPAS provides genetic data for winter-run chinook salmon from WY2020 onwards that has undergone a level of QA/QC. 
+#'  Until otherwise stated, this script filters the BOR data to include only entries before the first SacPAS date and combines 
+#'  the filtered BOR dataset and SacPAS generated data (i.e., pre WY2020 is BOR provided data and any data in or beyond WY2020 
+#'  is provided by SacPAS (DNA information sourced from the CDFW Salvage Access DB, and Data Courtesy of California Department of Fish and Wildlife.)
+#'  Note: currently All Years on SacPas allows some 2018 data-- SI to update. Remove note once complete. 
+#'  @details To see a comparision of BOR and SacPAS merged data see `data-raw/utils_winter_run_chinook_compare_BOR_SacPAS_genetic_loss_data.R`
 #'  @return List of data frames with genetic loss data: 1) cumulative loss and 2) total loss  saved in `data` folder. 
 
 require(tidyverse)
