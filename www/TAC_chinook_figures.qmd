@@ -23,14 +23,11 @@ current_year <- assign_current_water_year()
 
 ## Juvenile Production Estimate (JPE)
 
-```{r, load_plot_01, fig.width=10, fig.height=6}
+```{r, load_plot_01, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_annual_jpe.R"))
 ```
 
 Related links: [SacPAS Query](https://www.cbr.washington.edu/sacramento/data/jpe_data.html){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_annual_jpe.R){target="_blank"}
-
--   Issues:
-    -   Update genetic data as it becomes available
 
 ## Delta STARS Survival and Routing Probabilites
 
@@ -43,11 +40,11 @@ Related links: [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/WRChi
 -   Issues:
     -   Update interactive plot - Shiny App
 
-## Percent loss of Juvenile Production Estimate (JPE) 
+## Percent loss of Juvenile Production Estimate (JPE)
 
 ### 
 
-```{r load_plot_03a, fig.width=10, fig.height=6}
+```{r load_plot_03a, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_pct_genetic_lad_loss_jpe.R"))
 ```
 
@@ -55,22 +52,20 @@ Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/
 
 ### 
 
-```{r, load_plot_03b, fig.width=10, fig.height=6}
+```{r, load_plot_03b, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R"))
 ```
 
 Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
 
 -   Issues:
-    -   Update genetic data as it becomes available
     -   Update Shiny App
-    
 
-## Total Loss of Juvenile Production Estimate (JPE) 
+## Total Loss of Juvenile Production Estimate (JPE)
 
 ### 
 
-```{r, load_plot4a, fig.width=10, fig.height=6}
+```{r, load_plot4a, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_count_genetic_lad_loss_jpe.R"))
 ```
 
@@ -85,8 +80,7 @@ source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R"))
 Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
 
 -   Issues:
-    -   Update genetic data as it becomes available
-    -   Add legend key (pending) currently have figure caption to support. 
+    -   Add legend key (pending) currently have figure caption to support.
     -   SI to provide query string to HCL – update code when available
     -   Update ShinyApp
 
@@ -108,12 +102,11 @@ Related links: [SacPAS Query](https://www.cbr.washington.edu/sacramento/workgrou
 
 -   Issues:
     -   Confirm addition of "no data reported", start at 10-01, and continue limits to today's date.
-    -   Update with genetic data as it becomes available for genetic plot
     -   Update ShinyApp
 
 ## Predicted Weekly Loss - Tillotson Model
 
-```{r, load_plot6, fig.width=10, fig.height=6}
+```{r, load_plot6, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_tillotson_predicted_loss.R"))
 ```
 

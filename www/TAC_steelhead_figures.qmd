@@ -23,14 +23,14 @@ current_year <- assign_current_water_year()
 
 ## RBDD Juvenile Passage Estimates
 
-```{r, load_plot_01, fig.width=10, fig.height=6}
+```{r, load_plot_01, fig.width=10, fig.height=7}
 source(here("R/steelhead_plot_rbdd_biweekly_passage.R"))
 ```
 
 Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/tmp/redbluffdaily_1714603318_94.html){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_annual_jpe.R){target="_blank"}
 
 -   Issues:
-    -    Remove from R code? If keeping:
+    -   Remove from R code? If keeping:
     -   Update biweekly shaded areas based on SI generated methods
     -   Continue to match the same 0 line cutoff as on SacPAS or leave space to show points at 0 line?
     -   Confirm Calendar Year or Water Year. Currently code only pulls current year based on today's date. To look at water year will need to adjust code to include query link.
@@ -49,7 +49,7 @@ Related links: [Interactive Plot](https://csobrien.shinyapps.io/WRChinookSTARS/)
 
 ### 
 
-```{r load_plot_03a, fig.width=10, fig.height=6}
+```{r load_plot_03a, fig.width=10, fig.height=7}
 source(here("R/steelhead_plot_count_total_loss.R"))
 ```
 
@@ -57,17 +57,15 @@ Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/dat
 
 Issues:
 
-- Confirm data source footnote
+-   Confirm data source footnote
 
 ## Size (Fork Length) Distribution of Steelhead Loss
 
-```{r load_plot_03b, fig.width=10, fig.height=6, fig.cap="Figure compares density plots that highlight historical (WY1994 to WY2023) size distribution and histogram of current year (WY2024) size distribution by rear type (yellow = unclipped; blue = clipped). Fork lengths below 750 mm were included in dataset."}
+```{r load_plot_03b, fig.width=10, fig.height=7, fig.cap="Figure compares density plots that highlight historical (WY1994 to WY2023) size distribution and histogram of current year (WY2024) size distribution by rear type (yellow = unclipped; blue = clipped). Fork lengths below 750 mm were included in dataset."}
 source(here("R/steelhead_plot_size_distribution_loss.R"))
 ```
 
 Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/data/query_loss_detail.html){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_size_distribution_loss.R){target="_blank"}
-
-
 
 ```{r load_plot_03c, fig.width=8, fig.height=10}
 source(here("R/steelhead_plot_size_distribution_by_year_loss.R"))
@@ -83,13 +81,13 @@ source(here("R/steelhead_plot_count_cumulative_loss.R"))
 
 Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_count_cumulative_loss.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
 
-Issues: 
+Issues:
 
-- Confirm use of clipped and unclipped in dataset
+-   Confirm use of clipped and unclipped in dataset
 
-- Add legend key
+-   Add legend key
 
-- Confirm data source footnote
+-   Confirm data source footnote
 
 ## Cumulative Loss with Single-Year Thresholds
 
@@ -124,12 +122,12 @@ Related links: SacPAS Page, [Interactive Plot - ShinyApp](https://csobrien.shiny
 
 -   Issues:
     -   Confirm if OMRI vertical bars are designated by value or dates, is there a rule to be applied? Shared code is static values, but notes within [assessment pdf](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.usbr.gov/mp/bdo/docs/20240528-proposed-action-assessment.pdf) states: "Vertical black bars are approximate dates when OMRI controlling factors change."
-    
-    - Update ShinyApp
+
+    -   Update ShinyApp
 
 ## Predicted Weekly Loss - Tillotson Model
 
-```{r, load_plot6, fig.width=10, fig.height=6}
+```{r, load_plot6, fig.width=10, fig.height=7}
 source(here("R/steelhead_plot_tillotson_predicted_loss.R"))
 ```
 
@@ -141,7 +139,6 @@ Related links: SacPAS Page, [SacPAS Tillotson Tool](https://www.cbr.washington.e
     -   Confirm shared code is duplicate of the most up-to-date Tillotson code. If this is Tillotson code confirm with authors on use and confirm permissions to include model code in public facing repo. Alternatively, pull results from Loss and Salvage Predictor Tool.
         -   JG or NB to reach out?
     -   Confirm change in plot design
-
 
 ```{r, load_table_01, fig.width=10, fig.height=6}
 # Load the data

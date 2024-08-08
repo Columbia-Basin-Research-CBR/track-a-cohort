@@ -54,7 +54,7 @@ p <- genetic_cumulative_loss_data %>%
        y = 'Percent Cumulative Loss', 
        title = 'Current and Historical Percent Cumulative Genetic Loss of JPE',
        subtitle = paste0("Species: Natural Winter-run Chinook\nData Years: WY", min(genetic_cumulative_loss_data$WY), " to WY", current_year),
-       caption = "Data sources: Genetic loss provided by USBR. LAD loss from CDFW Salvage Database.",
+       caption = "Genetic loss data provided by USBR before Water Year 2020;\nLAD and genetic loss data sourced from the CDFW Salvage Database.",
        color = "Historical Water Years:",
        linetype = "Current Water Year:") +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) +
