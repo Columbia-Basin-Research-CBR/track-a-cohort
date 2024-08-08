@@ -36,8 +36,8 @@ p1 <- ggplot(STARS_data, aes(x = wDay, group = WY )) +
   geom_ribbon(data = STARS_data %>% filter(WY == current_year), aes(ymin = survL80, ymax = survU80), alpha = 0.25) +
   labs(x = 'Month', 
        y = 'Apparent survival probability', 
-       title = "Delta STARS Model -\nPredicted Natural Winter-run Chinook Daily Cohorts Passage, Knights Landing to Chipps Island", 
-       subtitle = "Overall Survival: Median survival of daily cohorts for all routes combined",
+       subtitle = "Delta STARS Model -\nPredicted Natural Winter-run Chinook Daily Cohorts Passage, Knights Landing to Chipps Island", 
+       title = "Overall Survival: Median survival of daily cohorts for all routes combined",
        caption = "Data source: Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS.") +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
   scale_y_continuous( expand = c(0,0)) +
@@ -61,8 +61,8 @@ p2 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
   geom_ribbon(data = STARS_data %>% filter(WY == current_year), aes(ymin = idsurvL80, ymax = idsurvU80), alpha = 0.25) +
   labs(x = 'Month', 
        y = 'Apparent survival probability', 
-       title = "Delta STARS Model -\nPredicted Natural Winter-run Chinook Daily Cohorts Passage, Knights Landing to Chipps Island", 
-       subtitle = "Interior Delta Route-specific Survival Probability: Median survival of daily cohorts using the Interior Delta route",
+       subtitle = "Delta STARS Model -\nPredicted Natural Winter-run Chinook Daily Cohorts Passage, Knights Landing to Chipps Island", 
+       title = "Interior Delta Route-specific Survival Probability: Median survival of daily cohorts using the Interior Delta route",
        caption = "Data source: Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS.") +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
   scale_y_continuous(expand = c(0,0)) +
@@ -86,8 +86,8 @@ p3 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
   geom_ribbon(data = STARS_data %>% filter(WY == current_year), aes(ymin = idRouteL80, ymax = idRouteU80 ), alpha = 0.25) +
   labs(x = 'Month', 
        y = 'Route probability', 
-       title = "Delta STARS Model -\nPredicted Natural Winter-run Chinook Daily Cohorts Passage, Knights Landing to Chipps Island", 
-       subtitle = "Interior Delta Route-specific Probability: Proportion of daily cohorts using the Interior Delta route",
+       subtitle = "Delta STARS Model -\nPredicted Natural Winter-run Chinook Daily Cohorts Passage, Knights Landing to Chipps Island", 
+       title = "Interior Delta Route-specific Probability: Proportion of daily cohorts using the Interior Delta route",
        caption = "Data source: Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS.") +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
   scale_y_continuous(expand = c(0,0)) +
