@@ -32,7 +32,7 @@ source(here("R/utils_fct_assign_current_water_year.R"))
 #plot STARS data
 # Overall Survival
 p1 <- ggplot(STARS_data, aes(x = wDay, group = WY )) +
-  geom_line(aes(y = surv, color = as.factor(WY))) +
+  geom_line(aes(y = surv, color = as.factor(WY), size = ifelse(WY == current_year, .75, 0.5))) +
   geom_ribbon(data = STARS_data %>% filter(WY == current_year), aes(ymin = survL80, ymax = survU80), alpha = 0.25) +
   labs(x = 'Month', 
        y = 'Apparent survival probability', 
@@ -42,6 +42,7 @@ p1 <- ggplot(STARS_data, aes(x = wDay, group = WY )) +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
   scale_y_continuous( expand = c(0,0)) +
   scale_color_manual(values = colors, name = "Water Year") +
+  scale_size_identity() +
   theme_minimal() +
   theme(legend.position = c(.9, 0.7),
         text = element_text(size = 15),
@@ -57,7 +58,7 @@ print(p1)
 
 # Interior Delta Route-specific Survival Probability
 p2 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
-  geom_line(aes(y = idsurv, color = as.factor(WY))) +
+  geom_line(aes(y = idsurv, color = as.factor(WY), size = ifelse(WY == current_year, .75, 0.5))) +
   geom_ribbon(data = STARS_data %>% filter(WY == current_year), aes(ymin = idsurvL80, ymax = idsurvU80), alpha = 0.25) +
   labs(x = 'Month', 
        y = 'Apparent survival probability', 
@@ -67,6 +68,7 @@ p2 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
   scale_y_continuous(expand = c(0,0)) +
   scale_color_manual(values = colors, name = "Water Year") +
+  scale_size_identity() +
   theme_minimal() +
   theme(legend.position = c(.9, 0.7),
         text = element_text(size = 15),
@@ -82,7 +84,7 @@ print(p2)
 
 # Interior Delta Route-specific Probability
 p3 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
-  geom_line(aes(y = idRoute, color = as.factor(WY))) +
+  geom_line(aes(y = idRoute, color = as.factor(WY), size = ifelse(WY == current_year, .75, 0.5))) +
   geom_ribbon(data = STARS_data %>% filter(WY == current_year), aes(ymin = idRouteL80, ymax = idRouteU80 ), alpha = 0.25) +
   labs(x = 'Month', 
        y = 'Route probability', 
@@ -92,6 +94,7 @@ p3 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
   scale_y_continuous(expand = c(0,0)) +
   scale_color_manual(values = colors, name = "Water Year") +
+  scale_size_identity() +
   theme_minimal() +
   theme(legend.position = c(.9, 0.5),
         text = element_text(size = 15),
