@@ -35,7 +35,7 @@ p <- jpe_genetic_lad_data %>%
   ggplot(aes(x = as.factor(WY), y = value, fill = method)) +
   geom_bar(stat = "identity", position = position_dodge(.7, preserve = "single")) +
   labs(
-    title = "Genetic vs Length-At-Date (LAD) Loss of JPE",
+    title = "Genetic vs Length-At-Date (LAD) Total Loss ",
     subtitle = "Species: Natural Winter-run Chinook",
     caption = "Data sources: Genetic loss provided by USBR. LAD loss from CDFW Salvage Database.",
     x = "Water Year",

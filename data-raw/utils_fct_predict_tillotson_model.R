@@ -28,6 +28,40 @@ startOfWY <- function(date) {
   }
 }
 
+#' @title Predict Tillotson model for Winter-run Chinook and Steelhead
+#' @description This function calls the shared Tillotson model for Winter-run Chinook and Steelhead
+#' and returns both predicted results for each species in a list that can be used for TAC plot and table. 
+require(tidyverse)
+require(janitor)
+require(here)
+require(data.table)
+
+# assign current water year
+source(here("R/utils_fct_assign_current_water_year.R"))
+current_year <- assign_current_water_year()
+
+# import fct to import river data from SacPAS
+source(here("data-raw/utils_fct_import_river_data.R"))
+
+# import functions needed to run Tillotson model (shared by BOR)
+source(here("R/brt.functions.R"))
+load(here("R/ITMData.rda"))
+
+# Define the start if WY and weekstart to set dates
+startOfWY <- function(date) {
+  if (month(date) >= 10) {
+    ymd(paste(year(date), "10-01", sep = "-"))
+  } else {
+    ymd(paste(year(date) - 1, "10-01", sep = "-"))
+  }
+}
+
+weekStartDate <- function(weekNumber, currentDate) {
+  waterYearStart <- startOfWY(currentDate)
+  startDateOfWeek <- waterYearStart + days((weekNumber - 1) * 7)
+  return(startDateOfWeek)
+}
+
 calculateWYWeek <- function(date) {
   waterYearStart <- startOfWY(date)
   daysSinceStart <- as.integer(difftime(date, waterYearStart, units = "days"))
@@ -67,7 +101,8 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
     ungroup() %>%
     mutate(week = sapply(date, calculateWYWeek)) %>%
     group_by(week) %>%
-    summarise(total_weekly_loss = sum(total_daily_loss))
+    summarise(total_weekly_loss = sum(total_daily_loss)) %>% 
+    mutate(calendar_date = weekStartDate(week, Sys.Date()))  # Add calendar date column
 
 
 
@@ -147,9 +182,11 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
       ObservedLoss = df_combined$total_weekly_loss[i],
       weekly_avg_mal_wtemp = df_combined$weekly_avg_mal_wtemp[i],
       weekly_avg_fpt_flow = df_combined$weekly_avg_fpt_flow[i],
-      weekly_avg_vns_flow = df_combined$weekly_avg_vns_flow[i]
+      weekly_avg_vns_flow = df_combined$weekly_avg_vns_flow[i],
+      calendar_date = df_combined$calendar_date[i]  # Include calendar date in predictions
     )
     tillotsonList[[i]] <- predictions
+  
   }
 
   return(bind_rows(tillotsonList))

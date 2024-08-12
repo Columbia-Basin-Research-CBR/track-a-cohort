@@ -42,7 +42,6 @@ Related links: [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/WRChi
 
 ## Percent loss of Juvenile Production Estimate (JPE)
 
-### 
 
 ```{r load_plot_03a, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_pct_genetic_lad_loss_jpe.R"))
@@ -50,7 +49,7 @@ source(here("R/winter_run_chinook_plot_pct_genetic_lad_loss_jpe.R"))
 
 Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_pct_genetic_lad_loss_jpe.R){target="_blank"}
 
-### 
+
 
 ```{r, load_plot_03b, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R"))
@@ -61,19 +60,35 @@ Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/
 -   Issues:
     -   Update Shiny App
 
-## Total Loss of Juvenile Production Estimate (JPE)
+## Total Loss
 
-### 
 
-```{r, load_plot4a, fig.width=10, fig.height=7}
+```{r, load_plot_04a, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_count_genetic_lad_loss_jpe.R"))
 ```
 
 Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_genetic_lad_loss_jpe.R){target="_blank"}
 
-### 
+## Cumulative Loss with Single-Year Thresholds
+```{r, load_plot_05a, fig.width=10, fig.height=7}
+source(here("R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R"))
+```
 
-```{r, load_plot4b, fig.width=10, fig.height=10, fig.cap="The figure shows cumulative loss by BiOp Status and Hydrological Classification Index (HCI). Each quadrant of the faceted plot includes grey lines for historical years, colored lines (blue for wet years, red for dry years) for years within the BiOp status and HCI type, a black line for the current year, and a dashed horizontal line indicating the current cumulative loss maximum."}
+
+```{r, load_plot_05b, fig.width=10, fig.height=7}
+source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R"))
+```
+
+Related links: [SacPAS Query](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss){target="_blank"}, ShinyApp, [GitHub Repo Code: cumul_genetic_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R){target="_blank"} , [GitHub Repo Code: cumul_lad_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLossSingleYearThreshold/){target="\"_blank"}
+
+-   Issues:
+    -   Confirm addition of "no data reported", start at 10-01, and continue limits to today's date.
+    -   Update ShinyApp
+    
+
+## Cumulative Loss by BiOp Status and Hydrological Classification Index (HCI) 
+
+```{r, load_plot_06, fig.width=10, fig.height=10, fig.cap="The figure shows cumulative loss by BiOp Status and Hydrological Classification Index (HCI). Each quadrant of the faceted plot includes grey lines for historical years, colored lines (blue for wet years, red for dry years) for years within the BiOp status and HCI type, a black line for the current year, and a dashed horizontal line indicating the current cumulative loss maximum."}
 source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R"))
 ```
 
@@ -83,30 +98,21 @@ Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/
     -   Add legend key (pending) currently have figure caption to support.
     -   SI to provide query string to HCL – update code when available
     -   Update ShinyApp
-
-## Cumulative Loss Single Year Thresholds
-
-### 
-
-```{r, load_plot5a, fig.width=10, fig.height=7}
-source(here("R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R"))
+    
+## Daily Loss and Export by Pumping Facility
+``` {r, load_plot_07, fig.width=12, fig.height=10}
+source(here("R/winter_run_chinook_plot_daily_loss_export.R"))
 ```
 
-### 
+Related links: [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_daily_loss_export.R){target="_blank"},
 
-```{r, load_plot5b, fig.width=10, fig.height=7}
-source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R"))
-```
+- Issues: 
+  - Update Shiny App
 
-Related links: [SacPAS Query](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss){target="_blank"}, ShinyApp, [GitHub Repo Code: cumul_genetic_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R){target="_blank"} , [GitHub Repo Code: cumul_lad_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLossSingleYearThreshold/){target="\"_blank"}
-
--   Issues:
-    -   Confirm addition of "no data reported", start at 10-01, and continue limits to today's date.
-    -   Update ShinyApp
 
 ## Predicted Weekly Loss - Tillotson Model
 
-```{r, load_plot6, fig.width=10, fig.height=7}
+```{r, load_plot_08, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_tillotson_predicted_loss.R"))
 ```
 

@@ -73,13 +73,37 @@ source(here("R/steelhead_plot_size_distribution_by_year_loss.R"))
 
 Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/data/query_loss_detail.html){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_size_distribution_by_year_loss.R){target="_blank"}
 
+## Cumulative Loss with Single-Year Thresholds
+
+```{r load_plot_04, fig.width=10, fig.height=8}
+source(here("R/steehead_plot_count_cumulative_loss_single_year_thresholds.R"))
+```
+
+Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss:~:text=Chinook%20Salmon%20Loss-,Natural%20Central%20Valley%20Steelhead,-Daily%20Loss%20Table){target="_blank"}, ShinyApp, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steehead_plot_count_cumulative_loss_single_year_thresholds.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLossSingleYearThreshold/){target="\"_blank"}
+
+Issues:
+
+-   Confirm Single-Year-Thresholds and update to generate automatically
+    -   Tillotson etl al. 2022: "Because less information is available on annual wild Central Valley Steelhead natal origin and abundance, the maximum ITL in a single year is fixed at a loss of 2,760 between December 1 and March 31, and a loss of 3,040 between April 1 and June 15 (NMFS 2019). "
+
+    -   SacPAS: Single-Year Loss Thresholds (PA 4-69): In each year, typically January/February, Reclamation and DWR propose to avoid exceeding an annual loss threshold equal to 90% of the greatest annual loss that occurred in the historical record 2010-2018 for each of:
+
+        -   Natural Winter-Run Chinook Salmon (loss= 1.17% of JPE)
+
+        -   Natural Central Valley Steelhead from December through March (loss =1,414)
+
+        -   Natural Central Valley Steelhead from April through June 15 (loss = 1,552)
+
+        (More information on 4-70)
+-   Confirm only including unclipped
+
 ## Cumulative Loss by BiOp Status and Hydrological Classification Index (HCI)
 
-```{r load_plot_04, fig.width=10, fig.height=10, fig.cap="The figure shows cumulative loss by BiOp Status and Hydrological Classification Index (HCI). Each quadrant of the faceted plot includes grey lines for historical years, colored lines (blue for wet years, red for dry years) for years within the BiOp status and HCI type, a black line for the current year, and a dashed horizontal line indicating the current cumulative loss maximum."}
+```{r load_plot_05, fig.width=10, fig.height=10, fig.cap="The figure shows cumulative loss by BiOp Status and Hydrological Classification Index (HCI). Each quadrant of the faceted plot includes grey lines for historical years, colored lines (blue for wet years, red for dry years) for years within the BiOp status and HCI type, a black line for the current year, and a dashed horizontal line indicating the current cumulative loss maximum."}
 source(here("R/steelhead_plot_count_cumulative_loss.R"))
 ```
 
-Related links: SacPAS Page, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_count_cumulative_loss.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
+Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_count_cumulative_loss.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
 
 Issues:
 
@@ -89,36 +113,13 @@ Issues:
 
 -   Confirm data source footnote
 
-## Cumulative Loss with Single-Year Thresholds
-
-```{r load_plot_05, fig.width=10, fig.height=8}
-source(here("R/steehead_plot_count_cumulative_loss_single_year_thresholds.R"))
-```
-
-Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss:~:text=Chinook%20Salmon%20Loss-,Natural%20Central%20Valley%20Steelhead,-Daily%20Loss%20Table){target="_blank"}, ShinyApp, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steehead_plot_count_cumulative_loss_single_year_thresholds.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLossSingleYearThreshold/){target="\"_blank"}
-
--   Issues:
-    -   Confirm Single-Year-Thresholds and update to generate automatically
-        -   Tillotson etl al. 2022: "Because less information is available on annual wild Central Valley Steelhead natal origin and abundance, the maximum ITL in a single year is fixed at a loss of 2,760 between December 1 and March 31, and a loss of 3,040 between April 1 and June 15 (NMFS 2019). "
-
-        -   SacPAS: Single-Year Loss Thresholds (PA 4-69): In each year, typically January/February, Reclamation and DWR propose to avoid exceeding an annual loss threshold equal to 90% of the greatest annual loss that occurred in the historical record 2010-2018 for each of:
-
-            -   Natural Winter-Run Chinook Salmon (loss= 1.17% of JPE)
-
-            -   Natural Central Valley Steelhead from December through March (loss =1,414)
-
-            -   Natural Central Valley Steelhead from April through June 15 (loss = 1,552)
-
-            (More information on 4-70)
-    -   Confirm only including unclipped
-
 ## Daily Loss and Export by Pumping Facility
 
 ```{r, load_plot_06, fig.width=12, fig.height=10}
 source(here("R/steelhead_plot_daily_loss_export.R"))
 ```
 
-Related links: SacPAS Page, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_daily_loss_export.R){target="_blank"}
+Related links: SacPAS, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_daily_loss_export.R){target="_blank"}
 
 -   Issues:
     -   Confirm if OMRI vertical bars are designated by value or dates, is there a rule to be applied? Shared code is static values, but notes within [assessment pdf](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.usbr.gov/mp/bdo/docs/20240528-proposed-action-assessment.pdf) states: "Vertical black bars are approximate dates when OMRI controlling factors change."

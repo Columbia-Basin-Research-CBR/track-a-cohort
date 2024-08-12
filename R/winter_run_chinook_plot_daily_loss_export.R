@@ -1,4 +1,4 @@
-#' @title Figure 6. Steelhead Daily Loss and Export (per Facility pending)
+#' @title  Winter-run Chinook Daily Loss and Export (per Facility pending)
 #' @description This script is more of a holder space for plot that will include export per facility and loss per facility for steelhead
 #' Current data shows total daily loss and export for both facilities
 #' 
@@ -8,7 +8,7 @@ require(patchwork)
 
 
 # Load the data
-load(here::here("data/steelhead_loss_export_data.rda"))
+load(here::here("data/winter_run_chinook_loss_export_data.rda"))
 
 # adding horizontal lines -- provided by BOR. Confirm how these are designated
 omrValues <- data.frame(value = c(-5000,-3500,-2000,-5000,-3500,-2500,-500,-1500,-2500, "COA 8.17"),#,'COA 8.17'
@@ -20,16 +20,16 @@ omrValues <- data.frame(value = c(-5000,-3500,-2000,-5000,-3500,-2500,-500,-1500
 #   filter(!is.na(OMR_14d))
 
 # Calculate the ratio for the secondary axis
-ratio <- max(steelhead_loss_export_data$daily_total_loss) / max(steelhead_loss_export_data$pumping_discharge_cfs)
+ratio <- max(winter_run_chinook_loss_export_data$daily_total_loss) / max(winter_run_chinook_loss_export_data$pumping_discharge_cfs)
 
-p1 <- steelhead_loss_export_data %>% 
+p1 <- winter_run_chinook_loss_export_data %>% 
   ggplot(aes(x = date)) +
   geom_bar(aes(y = daily_total_loss, fill = facility), stat = "identity", position = position_dodge2(preserve = "single"), color = "white") + # Changed color to fill for bar
   geom_line(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
   geom_vline(omrValues, mapping = aes(xintercept = date), color = 'black') +
   geom_text(omrValues, mapping = aes(x = date, y = 200, label = paste("OMR:", value)), color = 'black', angle = -90, size = 3, vjust = 1) +
   labs(title = "Daily Loss and Export at CVP/SWP Facilities",
-       subtitle = paste("Species: Clipped and Unclipped Steelhead",
+       subtitle = paste("Species: Natural Winter-run Chinook",
                         "\nCurrent Water Year:", current_year,
                         "\n\nComparison of facilities, CVP and SWP"),
        x = NULL,
@@ -52,7 +52,7 @@ p1 <- steelhead_loss_export_data %>%
 
 
 
-p2 <- steelhead_loss_export_data %>% 
+p2 <- winter_run_chinook_loss_export_data %>% 
   ggplot(aes(x = date)) +
   geom_bar(aes(y = daily_total_loss, fill = facility), stat = "identity", position = position_dodge2(preserve = "single"), color = "white") + # Changed color to fill for bar
   geom_line(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y

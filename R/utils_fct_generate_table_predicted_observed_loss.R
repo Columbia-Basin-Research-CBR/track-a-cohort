@@ -14,32 +14,31 @@ require(scales)
 
 generate_table_pred_obs_loss <- function(data, species){
   
-  # Function to calculate the start date of the Water Year
-  startOfWY <- function(date) {
-    if (month(date) >= 10) {
-      ymd(paste(year(date), "10-01", sep = "-"))
-    } else {
-      ymd(paste(year(date) - 1, "10-01", sep = "-"))
-    }
-  }
-  
-  # Function to calculate the start date of a given week in the Water Year
-  weekStartDate <- function(weekNumber, currentDate) {
-    waterYearStart <- startOfWY(currentDate)
-    startDateOfWeek <- waterYearStart + days((weekNumber - 1) * 7)
-    formattedDate <- format(startDateOfWeek, "%m-%d-%y")
-    return(formattedDate)
-  }
-  
+  # # Function to calculate the start date of the Water Year
+  # startOfWY <- function(date) {
+  #   if (month(date) >= 10) {
+  #     ymd(paste(year(date), "10-01", sep = "-"))
+  #   } else {
+  #     ymd(paste(year(date) - 1, "10-01", sep = "-"))
+  #   }
+  # }
+  # 
+  # # Function to calculate the start date of a given week in the Water Year
+  # weekStartDate <- function(weekNumber, currentDate) {
+  #   waterYearStart <- startOfWY(currentDate)
+  #   startDateOfWeek <- waterYearStart + days((weekNumber - 1) * 7)
+  #   formattedDate <- format(startDateOfWeek, "%m-%d-%y")
+  #   return(formattedDate)
+  # }
+  # 
   
 # wrangle for table format
 df_tbl<- data %>% 
-  mutate( "Predicted loss" =paste0("(",round(median, 2), ", ",round(lowerCI, 2), ", ", round(upperCI, 2), ")"),
-          "Date" = mapply(weekStartDate, week, today())) %>%
-  mutate(across(-c(week, Date, ObservedLoss,`Predicted loss`), ~round(., 2))) %>% 
+  mutate( "Predicted loss" =paste0("(",round(median, 2), ", ",round(lowerCI, 2), ", ", round(upperCI, 2), ")")) %>%
+  mutate(across(-c(week, calendar_date, ObservedLoss,`Predicted loss`), ~round(., 2))) %>% 
   select(#`Water Year` = WY, 
          `Water year week` = week,
-          Date,
+          `Date` = calendar_date,
          `Observed loss` = ObservedLoss, 
          `OMR USGS tidally filtered` = OMR,
          `Export, SWP & CVP (CFS)` = Export,
