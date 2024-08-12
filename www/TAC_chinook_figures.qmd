@@ -10,7 +10,7 @@ opts_chunk$set(echo = FALSE, warning = FALSE, error = FALSE, message = FALSE)
 
 ## Background
 
-This document uses shared resources via [BDO github](https://github.com/BDO-Science/track-a-cohort){target="_blank"} from BOR to replicate figures requested and adjust underlying code to include dynamic data. See [Track a cohort_WR_plots.docx](https://github.com/BDO-Science/track-a-cohort/blob/main/Track%20a%20Cohort_WR_plots.docx) for figures requested. Certain figures include a link to more interactive plot types using Shiny (in development) and all figures include a link to code in separate CBR developed [github repo](https://github.com/caitobrien/TAC){target="_blank"}.
+This document uses shared resources via [BDO github](https://github.com/BDO-Science/track-a-cohort){target="_blank"} from BOR to replicate figures requested and adjust underlying code to include dynamic data. See [Track a cohort_WR_plots.docx](https://github.com/BDO-Science/track-a-cohort/blob/main/Track%20a%20Cohort_WR_plots.docx) for figures requested. Certain figures include a link to more interactive plot types using Shiny (in development) and all figures include a link to code in separate CBR developed [github repo](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort){target="_blank"}.
 
 ```{r, include=FALSE}
 library(here)
@@ -27,7 +27,7 @@ current_year <- assign_current_water_year()
 source(here("R/winter_run_chinook_plot_annual_jpe.R"))
 ```
 
-Related links: [SacPAS Query](https://www.cbr.washington.edu/sacramento/data/jpe_data.html){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_annual_jpe.R){target="_blank"}
+Related links: [SacPAS Query](https://www.cbr.washington.edu/sacramento/data/jpe_data.html){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_annual_jpe.R){target="_blank"}
 
 ## Delta STARS Survival and Routing Probabilites
 
@@ -35,7 +35,7 @@ Related links: [SacPAS Query](https://www.cbr.washington.edu/sacramento/data/jpe
 source(here("R/winter_run_chinook_plot_STARS.R"))
 ```
 
-Related links: [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/WRChinookSTARS/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
+Related links: [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/WRChinookSTARS/){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
 
 -   Issues:
     -   Update interactive plot - Shiny App
@@ -47,7 +47,7 @@ Related links: [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/WRChi
 source(here("R/winter_run_chinook_plot_pct_genetic_lad_loss_jpe.R"))
 ```
 
-Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_pct_genetic_lad_loss_jpe.R){target="_blank"}
+Related links: [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_pct_genetic_lad_loss_jpe.R){target="_blank"}
 
 
 
@@ -55,7 +55,7 @@ Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/
 source(here("R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R"))
 ```
 
-Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
+Related links: [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
 
 -   Issues:
     -   Update Shiny App
@@ -67,7 +67,7 @@ Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/
 source(here("R/winter_run_chinook_plot_count_genetic_lad_loss.R"))
 ```
 
-Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_genetic_lad_loss_jpe.R){target="_blank"}
+Related links: [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_count_genetic_lad_loss_jpe.R){target="_blank"}
 
 ## Cumulative Loss with Single-Year Thresholds
 ```{r, load_plot_count_cumulative_genetic_loss_single_year_thresholds, fig.width=10, fig.height=7}
@@ -79,7 +79,7 @@ source(here("R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year
 source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R"))
 ```
 
-Related links: [SacPAS Query](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss){target="_blank"}, ShinyApp, [GitHub Repo Code: cumul_genetic_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R){target="_blank"} , [GitHub Repo Code: cumul_lad_loss](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLossSingleYearThreshold/){target="\"_blank"}
+Related links: [SacPAS Query](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss){target="_blank"}, ShinyApp, [GitHub Repo Code: cumul_genetic_loss](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R){target="_blank"} , [GitHub Repo Code: cumul_lad_loss](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLossSingleYearThreshold/){target="\"_blank"}
 
 -   Issues:
     -   Confirm addition of "no data reported", start at 10-01, and continue limits to today's date.
@@ -92,7 +92,7 @@ Related links: [SacPAS Query](https://www.cbr.washington.edu/sacramento/workgrou
 source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss.R"))
 ```
 
-Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
+Related links: [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
 
 -   Issues:
     -   Add legend key (pending) currently have figure caption to support.
@@ -104,7 +104,7 @@ Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/
 source(here("R/winter_run_chinook_plot_daily_loss_export.R"))
 ```
 
-Related links: [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_daily_loss_export.R){target="_blank"},
+Related links: [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_daily_loss_export.R){target="_blank"},
 
 - Issues: 
   - Update Shiny App
@@ -116,7 +116,7 @@ Related links: [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/Daily
 source(here("R/winter_run_chinook_plot_tillotson_predicted_loss.R"))
 ```
 
-Related links: [SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/caitobrien/TAC/blob/main/data-raw/WR_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [plot output](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_tillotson_predicted_loss.R){target="_blank"}
+Related links: [SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/data-raw/WR_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [plot output](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_tillotson_predicted_loss.R){target="_blank"}
 
 -   Issues:
     -   Currently using BOR supplied code to run model, confirm same output with NB code.
@@ -142,7 +142,7 @@ generate_table_pred_obs_loss(data, species = "Winter-run Chinook")
 
 ```
 
-Related links: [SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [Table configuration](https://github.com/caitobrien/TAC/blob/main/R/utils_fct_generate_table_predicted_observed_loss.R){target="_blank"}
+Related links: [SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [Table configuration](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/utils_fct_generate_table_predicted_observed_loss.R){target="_blank"}
 
 -   Issues:
     -   See predicted losses figure issues

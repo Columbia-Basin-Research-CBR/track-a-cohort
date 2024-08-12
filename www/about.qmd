@@ -4,7 +4,7 @@ title: "About"
 
 This document includes plots requested by Bureau of Reclamation for the "Track-a-Cohort" page in development on [SacPAS: Central Valley Prediction & Assessment of Salmon](https://www.cbr.washington.edu/sacramento/) website developed and maintained by Columbia Basin Research, University of Washington.
 
-All code used to develop this quarto webpage are available via the Columbia Basin Research GitHub repository: [Columbia-Basin-Research-CBR](https://github.com/caitobrien/TAC) and can be used in total or individual plots can be generated using the code provided.
+All code used to develop this quarto webpage are available via the Columbia Basin Research GitHub repository: [Columbia-Basin-Research-CBR](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort) and can be used in total or individual plots can be generated using the code provided.
 
 How to use:
 

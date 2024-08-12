@@ -10,7 +10,7 @@ opts_chunk$set(echo = FALSE, warning = FALSE, error = FALSE, message = FALSE)
 
 ## Background
 
-This document uses shared resources via [BDO github](https://github.com/BDO-Science/track-a-cohort){target="_blank"} from BOR to replicate figures requested and adjust underlying code to include dynamic data. See [Track a cohort_Steelhead.docx](https://github.com/BDO-Science/track-a-cohort/blob/main/SH_Cohort/Track%20a%20Cohort_Steelhead.docx){target="_blank"} for figures requested. Certain figures include a link to more interactive plot types using Shiny (in development) and all figures include a link to code in separate CBR developed [github repo](https://github.com/caitobrien/TAC){target="_blank"}.
+This document uses shared resources via [BDO github](https://github.com/BDO-Science/track-a-cohort){target="_blank"} from BOR to replicate figures requested and adjust underlying code to include dynamic data. See [Track a cohort_Steelhead.docx](https://github.com/BDO-Science/track-a-cohort/blob/main/SH_Cohort/Track%20a%20Cohort_Steelhead.docx){target="_blank"} for figures requested. Certain figures include a link to more interactive plot types using Shiny (in development) and all figures include a link to code in separate CBR developed [github repo](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort){target="_blank"}.
 
 ```{r, include=FALSE}
 library(here)
@@ -27,7 +27,7 @@ current_year <- assign_current_water_year()
 source(here("R/steelhead_plot_rbdd_biweekly_passage.R"))
 ```
 
-Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/tmp/redbluffdaily_1714603318_94.html){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_annual_jpe.R){target="_blank"}
+Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/tmp/redbluffdaily_1714603318_94.html){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_annual_jpe.R){target="_blank"}
 
 -   Issues:
     -   Remove from R code? If keeping:
@@ -43,7 +43,7 @@ Note: Plots below use Winter-run Chinook as a surrogate for Steelhead
 source(here("R/winter_run_chinook_plot_STARS.R"))
 ```
 
-Related links: [Interactive Plot](https://csobrien.shinyapps.io/WRChinookSTARS/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
+Related links: [Interactive Plot](https://csobrien.shinyapps.io/WRChinookSTARS/){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
 
 ## Total Loss - Clipped and Unclipped Steelhead
 
@@ -53,7 +53,7 @@ Related links: [Interactive Plot](https://csobrien.shinyapps.io/WRChinookSTARS/)
 source(here("R/steelhead_plot_count_total_loss.R"))
 ```
 
-Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/data/query_loss_detail.html){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_count_total_loss.R){target="_blank"}
+Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/data/query_loss_detail.html){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/steelhead_plot_count_total_loss.R){target="_blank"}
 
 Issues:
 
@@ -65,13 +65,13 @@ Issues:
 source(here("R/steelhead_plot_size_distribution_loss.R"))
 ```
 
-Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/data/query_loss_detail.html){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_size_distribution_loss.R){target="_blank"}
+Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/data/query_loss_detail.html){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/steelhead_plot_size_distribution_loss.R){target="_blank"}
 
 ```{r load_plot_size_distribution_by_year_loss, fig.width=8, fig.height=10}
 source(here("R/steelhead_plot_size_distribution_by_year_loss.R"))
 ```
 
-Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/data/query_loss_detail.html){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_size_distribution_by_year_loss.R){target="_blank"}
+Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/data/query_loss_detail.html){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/steelhead_plot_size_distribution_by_year_loss.R){target="_blank"}
 
 ## Cumulative Loss with Single-Year Thresholds
 
@@ -79,7 +79,7 @@ Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/dat
 source(here("R/steehead_plot_count_cumulative_loss_single_year_thresholds.R"))
 ```
 
-Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss:~:text=Chinook%20Salmon%20Loss-,Natural%20Central%20Valley%20Steelhead,-Daily%20Loss%20Table){target="_blank"}, ShinyApp, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steehead_plot_count_cumulative_loss_single_year_thresholds.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLossSingleYearThreshold/){target="\"_blank"}
+Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss:~:text=Chinook%20Salmon%20Loss-,Natural%20Central%20Valley%20Steelhead,-Daily%20Loss%20Table){target="_blank"}, ShinyApp, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/steehead_plot_count_cumulative_loss_single_year_thresholds.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLossSingleYearThreshold/){target="\"_blank"}
 
 Issues:
 
@@ -103,7 +103,7 @@ Issues:
 source(here("R/steelhead_plot_count_cumulative_loss.R"))
 ```
 
-Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_count_cumulative_loss.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
+Related links: [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/steelhead_plot_count_cumulative_loss.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
 
 Issues:
 
@@ -119,7 +119,7 @@ Issues:
 source(here("R/steelhead_plot_daily_loss_export.R"))
 ```
 
-Related links: SacPAS, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_daily_loss_export.R){target="_blank"}
+Related links: SacPAS, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/steelhead_plot_daily_loss_export.R){target="_blank"}
 
 -   Issues:
     -   Confirm if OMRI vertical bars are designated by value or dates, is there a rule to be applied? Shared code is static values, but notes within [assessment pdf](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.usbr.gov/mp/bdo/docs/20240528-proposed-action-assessment.pdf) states: "Vertical black bars are approximate dates when OMRI controlling factors change."
@@ -132,7 +132,7 @@ Related links: SacPAS, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.
 source(here("R/steelhead_plot_tillotson_predicted_loss.R"))
 ```
 
-Related links: SacPAS Page, [SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [plot output](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_tillotson_predicted_loss.R){target="_blank"}
+Related links: SacPAS Page, [SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [plot output](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/steelhead_plot_tillotson_predicted_loss.R){target="_blank"}
 
 -   Issues:
     -   Currently using BOR supplied code to run model, confirm same output with NB code.
@@ -155,7 +155,7 @@ generate_table_pred_obs_loss(data, species = "Steelhead")
 
 ```
 
-Related links: SacPAS Page,[SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/caitobrien/TAC/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/caitobrien/TAC/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [Table configuration](https://github.com/caitobrien/TAC/blob/main/R/utils_fct_generate_table_predicted_observed_loss.R){target="_blank"}
+Related links: SacPAS Page,[SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [Table configuration](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/utils_fct_generate_table_predicted_observed_loss.R){target="_blank"}
 
 -   Issues:
     -   See tillotson figure for issues
