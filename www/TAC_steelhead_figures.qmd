@@ -23,7 +23,7 @@ current_year <- assign_current_water_year()
 
 ## RBDD Juvenile Passage Estimates
 
-```{r, load_plot_01, fig.width=10, fig.height=7}
+```{r, load_plot_rbdd_biweekly_passage, fig.width=10, fig.height=7}
 source(here("R/steelhead_plot_rbdd_biweekly_passage.R"))
 ```
 
@@ -39,7 +39,7 @@ Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/tmp/redbl
 
 Note: Plots below use Winter-run Chinook as a surrogate for Steelhead
 
-```{r,  load_plot_02, fig.width=12, fig.height=8}
+```{r,  load_plot_STARS, fig.width=12, fig.height=8}
 source(here("R/winter_run_chinook_plot_STARS.R"))
 ```
 
@@ -49,7 +49,7 @@ Related links: [Interactive Plot](https://csobrien.shinyapps.io/WRChinookSTARS/)
 
 ### 
 
-```{r load_plot_03a, fig.width=10, fig.height=7}
+```{r load_plot_count_total_loss, fig.width=10, fig.height=7}
 source(here("R/steelhead_plot_count_total_loss.R"))
 ```
 
@@ -61,13 +61,13 @@ Issues:
 
 ## Size (Fork Length) Distribution of Steelhead Loss
 
-```{r load_plot_03b, fig.width=10, fig.height=7, fig.cap="Figure compares density plots that highlight historical (WY1994 to WY2023) size distribution and histogram of current year (WY2024) size distribution by rear type (yellow = unclipped; blue = clipped). Fork lengths below 750 mm were included in dataset."}
+```{r load_plot_size_distribution_loss, fig.width=10, fig.height=7, fig.cap="Figure compares density plots that highlight historical (WY1994 to WY2023) size distribution and histogram of current year (WY2024) size distribution by rear type (yellow = unclipped; blue = clipped). Fork lengths below 750 mm were included in dataset."}
 source(here("R/steelhead_plot_size_distribution_loss.R"))
 ```
 
 Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/data/query_loss_detail.html){target="_blank"}, [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/steelhead_plot_size_distribution_loss.R){target="_blank"}
 
-```{r load_plot_03c, fig.width=8, fig.height=10}
+```{r load_plot_size_distribution_by_year_loss, fig.width=8, fig.height=10}
 source(here("R/steelhead_plot_size_distribution_by_year_loss.R"))
 ```
 
@@ -75,7 +75,7 @@ Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/dat
 
 ## Cumulative Loss with Single-Year Thresholds
 
-```{r load_plot_04, fig.width=10, fig.height=8}
+```{r load_plot_count_cumulative_loss_single_year_thresholds, fig.width=10, fig.height=8}
 source(here("R/steehead_plot_count_cumulative_loss_single_year_thresholds.R"))
 ```
 
@@ -99,7 +99,7 @@ Issues:
 
 ## Cumulative Loss by BiOp Status and Hydrological Classification Index (HCI)
 
-```{r load_plot_05, fig.width=10, fig.height=10, fig.cap="The figure shows cumulative loss by BiOp Status and Hydrological Classification Index (HCI). Each quadrant of the faceted plot includes grey lines for historical years, colored lines (blue for wet years, red for dry years) for years within the BiOp status and HCI type, a black line for the current year, and a dashed horizontal line indicating the current cumulative loss maximum."}
+```{r load_plot_count_cumulative_loss, fig.width=10, fig.height=10, fig.cap="The figure shows cumulative loss by BiOp Status and Hydrological Classification Index (HCI). Each quadrant of the faceted plot includes grey lines for historical years, colored lines (blue for wet years, red for dry years) for years within the BiOp status and HCI type, a black line for the current year, and a dashed horizontal line indicating the current cumulative loss maximum."}
 source(here("R/steelhead_plot_count_cumulative_loss.R"))
 ```
 
@@ -115,7 +115,7 @@ Issues:
 
 ## Daily Loss and Export by Pumping Facility
 
-```{r, load_plot_06, fig.width=12, fig.height=10}
+```{r, load_plot_daily_loss_export, fig.width=12, fig.height=10}
 source(here("R/steelhead_plot_daily_loss_export.R"))
 ```
 
@@ -128,7 +128,7 @@ Related links: SacPAS, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.
 
 ## Predicted Weekly Loss - Tillotson Model
 
-```{r, load_plot6, fig.width=10, fig.height=7}
+```{r, load_plot_tillotson_predicted_loss, fig.width=10, fig.height=7}
 source(here("R/steelhead_plot_tillotson_predicted_loss.R"))
 ```
 
@@ -141,7 +141,7 @@ Related links: SacPAS Page, [SacPAS Tillotson Tool](https://www.cbr.washington.e
         -   JG or NB to reach out?
     -   Confirm change in plot design
 
-```{r, load_table_01, fig.width=10, fig.height=6}
+```{r, load_table_predicted_observed_loss, fig.width=10, fig.height=6}
 # Load the data
 load(here("data/tillotson_prediction_output.rda"))
 

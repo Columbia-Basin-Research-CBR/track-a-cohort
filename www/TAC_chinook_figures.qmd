@@ -43,7 +43,7 @@ Related links: [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/WRChi
 ## Percent loss of Juvenile Production Estimate (JPE)
 
 
-```{r load_plot_03a, fig.width=10, fig.height=7}
+```{r load_plot_pct_genetic_lad_loss_jpe, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_pct_genetic_lad_loss_jpe.R"))
 ```
 
@@ -51,7 +51,7 @@ Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/
 
 
 
-```{r, load_plot_03b, fig.width=10, fig.height=7}
+```{r, load_plot_pct_cumulative_genetic_loss_jpe, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R"))
 ```
 
@@ -63,19 +63,19 @@ Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/
 ## Total Loss
 
 
-```{r, load_plot_04a, fig.width=10, fig.height=7}
-source(here("R/winter_run_chinook_plot_count_genetic_lad_loss_jpe.R"))
+```{r, load_plot_count_genetic_lad_loss, fig.width=10, fig.height=7}
+source(here("R/winter_run_chinook_plot_count_genetic_lad_loss.R"))
 ```
 
 Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_genetic_lad_loss_jpe.R){target="_blank"}
 
 ## Cumulative Loss with Single-Year Thresholds
-```{r, load_plot_05a, fig.width=10, fig.height=7}
+```{r, load_plot_count_cumulative_genetic_loss_single_year_thresholds, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R"))
 ```
 
 
-```{r, load_plot_05b, fig.width=10, fig.height=7}
+```{r, load_plot_count_cumulative_lad_loss_single_year_thresholds, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R"))
 ```
 
@@ -88,8 +88,8 @@ Related links: [SacPAS Query](https://www.cbr.washington.edu/sacramento/workgrou
 
 ## Cumulative Loss by BiOp Status and Hydrological Classification Index (HCI) 
 
-```{r, load_plot_06, fig.width=10, fig.height=10, fig.cap="The figure shows cumulative loss by BiOp Status and Hydrological Classification Index (HCI). Each quadrant of the faceted plot includes grey lines for historical years, colored lines (blue for wet years, red for dry years) for years within the BiOp status and HCI type, a black line for the current year, and a dashed horizontal line indicating the current cumulative loss maximum."}
-source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R"))
+```{r, load_plot_count_cumulative_lad_loss, fig.width=10, fig.height=10, fig.cap="The figure shows cumulative loss by BiOp Status and Hydrological Classification Index (HCI). Each quadrant of the faceted plot includes grey lines for historical years, colored lines (blue for wet years, red for dry years) for years within the BiOp status and HCI type, a black line for the current year, and a dashed horizontal line indicating the current cumulative loss maximum."}
+source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss.R"))
 ```
 
 Related links: [GitHub Repo Code](https://github.com/caitobrien/TAC/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
@@ -112,7 +112,7 @@ Related links: [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/Daily
 
 ## Predicted Weekly Loss - Tillotson Model
 
-```{r, load_plot_08, fig.width=10, fig.height=7}
+```{r, load_plot_tillotson_predicted_loss, fig.width=10, fig.height=7}
 source(here("R/winter_run_chinook_plot_tillotson_predicted_loss.R"))
 ```
 
@@ -128,7 +128,7 @@ Related links: [SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento
 
 ### 
 
-```{r, load_table_01, fig.width=10, fig.height=6}
+```{r, load_table_predicted_observed_loss, fig.width=10, fig.height=6}
 # Load the data
 load(here("data/tillotson_prediction_output.rda"))
 
