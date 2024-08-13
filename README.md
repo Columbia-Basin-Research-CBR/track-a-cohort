@@ -1,10 +1,7 @@
-# Track-a-Cohort
-
+# [Track-a-Cohort](https://columbia-basin-research-cbr.github.io/track-a-cohort/www/TAC_chinook_figures.html)
 *product in development*
 
 A webpage that includes requested plots for winter run chinook salmon and steelhead in Sacramento River.
-
-**[Click here to see current figures](https://columbia-basin-research-cbr.github.io/track-a-cohort/www/TAC_chinook_figures.html)**
 
 To run the complete quarto webpage or individual R scripts, first you must install the dependencies and update the data supporting the R scripts. To do so, follow the instructions below.
 
