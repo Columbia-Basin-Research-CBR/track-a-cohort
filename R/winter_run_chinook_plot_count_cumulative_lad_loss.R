@@ -17,8 +17,6 @@ load(here("data/jpe_lad_loss_data.rda"))
 # extract genetic cumulative loss data
 lad_cumulative_loss_data <- jpe_lad_loss_data$lad_cumulative_loss_data
 
-#water year provided by BOR -- to be updated
-wytype <- read.csv(here::here('data/WYtype.csv')) %>% filter(Basin == "SacramentoValley")
 
 # import wDay to month function
 source(here("R/utils_fct_wday_to_month.R"))

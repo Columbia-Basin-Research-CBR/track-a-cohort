@@ -12,9 +12,10 @@ url <- "https://www.cbr.washington.edu/sacramento/data/php/rpt/juv_loss_detail.p
 
 steelhead_loss_raw<- read.csv(url, header = TRUE, stringsAsFactors = FALSE)
 
+
+
 # load hydrological classification data
-wytype <- read.csv(here("data/WYtype.csv")) %>% 
-  filter(Basin == "SacramentoValley") 
+source(here::here("data-raw/utils_import_hydrological_classification_index.R"))
 
 steelhead_loss_data<- steelhead_loss_raw %>% 
   janitor::clean_names() %>% 
@@ -35,17 +36,16 @@ steelhead_loss_data<- steelhead_loss_raw %>%
                             WY > 2008 ~ '2009 & 2019 BiOp\n(2009 to present)')) %>%
   #set order of factor levels
   mutate(status = factor(status, levels = c('Pre-2009 BiOp\n(1994 to 2008)', '2009 & 2019 BiOp\n(2009 to present)'))) %>% 
-  left_join(select(wytype,WY, Yr.type) , by = "WY") %>%
+  left_join(select(hydrological_classification_index,WY, Classification) , by = "WY" ) %>%
   filter(!is.na(date)) %>%
   # create hydrological classification
-  mutate( hydro_type = factor(Yr.type, 
-                              levels = c("W", "AN", "BN", "D", "C"), 
-                              labels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical")),
+  mutate( hydro_type = factor(Classification, 
+                              levels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical")),
           hydro_type_grp = case_when( hydro_type %in% c("Wet", "Above Normal") ~ "Wet & Above Normal",
                                       hydro_type %in% c("Below Normal", "Dry", "Critical") ~ "Below Normal, Dry, & Critical"
                                      )
   ) %>% 
-  select(-c(sample_time, doy, CY,Yr.type)) %>% 
+  select(-c(sample_time, doy, CY,Classification)) %>% 
   filter(adipose_clip != "") #remove blank adipose clips
 
 # save data
