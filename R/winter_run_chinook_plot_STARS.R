@@ -6,7 +6,6 @@
 #' 
 require(tidyverse)
 require(here)
-require(gghighlight)
 require(patchwork)
 
 

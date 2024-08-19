@@ -4,94 +4,104 @@ library(plotly)
 library(tidyverse)
 library(xts)
 library(zoo)
-library(gghighlight)
 library(fresh)
 library(here)
 
-source(here::here("utils_SacPAStheme.R"))
+try({
+  source(here::here("utils_SacPAStheme.R"))
+  source(here("utils_fct_wday_to_month.R"))
+  # load(here::here("data", "STARS_data.rda"))
+  load(here::here("STARS.shinyinputs.Rdata")) 
+  source(here("utils_fct_assign_current_water_year.R"))
+  source(here::here("utils_import_hydrological_classification_index.R"))
+}, silent = TRUE)
 
-# Function to convert DOY to month name
-doy_to_month <- function(doy, year_type) {
-  # Adjust the DOY based on the year type
-  adjusted_doy <- if (year_type == "WY") {
-    (doy + 273) %% 365 + 1
-  } else {
-    doy
-  }
-  # Convert the adjusted DOY to a date
-  date <- as.Date(paste(2000, adjusted_doy), format = "%Y %j")
-  # Return the month name
-  return(format(date, "%b"))
+if(!exists("SacPAStheme") || !exists("STARS_data") || !exists("assign_current_water_year")|| !exists("wDay_to_month") || !exists("hydrological_classification_index")) {
+  source(here::here("apps.R/utils_SacPAStheme.R"))
+  source(here("apps.R/utils_fct_wday_to_month.R"))
+  # load(here::here("apps.R/STARS_data.rda"))
+  load(here::here("apps.R/STARS.shinyinputs.Rdata"))
+  source(here("apps.R/utils_fct_assign_current_water_year.R"))
+  source(here::here("apps.R/utils_import_hydrological_classification_index.R"))
 }
 
-# Function to plot figures 
-fct_stars_survival_plot <- function(data, x_var, year, metric, hydro, hydro_type) {
-  
+current_year <- assign_current_water_year()
+
+
+fct_stars_survival_plot <- function(data, metric, y_L80, y_U80, hydro, hydro_type){
   # Define y variable and ribbon variables based on metric
-  y_var <- metric
+  y_var <- paste0(metric)
   ymin_var <- paste0(metric, "L80")
   ymax_var <- paste0(metric, "U80")
   
-  # # Define title based on metric
-  # rct_title <- switch(metric,
-  #                     surv = 'STARS model - Overall Survival',
-  #                     idsurv = 'STARS model -Interior Delta Route-specific Survival Probability',
-  #                     idRoute = 'STARS model - Interior Delta Route-specific Probability',
-  #                     'STARS model - Survival')
+  # Define all possible levels of hydro_type
+  all_levels <- c("Wet", "Above Normal", "Below Normal", "Dry", "Critical", "Unassigned")
   
-  # # Define title based on metric
-  # rct_caption <- switch(metric,
-  #                       surv = "The solid line shows median survival of daily cohorts of winter run Chinook Salmon\n through the Delta from Knights Landing to Chipps Island for all routes combined.",
-  #                       idsurv = "Route-specific survival of daily cohorts of winter run Chinook Salmon\nthrough the Delta from Knights Landing to Chipps Island.",
-  #                       idRoute = "Proportion of daily cohorts of winter run Chinook Salmon\nthrough the Delta (Knights Landing to Chipps Island) using the Interior Delta route.")
-  
-  # Define title based on metric
-  rct_x_var <- switch(x_var,
-                      wDay =  'Month\n(Water Year: Oct-Dec of year [t-1], Jan-Sep of year [t])',
-                      doy =  'Month\n(Calendar Year: Jan-Dec of year [t])')
-  
-  # Generate the labels for the x-axis
-  labels <- sapply(seq(1, 365, by = 60), function(doy) doy_to_month(doy, year))
-
-  
-  # Define color based on hydro
-  color_var <- if (hydro == "TRUE") {
-    hydro_type
+  # Generate a dynamic color palette based on hydro -- using SI SacPAS colors on hydro webpage
+  if (hydro == "TRUE") {
+    color_palette <- setNames(c("#00008b", "#74a9cf", "#FDECC7", "#f1ac1c", "#cc4c02", "grey"), all_levels)
+    # Override color for current year to black if hydro_type is "Unassigned"
+    if (any(data$WY == current_year & data$hydro_type == "Unassigned")) {
+      color_palette["Unassigned"] <- "black"
+    }
   } else {
-    NULL
+    unique_years <- unique(data$WY)
+    color_palette <- c("#E69F00", "#56B4E9","#009E73","#999999","#0072B2" ,"#D55E00", "#CC79A7", "#F0E442")
+    names(color_palette) <- as.character(unique_years)
+    # Override color for current year to black
+    color_palette[as.character(current_year)] <- "black"
   }
   
-  # Define all possible levels of hydro_type
-  all_levels <- c("Wet", "Above Normal", "Below Normal", "Dry", "Critical")
+  # Create a plotly object
+  p <- plot_ly(data = data, x = ~wDay)
   
-  # Create a color palette that includes all possible levels
-  color_palette <- setNames(c("darkblue", "cadetblue", "honeydew3", "navajowhite3", "salmon4"), all_levels)
+  # Add lines for each year with specific line width for current year
+  for (wy in unique(data$WY)) {
+    p <- p %>%
+      add_lines(
+        data = data %>% filter(WY == wy),
+        y = ~.data[[y_var]], 
+        line = list(width = ifelse(wy == current_year, 3, 1.5)), 
+        color = if (hydro == "TRUE") ~hydro_type else ~as.factor(WY),
+        colors = color_palette,
+        name = if (hydro == "TRUE") ~paste0(hydro_type, " - WY", WY) else ~paste0("WY", WY)
+      )
+  }
   
-  
-  
-  # Plot
-  
-  p <- ggplot(data, aes_string(x = x_var, group = year)) +
-    geom_line(aes_string(y = y_var, color = color_var)) +
-    labs(x = rct_x_var,
-         y = 'Probability',
-         title =  NULL,#rct_title,
-         subtitle = "Years of data : 2018 to 2024",
-         #losing caption with plotly--see plotly annotation instead
-         # caption = rct_caption
-         color = "Hydrologic Classification Indices"
-         ) +
-    scale_color_manual(values = color_palette, drop = FALSE) +
-    gghighlight(use_direct_label = FALSE) +
-    facet_wrap(as.formula(paste0("~", year))) +
-    geom_ribbon(aes_string(ymin = ymin_var, ymax = ymax_var), alpha = 0.25) +
-    scale_x_continuous(breaks = seq(1, 365, by = 60), labels = labels) +
-    # scale_x_continuous(breaks = seq(1, 365, by = 60), labels = day_to_month) +
-    theme_minimal()
-
+  # Add ribbons for the current year
+  p <- p %>%
+    add_ribbons(
+      data = data %>% filter(WY == current_year),
+      ymin = ~.data[[ymin_var]], 
+      ymax = ~.data[[ymax_var]], 
+      fillcolor = 'rgba(0,0,0,0.1)', 
+      line = list(color = 'rgba(0,0,0,0)'),
+      name = ~paste0("WY",current_year, ", 80% CI"),
+      showlegend = TRUE
+    ) %>%
+    layout(
+      xaxis = list(
+        title = "Month",
+        tickvals = seq(1, 365, by = 61),
+        ticktext = wDay_to_month(seq(1, 365, by = 61))
+      ),
+      yaxis = list(
+        title = "Apparent survival probability",
+        rangemode = "tozero"
+      ),
+      legend = list(
+        title = list(text = if (hydro == "TRUE") "Hydrologic Year Type" else "Water Year"),
+        traceorder = "grouped"
+      ),
+      margin = list(l = 50, r = 50, t = 50, b = 50),
+      paper_bgcolor = 'white',
+      plot_bgcolor = 'white'
+    )
   
 return(p)
+        
 }
+
 
 ui <- shinydashboard::dashboardPage(
   shinydashboard::dashboardHeader(title = "STARS Survival Plot"),
@@ -104,13 +114,6 @@ ui <- shinydashboard::dashboardPage(
         width = 12,
         status = "info",
         fluidRow(
-        column(width = 3,
-        selectInput(
-        inputId = "select_yeartype",
-        label = "Select year type:", 
-        choices = c("Water Year", "Calendar Year"),
-        multiple = FALSE)
-        ),
         column(
           width = 3,
           selectInput(
@@ -150,16 +153,16 @@ ui <- shinydashboard::dashboardPage(
       )
       ),
       uiOutput("plot_caption"),
-      plotly::plotlyOutput("plot")
+      plotly::plotlyOutput("plot"),
+      h5("Data source: Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS.")
       )
     )
-    )
   )
+)
 
 server <- function(input, output, session) {
   output$plot <- plotly::renderPlotly({
-    # Load data
-    load(here::here("STARS.shinyinputs.Rdata")) #COB removed verbose=T to run with here::here
+
     
     # Subset the data and convert to tibble
     df_stars_raw <- tibble::as_tibble(WR_xts[,c("Survival Interior Delta Est", 
@@ -186,13 +189,14 @@ server <- function(input, output, session) {
              CY = lubridate::year(date),
              wDate = if_else(lubridate::month(date) >= 10, date + lubridate::years(1), date))
     
-    #pull in shared wytype.csv
-    wytype <- read.csv(here::here('WYtype.csv')) %>%  dplyr::filter(Basin == "SacramentoValley")
-    
     #append wytype to stars results
     df_stars<-df_stars_raw %>% 
-      dplyr::inner_join(select(wytype, WY, hydro_type = `Yr.type`), by = "WY") %>% 
-      dplyr::mutate( hydro_type = factor(hydro_type, levels = c("W", "AN", "BN", "D", "C"), labels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical")))
+      dplyr::left_join(select(hydrological_classification_index, WY, hydro_type = Classification), by = "WY") %>% 
+      dplyr::mutate(hydro_type = factor(
+                      ifelse(is.na(hydro_type), "Unassigned", hydro_type), 
+                      levels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical", "Unassigned")
+                    )
+                  )
     
     # Add this reactive expression
     output$plot_caption <- renderUI({
@@ -203,37 +207,15 @@ server <- function(input, output, session) {
              )
            )
     })
+  
     
-    # # Filter data
-    # filtered_data <- df_stars %>% 
-    #   filter(WY %in% input$select_years,
-    #          CY %in% input$select_years)
-    # Filter data
     if (input$select_year == "All years") {
-           df_stars
+      p <- fct_stars_survival_plot(data = df_stars, metric = input$select_metric, hydro = as.character(input$select_hydro), hydro_type = df_stars$hydro_type)
     } else {
       filtered_data <- df_stars %>% 
-        dplyr::filter(WY == input$select_year , CY == input$select_year)
-    }
-    
-    # if(input$select_yeartype == "Water Year") {
-    #   p<-fct_stars_survival_plot(data = filtered_data, x_var = "wDay", year = "WY", metric = input$select_metric, hydro = as.character(input$select_hydro), hydro_type = df_stars$hydro_type)
-    # } else {
-    #   p<-fct_stars_survival_plot(data =  filtered_data, x_var = "doy", year = "CY", metric = input$select_metric, hydro = as.character(input$select_hydro), hydro_type = df_stars$hydro_type)
-    # }
-    
-    if(input$select_yeartype == "Water Year") {
-      if (input$select_year == "All years") {
-        p <- fct_stars_survival_plot(data = df_stars, x_var = "wDay", year = "WY", metric = input$select_metric, hydro = as.character(input$select_hydro), hydro_type = df_stars$hydro_type)
-      } else {
-        p <- fct_stars_survival_plot(data = filtered_data, x_var = "wDay", year = "WY", metric = input$select_metric, hydro = as.character(input$select_hydro), hydro_type = filtered_data$hydro_type)
-      }
-    } else {
-      if (input$select_year == "All years") {
-        p <- fct_stars_survival_plot(data = df_stars, x_var = "doy", year = "CY", metric = input$select_metric, hydro = as.character(input$select_hydro), hydro_type = df_stars$hydro_type)
-      } else {
-        p <- fct_stars_survival_plot(data = filtered_data, x_var = "doy", year = "CY", metric = input$select_metric, hydro = as.character(input$select_hydro), hydro_type = filtered_data$hydro_type)
-      }
+        dplyr::filter(WY == input$select_year)
+      
+      p <- fct_stars_survival_plot(data = filtered_data, metric = input$select_metric, hydro = as.character(input$select_hydro), hydro_type = filtered_data$hydro_type)
     }
   
     

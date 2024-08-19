@@ -6,20 +6,17 @@ library(shinydashboard)
 library(lubridate)
 library(here)
 
+try({
+  source(here::here("utils_SacPAStheme.R"))
+  load(here::here("steelhead_loss_export_data.rda"))
+  load(here::here("winter_run_chinook_loss_export_data.rda"))
+}, silent = TRUE)
 
-# source(here::here("utils_SacPAStheme.R"))
-# # Load the data
-# load(here::here("steelhead_loss_export_data.rda"))
-# load(here::here("winter_run_chinook_loss_export_data.rda"))
-
-
-# use if running from local computer
-source(here::here("apps.R/utils_SacPAStheme.R"))
-# Load the data
-load(here::here("apps.R/steelhead_loss_export_data.rda"))
-load(here::here("data/winter_run_chinook_loss_export_data.rda"))
-
-
+if(!exists("steelhead_loss_export_data") || !exists("winter_run_chinook_loss_export_data")) {
+  source(here::here("apps.R/utils_SacPAStheme.R"))
+  load(here::here("apps.R/steelhead_loss_export_data.rda"))
+  load(here::here("apps.R/winter_run_chinook_loss_export_data.rda"))
+}
 
 # OMRI values data frame
 omriValues <- data.frame(value = c(-5000,-3500,-2000,-5000,-3500,-2500,-500,-1500,-2500, "COA 8.17"),
@@ -27,15 +24,25 @@ omriValues <- data.frame(value = c(-5000,-3500,-2000,-5000,-3500,-2500,-500,-150
                                                  '2024-02-17', '2024-03-11', '2024-02-26', '2024-04-01', '2024-04-09')))
 
 ui <- shinydashboard::dashboardPage(
-  shinydashboard::dashboardHeader(title = "Daily Loss and Exports"),
+  shinydashboard::dashboardHeader(title = "SacPAS: Interactive Plot"),
   shinydashboard::dashboardSidebar(disable = TRUE),
   shinydashboard::dashboardBody(
     # Add CSS SacPAS global theme
     fresh::use_theme(SacPAStheme),
-    
     fluidRow(
       shinydashboard::box(
-        title = "Pumping Facilities:", 
+        title = "Daily Total Loss and CVP/SWP Exports", 
+        status = "primary", 
+        width = 12,
+        solidHeader = TRUE,
+        "This app allows you to visualize daily total loss and exports for Winter-run Chinook and Steelhead at the CVP/SWP pumping facilities. 
+        In the `Select Inputs` section, select a species and a pumping facility to view the data. To view without the OMRI lines, deselect the checkbox option. 
+        On each figure hoover over the plot to view specific data points of interest and remove information from the plot by click on the legend entry. Data sourced from CDFW Salvage Database."
+      )
+    ),
+    fluidRow(
+      shinydashboard::box(
+        title = "Select Inputs:", 
         status = "info", 
         width = 3,
         solidHeader = TRUE,
@@ -51,7 +58,7 @@ ui <- shinydashboard::dashboardPage(
                       value = TRUE) 
       ),
       shinydashboard::box(
-        title = "Daily Total Loss and Exports Per Pumping Facility", 
+        title = "Interactive plot: Daily Total Loss and Exports Per Pumping Facility", 
         status = "success", 
         solidHeader = TRUE,
         width = 9,
@@ -76,11 +83,11 @@ server <- function(input, output) {
       add_bars(data = subset(data_to_plot, facility == "CVP"), y = ~daily_total_loss, name = "CVP Daily Loss", marker = list(color = '#CE900D')) %>%
       add_bars(data = subset(data_to_plot, facility == "SWP"), y = ~daily_total_loss, name = "SWP Daily Loss", marker = list(color = '#0072B2')) %>%
       layout(
-        title = paste("Daily Total Loss and Exports for", species_name),
+        title = paste("Daily Total Loss and Exports for Natural", species_name),
         barmode = "group",
         yaxis = list(title = "Daily Loss"),
         xaxis = list(title = "Date", type = "date"),
-        legend = list(title = list(text = "Facility"), x = 1.1),
+        legend = list(title = list(text = NULL), x = 1.1),
         margin = list(l = 60, r = 200, t = 50, b = 50)
       )
     
@@ -140,11 +147,11 @@ server <- function(input, output) {
   output$comparePlots <- renderUI({
     if (input$select_plot == "Compare All") {
       plot_output_list <- list(
-        h3("Combined, CVP & SWP"),
+        h3("Comparison of facilities, CVP & SWP"),
         plotlyOutput(outputId = "plot_combined"),
-        h3("CVP"),
+        h3("Individual facility, CVP"),
         plotlyOutput(outputId = "plot_cvp"),
-        h3("SWP"),
+        h3("Individual facility, SWP"),
         plotlyOutput(outputId = "plot_swp")
       )
       

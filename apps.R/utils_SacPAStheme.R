@@ -10,7 +10,7 @@ SacPAStheme<- fresh::create_theme(
   fresh::adminlte_color(
     light_blue = "#45585E", #status = "primary"
     aqua = "#5E7880", #status = "info"
-    green = "#c3d7e2", #status = "success"
+    green = "#bcb18b", #status = "success"
     teal = "#c3d7e2",
     gray_lte = "#e0d6b0",
     blue = "#5E7880"
@@ -39,8 +39,8 @@ SacPAStheme<- fresh::create_theme(
   )
 )
 
-#c3d7e2
-#e0d6b0
-#bcb18b
-#04224e
+# "#c3d7e2"
+# "#e0d6b0"
+# "#bcb18b"
+# "#04224e"
 

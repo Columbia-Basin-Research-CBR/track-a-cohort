@@ -7,7 +7,14 @@ require(janitor)
 require(usethis)
 require(here)
 
-source(here("utils_fct_assign_current_water_year.R"))
+try({
+  load(here("utils_fct_assign_current_water_year.R"))
+}, silent = TRUE)
+
+if(!exists("assign_current_water_year")) {
+  source(here("apps.R/utils_fct_assign_current_water_year.R"))
+}
+
 current_year <- assign_current_water_year()
 
 # # local computer
