@@ -12,7 +12,7 @@ try({
   load(here::here("winter_run_chinook_loss_export_data.rda"))
 }, silent = TRUE)
 
-if(!exists("steelhead_loss_export_data") || !exists("winter_run_chinook_loss_export_data")) {
+if(!exists("steelhead_loss_export_data") || !exists("winter_run_chinook_loss_export_data") || !exists("SacPAStheme")) {
   source(here::here("apps.R/utils_SacPAStheme.R"))
   load(here::here("apps.R/steelhead_loss_export_data.rda"))
   load(here::here("apps.R/winter_run_chinook_loss_export_data.rda"))

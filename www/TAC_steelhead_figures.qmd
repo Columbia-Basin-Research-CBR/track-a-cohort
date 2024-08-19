@@ -43,7 +43,7 @@ Note: Plots below use Winter-run Chinook as a surrogate for Steelhead
 source(here("R/winter_run_chinook_plot_STARS.R"))
 ```
 
-Related links: [Interactive Plot](https://csobrien.shinyapps.io/WRChinookSTARS/){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
+Related links: [Interactive Plot](https://caitobrien.shinyapps.io/track-a-cohort_WRChinookSTARS/){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
 
 ## Total Loss - Clipped and Unclipped Steelhead
 
@@ -79,7 +79,7 @@ Related links: [SacPAS Query](https://www.cbr.washington.edu:2024/sacramento/dat
 source(here("R/steehead_plot_count_cumulative_loss_single_year_thresholds.R"))
 ```
 
-Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss:~:text=Chinook%20Salmon%20Loss-,Natural%20Central%20Valley%20Steelhead,-Daily%20Loss%20Table){target="_blank"}, ShinyApp, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/steehead_plot_count_cumulative_loss_single_year_thresholds.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLossSingleYearThreshold/){target="\"_blank"}
+Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss:~:text=Chinook%20Salmon%20Loss-,Natural%20Central%20Valley%20Steelhead,-Daily%20Loss%20Table){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/steehead_plot_count_cumulative_loss_single_year_thresholds.R){target="_blank"}
 
 Issues:
 
@@ -96,6 +96,7 @@ Issues:
 
         (More information on 4-70)
 -   Confirm only including unclipped
+- ShinyApp pending
 
 ## Cumulative Loss by BiOp Status and Hydrological Classification Index (HCI)
 
@@ -103,7 +104,7 @@ Issues:
 source(here("R/steelhead_plot_count_cumulative_loss.R"))
 ```
 
-Related links: [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/steelhead_plot_count_cumulative_loss.R){target="_blank"}, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/CumulativeLoss/){target="\"_blank"}
+Related links: [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/steelhead_plot_count_cumulative_loss.R){target="_blank"}
 
 Issues:
 
@@ -113,13 +114,15 @@ Issues:
 
 -   Confirm data source footnote
 
+-   ShinyApp pending
+
 ## Daily Loss and Export by Pumping Facility
 
 ```{r, load_plot_daily_loss_export, fig.width=12, fig.height=10}
 source(here("R/steelhead_plot_daily_loss_export.R"))
 ```
 
-Related links: SacPAS, [Interactive Plot - ShinyApp](https://csobrien.shinyapps.io/DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/steelhead_plot_daily_loss_export.R){target="_blank"}
+Related links: SacPAS, [Interactive Plot - ShinyApp](https://caitbrien.shinyapps.io/track-a-cohort_DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/steelhead_plot_daily_loss_export.R){target="_blank"}
 
 -   Issues:
     -   Confirm if OMRI vertical bars are designated by value or dates, is there a rule to be applied? Shared code is static values, but notes within [assessment pdf](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.usbr.gov/mp/bdo/docs/20240528-proposed-action-assessment.pdf) states: "Vertical black bars are approximate dates when OMRI controlling factors change."

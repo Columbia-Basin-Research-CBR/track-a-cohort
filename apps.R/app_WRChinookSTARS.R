@@ -16,14 +16,14 @@ try({
   source(here::here("utils_import_hydrological_classification_index.R"))
 }, silent = TRUE)
 
-if(!exists("SacPAStheme") || !exists("STARS_data") || !exists("assign_current_water_year")|| !exists("wDay_to_month") || !exists("hydrological_classification_index")) {
-  source(here::here("apps.R/utils_SacPAStheme.R"))
-  source(here("apps.R/utils_fct_wday_to_month.R"))
-  # load(here::here("apps.R/STARS_data.rda"))
-  load(here::here("apps.R/STARS.shinyinputs.Rdata"))
-  source(here("apps.R/utils_fct_assign_current_water_year.R"))
-  source(here::here("apps.R/utils_import_hydrological_classification_index.R"))
-}
+# if(!exists("SacPAStheme") || !exists("assign_current_water_year")|| !exists("wDay_to_month") || !exists("hydrological_classification_index")) {
+#   source(here::here("apps.R/utils_SacPAStheme.R"))
+#   source(here("apps.R/utils_fct_wday_to_month.R"))
+#   # load(here::here("apps.R/STARS_data.rda"))
+#   load(here::here("apps.R/STARS.shinyinputs.Rdata"))
+#   source(here("apps.R/utils_fct_assign_current_water_year.R"))
+#   source(here::here("apps.R/utils_import_hydrological_classification_index.R"))
+# }
 
 current_year <- assign_current_water_year()
 
@@ -104,12 +104,22 @@ return(p)
 
 
 ui <- shinydashboard::dashboardPage(
-  shinydashboard::dashboardHeader(title = "STARS Survival Plot"),
+  shinydashboard::dashboardHeader(title = "SacPAS: Interactive Plot"),
   shinydashboard::dashboardSidebar(disable = TRUE),
   shinydashboard::dashboardBody(
     #add CSS SacPAS global theme
     fresh::use_theme(SacPAStheme),
     fluidRow(
+      shinydashboard::box(
+        width = 12,
+        status = "primary",
+        solidHeader = TRUE,
+        title = "STARS model - Winter-run Chinook Salmon",
+        "This app allows you to visualize STARS model results for Winter-run Chinook Salmon in past years compared to the current water year. 
+        Select a specific survival probability below to adjust the plot. User can adjust color coding to reflec Hydrological Classification Index classification by selecting the `Show Hydrological Year Type` switch below. 
+        To add/remove years from plot, click the water year within the plot legend or select in the drop down menu below. 
+        Data sourced from Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS."
+      ),
       shinydashboard::box(
         width = 12,
         status = "info",
