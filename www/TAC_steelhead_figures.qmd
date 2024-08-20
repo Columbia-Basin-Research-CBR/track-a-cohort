@@ -96,7 +96,7 @@ Issues:
 
         (More information on 4-70)
 -   Confirm only including unclipped
-- ShinyApp pending
+-   ShinyApp pending
 
 ## Cumulative Loss by BiOp Status and Hydrological Classification Index (HCI)
 
@@ -122,7 +122,7 @@ Issues:
 source(here("R/steelhead_plot_daily_loss_export.R"))
 ```
 
-Related links: SacPAS, [Interactive Plot - ShinyApp](https://caitbrien.shinyapps.io/track-a-cohort_DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/steelhead_plot_daily_loss_export.R){target="_blank"}
+Related links: SacPAS, [Interactive Plot - ShinyApp](https://caitobrien.shinyapps.io/track-a-cohort_DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/steelhead_plot_daily_loss_export.R){target="_blank"}
 
 -   Issues:
     -   Confirm if OMRI vertical bars are designated by value or dates, is there a rule to be applied? Shared code is static values, but notes within [assessment pdf](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.usbr.gov/mp/bdo/docs/20240528-proposed-action-assessment.pdf) states: "Vertical black bars are approximate dates when OMRI controlling factors change."

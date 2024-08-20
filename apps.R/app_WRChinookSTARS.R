@@ -16,14 +16,14 @@ try({
   source(here::here("utils_import_hydrological_classification_index.R"))
 }, silent = TRUE)
 
-# if(!exists("SacPAStheme") || !exists("assign_current_water_year")|| !exists("wDay_to_month") || !exists("hydrological_classification_index")) {
-#   source(here::here("apps.R/utils_SacPAStheme.R"))
-#   source(here("apps.R/utils_fct_wday_to_month.R"))
-#   # load(here::here("apps.R/STARS_data.rda"))
-#   load(here::here("apps.R/STARS.shinyinputs.Rdata"))
-#   source(here("apps.R/utils_fct_assign_current_water_year.R"))
-#   source(here::here("apps.R/utils_import_hydrological_classification_index.R"))
-# }
+if(!exists("SacPAStheme") || !exists("assign_current_water_year")|| !exists("wDay_to_month") || !exists("hydrological_classification_index")) {
+  source(here::here("apps.R/utils_SacPAStheme.R"))
+  source(here("apps.R/utils_fct_wday_to_month.R"))
+  # load(here::here("apps.R/STARS_data.rda"))
+  load(here::here("apps.R/STARS.shinyinputs.Rdata"))
+  source(here("apps.R/utils_fct_assign_current_water_year.R"))
+  source(here::here("apps.R/utils_import_hydrological_classification_index.R"))
+}
 
 current_year <- assign_current_water_year()
 
@@ -116,38 +116,53 @@ ui <- shinydashboard::dashboardPage(
         solidHeader = TRUE,
         title = "STARS model - Winter-run Chinook Salmon",
         "This app allows you to visualize STARS model results for Winter-run Chinook Salmon in past years compared to the current water year. 
-        Select a specific survival probability below to adjust the plot. User can adjust color coding to reflec Hydrological Classification Index classification by selecting the `Show Hydrological Year Type` switch below. 
+        Select a specific survival probability below to adjust the plot. Users can also adjust color coding to reflect Hydrological Classification Index by selecting the `Show Hydrological Year Type` switch below. 
         To add/remove years from plot, click the water year within the plot legend or select in the drop down menu below. 
         Data sourced from Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS."
+      )
       ),
+    fluidRow(
       shinydashboard::box(
-        width = 12,
+        width = 3,
         status = "info",
-        fluidRow(
-        column(
-          width = 3,
+        solidHeader = TRUE,
+        title = "Select Inputs:", 
           selectInput(
                   inputId = "select_metric", 
                   label = "Select Probability:", 
                   choices = c("Overall Survival" = "surv",
                               "Interior Delta Route-specific Survival Probability" = "idsurv",
                               "Interior Delta Route-specific Probability" = "idRoute"),
-                  multiple = FALSE)
-        ),
-      column(
-        width = 3,
-        selectInput(
-          inputId = "select_year", 
-          label = "View years:", 
-          choices = c("All years", 2017:2024),
-          selected = "All years"
+                  multiple = FALSE),
+          selectInput(
+            inputId = "select_year", 
+            label = "View years:", 
+            choices = c("All years", 2017:2024),
+            selected = "All years"
+          ),
+        br(),
+        br(),
+        br(),
+        shinydashboard::box(
+          width = 12,
+          title = "Contact Information",
+          status = "info",
+          solidHeader = TRUE,
+          collapsible = TRUE,
+          collapsed = TRUE,
+          HTML("<p>This ShinyApp is a product of Columbia Basin Reasearch, School of Aquatic and Fishery Sciences, College of the Environment, University of Washington.</p>
+               <p>Please direct general questions to: <a href='mailto:web@cbr.washington.edu'>web@cbr.washington.edu</a></p>"
+          ),
+          HTML("All code featured in this Shiny application is made publically available through our organizations GitHub repository: 
+             <a href='https://github.com/Columbia-Basin-Research-CBR/track-a-cohort'><i class='fab fa-github'></i> Columbia-Basin-Research-CBR</a>"
+          )
         )
-      )
-      )
       ),
       shinydashboard::box(
-      width = 12,
+      width = 9,
       status = "success",
+      solidHeader = TRUE,
+      title = "Interactive plot: STARS model - Winter-run Chinook Salmon",
       fluidRow(
         column(
           width = 9
@@ -156,8 +171,8 @@ ui <- shinydashboard::dashboardPage(
         width = 3,
         shinyWidgets::materialSwitch(
           inputId = "select_hydro", 
-          label = "Show Hydrologic Year Type", 
-          value = TRUE,
+          label = HTML("<b>Show Hydrologic Year Type</b>"), 
+          value = FALSE,
           status = "primary"
         )
       )

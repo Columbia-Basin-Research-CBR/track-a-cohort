@@ -35,9 +35,10 @@ ui <- shinydashboard::dashboardPage(
         status = "primary", 
         width = 12,
         solidHeader = TRUE,
-        "This app allows you to visualize daily total loss and exports for Winter-run Chinook and Steelhead at the CVP/SWP pumping facilities. 
-        In the `Select Inputs` section, select a species and a pumping facility to view the data. To view without the OMRI lines, deselect the checkbox option. 
-        On each figure hoover over the plot to view specific data points of interest and remove information from the plot by click on the legend entry. Data sourced from CDFW Salvage Database."
+        "This app allows you to visualize daily total loss for Natural Winter-run Chinook and Steelhead and daily exports at CVP/SWP pumping facilities. 
+        In the `Select Inputs` section, select a species and a pumping facility to view specific data. To view without approximate OMRI controlling factor lines, deselect the checkbox option. 
+        On each figure, hoover over the plot to view specific data points of interest and remove information from the plot by click on the legend entry. 
+        Data sourced from CDFW Salvage Database, with Length-at-Date (LAD) run assignment was used for Winter-run Chinook."
       )
     ),
     fluidRow(
@@ -55,8 +56,25 @@ ui <- shinydashboard::dashboardPage(
                     choices = c("Combined, CVP & SWP", unique(steelhead_loss_export_data$facility), "Compare All")),
         checkboxInput(inputId = "showLines", 
                       label = "Include approximate changes in OMRI values by date", 
-                      value = TRUE) 
-      ),
+                      value = TRUE),
+        br(),
+        br(),
+        br(),
+        shinydashboard::box(
+          width = 12,
+          title = "Contact Information",
+          status = "info",
+          solidHeader = TRUE,
+          collapsible = TRUE,
+          collapsed = TRUE,
+        HTML("<p>This ShinyApp is a product of Columbia Basin Reasearch, School of Aquatic and Fishery Sciences, College of the Environment, University of Washington.</p>
+               <p>Please direct general questions to: <a href='mailto:web@cbr.washington.edu'>web@cbr.washington.edu</a></p>"
+             ),
+        HTML("All code featured in this Shiny application is made publically available through our organizations GitHub repository: 
+             <a href='https://github.com/Columbia-Basin-Research-CBR/track-a-cohort'><i class='fab fa-github'></i> Columbia-Basin-Research-CBR</a>"
+             )
+        )
+        ),
       shinydashboard::box(
         title = "Interactive plot: Daily Total Loss and Exports Per Pumping Facility", 
         status = "success", 
@@ -80,10 +98,14 @@ server <- function(input, output) {
   createPlot <- function(data_to_plot, species_name = input$select_species) {
     # Create initial plot with bars for CVP and SWP daily total loss
     p <- plot_ly(data = data_to_plot, x = ~date) %>%
-      add_bars(data = subset(data_to_plot, facility == "CVP"), y = ~daily_total_loss, name = "CVP Daily Loss", marker = list(color = '#CE900D')) %>%
-      add_bars(data = subset(data_to_plot, facility == "SWP"), y = ~daily_total_loss, name = "SWP Daily Loss", marker = list(color = '#0072B2')) %>%
+      add_bars(data = subset(data_to_plot, facility == "CVP"), y = ~daily_total_loss, 
+               name = if (species_name == "Winter-run Chinook")  "CVP LAD Loss" else "CVP Daily Loss", 
+               marker = list(color = '#CE900D')) %>%
+      add_bars(data = subset(data_to_plot, facility == "SWP"), y = ~daily_total_loss, 
+               name = if (species_name == "Winter-run Chinook")  "SWP LAD Loss" else "SWP Daily Loss", 
+               marker = list(color = '#0072B2')) %>%
       layout(
-        title = paste("Daily Total Loss and Exports for Natural", species_name),
+        title = if (species_name == "Winter-run Chinook") paste("Daily Total LAD Loss and Exports for Natural", species_name) else paste("Daily Total Loss and Exports for", species_name),
         barmode = "group",
         yaxis = list(title = "Daily Loss"),
         xaxis = list(title = "Date", type = "date"),
@@ -147,11 +169,11 @@ server <- function(input, output) {
   output$comparePlots <- renderUI({
     if (input$select_plot == "Compare All") {
       plot_output_list <- list(
-        h3("Comparison of facilities, CVP & SWP"),
+        h3(tags$span(style = "color: #45585E;", "Comparison of facilities, CVP & SWP")),
         plotlyOutput(outputId = "plot_combined"),
-        h3("Individual facility, CVP"),
+        h3(tags$span(style = "color: #45585E;", "Individual facility, CVP")),
         plotlyOutput(outputId = "plot_cvp"),
-        h3("Individual facility, SWP"),
+        h3(tags$span(style = "color: #45585E;", "Individual facility, SWP")),
         plotlyOutput(outputId = "plot_swp")
       )
       
