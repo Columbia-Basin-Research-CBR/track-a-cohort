@@ -100,7 +100,7 @@ Related links: [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR
 source(here("R/winter_run_chinook_plot_daily_loss_export.R"))
 ```
 
-Related links: [Interactive Plot - ShinyApp](https://caitobriem.shinyapps.io/track-a-cohort_DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_daily_loss_export.R){target="_blank"},
+Related links: [Interactive Plot - ShinyApp](https://caitobrien.shinyapps.io/track-a-cohort_DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_daily_loss_export.R){target="_blank"},
 
 -   Issues:
     -   Update Shiny App
