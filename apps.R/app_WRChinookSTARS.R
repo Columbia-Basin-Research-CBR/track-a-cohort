@@ -123,7 +123,7 @@ ui <- shinydashboard::dashboardPage(
           choices = c("Overall Survival" = "surv",
                       "Interior Delta Route-specific Survival Probability" = "idsurv",
                       "Interior Delta Route-specific Probability" = "idRoute",
-                      "Compare all probabilities" = "compare_all"),
+                      "Compare probabilities" = "compare_all"),
           multiple = FALSE),
         selectInput(
           inputId = "select_year", 
@@ -227,7 +227,7 @@ server <- function(input, output, session) {
                 surv = "<b>STARS model - Overall Survival:</b><br>The solid line shows median survival of daily cohorts of winter run Chinook Salmon through the Delta (Knights Landing to Chipps Island) for all routes combined.",
                 idsurv = "<b>STARS model -Interior Delta Route-specific Survival Probability:</b><br> Route-specific survival of daily cohorts of winter run Chinook Salmon through the Delta (Knights Landing to Chipps Island).",
                 idRoute = "<b>STARS model - Interior Delta Route-specific Probability:</b> <br>Proportion of daily cohorts of winter run Chinook Salmon through the Delta (Knights Landing to Chipps Island) using the Interior Delta route.",
-                compare_all = "<b>STARS model - Compare All Probabilities:</b><br>"
+                compare_all = "<b>STARS model - Compare Probabilities:</b><br>"
     )
     )
   })
