@@ -47,6 +47,11 @@ fct_stars_survival_plot <- function(data, metric, hydro, hydro_type){
   p <- plot_ly(data = data, x = ~wDay)
   
   for (wy in unique(data$WY)) {
+    if (hydro == "TRUE") {
+      fillcolor <- if (wy == current_year) "rgba(0, 0, 0, 0.15)" else paste0(color_palette[as.character(data$hydro_type[data$WY == wy][1])], "10")
+    } else {
+      fillcolor <- if (wy == current_year) "rgba(0, 0, 0, 0.15)" else paste0(color_palette[as.character(wy)], "10")
+    }    
     p <- p %>%
       add_lines(
         data = data %>% filter(WY == wy),
@@ -56,22 +61,21 @@ fct_stars_survival_plot <- function(data, metric, hydro, hydro_type){
         colors = color_palette,
         name = if (hydro == "TRUE") ~paste0(hydro_type, " - WY", WY) else ~paste0("WY", WY),
         hoverinfo = "text",
-        text = ~paste("Date:", wDate, "\nProbability:", round(.data[[y_var]],2), "\nWY:", WY)
-      )
-  }
-  
-  p <- p %>%
+        text = ~paste("WY:", WY, "<br>Date:", wDate, "<br>Probability:", round(.data[[y_var]],2))
+        ) %>% 
     add_ribbons(
-      data = data %>% filter(WY == current_year),
+      data = data %>% filter(WY == wy),
       ymin = ~.data[[ymin_var]], 
       ymax = ~.data[[ymax_var]], 
-      fillcolor = 'rgba(0,0,0,0.1)', 
+      fillcolor = fillcolor, 
       line = list(color = 'rgba(0,0,0,0)'),
-      name = ~paste0("WY",current_year, ", 80% CI"),
-      showlegend = TRUE,
+      name = ~paste0("WY",wy, ", 80% CI"),
+      showlegend = FALSE,
       hoverinfo = "text",
-      text = ~paste("Date:", wDate, "<br>Lower:", round(.data[[ymin_var]],2), "<br>Upper:", round(.data[[ymax_var]],2))
-    ) %>%
+      text = ~paste("WY:", WY, "<br>Date:", wDate, "<br>Lower:", round(.data[[ymin_var]],2), "<br>Upper:", round(.data[[ymax_var]],2))
+    )
+  }
+  p <- p %>%
     layout(
       xaxis = list(
         title = "Month",
@@ -105,10 +109,12 @@ ui <- shinydashboard::dashboardPage(
         status = "primary",
         solidHeader = TRUE,
         title = "STARS model - Winter-run Chinook Salmon",
-        "This app allows you to visualize STARS model results for Winter-run Chinook Salmon in past years compared to the current water year. 
+        HTML("Visualize STARS model results 
+        (<a href = 'https://cdnsciencepub.com/doi/10.1139/cjfas-2021-0042'>Hance et al. 2022</a>; <a href = 'https://www.cbr.washington.edu/shiny/STARS/'>STARS Shiny app</a>) 
+        for Winter-run Chinook Salmon in the current water year compared to past water years.
         Select a specific survival probability below to adjust the plot. Users can also adjust color coding to reflect Hydrological Classification Index by selecting the `Show Hydrological Year Type` switch below. 
         To add/remove years from plot, click the water year within the plot legend or select in the drop down menu below. 
-        Data sourced from Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS."
+        Data sourced from Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS." )
       )
     ),
     fluidRow(
@@ -128,7 +134,7 @@ ui <- shinydashboard::dashboardPage(
         selectInput(
           inputId = "select_year", 
           label = "View years:", 
-          choices = c("All years", 2017:2024),
+          choices = c("All years", 2018:current_year),
           selected = "All years"
         ),
         br(),
@@ -242,6 +248,7 @@ server <- function(input, output, session) {
       fct_stars_survival_plot(data = filtered_data, metric = metric, hydro = as.character(input$select_hydro), hydro_type = filtered_data$hydro_type)
     }
   }
+
   
   output$plot <- plotly::renderPlotly({
     render_plot(input$select_metric)
