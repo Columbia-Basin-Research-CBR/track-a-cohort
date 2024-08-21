@@ -15,6 +15,7 @@ require(zoo)
 
 #load data 
 load(here::here("data-raw/STARS.shinyinputs.Rdata")) 
+source(here::here("data-raw/utils_import_hydrological_classification_index.R"))
 
 
 # Subset the data and convert to tibble
@@ -42,8 +43,15 @@ df_stars_raw <- tibble::as_tibble(WR_xts[,c("Survival Interior Delta Est",
          CY = year(date),
          wDate = if_else(month(date) >= 10, date + years(1), date)) 
 
+# append HCI classification to STARS data (for shiny app)
+STARS_data <- df_stars_raw %>%
+  dplyr::left_join(select(hydrological_classification_index, WY, hydro_type = Classification), by = "WY") %>%
+  dplyr::mutate(hydro_type = factor(
+    ifelse(is.na(hydro_type), "Unassigned", hydro_type),
+    levels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical", "Unassigned")
+  )
+  )
 
-#rename and save to data folder for use in other scripts
-STARS_data<-df_stars_raw
 
+#save to data folder for use in other scripts
 usethis::use_data(STARS_data, overwrite = TRUE)

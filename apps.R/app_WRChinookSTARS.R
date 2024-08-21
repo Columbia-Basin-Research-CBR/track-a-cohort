@@ -1,28 +1,19 @@
-library(shiny)
-library(shinydashboard)
-library(plotly)
-library(tidyverse)
-library(xts)
-library(zoo)
-library(fresh)
-library(here)
+require(shiny)
+require(shinydashboard)
+require(plotly)
+require(tidyverse)
+require(xts)
+require(zoo)
+require(fresh)
+require(here)
 
-try({
-  source(here::here("utils_SacPAStheme.R"))
-  source(here("utils_fct_wday_to_month.R"))
-  load(here::here("STARS.shinyinputs.Rdata")) 
-  source(here("utils_fct_assign_current_water_year.R"))
-  source(here::here("utils_import_hydrological_classification_index.R"))
-}, silent = TRUE)
 
-# if(!exists("SacPAStheme") || !exists("assign_current_water_year")|| !exists("wDay_to_month") || !exists("hydrological_classification_index")) {
-#   source(here::here("apps.R/utils_SacPAStheme.R"))
-#   source(here("apps.R/utils_fct_wday_to_month.R"))
-#   load(here::here("apps.R/STARS.shinyinputs.Rdata"))
-#   source(here("apps.R/utils_fct_assign_current_water_year.R"))
-#   source(here::here("apps.R/utils_import_hydrological_classification_index.R"))
-# }
-
+  source(here::here("apps.R/utils_SacPAStheme.R"))
+  source(here("R/utils_fct_wday_to_month.R"))
+  load(here::here("data/STARS_data.rda")) 
+  source(here("R/utils_fct_assign_current_water_year.R"))
+  source(here::here("data-raw/utils_import_hydrological_classification_index.R"))
+  
 current_year <- assign_current_water_year()
 
 fct_stars_survival_plot <- function(data, metric, hydro, hydro_type){
@@ -87,7 +78,7 @@ fct_stars_survival_plot <- function(data, metric, hydro, hydro_type){
         rangemode = "tozero"
       ),
       legend = list(
-        title = list(text = if (hydro == "TRUE") "Hydrologic Year Type" else "Water Year"),
+        title = list(text = if (hydro == "TRUE") "Hydrological Year Type with 80% CI" else "Water Year with 80% CI"),
         traceorder = "grouped"
       ),
       margin = list(l = 50, r = 50, t = 50, b = 50),
@@ -183,34 +174,6 @@ ui <- shinydashboard::dashboardPage(
 )
 
 server <- function(input, output, session) {
-  df_stars_raw <- tibble::as_tibble(WR_xts[,c("Survival Interior Delta Est", 
-                                              "Survival Interior Delta LCL 80", 
-                                              "Survival Interior Delta UCL 80",
-                                              "Routing Probability Interior Delta Est",    
-                                              "Routing Probability Interior Delta LCL 80",
-                                              "Routing Probability Interior Delta UCL 80",
-                                              "Survival Overall Est", 
-                                              "Survival Overall LCL 80",
-                                              "Survival Overall UCL 80")]) %>%
-    dplyr::mutate(date = zoo::index(WR_xts)) %>%
-    dplyr::select(date, dplyr::everything()) %>%
-    dplyr::rename(surv =  "Survival Overall Est", survL80 =  "Survival Overall LCL 80", survU80 =  "Survival Overall UCL 80", 
-                  idsurv = "Survival Interior Delta Est", idsurvL80 = "Survival Interior Delta LCL 80", idsurvU80 = "Survival Interior Delta UCL 80", 
-                  idRoute = "Routing Probability Interior Delta Est", idRouteL80 =  "Routing Probability Interior Delta LCL 80", idRouteU80 =  "Routing Probability Interior Delta UCL 80") %>%
-    dplyr::arrange(date) %>% 
-    dplyr::mutate(WY = lubridate::year(date) + (lubridate::month(date) >= 10),
-                  wDay = if_else(lubridate::month(date) >= 10, lubridate::yday(date) - 273, lubridate::yday(date) + 92),
-                  doy = lubridate::yday(date),
-                  CY = lubridate::year(date),
-                  wDate = if_else(lubridate::month(date) >= 10, date + lubridate::years(1), date))
-  
-  df_stars <- df_stars_raw %>% 
-    dplyr::left_join(select(hydrological_classification_index, WY, hydro_type = Classification), by = "WY") %>% 
-    dplyr::mutate(hydro_type = factor(
-      ifelse(is.na(hydro_type), "Unassigned", hydro_type), 
-      levels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical", "Unassigned")
-    )
-    )
   
   output$plots <- renderUI({
     if (input$select_metric == "compare_all") {
@@ -240,9 +203,9 @@ server <- function(input, output, session) {
   
   render_plot <- function(metric) {
     if (input$select_year == "All years") {
-      fct_stars_survival_plot(data = df_stars, metric = metric, hydro = as.character(input$select_hydro), hydro_type = df_stars$hydro_type)
+      fct_stars_survival_plot(data = STARS_data, metric = metric, hydro = as.character(input$select_hydro), hydro_type = STARS_data$hydro_type)
     } else {
-      filtered_data <- df_stars %>% 
+      filtered_data <- STARS_data %>% 
         dplyr::filter(WY == input$select_year)
       
       fct_stars_survival_plot(data = filtered_data, metric = metric, hydro = as.character(input$select_hydro), hydro_type = filtered_data$hydro_type)

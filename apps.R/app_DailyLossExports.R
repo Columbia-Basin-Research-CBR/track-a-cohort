@@ -1,22 +1,23 @@
-library(shiny)
-library(ggplot2)
-library(plotly)
-library(dplyr)
-library(shinydashboard)
-library(lubridate)
-library(here)
+#' @title Daily Loss and Exports Shiny App
+#' @description This Shiny app allows users to visualize daily total loss for Natural Winter-run Chinook and Steelhead and daily exports at CVP/SWP pumping facilities. 
+#' data sourced from CDFW Salvage Database, with Length-at-Date (LAD) run assignment used for Winter-run Chinook.
 
-try({
-  source(here::here("utils_SacPAStheme.R"))
-  load(here::here("steelhead_loss_export_data.rda"))
-  load(here::here("winter_run_chinook_loss_export_data.rda"))
-}, silent = TRUE)
+require(shiny)
+require(ggplot2)
+require(plotly)
+require(dplyr)
+require(shinydashboard)
+require(lubridate)
+require(here)
 
-if(!exists("steelhead_loss_export_data") || !exists("winter_run_chinook_loss_export_data") || !exists("SacPAStheme")) {
-  source(here::here("apps.R/utils_SacPAStheme.R"))
-  load(here::here("apps.R/steelhead_loss_export_data.rda"))
-  load(here::here("apps.R/winter_run_chinook_loss_export_data.rda"))
-}
+
+# load data
+source(here::here("apps.R/utils_SacPAStheme.R"))
+load(here::here("data/steelhead_loss_export_data.rda"))
+load(here::here("data/winter_run_chinook_loss_export_data.rda"))
+
+
+
 
 # OMRI values data frame
 omriValues <- data.frame(value = c(-5000,-3500,-2000,-5000,-3500,-2500,-500,-1500,-2500, "COA 8.17"),
