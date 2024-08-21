@@ -35,10 +35,10 @@ ui <- shinydashboard::dashboardPage(
         status = "primary", 
         width = 12,
         solidHeader = TRUE,
-        "This app allows you to visualize daily total loss for Natural Winter-run Chinook and Steelhead and daily exports at CVP/SWP pumping facilities. 
+        "Visualize daily total loss for Natural Winter-run Chinook and Steelhead and daily exports at CVP/SWP pumping facilities. 
         In the `Select Inputs` section, select a species and a pumping facility to view specific data. To view without approximate OMRI controlling factor lines, deselect the checkbox option. 
-        On each figure, hoover over the plot to view specific data points of interest and remove information from the plot by click on the legend entry. 
-        Data sourced from CDFW Salvage Database, with Length-at-Date (LAD) run assignment was used for Winter-run Chinook."
+        On each figure, hover over the plot to view specific data points of interest and remove information from the plot by click on the legend entry. 
+        Data sourced from CDFW Salvage Database, with Length-at-Date (LAD) run assignment used for Winter-run Chinook."
       )
     ),
     fluidRow(
