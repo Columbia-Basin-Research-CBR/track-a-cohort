@@ -17,6 +17,6 @@ hydrological_classification_index <- read.csv(url, header = TRUE, stringsAsFacto
   filter(Basin == "Sacramento Valley") %>%
   mutate(WY = as.numeric(WY))
 
-hydrological_classification_index
+usethis::use_data(hydrological_classification_index, overwrite = TRUE)
 
 

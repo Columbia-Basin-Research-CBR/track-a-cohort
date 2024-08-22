@@ -11,15 +11,17 @@ require(lubridate)
 require(here)
 
 
-# load data
+# load hepler functions
 source(here::here("apps.R/utils_SacPAStheme.R"))
+
+# load pre generated data
 load(here::here("data/steelhead_loss_export_data.rda"))
 load(here::here("data/winter_run_chinook_loss_export_data.rda"))
 
 
 
 
-# OMRI values data frame
+# OMRI values data frame--provided by BOR
 omriValues <- data.frame(value = c(-5000,-3500,-2000,-5000,-3500,-2500,-500,-1500,-2500, "COA 8.17"),
                          date = lubridate::ymd(c('2024-01-01', '2024-01-14', '2024-01-23', '2024-02-04', '2024-02-08',
                                                  '2024-02-17', '2024-03-11', '2024-02-26', '2024-04-01', '2024-04-09')))
@@ -71,14 +73,14 @@ ui <- shinydashboard::dashboardPage(
         HTML("<p>This ShinyApp is a product of Columbia Basin Reasearch, School of Aquatic and Fishery Sciences, College of the Environment, University of Washington.</p>
                <p>Please direct general questions to: <a href='mailto:web@cbr.washington.edu'>web@cbr.washington.edu</a></p>"
              ),
-        HTML("All code featured in this Shiny application is made publically available through our organizations GitHub repository: 
+        HTML("All code featured in this Shiny application is made publicly available through our organization's GitHub repository: 
              <a href='https://github.com/Columbia-Basin-Research-CBR/track-a-cohort'><i class='fab fa-github'></i> Columbia-Basin-Research-CBR</a>"
              )
         )
         ),
       shinydashboard::box(
         title = "Interactive plot: Daily Total Loss and Exports Per Pumping Facility", 
-        status = "success", 
+        status = "info", 
         solidHeader = TRUE,
         width = 9,
         conditionalPanel(

@@ -8,11 +8,14 @@ require(fresh)
 require(here)
 
 
-  source(here::here("apps.R/utils_SacPAStheme.R"))
-  source(here("R/utils_fct_wday_to_month.R"))
+# load helper functions
+source(here::here("apps.R/utils_SacPAStheme.R"))
+source(here("R/utils_fct_wday_to_month.R"))
+source(here("R/utils_fct_assign_current_water_year.R"))
+
+# load pre generated data
   load(here::here("data/STARS_data.rda")) 
-  source(here("R/utils_fct_assign_current_water_year.R"))
-  source(here::here("data-raw/utils_import_hydrological_classification_index.R"))
+  load(here::here("data/hydrological_classification_index.rda"))
   
 current_year <- assign_current_water_year()
 
@@ -141,14 +144,14 @@ ui <- shinydashboard::dashboardPage(
           HTML("<p>This ShinyApp is a product of Columbia Basin Reasearch, School of Aquatic and Fishery Sciences, College of the Environment, University of Washington.</p>
                <p>Please direct general questions to: <a href='mailto:web@cbr.washington.edu'>web@cbr.washington.edu</a></p>"
           ),
-          HTML("All code featured in this Shiny application is made publically available through our organizations GitHub repository: 
+          HTML("All code featured in this Shiny application is made publicly available through our organization's GitHub repository: 
              <a href='https://github.com/Columbia-Basin-Research-CBR/track-a-cohort'><i class='fab fa-github'></i> Columbia-Basin-Research-CBR</a>"
           )
         )
       ),
       shinydashboard::box(
         width = 9,
-        status = "success",
+        status = "info",
         solidHeader = TRUE,
         title = "Interactive plot: STARS model - Winter-run Chinook Salmon",
         fluidRow(
