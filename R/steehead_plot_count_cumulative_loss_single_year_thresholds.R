@@ -24,6 +24,9 @@ source(here("R/utils_fct_wday_to_month.R"))
 source(here("R/utils_fct_assign_current_water_year.R"))
        current_year <- assign_current_water_year()
 
+# Get the current timestamp
+timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
+
 #current date
 date <- today()
 #convert current date to water day
@@ -128,6 +131,7 @@ p <- cumloss_current_year %>%
   labs(title = paste0("Cumulative Loss for WY", current_year, " with Single-Year Thresholds"),
        subtitle = paste0("Species: Unclipped Steelhead\nCumulative loss 12/31-3/31: ", round(filter(max_loss_by_period, management_period == 	"12/1 - 3/31")$max_cum_loss_mgt,2),
                          "\nCumulative loss 4/1-6/15: ", round(filter(max_loss_by_period, management_period == "4/1 - 6/15")$max_cum_loss_mgt,2)),
+       caption = paste0("Data sources: Preliminary data from CDFW; subject to revision.\n", timestamp),
        x = "Date",
        y = "Cumulative Loss") +
   theme_minimal() +

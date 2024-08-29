@@ -24,6 +24,9 @@ source(here("R/utils_fct_wday_to_month.R"))
     #set current year
     source(here("R/utils_fct_assign_current_water_year.R"))
            current_year <- assign_current_water_year()
+   
+    # Get the current timestamp
+    timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
     
     # extract maximum cumloss for the current year
     max_cumloss_current_year <- lad_cumulative_loss_data %>%
@@ -69,7 +72,8 @@ source(here("R/utils_fct_wday_to_month.R"))
          y = 'Cumulative LAD Loss', 
          title = 'Cumulative LAD Loss by BiOp Status and Hydrologic Classification Index',
          subtitle = paste0("Species: Natural Winter-run Chinook\nData Years: WY", min(lad_cumulative_loss_data$WY), " to WY", current_year,
-                           "\nCurrent Cumulative Loss: ", round(max_cumloss_current_year,2))) +
+                           "\nCurrent Cumulative Loss: ", round(max_cumloss_current_year,2)),
+         caption = paste0("LAD loss: CDFW Salvage Database; Hydrologic Classification Index: Water Supply Information, CDEC\n", timestamp)) +
     scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
     scale_y_continuous(labels = scales::comma, breaks = seq(0, 10000, by = 2000), limits = c(0, 10000), expand = c(0, 0)) +
     scale_color_manual(values = c("#D95F02", "#00BFFF")) +

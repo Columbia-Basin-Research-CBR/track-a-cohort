@@ -15,6 +15,9 @@ source(here("R/utils_fct_wday_to_month.R"))
 #load data file
 load(here::here("data", "STARS_data.rda"))
 
+# Get the current timestamp
+timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
+
 #set current year
 source(here("R/utils_fct_assign_current_water_year.R"))
        current_year <- assign_current_water_year()
@@ -33,15 +36,19 @@ source(here("R/utils_fct_assign_current_water_year.R"))
 p1 <- ggplot(STARS_data, aes(x = wDay, group = WY )) +
   geom_line(aes(y = surv, color = as.factor(WY), size = ifelse(WY == current_year, .75, 0.5))) +
   geom_ribbon(data = STARS_data %>% filter(WY == current_year), aes(ymin = survL80, ymax = survU80), alpha = 0.25) +
+  geom_ribbon(data = STARS_data %>% filter(WY != current_year), aes(ymin = survL80, ymax = survU80, fill = as.factor(WY)), alpha = 0.08) +
   labs(x = 'Month', 
        y = 'Apparent survival probability', 
        subtitle = "Delta STARS Model -\nPredicted Natural Winter-run Chinook Daily Cohorts Passage, Knights Landing to Chipps Island", 
        title = "Overall Survival: Median survival of daily cohorts for all routes combined",
-       caption = "Data source: Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS.") +
+       caption = paste0("Data source: Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS.\n", timestamp),
+       color = "Water Year,\nmedian with 80% CI") +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
   scale_y_continuous( expand = c(0,0)) +
-  scale_color_manual(values = colors, name = "Water Year") +
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = colors) +
   scale_size_identity() +
+  guides(fill = "none") +
   theme_minimal() +
   theme(legend.position = c(.9, 0.7),
         text = element_text(size = 15),
@@ -58,16 +65,21 @@ print(p1)
 # Interior Delta Route-specific Survival Probability
 p2 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
   geom_line(aes(y = idsurv, color = as.factor(WY), size = ifelse(WY == current_year, .75, 0.5))) +
-  geom_ribbon(data = STARS_data %>% filter(WY == current_year), aes(ymin = idsurvL80, ymax = idsurvU80), alpha = 0.25) +
+  geom_ribbon(data = STARS_data %>% filter(WY == current_year), aes(ymin = idsurvL80, ymax = idsurvU80, fill = as.factor(WY)), alpha = 0.25) +
+  geom_ribbon(data = STARS_data  %>% filter(WY != current_year), aes(ymin = idsurvL80, ymax = idsurvU80, fill = as.factor(WY)), alpha = 0.08) +
   labs(x = 'Month', 
        y = 'Apparent survival probability', 
        subtitle = "Delta STARS Model -\nPredicted Natural Winter-run Chinook Daily Cohorts Passage, Knights Landing to Chipps Island", 
        title = "Interior Delta Route-specific Survival Probability: Median survival of daily cohorts using the Interior Delta route",
-       caption = "Data source: Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS.") +
+       caption = paste0("Data source: Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS.\n", timestamp),
+       color = "Water Year,\nmedian with 80% CI"
+      ) +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
   scale_y_continuous(expand = c(0,0)) +
-  scale_color_manual(values = colors, name = "Water Year") +
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = colors) +
   scale_size_identity() +
+  guides(fill = "none") +
   theme_minimal() +
   theme(legend.position = c(.9, 0.7),
         text = element_text(size = 15),
@@ -85,17 +97,22 @@ print(p2)
 p3 <- ggplot(STARS_data, aes(x = wDay, group = WY)) +
   geom_line(aes(y = idRoute, color = as.factor(WY), size = ifelse(WY == current_year, .75, 0.5))) +
   geom_ribbon(data = STARS_data %>% filter(WY == current_year), aes(ymin = idRouteL80, ymax = idRouteU80 ), alpha = 0.25) +
+  geom_ribbon(data = STARS_data %>% filter(WY != current_year), aes(ymin = idRouteL80, ymax = idRouteU80, fill = as.factor(WY)), alpha = 0.08) +
   labs(x = 'Month', 
        y = 'Route probability', 
        subtitle = "Delta STARS Model -\nPredicted Natural Winter-run Chinook Daily Cohorts Passage, Knights Landing to Chipps Island", 
        title = "Interior Delta Route-specific Probability: Proportion of daily cohorts using the Interior Delta route",
-       caption = "Data source: Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS.") +
+       caption = paste0("Data source: Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS.\n", timestamp),
+       color = "Water Year,\nmedian with 80% CI"
+       ) +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
   scale_y_continuous(expand = c(0,0)) +
-  scale_color_manual(values = colors, name = "Water Year") +
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = colors) +
   scale_size_identity() +
+  guides(fill = "none") +
   theme_minimal() +
-  theme(legend.position = c(.9, 0.5),
+  theme(legend.position = c(.9, 0.3),
         text = element_text(size = 15),
         panel.grid.major = element_line(linetype = "dotted"),
         panel.border = element_rect(colour = "black", fill = NA, size = 1),

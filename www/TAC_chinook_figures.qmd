@@ -37,9 +37,6 @@ source(here("R/winter_run_chinook_plot_STARS.R"))
 
 Related links: [Interactive Plot - ShinyApp](https://caitobrien.shinyapps.io/track-a-cohort_WRChinookSTARS/){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_STARS.R){target="_blank"}, [STARS ShinyApp](https://www.cbr.washington.edu/shiny/STARS/){target="_blank"}
 
--   Issues:
-    -   Update interactive plot - Shiny App
-
 ## Percent loss of Juvenile Production Estimate (JPE)
 
 ```{r load_plot_pct_genetic_lad_loss_jpe, fig.width=10, fig.height=7}
@@ -53,9 +50,6 @@ source(here("R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R"))
 ```
 
 Related links: [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_pct_cumulative_genetic_loss_jpe.R){target="_blank"}
-
--   Issues:
-    -   ShinyApp pending
 
 ## Total Loss
 
@@ -77,10 +71,6 @@ source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thr
 
 Related links: [SacPAS Query](https://www.cbr.washington.edu/sacramento/workgroups/salmon_monitoring.html#loss){target="_blank"}, [GitHub Repo Code: cumul_genetic_loss](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_count_cumulative_genetic_loss_single_year_thresholds.R){target="_blank"} , [GitHub Repo Code: cumul_lad_loss](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_single_year_thresholds.R){target="_blank"}
 
--   Issues:
-    -   Confirm addition of "no data reported", start at 10-01, and continue limits to today's date.
-    -   ShinyApp pending
-
 ## Cumulative Loss by BiOp Status and Hydrological Classification Index (HCI)
 
 ```{r, load_plot_count_cumulative_lad_loss, fig.width=10, fig.height=10, fig.cap="The figure shows cumulative loss by BiOp Status and Hydrological Classification Index (HCI). Each quadrant of the faceted plot includes grey lines for historical years, colored lines (blue for wet years, red for dry years) for years within the BiOp status and HCI type, a black line for the current year, and a dashed horizontal line indicating the current cumulative loss maximum."}
@@ -88,11 +78,6 @@ source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss.R"))
 ```
 
 Related links: [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R){target="_blank"}
-
--   Issues:
-    -   Add legend key (pending) currently have figure caption to support.
-    -   SI to provide query string to HCL – update code when available
-    -   ShinyApp pending
 
 ## Daily Loss and Export by Pumping Facility
 
@@ -102,9 +87,6 @@ source(here("R/winter_run_chinook_plot_daily_loss_export.R"))
 
 Related links: [Interactive Plot - ShinyApp](https://caitobrien.shinyapps.io/track-a-cohort_DailyLossExports/){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_daily_loss_export.R){target="_blank"},
 
--   Issues:
-    -   Update Shiny App
-
 ## Predicted Weekly Loss - Tillotson Model
 
 ```{r, load_plot_tillotson_predicted_loss, fig.width=10, fig.height=7}
@@ -112,16 +94,6 @@ source(here("R/winter_run_chinook_plot_tillotson_predicted_loss.R"))
 ```
 
 Related links: [SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/data-raw/WR_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [plot output](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_tillotson_predicted_loss.R){target="_blank"}
-
--   Issues:
-    -   Currently using BOR supplied code to run model, confirm same output with NB code.
-        -   Update: NB believes this is updated code and will look into comparing and update Loss and Salvage Predictor Tool as needed when time allows (Estimates time in August).
-    -   Confirm shared code is duplicate of the most up-to-date Tillotson code. If this is Tillotson code confirm with authors on use and confirm permissions to include model code in public facing repo. Alternatively, pull results from Loss and Salvage Predictor Tool.
-        -   JG or NB to reach out?
-    -   Confirm change in plot design
-    -   Update glb package with newer version and confirm no errors
-
-### 
 
 ```{r, load_table_predicted_observed_loss, fig.width=10, fig.height=6}
 # Load the data
@@ -138,6 +110,3 @@ generate_table_pred_obs_loss(data, species = "Winter-run Chinook")
 ```
 
 Related links: [SacPAS Tillotson Tool](https://www.cbr.washington.edu/sacramento/lossandsalvage/){target="_blank"}, GitHub Repo Code: [Tillotson model](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/data-raw/Steelhead_Model_Setup.R){target="_blank"}, [data wrangling and prediction output](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/data-raw/utils_fct_predict_tillotson_model.R){target="_black"}, [Table configuration](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/utils_fct_generate_table_predicted_observed_loss.R){target="_blank"}
-
--   Issues:
-    -   See predicted losses figure issues

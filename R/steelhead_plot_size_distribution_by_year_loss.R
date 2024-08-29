@@ -9,6 +9,9 @@ require(ggridges)
 # load data
 load(here::here("data/steelhead_loss_data.rda"))
 
+# Get the current timestamp
+timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
+
 
 #plot
 p <- steelhead_loss_data %>% 
@@ -19,7 +22,7 @@ p <- steelhead_loss_data %>%
   labs(x = 'Fork Length (mm)', 
        y = 'Water Year', 
        subtitle = "Historical Size Distribution of Clipped and Unclipped Steelhead Loss", 
-       caption = "Data sources: Preliminary data from CDFW; subject to revision.",
+       caption = paste0("Data sources: Preliminary data from CDFW; subject to revision.\n", timestamp),
        fill = NULL, color = NULL) +
   scale_fill_manual(values = c("#0072B2",adjustcolor("#F5C767", alpha.f = .7))) +
   scale_color_manual(values = c("#0072B2", "#F5C767")) +

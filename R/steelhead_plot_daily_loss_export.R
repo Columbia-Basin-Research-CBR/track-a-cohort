@@ -10,6 +10,9 @@ require(patchwork)
 # Load the data
 load(here::here("data/steelhead_loss_export_data.rda"))
 
+# Get the current timestamp
+timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
+
 # adding horizontal lines -- provided by BOR. Confirm how these are designated
 omrValues <- data.frame(value = c(-5000,-3500,-2000,-5000,-3500,-2500,-500,-1500,-2500, "COA 8.17"),#,'COA 8.17'
                         date = lubridate::ymd(c('2024-01-01', '2024-01-14', '2024-01-23', '2024-02-04', '2024-02-08',
@@ -36,7 +39,8 @@ p1 <- steelhead_loss_export_data %>%
        y = "Daily loss",
        y.sec = "Pumping Discharge (cfs)",
        fill = "Daily loss by facility: ",
-       color = "Pumping discharge by facility:") +
+       color = "Pumping discharge by facility:"
+      ) +
   scale_x_date(date_breaks = "2 month", date_labels = "%m/%y") +
   scale_y_continuous(sec.axis = sec_axis(~./ratio, name = "Pumping Discharge (cfs)")) + # Add secondary axis
   scale_color_manual(values = c("#F5C767", "#00BFFF")) +
@@ -61,7 +65,8 @@ p2 <- steelhead_loss_export_data %>%
        y = "Daily Loss",
        y.sec = "Pumping Discharge (cfs)",
        fill = "Daily loss by facility: ",
-       color = "Pumping by facility:") + 
+       color = "Pumping by facility:",
+       caption = paste0("Data sources: Daily loss and Export Preliminary data from CDFW;\nCFS from the CDEC sites HRO (for SWP) and TRP (for CVP)\n", timestamp)) + 
   scale_x_date(date_breaks = "2 month", date_labels = "%m/%y") +
   scale_y_continuous(sec.axis = sec_axis(~./ratio, name = "Pumping Discharge (cfs)")) + # Add secondary axis
   scale_color_manual(values = c("#F5C767", "#00BFFF")) +

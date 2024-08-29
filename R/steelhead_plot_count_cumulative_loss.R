@@ -21,6 +21,9 @@ source(here("R/utils_fct_wday_to_month.R"))
 source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
 
+# Get the current timestamp
+timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
+
 #extract max cumloss of 2024 to adjust color 
 max2024LAD <- steelhead_loss_data %>% 
   group_by(WY) %>% 
@@ -61,7 +64,7 @@ p<- steelhead_loss_data %>%
        title = 'Cumulative Loss by BiOp Status and Hydrologic Classification Index',
        subtitle = paste0("Species: Clipped and Unclipped Steelhead\nData Years: WY",min(steelhead_loss_data$WY), " to WY", max(steelhead_loss_data$WY),
                          "\nCurrent Cumulative Loss: ", round(max2024LAD,2)),
-       caption = "Data source: Preliminary data from CDFW; subject to revision. Hydrological Classification Index from CDEC") +
+       caption = paste0("Data source: Preliminary data from CDFW; subject to revision. Hydrological Classification Index from CDEC\n", timestamp)) +
   scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
   scale_y_continuous(labels = scales::comma,limits = c(0, 40000),  expand = c(0, 0)) +
   scale_color_manual(values = c("#D95F02", "#00BFFF")) +

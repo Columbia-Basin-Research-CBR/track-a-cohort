@@ -40,8 +40,7 @@ ui <- shinydashboard::dashboardPage(
         solidHeader = TRUE,
         "Visualize daily total loss for Natural Winter-run Chinook and Steelhead and daily exports at CVP/SWP pumping facilities. 
         In the `Select Inputs` section, select a species and a pumping facility to view specific data. To view without approximate OMRI controlling factor lines, deselect the checkbox option. 
-        On each figure, hover over the plot to view specific data points of interest and remove information from the plot by click on the legend entry. 
-        Data sourced from CDFW Salvage Database, with Length-at-Date (LAD) run assignment used for Winter-run Chinook."
+        On each figure, hover over the plot to view specific data points of interest and remove information from the plot by click on the legend entry."
       )
     ),
     fluidRow(
@@ -87,7 +86,9 @@ ui <- shinydashboard::dashboardPage(
           condition = "input.select_plot != 'Compare All'",
           plotlyOutput(outputId = "interactivePlot")
         ),
-        uiOutput(outputId = "comparePlots")
+        uiOutput(outputId = "comparePlots"),
+        HTML("Data sources: Daily loss sourced from CDFW Salvage Database, with Length-at-Date (LAD) run assignment used for Winter-run Chinook.
+             Export data sourced from CDFW and CFS from the CDEC sites HRO (for SWP) and TRP (for CVP). Approximate OMRI controlling values provided by USBR.")
       )
     )
   )
@@ -96,6 +97,7 @@ ui <- shinydashboard::dashboardPage(
 
 
 server <- function(input, output) {
+  
   
   # Helper function to create plots
   createPlot <- function(data_to_plot, species_name = input$select_species) {

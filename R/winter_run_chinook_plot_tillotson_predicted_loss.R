@@ -12,6 +12,9 @@ winter_run_tillotson_output <- tillotson_prediction_output$winter_run_tillotson_
 source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
 
+# Get the current timestamp
+timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
+
 # back calculate date from water week with the start of the water year = 10-01
 start_date <- as.Date(paste(current_year - 1, "-10-01", sep=""))
 
@@ -39,6 +42,7 @@ p <- winter_run_tillotson_output %>%
        subtitle = paste("Species: Natural Winter-run Chinook\nWater Year:", current_year),
        x = "Week",
        y = "Predicted Weekly Loss",
+       caption = timestamp,
        fill = NULL,
        color = NULL, 
        shape = NULL) +
@@ -48,7 +52,7 @@ p <- winter_run_tillotson_output %>%
                      breaks = c("Predicted loss,\nmedian with 90% CI", "Observed Weekly Loss")) +
   scale_fill_manual(values = c("Predicted loss,\nmedian with 90% CI" = "#0072B2"),
                     breaks = c("Predicted loss,\nmedian with 90% CI")) +
-  scale_x_date(date_breaks = "1 month", date_labels = "%b", limits = c(start_limit, end_limit), expand = c(0,0)) +
+  scale_x_date(date_breaks = "1 month", date_labels = "%b", limits = c(start_limit, end_limit), expand = c(0,1.5)) +
   guides(fill = guide_legend(order = 1),
          color = guide_legend(order = 1)) +
   theme_minimal() +

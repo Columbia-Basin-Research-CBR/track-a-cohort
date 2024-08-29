@@ -11,6 +11,9 @@ steelhead_tillotson_output <- tillotson_prediction_output$steelhead_tillotson_ou
 source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
 
+# Get the current timestamp
+timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
+
 # back calculate date from water week with the start of the water year = 10-01
 start_date <- as.Date(paste(current_year - 1, "-10-01", sep=""))
 
@@ -34,6 +37,7 @@ p <- steelhead_tillotson_output %>%
   geom_point(aes(y = median, color = "Predicted loss,\nmedian with 90% CI")) +
   labs(title = "Predicted Weekly Loss - Tillotson et al. (2022)",
        subtitle = paste("Species: Unclipped Steelhead\nWater Year:", current_year),
+       caption = timestamp,
        x = "Week",
        y = "Predicted Weekly Loss", 
        fill = NULL,
@@ -45,7 +49,7 @@ p <- steelhead_tillotson_output %>%
                      breaks = c("Predicted loss,\nmedian with 90% CI", "Observed Weekly Loss")) +
   scale_fill_manual(values = c("Predicted loss,\nmedian with 90% CI" = "#0072B2"),
                     breaks = c("Predicted loss,\nmedian with 90% CI")) +
-  scale_x_date(date_breaks = "1 month", date_labels = "%b", limits = c(start_limit, end_limit), expand = c(0,0)) +  guides(fill = guide_legend(order = 1),
+  scale_x_date(date_breaks = "1 month", date_labels = "%b", limits = c(start_limit, end_limit), expand = c(0,1.5)) +  guides(fill = guide_legend(order = 1),
          color = guide_legend(order = 1)) +
   theme_minimal() +
   theme(legend.position = "bottom",

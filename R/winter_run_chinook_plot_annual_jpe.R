@@ -11,6 +11,9 @@ require(here)
 #load data file
 load(here("data/jpe_annual_data.rda"))
 
+# Get the current timestamp
+timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
+
 #bar plot of annual JPE                 
 p <- jpe_annual_data %>% 
   mutate(brood_year = as.factor(brood_year)) %>% 
@@ -21,6 +24,7 @@ p <- jpe_annual_data %>%
              aes(color = "95% CI")) +
   labs(title = "Juvenile Production Estimate (JPE) Winter-run Chinook",
        subtitle = "Natural-origin: Total natural production entering the Delta",
+       caption = timestamp,
        x = "Brood year", 
        y = "Total natural production entering the Delta", 
        fill = NULL,

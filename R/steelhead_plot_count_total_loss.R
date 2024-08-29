@@ -6,8 +6,10 @@ require(here)
 
 
 # load data
-
 load(here::here("data/steelhead_loss_data.rda"))
+
+# Get the current timestamp
+timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
 
 p <- steelhead_loss_data %>% 
   ggplot( aes(x = as.factor(WY), y = total_loss, fill = adipose_clip)) + 
@@ -16,7 +18,7 @@ p <- steelhead_loss_data %>%
        x = "Water Year",
        y = "Total Loss", 
        fill = NULL,
-       caption = "Data sources: Preliminary data from CDFW; subject to revision.") +
+       caption = paste0("Data sources: Preliminary data from CDFW; subject to revision.\n", timestamp)) +
   scale_fill_manual(values = c("#0072B2", "#F5C767")) +
   scale_y_continuous(labels = scales::comma, expand = c(0,0), limits = c(0, 25000)) +
   theme_minimal() +

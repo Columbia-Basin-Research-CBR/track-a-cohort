@@ -18,6 +18,9 @@ source(here("R/utils_fct_wday_to_month.R"))
 source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
 
+# Get the current timestamp
+timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
+
 #current date
 date <- today()
 #convert current date to water day
@@ -126,7 +129,7 @@ p <- cumloss_current_year_filled %>%
   labs(title = paste0("Cumulative Genetic Loss for WY", current_year, " with Single-Year Thresholds"),
        subtitle = paste0("Species: Natural Winter-run Chinook\nCumulative genetic loss to date: ", max(cumloss_current_year$cumloss),
                          "\nPercent loss of Single-Year Threshold: ", round((max(cumloss_current_year$cumloss) / jpe_current_year_100pct) * 100, 2), "%"),
-       caption = "Genetic loss data provided by USBR before Water Year 2020 otherwise sourced from the CDFW Salvage Database.",
+       caption = paste0("Genetic loss data provided by USBR before Water Year 2020 otherwise sourced from the CDFW Salvage Database.\n", timestamp),
        x = "Date",
        y = "Cumulative Genetic Loss", 
        color = NULL,

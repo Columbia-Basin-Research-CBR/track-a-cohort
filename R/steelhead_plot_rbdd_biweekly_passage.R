@@ -11,6 +11,9 @@ load(here("data/rbdd_biweekly_passage_data.rda"))
 source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
 
+# Get the current timestamp
+timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
+
 # Create a data frame of biweekly periods
 
 # # update with SI method when available--likely in the data-raw section
@@ -29,14 +32,14 @@ p <- rbdd_biweekly_passage_data %>%
   geom_point(aes(y = estimated_passage, color = "Daily estimate"), shape = 21) +
   geom_pointrange(aes(y = biweek_total / 7.5, ymin = biweek_lower_ci / 7.5, ymax = biweek_upper_ci / 7.5, color = "Biweekly with 90% CI"), shape = 17, linewidth = .5) +
   scale_y_continuous("Estimated Daily Passage\n(Fish/Day)",
-                     sec.axis = sec_axis(trans = ~ . * 7.5, name = "Estimated Biweekly Total\n(Fish/Biweek)"), 
-                     expand = c(0,0)
-  ) +
+                     sec.axis = sec_axis(trans = ~ . * 7.5, name = "Estimated Biweekly Total\n(Fish/Biweek)"),
+                     expand = c(0,0)) +
   scale_color_manual(values = c("Daily estimate" = "steelblue4", "Biweekly with 90% CI" = "purple")) +
   labs(color = NULL, 
        x = "Date", 
        title = paste0("Red Bluff Juvenile Passage Estimate BY", current_year, " Steelhead"), 
-       subtitle = paste0(min(rbdd_biweekly_passage_data$date)," to ",max(rbdd_biweekly_passage_data$date))) + 
+       subtitle = paste0(min(rbdd_biweekly_passage_data$date)," to ",max(rbdd_biweekly_passage_data$date)),
+       caption = timestamp) + 
   theme_minimal() + 
   theme(legend.position = "bottom", 
         text = element_text(size = 15),

@@ -11,9 +11,11 @@ require(patchwork)
 load(here::here("data/winter_run_chinook_loss_export_data.rda"))
 
 # adding horizontal lines -- provided by BOR. Confirm how these are designated
-omrValues <- data.frame(value = c(-5000,-3500,-2000,-5000,-3500,-2500,-500,-1500,-2500, "COA 8.17"),#,'COA 8.17'
+omriValues <- data.frame(value = c(-5000,-3500,-2000,-5000,-3500,-2500,-500,-1500,-2500, "COA 8.17"),#,'COA 8.17'
                         date = lubridate::ymd(c('2024-01-01', '2024-01-14', '2024-01-23', '2024-02-04', '2024-02-08',
                                       '2024-02-17', '2024-03-11', '2024-02-26', '2024-04-01', '2024-04-09')))
+# Get the current timestamp
+timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
 
 #Determine addition of OMR values -- how to set? Based on OMR management rule?
 # omrValues<- steelhead_loss_export_data %>% 
@@ -26,8 +28,8 @@ p1 <- winter_run_chinook_loss_export_data %>%
   ggplot(aes(x = date)) +
   geom_bar(aes(y = daily_total_loss, fill = facility), stat = "identity", position = position_dodge2(preserve = "single")) + # Changed color to fill for bar
   geom_line(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
-  geom_vline(omrValues, mapping = aes(xintercept = date), color = 'black') +
-  geom_text(omrValues, mapping = aes(x = date, y = 200, label = paste("OMR:", value)), color = 'black', angle = -90, size = 3, vjust = 1) +
+  geom_vline(omriValues, mapping = aes(xintercept = date), color = 'black') +
+  geom_text(omriValues, mapping = aes(x = date, y = 200, label = paste("OMRI:", value)), color = 'black', angle = -90, size = 3, vjust = 1) +
   labs(title = "Daily Loss and Export at CVP/SWP Facilities",
        subtitle = paste("Species: Natural Winter-run Chinook",
                         "\nCurrent Water Year:", current_year,
@@ -57,6 +59,7 @@ p2 <- winter_run_chinook_loss_export_data %>%
   geom_bar(aes(y = daily_total_loss, fill = facility), stat = "identity", position = position_dodge2(preserve = "single")) + # Changed color to fill for bar
   geom_line(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
   labs(title = NULL,
+       caption = paste0("Data sources: Daily loss and export data from CDFW;\nCFS from the CDEC sites HRO (for SWP) and TRP (for CVP)\n", timestamp),
        x = "Date",
        y = "Daily Loss",
        y.sec = "Pumping Discharge (cfs)",

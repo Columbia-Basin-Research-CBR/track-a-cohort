@@ -13,6 +13,9 @@ load(here("data/steelhead_loss_data.rda"))
 source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
 
+# Get the current timestamp
+timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
+
 #plot
 p <- steelhead_loss_data %>% 
   filter(length < 750) %>%  # set limit for length -- why 750 seems big?
@@ -30,7 +33,7 @@ p <- steelhead_loss_data %>%
                          "\nHistorical Water Years: ", min(steelhead_loss_data$WY), " to ", max(steelhead_loss_data$WY-1)),
        fill =  paste0("Histogram (WY", current_year, "):"), 
        color = paste0("Density (WY", min(steelhead_loss_data$WY), "-WY", max(steelhead_loss_data$WY-1), "):"),
-       caption = "Data sources: Preliminary data from CDFW; subject to revision.") +
+       caption = paste0("Data sources: Preliminary data from CDFW; subject to revision.\n", timestamp)) +
   scale_fill_manual(values = c("#0072B2", "#F5C767")) +
   scale_color_manual(values = c("#0072B2", "#F0AD1F")) +
   facet_wrap(~adipose_clip, ncol = 1) +

@@ -27,7 +27,7 @@ fct_stars_survival_plot <- function(data, metric, hydro, hydro_type){
   all_levels <- c("Wet", "Above Normal", "Below Normal", "Dry", "Critical", "Unassigned")
   
   if (hydro == "TRUE") {
-    color_palette <- setNames(c("#00008b", "#74a9cf", "#FDECC7", "#f1ac1c", "#cc4c02", "grey"), all_levels)
+    color_palette <- setNames(c("#00008b", "#74a9cf", "#D2B48C", "#f1ac1c", "#cc4c02", "grey"), all_levels)
     if (any(data$WY == current_year & data$hydro_type == "Unassigned")) {
       color_palette["Unassigned"] <- "black"
     }
@@ -42,10 +42,14 @@ fct_stars_survival_plot <- function(data, metric, hydro, hydro_type){
   
   for (wy in unique(data$WY)) {
     if (hydro == "TRUE") {
-      fillcolor <- if (wy == current_year) "rgba(0, 0, 0, 0.15)" else paste0(color_palette[as.character(data$hydro_type[data$WY == wy][1])], "10")
+      color <- color_palette[as.character(data$hydro_type[data$WY == wy][1])]
+      transparency <- if (color %in% c("#D2B48C", "#f1ac1c")) "30" else "10"  # 0.4 transparency for specified colors, 0.2 for others
     } else {
-      fillcolor <- if (wy == current_year) "rgba(0, 0, 0, 0.15)" else paste0(color_palette[as.character(wy)], "10")
-    }    
+      color <- color_palette[as.character(wy)]
+      transparency <- if (color %in% c("#E69F00", "#F0E442")) "30" else "10"  # 0.4 transparency for specified colors, 0.2 for others
+    }
+    
+    fillcolor <- if (wy == current_year) "rgba(0, 0, 0, .15)" else paste0(color, transparency) 
     p <- p %>%
       add_lines(
         data = data %>% filter(WY == wy),
@@ -55,7 +59,8 @@ fct_stars_survival_plot <- function(data, metric, hydro, hydro_type){
         colors = color_palette,
         name = if (hydro == "TRUE") ~paste0(hydro_type, " - WY", WY) else ~paste0("WY", WY),
         hoverinfo = "text",
-        text = ~paste("WY:", WY, "<br>Date:", wDate, "<br>Probability:", round(.data[[y_var]],2))
+        text = ~paste("WY:", WY, "<br>Date:", wDate, "<br>Probability:", round(.data[[y_var]],2)),
+        legendgroup = wy
         ) %>% 
     add_ribbons(
       data = data %>% filter(WY == wy),
@@ -66,7 +71,8 @@ fct_stars_survival_plot <- function(data, metric, hydro, hydro_type){
       name = ~paste0("WY",wy, ", 80% CI"),
       showlegend = FALSE,
       hoverinfo = "text",
-      text = ~paste("WY:", WY, "<br>Date:", wDate, "<br>Lower:", round(.data[[ymin_var]],2), "<br>Upper:", round(.data[[ymax_var]],2))
+      text = ~paste("WY:", WY, "<br>Date:", wDate, "<br>Lower:", round(.data[[ymin_var]],2), "<br>Upper:", round(.data[[ymax_var]],2)),
+      legendgroup = wy
     )
   }
   p <- p %>%
@@ -81,7 +87,7 @@ fct_stars_survival_plot <- function(data, metric, hydro, hydro_type){
         rangemode = "tozero"
       ),
       legend = list(
-        title = list(text = if (hydro == "TRUE") "Hydrological Year Type with 80% CI" else "Water Year with 80% CI"),
+        title = list(text = if (hydro == "TRUE") "Hydrologic Year Type with 80% CI" else "Water Year with 80% CI"),
         traceorder = "grouped"
       ),
       margin = list(l = 50, r = 50, t = 50, b = 50),
@@ -106,9 +112,8 @@ ui <- shinydashboard::dashboardPage(
         HTML("Visualize STARS model results 
         (<a href = 'https://cdnsciencepub.com/doi/10.1139/cjfas-2021-0042'>Hance et al. 2022</a>; <a href = 'https://www.cbr.washington.edu/shiny/STARS/'>STARS Shiny app</a>) 
         for Winter-run Chinook Salmon in the current water year compared to past water years.
-        Select a specific survival probability below to adjust the plot. Users can also adjust color coding to reflect Hydrological Classification Index by selecting the `Show Hydrological Year Type` switch below. 
-        To add/remove years from plot, click the water year within the plot legend or select in the drop down menu below. 
-        Data sourced from Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS." )
+        Select a specific survival probability below to adjust the plot. Users can also adjust color coding to reflect <a href = 'https://cbr.washington.edu/sacramento/data/query_hci.html'>Hydrologic Classification Index</a> by selecting the `Show Hydrologic Year Type` switch below. 
+        To add/remove years from plot, click the water year within the plot legend or select in the drop down menu below." )
       )
     ),
     fluidRow(
@@ -170,13 +175,22 @@ ui <- shinydashboard::dashboardPage(
         ),
         uiOutput("plot_caption"),
         uiOutput("plots"),
-        h5("Data source: Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS.")
+        uiOutput("datasource")
       )
     )
   )
 )
 
 server <- function(input, output, session) {
+  
+  output$datasource <- renderUI({
+    if (input$select_hydro == "TRUE") {
+      HTML("Data source: Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS. 
+           Reconstructed Water Year Hydrologic Classification courtesy of <a href='https://cdec.water.ca.gov/water_supply.html'>Water Supply Information</a>, CDEC. Reconstructed Year classifications based on measured unimpaired runoff (in million acre-feet), subject to revision.") 
+     } else {
+        HTML("Data source: Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS.")
+      }
+  })
   
   output$plots <- renderUI({
     if (input$select_metric == "compare_all") {

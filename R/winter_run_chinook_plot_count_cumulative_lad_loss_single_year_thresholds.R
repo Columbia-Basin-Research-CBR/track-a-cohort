@@ -21,6 +21,9 @@ source(here("R/utils_fct_wday_to_month.R"))
 #set current year
 source(here("R/utils_fct_assign_current_water_year.R"))
        current_year <- assign_current_water_year()
+       
+# Get the current timestamp
+timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
 
 #current date
 date <- today()
@@ -133,6 +136,7 @@ p <- cumloss_current_year_filled %>%
   labs(title = paste0("Cumulative LAD Loss for WY", current_year, " with Single-Year Thresholds"),
        subtitle = paste0("Species: Natural Winter-run Chinook\nCumulative LAD loss to date: ", max(cumloss_current_year$cumloss),
                          "\nPercent loss of Single-Year Threshold: ", round((max(cumloss_current_year$cumloss) / jpe_current_year_2pct) * 100, 2), "%"),
+       caption = paste0("LAD loss from the CDFW Salvage Database.\n", timestamp),
        x = "Date",
        y = "Cumulative LAD Loss", 
        color = NULL,

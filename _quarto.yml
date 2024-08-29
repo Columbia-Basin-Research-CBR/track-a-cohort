@@ -25,8 +25,8 @@ format:
     theme: cosmo
     css: styles.css
     toc: true
-  pdf:
-    toc: false
+  # pdf:
+  #   toc: false
 
 editor: visual
 
