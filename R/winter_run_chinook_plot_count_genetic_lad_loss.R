@@ -29,6 +29,9 @@ jpe_genetic_lad_data <- genetic_total_loss_data %>%
     values_to = "value"
   )
 
+# Get the current timestamp
+timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
+
 # bar plot of genetic and LAD loss
 p <- jpe_genetic_lad_data %>%
   filter(value_type == "total_loss") %>%
@@ -37,7 +40,7 @@ p <- jpe_genetic_lad_data %>%
   labs(
     title = "Genetic vs Length-At-Date (LAD) Total Loss ",
     subtitle = "Species: Natural Winter-run Chinook",
-    caption = "Data sources: Genetic loss provided by USBR. LAD loss from CDFW Salvage Database.",
+    caption = paste0("Data sources: Genetic loss provided by USBR. LAD loss from CDFW Salvage Database.\n",timestamp),
     x = "Water Year",
     y = "Total loss",
     fill = NULL
