@@ -1,0 +1,318 @@
+---
+title: "utils_compare_BOR_SacPAS_predicted_weekly_loss"
+---
+This document is the R script for comparing the predicted weekly loss from the BOR provided model code and the Loss and Salvage Predictor Tool currently hosted on SacPAS. The SacPAS tool R code was provided by Nick Beer: see `data-raw/calibrate.R` for script.  The BOR model code was provided by the BOR: see `data-raw/utils_fct_predict_tillotson_model.R` and `WR_Model_Setup.R` and `Steelhead_Model_Setup.R` for script. 
+
+
+```{r load_libraries, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(here)
+library(randomForest)
+library(quantregForest)
+
+#shared model output from Nick Beer -- used to calibrate
+load(here("data-raw", "Full.Fits.Original.R")) #seems to be model output for each of the three options: 1) Steelhead, 2) Winter-run Chinook, 3) Spring-run Chinook 
+```
+
+```{r test_train_data}
+# assign current water year
+source(here("R/utils_fct_assign_current_water_year.R"))
+current_year <- assign_current_water_year()
+
+startOfWY <- function(date) {
+  if (month(date) >= 10) {
+    ymd(paste(year(date), "10-01", sep = "-"))
+  } else {
+    ymd(paste(year(date) - 1, "10-01", sep = "-"))
+  }
+}
+
+calculateWYWeek <- function(date) {
+  waterYearStart <- startOfWY(date)
+  daysSinceStart <- as.integer(difftime(date, waterYearStart, units = "days"))
+  weekNumber <- ceiling(daysSinceStart / 7)
+  return(weekNumber)
+}
+
+weekStartDate <- function(weekNumber, currentDate) {
+  waterYearStart <- startOfWY(currentDate)
+  startDateOfWeek <- waterYearStart + days((weekNumber - 1) * 7)
+  return(startDateOfWeek)
+}
+
+winter_run_url <- paste0("https://www.cbr.washington.edu/sacramento/data/php/rpt/juv_loss_detail.php?sc=1&outputFormat=csv&year=", current_year, "&species=1%3Af&dnaOnly=no&age=no")
+
+df_fish_raw <- read_csv(winter_run_url) %>%
+    janitor::clean_names()
+  
+df_fish_winter  <- df_fish_raw %>% 
+  filter(lad_race == "Winter") %>% 
+    mutate(
+      sample_time = ymd_hms(sample_time),
+      date = date(sample_time)
+    ) %>%
+    group_by(date) %>%
+    summarise(total_daily_loss = sum(loss)) %>%
+    ungroup() %>%
+    mutate(week = sapply(date, calculateWYWeek)) %>%
+    group_by(week) %>%
+    summarise(total_weekly_loss = sum(total_daily_loss)) %>% 
+    mutate(calendar_date = weekStartDate(week, Sys.Date()))  # Add calendar date column
+
+
+
+```
+
+```{r import_river_data}
+
+#load function to import river data
+source(here::here("data-raw/utils_fct_import_river_data.R"))
+
+# Set variables of interest for river data import function
+  # To get current WY years of data:
+  today <- Sys.Date()
+  # Determine the current and previous water years based on today's date
+  if (format(today, "%m") >= "10") {
+    currentWY <- as.numeric(format(today, "%Y")) + 1
+  } else {
+    currentWY <- as.numeric(format(today, "%Y"))
+  }
+  previousWY <- currentWY - 1
+  # return years of interest
+  years <- previousWY:currentWY
+
+  # select sites of interest: Flow, OMR, Export, Temperature
+  code_list <- c("FPT", "VNS", "MAL", "TRP", "HRO")
+  # set years of interest
+  years <- c(years)
+  # selected metrics of interest
+  metrics <- c("Flow", "WaterTemperature", "PumpingDischarge")
+
+  # Run the function with the code list, years, and metrics
+  df_river_raw <- fct_import_SacPAS_river_conditions_query(sites = code_list, years = years, metrics = metrics)
+  # for some reason function returns OMR data multiple times when run in a list above. For now running seperately
+  df_OMR_raw <- fct_import_SacPAS_river_conditions_query(sites = "Combined", years = years, metrics = "OMRDailyUSGS")
+
+  df_river <- df_river_raw %>%
+    bind_rows(df_OMR_raw) %>%
+    mutate(WY = year(YMD) + (month(YMD) >= 10)) %>%
+    filter(WY == current_year) %>%
+    mutate(week = sapply(YMD, calculateWYWeek)) %>%
+    pivot_wider(names_from = c(location, parameter), values_from = value) %>%
+    select(YMD, WY, week, FPT_flow, VNS_flow, Combined_OMRDailyUSGS, TRP_pumping, HRO_pumping, MAL_wtemp) %>%
+    mutate(combined_export = TRP_pumping + HRO_pumping) %>%
+    group_by(week) %>%
+    summarise(
+      weekly_avg_fpt_flow = mean(FPT_flow, na.rm = TRUE),
+      weekly_avg_vns_flow = mean(VNS_flow, na.rm = TRUE),
+      weekly_avg_omr = mean(Combined_OMRDailyUSGS, na.rm = TRUE),
+      weekly_avg_export = mean(combined_export, na.rm = TRUE),
+      weekly_avg_mal_wtemp = mean(MAL_wtemp, na.rm = TRUE)
+    )
+  
+  
+```
+
+
+
+
+```{r weeklydata_sacpas}
+
+```
+
+```{r weeklydata_tac}
+
+```
+
+
+```{r model_sacpas}
+  # Compute full Training set fits
+  qrf.steelhead  <-quantregForest(x=df.week[,predictors.steelhead],y=df.week$steelhead,
+                                 ntree = 1000,
+                                 importance = T,
+                                 proximity = T,
+                                 keep.forest = T,
+                                 keep.inbag = T,
+                                 do.trace = 100,
+                                 rsq = T)
+  qrf.winter <-quantregForest(x=df.week[,predictors.winter],y=df.week$winter,
+                              ntree = 1000,
+                              importance = T,
+                              proximity = T,
+                              keep.forest = T,
+                              keep.inbag = T,
+                              do.trace = 100,
+                              rsq = T)
+```
+
+## Shared Model Output
+```{r}
+#required to run model
+source(here("R/brt.functions.R")) #seems to use gbm to determine howpredicted values are returned - customized function?
+load(here("R/ITMData.rda")) #seems to be the data used to train the model, return 1) df.ss and 2) df.week from 1999 to 2021
+
+df.ss <- df.ss%>%mutate(dcc= if_else(dcc==2,"open","closed"))
+
+#removed all unused selections from hurdle.model function in spp_setup.R
+hurdle.model <- function(data, response, 
+                         quantile.predictors, 
+                         predict.data = NA,
+                         which.quant = .5,
+                         n.trees = 500,
+                         quantile.nodesize = 10,
+                         log.quant = F,
+                         ...) {
+  resp.loc <- which(colnames(data) == response)
+  
+  # Use the entire dataset for quantile regression (if(pres.only == F))
+  data.pres <- data.frame(data)
+  
+  # Train the quantile regression forest model (  if(quantile.form=="qrf"&binary.form!="none"))
+  quantile.model <- quantregForest(x = data.pres[, quantile.predictors], y = data.pres[, resp.loc],
+                                   ntree = n.trees,
+                                   importance = TRUE, 
+                                   proximity = TRUE,
+                                   keep.forest = TRUE,
+                                   keep.inbag = TRUE,
+                                   rsq = TRUE,
+                                   nodesize = quantile.nodesize)
+  
+  # Make predictions
+  #if prediction data = NA, then use the data provided (training data)
+  if (is.na(predict.data)) {
+    prediction.a <- predict(quantile.model, newdata = data, what = which.quant)
+    Pred_Mean <- predict(quantile.model, newdata = data, what = mean)
+    #else, if prediction data is provided, use new data (test data)
+  } else {
+    prediction.a <- predict(quantile.model, newdata = predict.data, what = which.quant)
+    Pred_Mean <- predict(quantile.model, newdata = predict.data, what = mean)
+  }
+  
+  prediction <- data.frame(cbind(prediction.a, Pred_Mean))
+  
+  return(list(quantile.model, prediction))
+}
+
+```
+
+
+```{r model_winterun}
+#model run
+names(df.ss)
+#columns call for winter-run chinook  input to quantile.predictors
+names(df.ss[c(2:4,17:21,27)])
+
+
+
+
+
+WR_Simple_Combined <- hurdle.model(data = df.ss,
+                                      response = "winter",
+                                      binary.predictors = NA,
+                                      quantile.predictors = c(
+                                        "wy_week", 
+                                        "mal_temp",
+                                        "precip", 
+                                        "OMR", 
+                                        "sac", 
+                                        "sjr",
+                                        "dcc",
+                                        "daily_exports",
+                                        "winter.pw"
+                                        ),
+                                      binary.form = "none",
+                                      quantile.form = "qrf",
+                                      which.quant = c(0.01,0.05,.1,.25,.5,.75,.9,.95,.99),
+                                      n.trees=500,
+                                      quantile.nodesize = 5,
+                                      pres.only=F
+)
+
+
+#combine fish and river for winter
+df_combined_winter <- df_fish_winter %>%
+    left_join(df_river, by = "week")
+
+# Initialize a list to store predictions
+predictions_list <- list()
+
+# Loop through each row in df_combined_winter to make predictions
+for (i in 1:nrow(df_combined_winter)) {
+  NewData <- data.frame(
+    wy_week = df_combined_winter$week[i] + 1,
+    mal_temp = df_combined_winter$weekly_avg_mal_wtemp[i],
+    precip = 1,
+    OMR = df_combined_winter$weekly_avg_omr[i],
+    sac = df_combined_winter$weekly_avg_fpt_flow[i],
+    sjr = df_combined_winter$weekly_avg_vns_flow[i],
+    dcc = "closed",
+    daily_exports = df_combined_winter$weekly_avg_export[i],
+    species.pw = df_combined_winter$total_weekly_loss[i]
+  )
+
+  # Dynamically rename the species.pw column
+  names(NewData)[names(NewData) == "species.pw"] <- "winter.pw"
+  
+  # Access the quantile regression forest model from the list
+  quantile_model <- WR_Simple_Combined[[2]]
+  
+  # Make predictions using the quantile regression forest model
+  pred <- predict(quantile_model, newdata = NewData, what = c(0.05, 0.5, 0.95))
+  predictions <- data.frame(
+    lowerCI = pred[, 1], median = pred[, 2], upperCI = pred[, 3],
+    week = df_combined_winter$week[i],
+    OMR = df_combined_winter$weekly_avg_omr[i],
+    Export = df_combined_winter$weekly_avg_export[i],
+    ObservedLoss = df_combined_winter$total_weekly_loss[i],
+    weekly_avg_mal_wtemp = df_combined_winter$weekly_avg_mal_wtemp[i],
+    weekly_avg_fpt_flow = df_combined_winter$weekly_avg_fpt_flow[i],
+    weekly_avg_vns_flow = df_combined_winter$weekly_avg_vns_flow[i],
+    calendar_date = df_combined_winter$calendar_date[i]  # Include calendar date in predictions
+  )
+  
+  # Store the predictions in the list
+  predictions_list[[i]] <- predictions
+}
+
+# Combine all predictions into a single data frame
+final_predictions <- bind_rows(predictions_list)
+
+# Print the final predictions
+print(final_predictions)
+
+```
+
+
+
+
+
+```{r model_steelhead}
+#column calls for steelhead input to quantile.predictors
+names(df.ss[c(2:4,17:21,29)])
+
+
+Stlhd_Simple_Combined <- hurdle.model(data = df.ss,
+                                      response = "stlhd_loss",
+                                      binary.predictors = NA,
+                                      quantile.predictors = c(
+                                        "wy_week", 
+                                        "mal_temp",
+                                        "precip", 
+                                        "OMR", 
+                                        "sac", 
+                                        "sjr",
+                                        "dcc",
+                                        "daily_exports",
+                                        "stlhd_loss.pw"
+                                        ),
+                                      binary.form = "none",
+                                      quantile.form = "qrf",
+                                      which.quant = c(0.01,0.05,.1,.25,.5,.75,.9,.95,.99),
+                                      n.trees=500,
+                                      quantile.nodesize = 5,
+                                      pres.only=F
+)
+
+
+```
+
