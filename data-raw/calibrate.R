@@ -37,8 +37,8 @@ for(indexx in 1:4){
   if(indexx == 4){allloss <- TRUE ; nameadd <- "4"; useyears <- 2009:2020;}
   
   
-  
-  df.main <- read.csv(here("data-raw/AllYears.Intake.csv"))
+
+  df.main <- read.csv("AllYears.Intake.csv")
   # Need to modify datastructure to match original
   df.main <- cbind.data.frame(df.main,"week"=53)
   minY <- min(useyears)

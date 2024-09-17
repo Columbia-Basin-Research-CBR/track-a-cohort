@@ -70,6 +70,10 @@ main idea: COB to make a write up with comparison findings and recommendations/q
 
     -   Add CV for 10fold and LOO and no CV – for comparison
 
+This document is the R script for comparing the predicted weekly loss from the BOR provided model code and the Loss and Salvage Predictor Tool currently hosted on SacPAS. The SacPAS tool R code was provided by Nick Beer: see `data-raw/calibrate.R` for script.  The BOR model code was provided by the BOR: see `data-raw/utils_fct_predict_tillotson_model.R` and `WR_Model_Setup.R` and `Steelhead_Model_Setup.R` for script. 
+
+
+
 ```{r load_libraries, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(here)
@@ -143,6 +147,12 @@ train_inches<-train_nb %>%
 ```
 
 ```{r import_new_loss_data}
+
+#shared model output from Nick Beer -- used to calibrate
+load(here("data-raw", "Full.Fits.Original.R")) #seems to be model output for each of the three options: 1) Steelhead, 2) Winter-run Chinook, 3) Spring-run Chinook 
+```
+
+```{r test_train_data}
 # assign current water year
 source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
@@ -190,6 +200,7 @@ df_fish_winter  <- df_fish_raw %>%
 
 
 ```
+
 
 ```{r import_new_river_data}
 
@@ -241,6 +252,7 @@ source(here::here("data-raw/utils_fct_import_river_data.R"))
   
 ```
 
+
 ## Shared Model Output
 
 ```{r track_a_cohort_output}
@@ -255,12 +267,40 @@ source(here("R/steelhead_plot_tillotson_predicted_loss.R"))
 
 ```
 
-```{r}
+
+```{r model_sacpas}
 #required to run model
 # source(here("R/brt.functions.R")) #seems to use gbm to determine howpredicted values are returned - customized function?
 load(here("R/ITMData.rda")) #seems to be the data used to train the model, return 1) df.ss and 2) df.week from 1999 to 2021
 
 
+
+  # Compute full Training set fits
+  qrf.steelhead  <-quantregForest(x=df.week[,predictors.steelhead],y=df.week$steelhead,
+                                 ntree = 1000,
+                                 importance = T,
+                                 proximity = T,
+                                 keep.forest = T,
+                                 keep.inbag = T,
+                                 do.trace = 100,
+                                 rsq = T)
+  qrf.winter <-quantregForest(x=df.week[,predictors.winter],y=df.week$winter,
+                              ntree = 1000,
+                              importance = T,
+                              proximity = T,
+                              keep.forest = T,
+                              keep.inbag = T,
+                              do.trace = 100,
+                              rsq = T)
+```
+
+## Shared Model Output
+```{r}
+#required to run model
+source(here("R/brt.functions.R")) #seems to use gbm to determine howpredicted values are returned - customized function?
+load(here("R/ITMData.rda")) #seems to be the data used to train the model, return 1) df.ss and 2) df.week from 1999 to 2021
+
+df.ss <- df.ss%>%mutate(dcc= if_else(dcc==2,"open","closed"))
 
 #removed all unused selections from hurdle.model function in spp_setup.R
 hurdle.model <- function(data, response, 
@@ -304,7 +344,13 @@ hurdle.model <- function(data, response,
 
 ```
 
+
 ```{r model_winterun}
+
+#not working for some reaason - instead just run original code and and pull the predicted table to extract the new data used to predict per week and run through with NB.code 
+df_combined_winter<-winter_run_tillotson_output[[2]] #
+
+
 #model run
 names(df.ss)
 #columns call for winter-run chinook  input to quantile.predictors
@@ -317,6 +363,7 @@ df.week <- df.week%>%mutate(dcc= if_else(dcc==2,"open","closed")) #attempting to
 
 
 # run model
+
 WR_Simple_Combined <- hurdle.model(data = df.ss,
                                       response = "winter",
                                       binary.predictors = NA,
@@ -365,7 +412,11 @@ for (i in 1:nrow(df_combined_winter)) {
   names(NewData)[names(NewData) == "species.pw"] <- "winter.pw"
   
   # Access the quantile regression forest model from the list
+
   quantile_model <- WR_Simple_Combined[[1]] #changed to 1 versus 2 -- why did call change in listed value for WR_Simple_Combined?
+
+  quantile_model <- WR_Simple_Combined[[2]]
+
   
   # Make predictions using the quantile regression forest model
   pred <- predict(quantile_model, newdata = NewData, what = c(0.05, 0.5, 0.95))
@@ -392,6 +443,12 @@ final_predictions <- bind_rows(predictions_list)
 print(final_predictions)
 
 ```
+
+
+
+
+
+
 
 ```{r model_steelhead}
 #column calls for steelhead input to quantile.predictors
