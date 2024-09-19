@@ -3,6 +3,14 @@ title: "utils_compare_BOR_SacPAS_predicted_weekly_loss"
 ---
 This document is the R script for comparing the predicted weekly loss from the BOR provided model code and the Loss and Salvage Predictor Tool currently hosted on SacPAS. The SacPAS tool R code was provided by Nick Beer: see `data-raw/calibrate.R` for script.  The BOR model code was provided by the BOR: see `data-raw/utils_fct_predict_tillotson_model.R` and `WR_Model_Setup.R` and `Steelhead_Model_Setup.R` for script. 
 
+Outstanding questions/thoughts:
+  1. What role does brt.functions play in the BOR model code? As far as I can tell, it is not used in the model code.
+2. Does the ntrees = 1000 for the training dataset in NB shared code change the outcome? Changes decimal points if both test and train are set to 1000. 
+3. NB shared code allows full train data set (1999:2020) or new calibration (2009:2020) -- BOR code uses 1999:2021? Which to use and rationale supporting? Should we offer both options in TAC code?
+  5.Further, all train datasets differ in observations. NB uses `AllYears.Intake.csv` while BOR uses `ITMData.rda` which includes df.ss and df.week from WY 1999 to 2022. 
+4. Since the BOR AND NB code is using binary.form ="none" and quantile.form = "qrf", is appears no random forest, `randomForest`, is used, just a quantile regression forest `quantrefForest`. 
+6. Uses kNNimputation() to fill missing covariate data in NB code. Possibly from DMwR package, which is unavailable in current versions of R. Could look into importing older version of package or using another imputation method.
+
 
 ```{r load_libraries, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -10,11 +18,28 @@ library(here)
 library(randomForest)
 library(quantregForest)
 
-#shared model output from Nick Beer -- used to calibrate
-load(here("data-raw", "Full.Fits.Original.R")) #seems to be model output for each of the three options: 1) Steelhead, 2) Winter-run Chinook, 3) Spring-run Chinook 
+# #shared model output from Nick Beer -- used to calibrate
+# load(here("data-raw", "Full.Fits.Original.R")) #seems to be model output for each of the three options: 1) Steelhead, 2) Winter-run Chinook, 3) Spring-run Chinook 
 ```
 
-```{r test_train_data}
+```{r compare_train_datasets}
+
+#seems to have all data foe every day of the week -- this likely was populated usng the kNNimputation() to fill out?
+train_nb<-read.csv(here::here("data-raw/AllYears.Intake.csv")) %>%  
+  mutate(date = lubridate::ymd(date))
+
+# Identify dates in train.nb that are not in df.ss
+missing_dates_train_nb <- anti_join(train_nb, df.ss, by = "date") %>% select(date) #8,234 obs in train.nb not in df.ss
+
+# Identify dates in df.week that are not in df.ss
+missing_dates_df_week <- anti_join(df.week, df.ss, by = "date") %>% select(date) #286 obs in df.week not in df.ss
+
+#identify dates in train.nb that are not in df.week
+missing_dates_train_week <- anti_join(train_nb, df.week, by = "date") %>% select(date) #7,948 obs in train.nb not in df.week
+  
+```
+
+```{r import_new_loss_data}
 # assign current water year
 source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
@@ -63,7 +88,7 @@ df_fish_winter  <- df_fish_raw %>%
 
 ```
 
-```{r import_river_data}
+```{r import_new_river_data}
 
 #load function to import river data
 source(here::here("data-raw/utils_fct_import_river_data.R"))
@@ -113,45 +138,13 @@ source(here::here("data-raw/utils_fct_import_river_data.R"))
   
 ```
 
-
-
-
-```{r weeklydata_sacpas}
-
-```
-
-```{r weeklydata_tac}
-
-```
-
-
-```{r model_sacpas}
-  # Compute full Training set fits
-  qrf.steelhead  <-quantregForest(x=df.week[,predictors.steelhead],y=df.week$steelhead,
-                                 ntree = 1000,
-                                 importance = T,
-                                 proximity = T,
-                                 keep.forest = T,
-                                 keep.inbag = T,
-                                 do.trace = 100,
-                                 rsq = T)
-  qrf.winter <-quantregForest(x=df.week[,predictors.winter],y=df.week$winter,
-                              ntree = 1000,
-                              importance = T,
-                              proximity = T,
-                              keep.forest = T,
-                              keep.inbag = T,
-                              do.trace = 100,
-                              rsq = T)
-```
-
 ## Shared Model Output
 ```{r}
 #required to run model
-source(here("R/brt.functions.R")) #seems to use gbm to determine howpredicted values are returned - customized function?
+# source(here("R/brt.functions.R")) #seems to use gbm to determine howpredicted values are returned - customized function?
 load(here("R/ITMData.rda")) #seems to be the data used to train the model, return 1) df.ss and 2) df.week from 1999 to 2021
 
-df.ss <- df.ss%>%mutate(dcc= if_else(dcc==2,"open","closed"))
+
 
 #removed all unused selections from hurdle.model function in spp_setup.R
 hurdle.model <- function(data, response, 
@@ -203,9 +196,12 @@ names(df.ss)
 names(df.ss[c(2:4,17:21,27)])
 
 
+#change dcc to open or closed instead of numerical values
+df.ss <- df.ss%>%mutate(dcc= if_else(dcc==2,"open","closed"))
+df.week <- df.week%>%mutate(dcc= if_else(dcc==2,"open","closed")) #attempting to try with df.week but getting error--why? start here
 
 
-
+# run model
 WR_Simple_Combined <- hurdle.model(data = df.ss,
                                       response = "winter",
                                       binary.predictors = NA,
@@ -254,7 +250,7 @@ for (i in 1:nrow(df_combined_winter)) {
   names(NewData)[names(NewData) == "species.pw"] <- "winter.pw"
   
   # Access the quantile regression forest model from the list
-  quantile_model <- WR_Simple_Combined[[2]]
+  quantile_model <- WR_Simple_Combined[[1]] #changed to 1 versus 2 -- why did call change in listed value for WR_Simple_Combined?
   
   # Make predictions using the quantile regression forest model
   pred <- predict(quantile_model, newdata = NewData, what = c(0.05, 0.5, 0.95))
@@ -281,8 +277,6 @@ final_predictions <- bind_rows(predictions_list)
 print(final_predictions)
 
 ```
-
-
 
 
 
