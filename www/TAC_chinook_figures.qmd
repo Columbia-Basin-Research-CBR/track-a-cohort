@@ -77,7 +77,7 @@ Related links: [SacPAS Query](https://www.cbr.washington.edu/sacramento/workgrou
 source(here("R/winter_run_chinook_plot_count_cumulative_lad_loss.R"))
 ```
 
-Related links: [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss_jpe.R){target="_blank"}
+Related links: [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_count_cumulative_lad_loss.R){target="_blank"}
 
 ## Daily Loss and Export by Pumping Facility
 
