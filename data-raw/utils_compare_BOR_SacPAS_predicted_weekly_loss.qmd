@@ -1,16 +1,22 @@
 ---
 title: "utils_compare_BOR_SacPAS_predicted_weekly_loss"
 ---
-This document is the R script for comparing the predicted weekly loss from the BOR provided model code and the Loss and Salvage Predictor Tool currently hosted on SacPAS. The SacPAS tool R code was provided by Nick Beer: see `data-raw/calibrate.R` for script.  The BOR model code was provided by the BOR: see `data-raw/utils_fct_predict_tillotson_model.R` and `WR_Model_Setup.R` and `Steelhead_Model_Setup.R` for script. 
+
+This document is the R script for comparing the predicted weekly loss from the BOR provided model code and the Loss and Salvage Predictor Tool currently hosted on SacPAS. The SacPAS tool R code was provided by Nick Beer: see `data-raw/calibrate.R` for script. The BOR model code was provided by the BOR: see `data-raw/utils_fct_predict_tillotson_model.R` and `WR_Model_Setup.R` and `Steelhead_Model_Setup.R` for script.
 
 Outstanding questions/thoughts:
-  1. What role does brt.functions play in the BOR model code? As far as I can tell, it is not used in the model code.
-2. Does the ntrees = 1000 for the training dataset in NB shared code change the outcome? Changes decimal points if both test and train are set to 1000. 
-3. NB shared code allows full train data set (1999:2020) or new calibration (2009:2020) -- BOR code uses 1999:2021? Which to use and rationale supporting? Should we offer both options in TAC code?
-  5.Further, all train datasets differ in observations. NB uses `AllYears.Intake.csv` while BOR uses `ITMData.rda` which includes df.ss and df.week from WY 1999 to 2022. 
-4. Since the BOR AND NB code is using binary.form ="none" and quantile.form = "qrf", is appears no random forest, `randomForest`, is used, just a quantile regression forest `quantrefForest`. 
-6. Uses kNNimputation() to fill missing covariate data in NB code. Possibly from DMwR package, which is unavailable in current versions of R. Could look into importing older version of package or using another imputation method.
 
+1.  What role does brt.functions play in the BOR model code? As far as I can tell, it is not used in the model code.
+
+2.  Does the ntrees = 1000 for the training dataset in NB shared code change the outcome? Changes decimal points if both test and train are set to 1000.
+
+3.  NB shared code allows full train data set (1999:2020) or new calibration (2009:2020) -- BOR code uses 1999:2021? Which to use and rationale supporting? Should we offer both options in TAC code?
+
+4.  Further, all train datasets differ in observations. NB uses `AllYears.Intake.csv` while BOR uses `ITMData.rda` which includes df.ss and df.week from WY1999 to 2022.
+
+5.  Since the BOR AND NB code is using binary.form ="none" and quantile.form = "qrf", is appears no random forest, `randomForest`, is used, just a quantile regression forest `quantrefForest`.
+
+6.  Uses kNNimputation() to fill missing covariate data in NB code. Possibly from DMwR package, which is unavailable in current versions of R. Could look into importing older version of package or using another imputation method. Whereas, BOR shared code does not fill in missing doy covariates
 
 ```{r load_libraries, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -18,8 +24,11 @@ library(here)
 library(randomForest)
 library(quantregForest)
 
+#load BOR shared resources
+load(here("R/ITMData.rda")) #return 1) df.ss and 2) df.week from 1999 to 2021
+
 # #shared model output from Nick Beer -- used to calibrate
-# load(here("data-raw", "Full.Fits.Original.R")) #seems to be model output for each of the three options: 1) Steelhead, 2) Winter-run Chinook, 3) Spring-run Chinook 
+load(here::here("data-raw", "FullFits.Original.R")) #seems to be model output for each of the three options: 1) Steelhead, 2) Winter-run Chinook, 3) Spring-run Chinook
 ```
 
 ```{r compare_train_datasets}
@@ -139,6 +148,7 @@ source(here::here("data-raw/utils_fct_import_river_data.R"))
 ```
 
 ## Shared Model Output
+
 ```{r}
 #required to run model
 # source(here("R/brt.functions.R")) #seems to use gbm to determine howpredicted values are returned - customized function?
@@ -187,7 +197,6 @@ hurdle.model <- function(data, response,
 }
 
 ```
-
 
 ```{r model_winterun}
 #model run
@@ -278,8 +287,6 @@ print(final_predictions)
 
 ```
 
-
-
 ```{r model_steelhead}
 #column calls for steelhead input to quantile.predictors
 names(df.ss[c(2:4,17:21,29)])
@@ -309,4 +316,3 @@ Stlhd_Simple_Combined <- hurdle.model(data = df.ss,
 
 
 ```
-

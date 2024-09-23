@@ -38,7 +38,7 @@ for(indexx in 1:4){
   
   
   
-  df.main <- read.csv("AllYears.Intake.csv")
+  df.main <- read.csv(here("data-raw/AllYears.Intake.csv"))
   # Need to modify datastructure to match original
   df.main <- cbind.data.frame(df.main,"week"=53)
   minY <- min(useyears)
