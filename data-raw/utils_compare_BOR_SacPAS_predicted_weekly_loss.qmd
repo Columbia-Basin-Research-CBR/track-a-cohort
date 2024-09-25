@@ -18,13 +18,13 @@ Outstanding questions/thoughts:
 
     -   Per Tillotson et al (2022): "We also limited predictor variables to those with data available for the entire salvage time-series (WY 1999–2020), and gave preference to variables with readily available forecasts. For model training, we aggregated all variables from daily observations to weekly means, except for precipitation and prior week salvage, which were summed, and Delta Cross Channel (DCC) gate status, which was listed as “opened” or “closed” based on a simple majority of daily statuses." ... "The predictive model was initially developed as a single-step QRF model (hereafter the simple model), trained with data described above for water Years 1999-2020."
 
-4.  Further, all train datasets differ in observations. NB uses `AllYears.Intake.csv` while BOR uses `ITMData.rda` which includes df.ss and df.week from WY1999 to 2022. NB shared code uses kNNimputation() to fill missing covariate data (uses DMwR package, since removed from CRAN, tried using VIM::kNN() instead). Whereas, BOR shared code does not fill in missing doy covariates. However, this method is not mentioned in either Tillotson et al (2022) or BOR shared code. Additionally, observations for covariates differ from NB to BOR shared code, with the former rounding data values and the later leaving as is. Either way they seem to differ with/without rounding. Unsure why df.ss and df.week differ in observations but were both included in `ITMData.rda`, values are pretty close for covariates. 
+4.  Further, all train datasets differ in observations. NB uses `AllYears.Intake.csv` while BOR uses `ITMData.rda` which includes df.ss and df.week from WY1999 to 2022. NB shared code uses kNNimputation() to fill missing covariate data (uses DMwR package, since removed from CRAN, tried using VIM::kNN() instead). Whereas, BOR shared code does not fill in missing doy covariates. However, this method is not mentioned in either Tillotson et al (2022) or BOR shared code. Additionally, observations for covariates differ from NB to BOR shared code, with the former rounding data values and the later leaving as is. Either way they seem to differ with/without rounding. Unsure why df.ss and df.week differ in observations but were both included in `ITMData.rda`, values are pretty close for covariates.
 
-    -if possible, I think going forward we pull historical training data sets form source (via SacPAS) to ensure consistency in training data sets. 
+    -if possible, I think going forward we pull historical training data sets form source (via SacPAS) to ensure consistency in training data sets.
 
-5. Also, shared BOR code sets precipitation to 1, whereas NB shared code aggregates by mean `precip <- aggregate(precip ~ year.week, data = df.covars.filled, mean)[,2]`. This all differs from stated Tillotson etl (2022) methods: 
+5.  Also, shared BOR code sets precipitation to 1, whereas NB shared code aggregates by mean `precip <- aggregate(precip ~ year.week, data = df.covars.filled, mean)[,2]`. This all differs from stated Tillotson etl (2022) methods:
 
-    - "...For model training, we aggregated all variables from daily observations to weekly means, except for precipitation and prior week salvage, which were summed, and Delta Cross Channel (DCC) gate status, which was listed as “opened” or “closed” based on a simple majority of daily statuses."
+    -   "...For model training, we aggregated all variables from daily observations to weekly means, except for precipitation and prior week salvage, which were summed, and Delta Cross Channel (DCC) gate status, which was listed as “opened” or “closed” based on a simple majority of daily statuses."
 
 6.  Since the BOR and NB code is using binary.form ="none" and quantile.form = "qrf", is appears no random forest, `randomForest`, is used, just a quantile regression forest `quantrefForest` which differs from Tillotson et al (2022):
 
@@ -32,11 +32,9 @@ Outstanding questions/thoughts:
     -   ...but later states..."Examination of prediction errors during the first week of each salvage season in which greater than 5% of the annual loss occurred revealed poor predictive ability in these circumstances across all model formulations, with large under-predictions the norm (Figure 6A). In contrast, across all weeks in which greater than 5% of annual loss occurred, the 75th predicted quantiles for both species and all model formulations produced more balanced prediction errors (Figure 6B). In addition to indicating that the hurdle model formulation may be unnecessary, these results also suggest that use of a more precautionary management benchmark, such as the 90th quantile (Figure 6C and 6D), may be warranted early in the year when regular weekly loss is not yet occurring."
     -   Binary hurdle model unnecessary deemed unnecessary then?
 
-7.   No cross validation is done on either NB or BOR shared code. In paper, it states the strongest variables in predicting loss was the prior week's loss and the week of the water year, which was meant to be handled by the additional hurdle model fitting, but also why the more conservative LOO CV method was selected.
+7.  No cross validation is done on either NB or BOR shared code. In paper, it states the strongest variables in predicting loss was the prior week's loss and the week of the water year, which was meant to be handled by the additional hurdle model fitting, but also why the more conservative LOO CV method was selected.
 
-    - "...the 10-fold approach produced consistently more optimistic results (i.e., suggested better predictive performance). This probably results from the fact that there is an unaccounted-for effect of year in determining the risk of entrainment and removing an entire year of data ensures that the model is trained completely naively to this annual effect. For the sake of clarity, we have chosen to report only the results from the more conservative LOO cross-validation. "
-
-
+    -   "...the 10-fold approach produced consistently more optimistic results (i.e., suggested better predictive performance). This probably results from the fact that there is an unaccounted-for effect of year in determining the risk of entrainment and removing an entire year of data ensures that the model is trained completely naively to this annual effect. For the sake of clarity, we have chosen to report only the results from the more conservative LOO cross-validation. "
 
 ```{r load_libraries, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -175,12 +173,11 @@ source(here("R/winter_run_chinook_plot_tillotson_predicted_loss.R"))
 source(here("R/steelhead_plot_tillotson_predicted_loss.R"))
 ```
 
-
 -------------------past code
+
 ```{r}
 
 ```
-
 
 ```{r}
 #required to run model
