@@ -8,22 +8,42 @@ Outstanding questions/thoughts:
 
 1.  What role does brt.functions play in the BOR model code? As far as I can tell, it is not used in the model code.
 
-2.  Does the ntrees = 1000 for the training dataset in NB shared code change the outcome? Changes decimal points if both test and train are set to 1000.
+2.  Does the ntrees = 1000 for the training dataset in NB shared code change the outcome?
+
+    -   Changes decimal points if both test and train are set to 1000.
+    -   Tillotson et. al (2022) states all default values are used except for ntrees which is set to 300 for the quantile regression forest model. "The models were trained using the ‘quantregForest’ (Meinshausen 2017), in R (R Core Team 2019). A range of values for key algorithm parameters were tested, including the number of variables sampled at each tree split (mtry), the minimum number of terminal nodes (nodesize) and the number of trees in the forest (ntree), but the defaults were ultimately deemed sufficient aside from tree number, which was set to 300 for the sake of computational efficiency (Oshiro et al. 2012)."
+    -   Keep at 500 or switch to 300 to match paper?
 
 3.  NB shared code allows full train data set (1999:2020) or new calibration (2009:2020) -- BOR code uses 1999:2021? Which to use and rationale supporting? Should we offer both options in TAC code?
 
-4.  Further, all train datasets differ in observations. NB uses `AllYears.Intake.csv` while BOR uses `ITMData.rda` which includes df.ss and df.week from WY1999 to 2022.
+    -   Per Tillotson et al (2022): "We also limited predictor variables to those with data available for the entire salvage time-series (WY 1999–2020), and gave preference to variables with readily available forecasts. For model training, we aggregated all variables from daily observations to weekly means, except for precipitation and prior week salvage, which were summed, and Delta Cross Channel (DCC) gate status, which was listed as “opened” or “closed” based on a simple majority of daily statuses." ... "The predictive model was initially developed as a single-step QRF model (hereafter the simple model), trained with data described above for water Years 1999-2020."
 
-5.  Since the BOR AND NB code is using binary.form ="none" and quantile.form = "qrf", is appears no random forest, `randomForest`, is used, just a quantile regression forest `quantrefForest`.
+4.  Further, all train datasets differ in observations. NB uses `AllYears.Intake.csv` while BOR uses `ITMData.rda` which includes df.ss and df.week from WY1999 to 2022. NB shared code uses kNNimputation() to fill missing covariate data. Possibly from DMwR package, which is unavailable in current versions of R. Could look into importing older version of package or using another imputation method. Whereas, BOR shared code does not fill in missing doy covariates. However, this method is not mentioned in either Tillotson et al (2022) or BOR shared code. Additionally, observations for covariates differ from NB to BOR shared code, with the former rounding data values and the later leaving as is. Either way they seem to differ with/without rounding. Unsure why df.ss and df.week differ in observations, values are pretty close for covariates. 
 
-6.  Uses kNNimputation() to fill missing covariate data in NB code. Possibly from DMwR package, which is unavailable in current versions of R. Could look into importing older version of package or using another imputation method. Whereas, BOR shared code does not fill in missing doy covariates
+    -if possible, I think going forward we pull historical training data sets form source (via SacPAS) to ensure consistency in training data sets. 
+
+5. Also, shared BOR code sets precipitation to 1, whereas NB shared code aggregates by mean `precip <- aggregate(precip ~ year.week, data = df.covars.filled, mean)[,2]`. This all differs from stated Tillotson etl (2022) methods: 
+
+    - "...For model training, we aggregated all variables from daily observations to weekly means, except for precipitation and prior week salvage, which were summed, and Delta Cross Channel (DCC) gate status, which was listed as “opened” or “closed” based on a simple majority of daily statuses."
+
+6.  Since the BOR and NB code is using binary.form ="none" and quantile.form = "qrf", is appears no random forest, `randomForest`, is used, just a quantile regression forest `quantrefForest` which differs from Tillotson et al (2022):
+
+    -   "Feedback from potential model users included some concern regarding the reliance of the models on the prior week’s loss since it may lead to poor prediction early in the salvage season when few fish are observed. In an attempt to address this concern, we developed an alternative, two-step model formulation (hereafter referred to as the hurdle model). The hurdle model first trains a random forest classifier using the ‘randomForest’ package (Law and Wiener 2002). The response and predictor variables are the same as for the simple model, except that the responses are converted from continuous to binary (i.e., loss/no loss) and the prior week’s loss is excluded. A QRF model with the same formulation as the simple model is then fit to a censored data set containing only weeks with non-zero observed loss. The prediction from the classification model is then multiplied by the prediction in the simple model. Thus, the first step (RF classifier) predicts whether or not any loss will occur in the coming week based only on environmental and operational conditions, and when loss is predicted to occur, the second step (QRF regression) estimates the magnitude of loss using the complete set of predictors, (i.e., including the prior week’s loss). Per each response variable, both the simple and hurdle models were fit. were fit. The output of each model is the same: a predicted distribution of the response variable, which can be used to explore the range of potential outcomes, given a set of environmental and operational conditions "
+    -   ...but later states..."Examination of prediction errors during the first week of each salvage season in which greater than 5% of the annual loss occurred revealed poor predictive ability in these circumstances across all model formulations, with large under-predictions the norm (Figure 6A). In contrast, across all weeks in which greater than 5% of annual loss occurred, the 75th predicted quantiles for both species and all model formulations produced more balanced prediction errors (Figure 6B). In addition to indicating that the hurdle model formulation may be unnecessary, these results also suggest that use of a more precautionary management benchmark, such as the 90th quantile (Figure 6C and 6D), may be warranted early in the year when regular weekly loss is not yet occurring."
+    -   Binary hurdle model unnecessary deemed unnecessary then?
+
+7.   No cross validation is done on either NB or BOR shared code. In paper, it states the strongest variables in predicting loss was the prior week's loss and the week of the water year, which was meant to be handled by the additional hurdle model fitting, but also why the more conservative LOO CV method was selected.
+
+    - "...the 10-fold approach produced consistently more optimistic results (i.e., suggested better predictive performance). This probably results from the fact that there is an unaccounted-for effect of year in determining the risk of entrainment and removing an entire year of data ensures that the model is trained completely naively to this annual effect. For the sake of clarity, we have chosen to report only the results from the more conservative LOO cross-validation. "
+
+
 
 ```{r load_libraries, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(here)
 library(randomForest)
 library(quantregForest)
-
+library(plotly)
 #load BOR shared resources
 load(here("R/ITMData.rda")) #return 1) df.ss and 2) df.week from 1999 to 2021
 
@@ -41,7 +61,7 @@ train_nb<-read.csv(here::here("data-raw/AllYears.Intake.csv")) %>%
 missing_dates_train_nb <- anti_join(train_nb, df.ss, by = "date") %>% select(date) #8,234 obs in train.nb not in df.ss
 
 # Identify dates in df.week that are not in df.ss
-missing_dates_df_week <- anti_join(df.week, df.ss, by = "date") %>% select(date) #286 obs in df.week not in df.ss
+missing_dates_df_week <- anti_join(df.week, df.ss, by = "OMR") %>% select(OMR) #286 obs in df.week not in df.ss
 
 #identify dates in train.nb that are not in df.week
 missing_dates_train_week <- anti_join(train_nb, df.week, by = "date") %>% select(date) #7,948 obs in train.nb not in df.week
@@ -148,6 +168,19 @@ source(here::here("data-raw/utils_fct_import_river_data.R"))
 ```
 
 ## Shared Model Output
+
+```{r track_a_cohort_output}
+source(here("R/winter_run_chinook_plot_tillotson_predicted_loss.R"))
+
+source(here("R/steelhead_plot_tillotson_predicted_loss.R"))
+```
+
+
+-------------------past code
+```{r}
+
+```
+
 
 ```{r}
 #required to run model
