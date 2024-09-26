@@ -35,6 +35,8 @@ Outstanding questions/thoughts:
 7.  No cross validation is done on either NB or BOR shared code. In paper, it states the strongest variables in predicting loss was the prior week's loss and the week of the water year, which was meant to be handled by the additional hurdle model fitting, but also why the more conservative LOO CV method was selected.
 
     -   "...the 10-fold approach produced consistently more optimistic results (i.e., suggested better predictive performance). This probably results from the fact that there is an unaccounted-for effect of year in determining the risk of entrainment and removing an entire year of data ensures that the model is trained completely naively to this annual effect. For the sake of clarity, we have chosen to report only the results from the more conservative LOO cross-validation. "
+    
+8. In `calibrate.R` script shared by NB, there was some question regarding which columns were being called such that if spring observed loss was being called instead of steelhead. NB looked into and it appears the observed data is reflecting properly. Note for future self, column steelhead = take, whereas stlhd_loss = observed loss, winter and spring  = observed loss and winter_cl and spring_cl = clipped loss. The code might still be dropping percip and calling df.covar for spring and using imputation to fill based on missing spring dates, but this is not clear in the code.
 
 ```{r load_libraries, message=FALSE, warning=FALSE}
 library(tidyverse)
