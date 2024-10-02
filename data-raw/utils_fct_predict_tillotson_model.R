@@ -26,11 +26,18 @@ startOfWY <- function(date) {
   }
 }
 
-weekStartDate <- function(weekNumber, currentDate) {
-  waterYearStart <- startOfWY(currentDate)
+# weekStartDate <- function(weekNumber, currentDate) {
+#   waterYearStart <- startOfWY(currentDate)
+#   startDateOfWeek <- waterYearStart + days((weekNumber - 1) * 7)
+#   return(startDateOfWeek)
+# }
+weekStartDate <- function(weekNumber, waterYear) {
+  waterYearStart <- ymd(paste(waterYear - 1, "10-01", sep = "-"))
   startDateOfWeek <- waterYearStart + days((weekNumber - 1) * 7)
   return(startDateOfWeek)
 }
+
+
 
 calculateWYWeek <- function(date) {
   waterYearStart <- startOfWY(date)
@@ -39,8 +46,11 @@ calculateWYWeek <- function(date) {
   return(weekNumber)
 }
 
-currentWY <- current_year
-previousWY <- current_year - 1
+# Function to check if the data is valid
+is_valid_data <- function(df) {
+  required_columns <- c("sample_time", "facility", "adipose_clip", "lad_race", "loss")
+  all(required_columns %in% colnames(df))
+}
 
 fct_process_and_run_tillotson_model <- function(species_url, species_filter, model_script, species.pw) {
   # Load the model script
@@ -49,6 +59,19 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
   # weekly loss totals differ from BOR supplied code -- need to verify discrepancies
   df_fish_raw <- read_csv(species_url) %>%
     janitor::clean_names()
+  
+  # If the data is invalid, load data from the previous water year
+  if (!is_valid_data(df_fish_raw)) {
+    previous_url <- sub(paste0("year=", currentWY), paste0("year=", previousWY), species_url)
+    df_fish_raw <- read_csv(previous_url) %>%
+      janitor::clean_names()
+    use_previous_year <- TRUE
+  } else {
+    use_previous_year <- FALSE
+  }
+  
+  # Determine the water year to use for calendar date assignment
+  waterYearToUse <- if (use_previous_year) previousWY else currentWY
 
   # Apply species filter based on the species_filter argument
   if (species_filter == "STL") {
@@ -72,9 +95,8 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
     mutate(week = sapply(date, calculateWYWeek)) %>%
     group_by(week) %>%
     summarise(total_weekly_loss = sum(total_daily_loss)) %>% 
-    mutate(calendar_date = weekStartDate(week, Sys.Date()))  # Add calendar date column
-
-
+    mutate(calendar_date = weekStartDate(week, waterYearToUse))
+    # mutate(calendar_date = weekStartDate(week, Sys.Date()))  # Add calendar date column
 
 
   # Set variables of interest for river data import function
@@ -105,7 +127,7 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
   df_river <- df_river_raw %>%
     bind_rows(df_OMR_raw) %>%
     mutate(WY = year(YMD) + (month(YMD) >= 10)) %>%
-    filter(WY == current_year) %>%
+    filter(WY %in% if (use_previous_year) previousWY else currentWY) %>%
     mutate(week = sapply(YMD, calculateWYWeek)) %>%
     pivot_wider(names_from = c(location, parameter), values_from = value) %>%
     select(YMD, WY, week, FPT_flow, VNS_flow, Combined_OMRDailyUSGS, TRP_pumping, HRO_pumping, MAL_wtemp) %>%
