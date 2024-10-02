@@ -39,7 +39,7 @@ calculateWYWeek <- function(date) {
   return(weekNumber)
 }
 
-currentWY <- 2024
+currentWY <- current_year
 previousWY <- current_year - 1
 
 fct_process_and_run_tillotson_model <- function(species_url, species_filter, model_script, species.pw) {
@@ -161,8 +161,6 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
 
   return(bind_rows(tillotsonList))
 }
-
-
 
 # Winter-run
 winter_run_url <- paste0("https://www.cbr.washington.edu/sacramento/data/php/rpt/juv_loss_detail.php?sc=1&outputFormat=csv&year=", current_year, "&species=1%3Af&dnaOnly=no&age=no")
