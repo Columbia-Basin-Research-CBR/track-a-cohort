@@ -53,6 +53,18 @@ is_valid_data <- function(df) {
 }
 
 fct_process_and_run_tillotson_model <- function(species_url, species_filter, model_script, species.pw) {
+  # To get current WY years of data:
+  today <- Sys.Date()
+  # Determine the current and previous water years based on today's date
+  if (format(today, "%m") >= "10") {
+    currentWY <- as.numeric(format(today, "%Y")) + 1
+  } else {
+    currentWY <- as.numeric(format(today, "%Y"))
+  }
+  previousWY <- currentWY - 1
+  # return years of interest
+  years <- previousWY:currentWY
+  
   # Load the model script
   source(here("data-raw", model_script))
 
@@ -61,6 +73,7 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
     janitor::clean_names()
   
   # If the data is invalid, load data from the previous water year
+
   if (!is_valid_data(df_fish_raw)) {
     previous_url <- sub(paste0("year=", currentWY), paste0("year=", previousWY), species_url)
     df_fish_raw <- read_csv(previous_url) %>%
@@ -100,22 +113,14 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
 
 
   # Set variables of interest for river data import function
-  # To get current WY years of data:
-  today <- Sys.Date()
-  # Determine the current and previous water years based on today's date
-  if (format(today, "%m") >= "10") {
-    currentWY <- as.numeric(format(today, "%Y")) + 1
-  } else {
-    currentWY <- as.numeric(format(today, "%Y"))
-  }
-  previousWY <- currentWY - 1
-  # return years of interest
-  years <- previousWY:currentWY
+
 
   # select sites of interest: Flow, OMR, Export, Temperature
   code_list <- c("FPT", "VNS", "MAL", "TRP", "HRO")
-  # set years of interest
-  years <- c(years)
+
+  # Set years of interest based on the validity of df_fish
+  years <- if (use_previous_year) c(previousWY-1, previousWY) else c(previousWY, currentWY)
+  
   # selected metrics of interest
   metrics <- c("Flow", "WaterTemperature", "PumpingDischarge")
 
