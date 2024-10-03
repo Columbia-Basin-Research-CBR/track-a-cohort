@@ -35,8 +35,38 @@ Outstanding questions/thoughts:
 7.  No cross validation is done on either NB or BOR shared code. In paper, it states the strongest variables in predicting loss was the prior week's loss and the week of the water year, which was meant to be handled by the additional hurdle model fitting, but also why the more conservative LOO CV method was selected.
 
     -   "...the 10-fold approach produced consistently more optimistic results (i.e., suggested better predictive performance). This probably results from the fact that there is an unaccounted-for effect of year in determining the risk of entrainment and removing an entire year of data ensures that the model is trained completely naively to this annual effect. For the sake of clarity, we have chosen to report only the results from the more conservative LOO cross-validation. "
-    
-8. In `calibrate.R` script shared by NB, there was some question regarding which columns were being called such that if spring observed loss was being called instead of steelhead. NB looked into and it appears the observed data is reflecting properly. Note for future self, column steelhead = take, whereas stlhd_loss = observed loss, winter and spring  = observed loss and winter_cl and spring_cl = clipped loss. The code might still be dropping percip and calling df.covar for spring and using imputation to fill based on missing spring dates, but this is not clear in the code.
+
+8.  In `calibrate.R` script shared by NB, there was some question regarding which columns were being called such that if spring observed loss was being called instead of steelhead. NB looked into and it appears the observed data is reflecting properly. Note for future self, column steelhead = take, whereas stlhd_loss = observed loss, winter and spring = observed loss and winter_cl and spring_cl = clipped loss. The code might still be dropping percip and calling df.covar for spring and using imputation to fill based on missing spring dates, but this is not clear in the code.
+
+**Meeting notes (JG & COB), 10/3/2024:**
+
+main idea: COB to make a write up with comparison findings and recommendations/questions for NB and confirmation from JG. Share via github. Below outlines some specifics:
+
+-   Training dataset:
+
+    -   Confirm with BOR which training dataset is preferred, 2009:CY or all years 1999:CY. When comparing within loss and salvage predictor tool, there was a difference in loss reported with all years predicting higher loss than 2009:2020 years (77.44 compared to 38.97 respectively, Example was June 8, 2023).
+
+        -   Determine rationale behind selection– Jenn to ask BOR.
+
+    -   confirm NB is rerunning training data set with up to date years, or just adding new data to existing model as testing data (newdata)
+
+    -   confirm with NB what code is doing with running data through with each year of data.
+
+    -   decide it TAC will match NB code to fill in missing covariate data with knn imputation.
+
+    -   Caitlin & NB (if he isn't already) to pull data from DART instead of Tillotson/BOR supplied code for training dataset.
+
+-   Model:
+
+    -   Set ntrees to default setting. Caitlin to confirm if that is 300 or 500.
+
+    -   Precipitation, stick with sum of (5-day) precipitation (see Tillotson for link. Not available on SacPAS but NB must be getting the data. Request on MC to import, but possible it's similar to mal_temp and SI is already importing and just needs to update query tool.
+
+        -   JG questions why 5 -day precipitation? Look into why it isn’t a 7 day. Paper mentions its cfs but link shows inches. Missing something? Compare precip results to shared static files for comparision then switch.
+
+    -   Model stick with quantreg but compare with adding random forest - just for comparison
+
+    -   Add CV for 10fold and LOO and no CV – for comparison
 
 ```{r load_libraries, message=FALSE, warning=FALSE}
 library(tidyverse)
