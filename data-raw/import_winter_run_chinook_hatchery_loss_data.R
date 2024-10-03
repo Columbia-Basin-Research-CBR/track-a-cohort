@@ -8,15 +8,30 @@ require(here)
 source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
 
+
 # Update required: link to confirmed hatchery loss .csv with all years-- currently set to only pull one year
 # import hatchery loss directly from SacPAS
 url <- paste0("https://www.cbr.washington.edu/sacramento/data/php/rpt/juv_loss_detail.php?sc=1&outputFormat=csv&year=", current_year, "&species=1%3At&dnaOnly=no&age=no")
-hatchery_loss_raw <- read.csv(url, header = TRUE, stringsAsFactors = FALSE)
+hatchery_loss_raw <- read.csv(url, header = TRUE, stringsAsFactors = FALSE) %>% 
+  janitor::clean_names()
+
+#fct to check if data is valid
+is_valid_data <- function(data) {
+  # Example check: Ensure the data frame is not empty and has the expected columns
+  required_columns <- c("sample_time", "lad_race")
+  all(required_columns %in% colnames(df))
+}
+
+# If the data is invalid, load data from the previous water year
+if (!is_valid_data(hatchery_loss_raw)) {
+  previous_url <- sub(paste0("year=", current_year), paste0("year=", current_year-1), url)
+  hatchery_loss_raw <- read_csv(previous_url) %>%
+    janitor::clean_names()
+}
 
 # filter to only include winter-run chinook
 hatchery_loss <- hatchery_loss_raw %>%
-  janitor::clean_names() %>%
-  filter(lad_race == "Winter") %>%
+  filter(lad_race == "winter") %>%
   mutate(date = ymd(cwt_release_start)) %>%
   arrange(date) %>%
   mutate(
