@@ -1,5 +1,6 @@
 # [Track-a-Cohort](https://columbia-basin-research-cbr.github.io/track-a-cohort/www/TAC_chinook_figures.html)
-*product in development*
+
+*product in development – please note the plots are pending new data inputs for WY2025*
 
 A webpage that includes requested plots for winter run chinook salmon and steelhead in Sacramento River.
 
