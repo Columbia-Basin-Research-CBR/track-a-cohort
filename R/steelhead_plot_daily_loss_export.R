@@ -25,7 +25,7 @@ if (use_previous_year) {
   omrValues <- data.frame(value = c(-5000, -3500, -2000, -5000, -3500, -2500, -500, -1500, -2500, "COA 8.17"),
                           date = lubridate::ymd(c('2024-01-01', '2024-01-14', '2024-01-23', '2024-02-04', '2024-02-08',
                                                   '2024-02-17', '2024-03-11', '2024-02-26', '2024-04-01', '2024-04-09')))
-  caption_note <- paste0("No data reported for Current WY: ", current_year)
+  caption_note <- paste0("No data reported for Current WY", current_year, ". Data reflects last available data (WY", previous_year, ").\n")
   water_year_text <- paste("Water Year:", previous_year)
 } else {
   omrValues <- NULL
@@ -74,7 +74,7 @@ p2 <- steelhead_loss_export_data %>%
        y.sec = "Pumping Discharge (cfs)",
        fill = "Daily loss by facility: ",
        color = "Pumping by facility:",
-       caption = paste0(caption_note, "\nData sources: Daily loss and Export Preliminary data from CDFW;\nCFS from the CDEC sites HRO (for SWP) and TRP (for CVP)\n", timestamp)) + 
+       caption = paste0(caption_note, "Data sources: Daily loss and Export Preliminary data from CDFW;\nCFS from the CDEC sites HRO (for SWP) and TRP (for CVP)\n", timestamp)) + 
   scale_x_date(date_breaks = "2 month", date_labels = "%m/%y") +
   scale_y_continuous(sec.axis = sec_axis(~./ratio, name = "Pumping Discharge (cfs)")) + # Add secondary axis
   scale_color_manual(values = c("#F5C767", "#00BFFF")) +

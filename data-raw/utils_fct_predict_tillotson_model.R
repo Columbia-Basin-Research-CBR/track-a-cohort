@@ -26,11 +26,6 @@ startOfWY <- function(date) {
   }
 }
 
-# weekStartDate <- function(weekNumber, currentDate) {
-#   waterYearStart <- startOfWY(currentDate)
-#   startDateOfWeek <- waterYearStart + days((weekNumber - 1) * 7)
-#   return(startDateOfWeek)
-# }
 weekStartDate <- function(weekNumber, waterYear) {
   waterYearStart <- ymd(paste(waterYear - 1, "10-01", sep = "-"))
   startDateOfWeek <- waterYearStart + days((weekNumber - 1) * 7)
@@ -180,7 +175,8 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
       weekly_avg_mal_wtemp = df_combined$weekly_avg_mal_wtemp[i],
       weekly_avg_fpt_flow = df_combined$weekly_avg_fpt_flow[i],
       weekly_avg_vns_flow = df_combined$weekly_avg_vns_flow[i],
-      calendar_date = df_combined$calendar_date[i]  # Include calendar date in predictions
+      calendar_date = df_combined$calendar_date[i], # Include calendar date in predictions
+      wy = waterYearToUse  # Add water year to predictions
     )
     tillotsonList[[i]] <- predictions
   

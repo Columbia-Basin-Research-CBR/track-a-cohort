@@ -10,12 +10,23 @@ steelhead_tillotson_output <- tillotson_prediction_output$steelhead_tillotson_ou
 #set current year
 source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
+previous_year <- current_year - 1
+
+# Check if there is any data for the current year
+use_previous_year <- !any(steelhead_tillotson_output$wy == current_year)
+if (use_previous_year) {
+  plot_year <- previous_year
+  caption_note <- paste0("No data reported for WY", current_year, ". Data reflects last available data (WY", previous_year, ").\n")
+} else {
+  plot_year <- current_year
+  caption_note <- ""
+}
 
 # Get the current timestamp
 timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
 
 # back calculate date from water week with the start of the water year = 10-01
-start_date <- as.Date(paste(current_year - 1, "-10-01", sep=""))
+start_date <- as.Date(paste(plot_year - 1, "-10-01", sep=""))
 
 # Calculate the date range for plotting
 min_date <- start_date + (min(steelhead_tillotson_output$week)-1)*7
@@ -36,8 +47,8 @@ p <- steelhead_tillotson_output %>%
   geom_line(aes(y = median, color = "Predicted loss,\nmedian with 90% CI")) +
   geom_point(aes(y = median, color = "Predicted loss,\nmedian with 90% CI")) +
   labs(title = "Predicted Weekly Loss - Tillotson et al. (2022)",
-       subtitle = paste("Species: Unclipped Steelhead\nWater Year:", current_year),
-       caption = timestamp,
+       subtitle = paste("Species: Unclipped Steelhead\nWater Year:", plot_year),
+       caption = paste0(caption_note, timestamp),
        x = "Week",
        y = "Predicted Weekly Loss", 
        fill = NULL,

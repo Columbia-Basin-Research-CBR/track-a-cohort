@@ -23,6 +23,17 @@ source(here("R/utils_fct_wday_to_month.R"))
 #set current year
 source(here("R/utils_fct_assign_current_water_year.R"))
        current_year <- assign_current_water_year()
+       previous_year <- current_year - 1
+       
+       # Check if there is any data for the current year
+       use_previous_year <- !any(steelhead_loss_data$WY == current_year)
+       if (use_previous_year) {
+         plot_year <- previous_year
+         caption_note <- paste0("No data reported for WY", current_year, ". Data reflects last available data (WY", previous_year, ").\n")
+       } else {
+         plot_year <- current_year
+         caption_note <- ""
+       }
 
 # Get the current timestamp
 timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
@@ -48,7 +59,7 @@ steelhead_loss_data_unclipped <- steelhead_loss_data %>%
 
 # extract maximum cumloss for the current year
 cumloss_current_year <- steelhead_loss_data_unclipped %>%
-  filter(WY == current_year) %>% 
+  filter(WY == plot_year) %>% 
   mutate(management_period = case_when(
     (month(date) == 12 & day(date) >= 31) | 
       month(date) %in% c(1, 2) | 
@@ -73,11 +84,11 @@ current_year_mgmt2_75pct <- current_year_mgmt2_100pct*.75
 current_year_mgmt2_50pct <- current_year_mgmt2_100pct*.50
 
 # set management threshold line
-management_period_start <- as.Date(paste0(current_year,"-03-31"))
-management_period_end <- as.Date(paste0(current_year,"-06-15"))
+management_period_start <- as.Date(paste0(plot_year,"-03-31"))
+management_period_end <- as.Date(paste0(plot_year,"-06-15"))
 
 #set start date for xlim 
-start_date <- as.Date(paste0(current_year - 1, "-10-01"))
+start_date <- as.Date(paste0(plot_year - 1, "-10-01"))
 
 # Calculate maximum cumulative loss for each management period
 max_loss_by_period <- cumloss_current_year %>%
@@ -128,10 +139,10 @@ p <- cumloss_current_year %>%
   scale_y_continuous(expand = c(0,100)) +
   scale_color_manual(values = c("12/1 - 3/31" = "#0072B2", "4/1 - 6/15" = "#00BFFF"), name = "Management period:") +
   # scale_linetype_manual() +
-  labs(title = paste0("Cumulative Loss for WY", current_year, " with Single-Year Thresholds"),
+  labs(title = paste0("Cumulative Loss for WY", plot_year, " with Single-Year Thresholds"),
        subtitle = paste0("Species: Unclipped Steelhead\nCumulative loss 12/31-3/31: ", round(filter(max_loss_by_period, management_period == 	"12/1 - 3/31")$max_cum_loss_mgt,2),
                          "\nCumulative loss 4/1-6/15: ", round(filter(max_loss_by_period, management_period == "4/1 - 6/15")$max_cum_loss_mgt,2)),
-       caption = paste0("Data sources: Preliminary data from CDFW; subject to revision.\n", timestamp),
+       caption = paste0(caption_note, "Data sources: Preliminary data from CDFW; subject to revision.\n", timestamp),
        x = "Date",
        y = "Cumulative Loss") +
   theme_minimal() +

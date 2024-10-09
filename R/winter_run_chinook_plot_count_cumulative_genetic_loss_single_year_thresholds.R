@@ -9,7 +9,8 @@ require(ggrepel)
 
 # import data file
 load(here("data/jpe_genetic_loss_data.rda"))
-
+# extract cumulative loss data and add CY date column
+genetic_cumulative_loss_data <- jpe_genetic_loss_data$genetic_cumulative_loss_data
 
 # import wDay to month function
 source(here("R/utils_fct_wday_to_month.R"))
@@ -17,6 +18,17 @@ source(here("R/utils_fct_wday_to_month.R"))
 #set current year
 source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
+previous_year <- current_year - 1
+
+# Check if there is any data for the current year
+use_previous_year <- !any(genetic_cumulative_loss_data$WY == current_year)
+if (use_previous_year) {
+  plot_year <- previous_year
+  caption_note <- paste0("No data reported for WY", current_year, ". Data reflects last available data (WY", previous_year, ").\n")
+} else {
+  plot_year <- current_year
+  caption_note <- ""
+}
 
 # Get the current timestamp
 timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
@@ -34,20 +46,19 @@ wDay_to_date <- function(wDay, WY) {
 
 # wrangle base data for plot
 
-# extract cumulative loss data and add CY date column
-genetic_cumulative_loss_data <- jpe_genetic_loss_data$genetic_cumulative_loss_data
+
 
 #convert back to CY date
 genetic_cumulative_loss_data$date <- as_date(mapply(wDay_to_date, genetic_cumulative_loss_data$wDay, genetic_cumulative_loss_data$WY))
 
 # extract maximum cumloss for the current year
 cumloss_current_year <- genetic_cumulative_loss_data %>%
-  filter(WY == current_year) 
+  filter(WY == plot_year) 
 
 
 # extract current water year JPE and set 100% genetic loss of JPE -- return single value
 jpe_current_year_100pct <- genetic_cumulative_loss_data %>%
-  filter(WY == current_year, cumloss == max(cumloss)) %>%
+  filter(WY == plot_year, cumloss == max(cumloss)) %>%
   pull(jpe)*.005004
 
 jpe_current_year_75pct <- jpe_current_year_100pct *.75
@@ -61,7 +72,7 @@ max_loss_threshold_2010_to_2018 <- genetic_cumulative_loss_data %>%
   pull(max_loss)
 
 # set x-lim to start of water year. 10-01
-startdate_WY <-as.Date(paste0(current_year-1, "-10-01"))
+startdate_WY <-as.Date(paste0(plot_year-1, "-10-01"))
 
 
 # add missing values to from start to todays date
@@ -72,14 +83,14 @@ first_known_data <- cumloss_current_year %>%
   slice(1)
 
 # Create a sequence of dates from October 1st to the first known data point
-start_date <- as.Date(paste0(current_year - 1, "-10-01"))
+start_date <- as.Date(paste0(plot_year - 1, "-10-01"))
 missing_dates_start <- seq.Date(from = start_date, to = first_known_data$date, by = "day")
 
 # Create a new data frame with missing dates and the first known value
 missing_data_start <- data.frame(
   date = missing_dates_start,
   cumloss = first_known_data$cumloss,
-  WY = current_year
+  WY = plot_year
 )
 
 # Identify the last known data point value for the current year
@@ -95,7 +106,7 @@ missing_dates_end <- seq.Date(from = last_known_data$date, to = Sys.Date(), by =
 missing_data_end <- data.frame(
   date = missing_dates_end,
   cumloss = last_known_data$cumloss,
-  WY = current_year
+  WY = plot_year
 )
 
 # Combine these new data frames with the original data
@@ -126,10 +137,10 @@ p <- cumloss_current_year_filled %>%
   scale_y_continuous(expand = c(0, 30)) +
   scale_color_manual(values = c("Reported Loss" = "black", "No Loss Reported" = "grey", "Current Date" = "blue2")) +
   scale_linetype_manual(values = c("Reported Loss" = "solid", "No Loss Reported" = "solid", "Current Date" = "dotted")) +
-  labs(title = paste0("Cumulative Genetic Loss for WY", current_year, " with Single-Year Thresholds"),
+  labs(title = paste0("Cumulative Genetic Loss for WY", plot_year, " with Single-Year Thresholds"),
        subtitle = paste0("Species: Natural Winter-run Chinook\nCumulative genetic loss to date: ", max(cumloss_current_year$cumloss),
                          "\nPercent loss of Single-Year Threshold: ", round((max(cumloss_current_year$cumloss) / jpe_current_year_100pct) * 100, 2), "%"),
-       caption = paste0("Genetic loss data provided by USBR before Water Year 2020 otherwise sourced from the CDFW Salvage Database.\n", timestamp),
+       caption = paste0(caption_note, "Genetic loss data provided by USBR before Water Year 2020 otherwise sourced from the CDFW Salvage Database.\n", timestamp),
        x = "Date",
        y = "Cumulative Genetic Loss", 
        color = NULL,

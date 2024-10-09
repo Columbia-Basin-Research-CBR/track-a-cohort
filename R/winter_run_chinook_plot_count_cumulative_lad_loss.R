@@ -24,19 +24,30 @@ source(here("R/utils_fct_wday_to_month.R"))
     #set current year
     source(here("R/utils_fct_assign_current_water_year.R"))
            current_year <- assign_current_water_year()
+           previous_year <- current_year - 1
+           
+           # Check if there is any data for the current year
+           use_previous_year <- !any(lad_cumulative_loss_data$WY == current_year)
+           if (use_previous_year) {
+             plot_year <- previous_year
+             caption_note <- paste0("No data reported for WY", current_year, ". Data reflects last available data (WY", previous_year, ").\n")
+           } else {
+             plot_year <- current_year
+             caption_note <- ""
+           }
    
     # Get the current timestamp
     timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
     
     # extract maximum cumloss for the current year
     max_cumloss_current_year <- lad_cumulative_loss_data %>%
-      filter(WY == current_year) %>%
+      filter(WY == plot_year) %>%
       group_by(WY) %>% 
       summarise(max_cumloss = max(cumloss)) %>%
       pull(max_cumloss)
     
     #appending current water year results for each facet regardless of year
-    loss_current_year <- lad_cumulative_loss_data %>% filter(WY == current_year) %>% select(wDay, cumloss)
+    loss_current_year <- lad_cumulative_loss_data %>% filter(WY == plot_year) %>% select(wDay, cumloss)
     
     #extract maximum cumloss for each year (for labels)
     max_cumloss_per_year <-lad_cumulative_loss_data %>%
@@ -57,8 +68,8 @@ source(here("R/utils_fct_wday_to_month.R"))
     #currently removes WY2023 or year prior to current year since no hydro assigned - consider alternative
     filter(!is.na(hydro_type_grp)) %>% 
     ggplot() +
-    geom_line( data = . %>% filter(WY == current_year ), aes(x = wDay, y = cumloss, group = WY), color = "black") +
-    geom_line( data = . %>% filter(WY != current_year ), aes(x = wDay, y = cumloss, group = WY, color =  hydro_type_grp)) +
+    geom_line( data = . %>% filter(WY == plot_year ), aes(x = wDay, y = cumloss, group = WY), color = "black") +
+    geom_line( data = . %>% filter(WY != plot_year ), aes(x = wDay, y = cumloss, group = WY, color =  hydro_type_grp)) +
     geom_hline(yintercept = max_cumloss_current_year, linetype = "dashed", color = "black") +
     geom_text(aes(x = 250, y = max_cumloss_current_year), label = "WY2024 cumulative loss", size = 2.5, vjust = -0.5, fontface = "plain" ) +
     gghighlight() +
@@ -71,9 +82,9 @@ source(here("R/utils_fct_wday_to_month.R"))
     labs(x = 'Date', 
          y = 'Cumulative LAD Loss', 
          title = 'Cumulative LAD Loss by BiOp Status and Hydrologic Classification Index',
-         subtitle = paste0("Species: Natural Winter-run Chinook\nData Years: WY", min(lad_cumulative_loss_data$WY), " to WY", current_year,
+         subtitle = paste0("Species: Natural Winter-run Chinook\nData Years: WY", min(lad_cumulative_loss_data$WY), " to WY", plot_year,
                            "\nCurrent Cumulative Loss: ", round(max_cumloss_current_year,2)),
-         caption = paste0("LAD loss: CDFW Salvage Database; Hydrologic Classification Index: Water Supply Information, CDEC\n", timestamp)) +
+         caption = paste0(caption_note, "LAD loss: CDFW Salvage Database; Hydrologic Classification Index: Water Supply Information, CDEC\n", timestamp)) +
     scale_x_continuous(breaks = seq(1, 365, by = 61), labels = wDay_to_month( seq(1, 365, by = 61))) + 
     scale_y_continuous(labels = scales::comma, breaks = seq(0, 10000, by = 2000), limits = c(0, 10000), expand = c(0, 0)) +
     scale_color_manual(values = c("#D95F02", "#00BFFF")) +
