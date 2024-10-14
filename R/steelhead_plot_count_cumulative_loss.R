@@ -29,7 +29,7 @@ use_previous_year <- nrow(current_year_data) == 0
 if (use_previous_year) {
   current_year_data <- steelhead_loss_data %>% filter(WY == previous_year)
   current_year_label <- paste0("WY", previous_year, " cumulative loss")
-  caption_note <- paste0("No reported data for current WY: ", current_year)
+  caption_note <- paste0("Data reflects last available data, WY", previous_year)
 } else {
   current_year_label <- paste0("WY", current_year, " cumulative loss")
   caption_note <- ""

@@ -15,6 +15,7 @@ load(here::here("data/winter_run_chinook_loss_export_data.rda"))
 #set current year
 source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
+previous_year <- current_year - 1
 
 # Check if the current WY is present in the data
 use_previous_year <- !any(winter_run_chinook_loss_export_data$WY == current_year)
@@ -43,8 +44,8 @@ p1 <- winter_run_chinook_loss_export_data %>%
   geom_vline(omriValues, mapping = aes(xintercept = date), color = 'black') +
   geom_text(omriValues, mapping = aes(x = date, y = 200, label = paste("OMRI:", value)), color = 'black', angle = -90, size = 3, vjust = 1) +
   labs(title = "Daily Loss and Export at CVP/SWP Facilities",
-       subtitle = paste("Species: Natural Winter-run Chinook",
-                        "\nCurrent Water Year:", water_year_text,
+       subtitle = paste("Species: Natural Winter-run Chinook\n",
+                        water_year_text,
                         "\n\nComparison of facilities, CVP and SWP"),
        x = NULL,
        y = "Daily loss",
