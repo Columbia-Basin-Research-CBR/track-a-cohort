@@ -19,6 +19,10 @@ load(source)
 #close url connection
 close(source)
 
+#Once the url is loaded, the data is stored in a xts object. 
+#The data is then converted to a tibble and the column names are adjusted to match the STARS data featured the track-a-cohort static plot and interactive plot. 
+#Select/view the `WR_xts` loaded into the environment to see all columns available.
+
 #load hydrological classification index
 source(here::here("data-raw/utils_import_hydrological_classification_index.R"))
 
