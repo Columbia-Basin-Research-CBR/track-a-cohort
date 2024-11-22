@@ -1,5 +1,6 @@
 #'import STARS data from ShinyApp
-#'@description This script imports up to date STARS data from the ShinyApp and saves it to the data folder for use in other scripts. Code provided by Nick Beer.
+#'@description This script imports up-to-date STARS data from the STARS ShinyApp through a single link. Adjust the column headers to include additional routing probabilites. 
+#'Currently set to import the Overall & Interior Delta survival with the Interior Delta routing probability. The generated file is saved to the data folder for use in other scripts.
 #'@return STARS_data.rda saved to `data` folder
 require(tidyverse)
 require(usethis)
@@ -47,7 +48,7 @@ df_stars_raw <- tibble::as_tibble(WR_xts[,c("Survival Interior Delta Est",
          CY = year(date),
          wDate = if_else(month(date) >= 10, date + years(1), date)) 
 
-#based in NB feedback, the model only forecasts through 7/31 and then no fish are running therefore forecast returns 0, filter dates beyond 7/31 in the CY to only show WY: 10-01 to 07-31
+#based on NB feedback, the model only forecasts through 7/31 and then returns 0 since no fish are running. Therefore, currently filtering dates beyond 7/31 in the CY to only show WY: 10-01 to 07-31
 filtered_dates <- df_stars_raw %>%
   filter(!(year(wDate) == CY & (month(wDate) > 7 | (month(wDate) == 7 & day(wDate) > 31))))
 
