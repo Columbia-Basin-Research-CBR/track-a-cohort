@@ -80,14 +80,35 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
   
   # Determine the water year to use for calendar date assignment
   waterYearToUse <- if (use_previous_year) previousWY else currentWY
+  
+
 
   # Apply species filter based on the species_filter argument
+  # Add check if new WY data is valid, but no species specific data is present yet, use previous year data
   if (species_filter == "STL") {
-    df_fish <- df_fish_raw %>% filter(species == "Rainbow / Steelhead Trout")
+    df_fish_check <- df_fish_raw %>% filter(species == "Rainbow / Steelhead Trout")
+     if (nrow(df_fish_check) == 0) {
+      previous_url <- sub(paste0("year=", currentWY), paste0("year=", previousWY), species_url)
+      df_fish_raw<- read_csv(previous_url) %>%
+        janitor::clean_names()
+      df_fish <- df_fish_raw %>% filter(species == "Rainbow / Steelhead Trout")
+      use_previous_year <- TRUE
+     } else {
+      df_fish <- df_fish_raw %>% filter(species == "Rainbow / Steelhead Trout")
+     }
     species_column_name <- "stlhd_loss.pw"
     model_to_use <- Stlhd_Simple_Combined[[2]]
   } else if (species_filter == "WCH") {
-    df_fish <- df_fish_raw %>% filter(lad_race == "Winter")
+    df_fish_check <- df_fish_raw %>% filter(lad_race == "Winter")
+    if (nrow(df_fish_check) == 0) {
+      previous_url <- sub(paste0("year=", currentWY), paste0("year=", previousWY), species_url)
+      df_fish_raw <- read_csv(previous_url) %>%
+        janitor::clean_names()
+      df_fish <- df_fish_raw %>% filter(lad_race == "Winter")
+      use_previous_year <- TRUE
+    } else {
+      df_fish <- df_fish_raw %>% filter(lad_race == "Winter")
+    }
     species_column_name <- "winter.pw"
     model_to_use <- WR_Simple_Combined[[2]]
   }

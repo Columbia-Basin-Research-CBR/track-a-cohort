@@ -98,6 +98,44 @@ missing_dates_train_week <- anti_join(train_nb, df.week, by = "date") %>% select
   
 ```
 
+```{r compare_precipitation}
+#compare precipitation values between NB and BOR shared code
+
+#NB shared code
+train_nb<-read.csv(here::here("data-raw/AllYears.Intake.csv")) #9136 obs, 1999-2023 
+  train_nb$year_week <- train_nb$water_year + train_nb$wk_dec
+  
+
+   sum_train_nb<-train_nb %>% 
+    select(date, water_year, wy_week, year_week, wk_dec, precip) %>% 
+     filter()
+     group_by( year_week) %>% 
+      summarise(mean_precip = mean(precip, na.rm = TRUE), 
+                sum_precip = sum(precip, na.rm = TRUE)) #summed precip value matches value in df.ss 
+
+#BOR shared training data
+train_bor <- df.ss #1999-2021, 901 obs
+
+sum_train_nb 
+sum_bor
+
+#convert back to inches
+train_inches<-train_nb %>% 
+  filter(water_year == 2023) %>% 
+  select(date, water_year, wy_week,year_week, month, julian, precip) %>% 
+  mutate(precip_inches = precip * 0.00017448)
+
+#SI notes: daily value divided by .00017448 then summed for 5 days. the constant value of 0.00017448 would represent the area and rate of the river to get the cfs value, or the measure of the volume of water passing a specific point in the river per second. Q: where does the 5-day sum start from? why then grouped by water year week (7-day) and not 5-day? and Where is this conversion factor coming from?
+
+
+#conversion formula 
+# cfs =  (precipitation (inches) * (1/12) * area)/86,400
+
+ 
+
+```
+
+
 ```{r import_new_loss_data}
 # assign current water year
 source(here("R/utils_fct_assign_current_water_year.R"))
