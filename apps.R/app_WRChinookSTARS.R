@@ -19,7 +19,7 @@ source(here("R/utils_fct_assign_current_water_year.R"))
   
 current_year <- assign_current_water_year()
 
-fct_stars_survival_plot <- function(data, metric, hydro, hydro_type){
+fct_stars_current_water_year_plot <- function(data, metric, hydro, hydro_type){
   y_var <- paste0(metric)
   ymin_var <- paste0(metric, "L80")
   ymax_var <- paste0(metric, "U80")
@@ -103,12 +103,13 @@ ui <- shinydashboard::dashboardPage(
   shinydashboard::dashboardSidebar(disable = TRUE),
   shinydashboard::dashboardBody(
     fresh::use_theme(SacPAStheme),
+    
     fluidRow(
       shinydashboard::box(
         width = 12,
         status = "primary",
         solidHeader = TRUE,
-        title = "STARS model - Winter-run Chinook Salmon",
+        title = "Interactive plot: STARS model - Winter-run Chinook Salmon",
         HTML("Visualize STARS model results 
         (<a href = 'https://cdnsciencepub.com/doi/10.1139/cjfas-2021-0042'>Hance et al. 2022</a>; <a href = 'https://www.cbr.washington.edu/shiny/STARS/'>STARS Shiny app</a>) 
         for Winter-run Chinook Salmon in the current water year compared to past water years.
@@ -116,70 +117,121 @@ ui <- shinydashboard::dashboardPage(
         To add/remove years from plot, click the water year within the plot legend or select in the drop down menu below." )
       )
     ),
+    #original TAC request 
     fluidRow(
       shinydashboard::box(
-        width = 3,
+        width = 12,
         status = "info",
         solidHeader = TRUE,
-        title = "Select Inputs:", 
-        selectInput(
-          inputId = "select_metric", 
-          label = "Select Probability:", 
-          choices = c("Overall Survival" = "surv",
-                      "Interior Delta Route-specific Survival Probability" = "idsurv",
-                      "Interior Delta Route-specific Probability" = "idRoute",
-                      "Compare probabilities" = "compare_all"),
-          multiple = FALSE),
-        selectInput(
-          inputId = "select_year", 
-          label = "View years:", 
-          choices = c("All years", 2018:current_year),
-          selected = "All years"
-        ),
-        br(),
-        br(),
-        br(),
-        shinydashboard::box(
-          width = 12,
-          title = "Contact Information",
-          status = "info",
-          solidHeader = TRUE,
-          collapsible = TRUE,
-          collapsed = TRUE,
-          HTML("<p>This ShinyApp is a product of Columbia Basin Reasearch, School of Aquatic and Fishery Sciences, College of the Environment, University of Washington.</p>
-               <p>Please direct general questions to: <a href='mailto:web@cbr.washington.edu'>web@cbr.washington.edu</a></p>"
-          ),
-          HTML("All code featured in this Shiny application is made publicly available through our organization's GitHub repository: 
-             <a href='https://github.com/Columbia-Basin-Research-CBR/track-a-cohort'><i class='fab fa-github'></i> Columbia-Basin-Research-CBR</a>"
-          )
-        )
-      ),
-      shinydashboard::box(
-        width = 9,
-        status = "info",
-        solidHeader = TRUE,
-        title = "Interactive plot: STARS model - Winter-run Chinook Salmon",
+        collapsible = TRUE,
+        collapsed = FALSE,
+        title = paste0("Compare Current Water Year (WY", current_year,") to Past Water Years"),
         fluidRow(
           column(
-            width = 9
-          ),
-          column(
             width = 3,
+            shinydashboard::box(
+              width = 12,
+              solidHeader = FALSE,
+            selectInput(
+              inputId = "select_metric", 
+              label = "Select Probability:", 
+              choices = c("Overall Survival" = "surv",
+                          "Interior Delta Route-specific Survival Probability" = "idsurv",
+                          "Interior Delta Route-specific Probability" = "idRoute",
+                          "Compare probabilities" = "compare_all"),
+              multiple = FALSE
+            ),
+            selectInput(
+              inputId = "select_year", 
+              label = "View years:", 
+              choices = c("All years", 2018:current_year),
+              selected = "All years"
+            ),
             shinyWidgets::materialSwitch(
               inputId = "select_hydro", 
               label = HTML("<b>Show Hydrologic Year Type</b>"), 
               value = FALSE,
               status = "primary"
+            ),
+            br(),
+            br(),
+            br(),
+            shinydashboard::box(
+              width = 12,
+              title = "Contact Information",
+              status = "info",
+              solidHeader = TRUE,
+              collapsible = TRUE,
+              collapsed = TRUE,
+              HTML("<p>This ShinyApp is a product of Columbia Basin Reasearch, School of Aquatic and Fishery Sciences, College of the Environment, University of Washington.</p>
+                   <p>Please direct general questions to: <a href='mailto:web@cbr.washington.edu'>web@cbr.washington.edu</a></p>"
+              ),
+              HTML("All code featured in this Shiny application is made publicly available through our organization's GitHub repository: 
+                 <a href='https://github.com/Columbia-Basin-Research-CBR/track-a-cohort'><i class='fab fa-github'></i> Columbia-Basin-Research-CBR</a>"
+              )
             )
           )
         ),
-        uiOutput("plot_caption"),
-        uiOutput("plots"),
-        uiOutput("datasource")
+          column(
+            width = 9,
+            uiOutput("plot_caption"),
+            uiOutput("plots"),
+            uiOutput("datasource")
+          )
+        )
+      )
+    ),
+    # Select year of comparison
+    fluidRow(
+      shinydashboard::box(
+        width = 12,
+        status = "info",
+        solidHeader = TRUE,
+        collapsible = TRUE,
+        collapsed = FALSE,
+        title = "Compare Survival Probabilities in a Specific Water Year",
+        fluidRow(
+          column(
+            width = 3,
+            shinydashboard::box(
+              width = 12,
+              solidHeader = FALSE,
+              shinyWidgets::pickerInput(
+                inputId = "select_metric_2",
+                label = "Select Probability:",
+                choices = unique(filtered_dates$route),
+                multiple = TRUE,
+                selected = c("Overall","Interior Delta", "Sacramento","Steamboat","Sutter", "Yolo"),
+                options = list(`live-search` = TRUE)
+              ),
+              shinyWidgets::pickerInput(
+                inputId = "specific_years_2",
+                label = "Select Year",
+                choices = unique(filtered_dates$WY),
+                multiple = FALSE,
+                selected = current_year,
+                options = list(`live-search` = TRUE)
+              ),
+              shinyWidgets::materialSwitch(
+                inputId = "select_hydro_2", 
+                label = HTML("<b>Show Hydrologic Year Type</b>"), 
+                value = FALSE,
+                status = "primary"
+              )
+            )
+          ),
+          column(
+            width = 9,
+            uiOutput("plot_caption_2"),
+            uiOutput("plots_2"),
+            uiOutput("datasource_2")
+          )
+        )
       )
     )
   )
 )
+
 
 server <- function(input, output, session) {
   
@@ -220,12 +272,12 @@ server <- function(input, output, session) {
   
   render_plot <- function(metric) {
     if (input$select_year == "All years") {
-      fct_stars_survival_plot(data = STARS_data, metric = metric, hydro = as.character(input$select_hydro), hydro_type = STARS_data$hydro_type)
+      fct_stars_current_water_year_plot(data = STARS_data, metric = metric, hydro = as.character(input$select_hydro), hydro_type = STARS_data$hydro_type)
     } else {
       filtered_data <- STARS_data %>% 
         dplyr::filter(WY == input$select_year)
       
-      fct_stars_survival_plot(data = filtered_data, metric = metric, hydro = as.character(input$select_hydro), hydro_type = filtered_data$hydro_type)
+      fct_stars_current_water_year_plot(data = filtered_data, metric = metric, hydro = as.character(input$select_hydro), hydro_type = filtered_data$hydro_type)
     }
   }
 
