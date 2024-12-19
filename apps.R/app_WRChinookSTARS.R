@@ -1,5 +1,6 @@
 require(shiny)
 require(shinydashboard)
+require(shinydashboardPlus)
 require(plotly)
 require(tidyverse)
 require(xts)
@@ -98,7 +99,67 @@ fct_stars_current_water_year_plot <- function(data, metric, hydro, hydro_type){
   return(p)
 }
 
-ui <- shinydashboard::dashboardPage(
+fct_stars_specific_water_year_plot <- function(data, selected_routes, selected_year){
+  
+  color_palette <- c("Overall" = "black", "Yolo" = "lightblue", "Sutter" = "blue", "Steamboat" = "purple", "Sacramento" = "darkgrey", "Interior Delta" = "orange")
+  
+  # Filter the data
+  filtered_data <- data %>% 
+    dplyr::filter(route %in% selected_routes, WY == selected_year)
+  
+  # Create the plot
+  survival_plot <- plot_ly(filtered_data, x = ~date) 
+  
+  for (route in unique(filtered_data$route)) {
+    route_data <- filtered_data %>% dplyr::filter(route == !!route)
+    
+    survival_plot <- survival_plot %>%
+      add_ribbons(
+        data = route_data,
+        ymin = ~lowerCI,
+        ymax = ~upperCI,
+        fillcolor = scales::alpha(color_palette[route], .15),  # Add transparency to 10%
+        line = list(color = 'rgba(0,0,0,0)'),
+        name = paste0(route, " 80% CI"),
+        showlegend = FALSE,
+        hoverinfo = "text",
+        text = ~paste("Route-specific Survival:", route, "<br>Date:", date, "<br>Lower 80%:", round(lowerCI, 2), "<br>Upper 80%:", round(upperCI, 2))
+      ) %>%
+      add_lines(
+        data = route_data,
+        y = ~median,
+        line = list(color = color_palette[route], width = 1),
+        name = route,
+        hoverinfo = "text",
+        text = ~paste("Route-specific Survival:", route, "<br>Date:", date, "<br>Median:", round(median, 2))
+      )
+  }
+  
+  survival_plot <- survival_plot %>%
+    layout(
+      title = list(
+        # text = paste0("WY", selected_year, " Route-specific Survival:\nMedian survival of daily cohorts of winter run Chinook Salmon through the Delta (Knights Landing to Chipps Island)"),
+        x = 0.5
+      ),
+      xaxis = list(
+        title = "Month"
+      ),
+      yaxis = list(
+        title = "Apparent survival probability",
+        rangemode = "tozero"
+      ),
+      legend = list(
+        title = list(text = "Route-specific survival,\nmedian with 80% CI")
+      ),
+      margin = list(l = 50, r = 50, t = 50, b = 100),
+      paper_bgcolor = 'white',
+      plot_bgcolor = 'white'
+    )
+  
+  return(survival_plot)
+}
+
+ui <- shinydashboardPlus::dashboardPage(
   shinydashboard::dashboardHeader(title = "SacPAS: Interactive Plot"),
   shinydashboard::dashboardSidebar(disable = TRUE),
   shinydashboard::dashboardBody(
@@ -112,9 +173,9 @@ ui <- shinydashboard::dashboardPage(
         title = "Interactive plot: STARS model - Winter-run Chinook Salmon",
         HTML("Visualize STARS model results 
         (<a href = 'https://cdnsciencepub.com/doi/10.1139/cjfas-2021-0042'>Hance et al. 2022</a>; <a href = 'https://www.cbr.washington.edu/shiny/STARS/'>STARS Shiny app</a>) 
-        for Winter-run Chinook Salmon in the current water year compared to past water years.
-        Select a specific survival probability below to adjust the plot. Users can also adjust color coding to reflect <a href = 'https://cbr.washington.edu/sacramento/data/query_hci.html'>Hydrologic Classification Index</a> by selecting the `Show Hydrologic Year Type` switch below. 
-        To add/remove years from plot, click the water year within the plot legend or select in the drop down menu below." )
+        for Winter-run Chinook Salmon in the current water year compared to past water years or select a specific year to compare all available survival probabilities.
+        Select a specific survival probability below to adjust the plots.
+        To add/remove selections from plot, click variables within the plot legend or adjust selections in the drop down menus." )
       )
     ),
     #original TAC request 
@@ -149,27 +210,11 @@ ui <- shinydashboard::dashboardPage(
             ),
             shinyWidgets::materialSwitch(
               inputId = "select_hydro", 
-              label = HTML("<b>Show Hydrologic Year Type</b>"), 
+              label = HTML("Adjust color to reflect <a href = 'https://cbr.washington.edu/sacramento/data/query_hci.html' target='_blank' style= 'color: #5E7880;'>Hydrologic Classification Index</a>:"),
               value = FALSE,
               status = "primary"
             ),
-            br(),
-            br(),
-            br(),
-            shinydashboard::box(
-              width = 12,
-              title = "Contact Information",
-              status = "info",
-              solidHeader = TRUE,
-              collapsible = TRUE,
-              collapsed = TRUE,
-              HTML("<p>This ShinyApp is a product of Columbia Basin Reasearch, School of Aquatic and Fishery Sciences, College of the Environment, University of Washington.</p>
-                   <p>Please direct general questions to: <a href='mailto:web@cbr.washington.edu'>web@cbr.washington.edu</a></p>"
-              ),
-              HTML("All code featured in this Shiny application is made publicly available through our organization's GitHub repository: 
-                 <a href='https://github.com/Columbia-Basin-Research-CBR/track-a-cohort'><i class='fab fa-github'></i> Columbia-Basin-Research-CBR</a>"
-              )
-            )
+           
           )
         ),
           column(
@@ -199,7 +244,7 @@ ui <- shinydashboard::dashboardPage(
               shinyWidgets::pickerInput(
                 inputId = "select_metric_2",
                 label = "Select Probability:",
-                choices = unique(filtered_dates$route),
+                choices = unique(year_specific_data$route),
                 multiple = TRUE,
                 selected = c("Overall","Interior Delta", "Sacramento","Steamboat","Sutter", "Yolo"),
                 options = list(`live-search` = TRUE)
@@ -207,27 +252,44 @@ ui <- shinydashboard::dashboardPage(
               shinyWidgets::pickerInput(
                 inputId = "specific_years_2",
                 label = "Select Year",
-                choices = unique(filtered_dates$WY),
+                choices = unique(year_specific_data$WY),
                 multiple = FALSE,
                 selected = current_year,
                 options = list(`live-search` = TRUE)
-              ),
-              shinyWidgets::materialSwitch(
-                inputId = "select_hydro_2", 
-                label = HTML("<b>Show Hydrologic Year Type</b>"), 
-                value = FALSE,
-                status = "primary"
               )
             )
           ),
           column(
             width = 9,
             uiOutput("plot_caption_2"),
-            uiOutput("plots_2"),
-            uiOutput("datasource_2")
+            plotly::plotlyOutput("plot_year_specific"),
+            HTML("Data source: Delta STARS developed by USGS Quantitative Fisheries Ecology Section and deployed by SacPAS.")
           )
         )
       )
+    )
+  ), 
+  ## Footer content
+  footer = shinydashboardPlus::dashboardFooter(
+    left = HTML(
+      '<div style="color: #5E7880;">
+       <a href="https://cbr.washington.edu/" target="_blank" style="color: #5E7880; text-decoration: none;" onmouseover="this.style.textDecoration=\'underline\';" onmouseout="this.style.textDecoration=\'none\';">Columbia Basin Research</a> •
+       <a href="https://safs.uw.edu/" target="_blank" style="color: #5E7880; text-decoration: none;" onmouseover="this.style.textDecoration=\'underline\';" onmouseout="this.style.textDecoration=\'none\';">School of Aquatic and Fishery Sciences</a> •
+       <a href="https://environment.uw.edu/" target="_blank" style="color: #5E7880; text-decoration: none;" onmouseover="this.style.textDecoration=\'underline\';" onmouseout="this.style.textDecoration=\'none\';">College of the Environment</a> •
+       <a href="https://www.washington.edu/" target="_blank" style="color: #5E7880; text-decoration: none;" onmouseover="this.style.textDecoration=\'underline\';" onmouseout="this.style.textDecoration=\'none\';">University of Washington</a>
+     </div>'
+    ),
+    right = HTML(
+      '<span class="footer-contact" style="color: #5E7880;">
+       <a href="mailto:web@cbr.washington.edu" target="_blank" style="color: #5E7880; text-decoration: none;" onmouseover="this.style.textDecoration=\'underline\';" onmouseout="this.style.textDecoration=\'none\';">
+         <i class="fa fa-envelope" style="color: #5E7880;"></i> web@cbr.washington.edu
+       </a>
+       &nbsp;&nbsp;
+       <a href="https://github.com/Columbia-Basin-Research-CBR/track-a-cohort.git"
+          target="_blank" style="color: #5E7880; text-decoration: none;" onmouseover="this.style.textDecoration=\'underline\';" onmouseout="this.style.textDecoration=\'none\';">
+         <i class="fa fa-github" style="color: #5E7880;"></i> github.com/Columbia-Basin-Research-CBR
+       </a>
+     </span>'
     )
   )
 )
@@ -244,11 +306,13 @@ server <- function(input, output, session) {
       }
   })
   
+
+  
   output$plots <- renderUI({
     if (input$select_metric == "compare_all") {
       tagList(
         br(),
-        HTML("<b>Overall Survival:</b><br>The solid line shows median survival of daily cohorts of winter run Chinook Salmon through the Delta (Knights Landing to Chipps Island) for all routes combined."),
+        HTML("<b>Overall Survival:</b><br>Solid lines show median survival of daily cohorts of winter run Chinook Salmon through the Delta (Knights Landing to Chipps Island) for all routes combined."),
         plotly::plotlyOutput("plot1"),
         HTML("<b>Interior Delta Route-specific Survival Probability:</b><br> Route-specific survival of daily cohorts of winter run Chinook Salmon through the Delta (Knights Landing to Chipps Island)."),
         plotly::plotlyOutput("plot2"),
@@ -262,7 +326,7 @@ server <- function(input, output, session) {
   
   output$plot_caption <- renderUI({
     HTML(switch(input$select_metric,
-                surv = "<b>STARS model - Overall Survival:</b><br>The solid line shows median survival of daily cohorts of winter run Chinook Salmon through the Delta (Knights Landing to Chipps Island) for all routes combined.",
+                surv = "<b>STARS model - Overall Survival:</b><br>Solid lines show median survival of daily cohorts of winter run Chinook Salmon through the Delta (Knights Landing to Chipps Island) for all routes combined.",
                 idsurv = "<b>STARS model -Interior Delta Route-specific Survival Probability:</b><br> Route-specific survival of daily cohorts of winter run Chinook Salmon through the Delta (Knights Landing to Chipps Island).",
                 idRoute = "<b>STARS model - Interior Delta Route-specific Probability:</b> <br>Proportion of daily cohorts of winter run Chinook Salmon through the Delta (Knights Landing to Chipps Island) using the Interior Delta route.",
                 compare_all = "<b>STARS model - Compare Probabilities:</b><br>"
@@ -270,11 +334,19 @@ server <- function(input, output, session) {
     )
   })
   
+  output$plot_caption_2 <- renderUI({
+    HTML(paste0("<b>STARS model - WY", input$specific_years_2, " Route-specific Survival:</b><br> Median survival of daily cohorts of winter run Chinook Salmon through the Delta (Knights Landing to Chipps Island) by route."))
+  })
+  
+  #plot code for current water year
   render_plot <- function(metric) {
+    current_WY_data <- STARS_data %>% 
+      dplyr::filter(use_case == "STARS_plot_type_1") #include data for this plot not specific years data
+    
     if (input$select_year == "All years") {
-      fct_stars_current_water_year_plot(data = STARS_data, metric = metric, hydro = as.character(input$select_hydro), hydro_type = STARS_data$hydro_type)
+      fct_stars_current_water_year_plot(data = current_WY_data, metric = metric, hydro = as.character(input$select_hydro), hydro_type = current_WY_data$hydro_type)
     } else {
-      filtered_data <- STARS_data %>% 
+      filtered_data <- current_WY_data %>% 
         dplyr::filter(WY == input$select_year)
       
       fct_stars_current_water_year_plot(data = filtered_data, metric = metric, hydro = as.character(input$select_hydro), hydro_type = filtered_data$hydro_type)
@@ -299,6 +371,22 @@ server <- function(input, output, session) {
   output$plot3 <- plotly::renderPlotly({
     render_plot("idRoute")
   })
+  
+  
+  # plot code for year-specific data
+  year_specific_data <- STARS_data %>% 
+    dplyr::filter(use_case == "STARS_plot_type_2") #include data for this plot not current water year plot
+  
+  # Render the year-specific plot
+  output$plot_year_specific <- plotly::renderPlotly({
+    fct_stars_specific_water_year_plot(
+      data = year_specific_data, 
+      selected_routes = input$select_metric_2, 
+      selected_year = input$specific_years_2
+    )
+  })
+  
+  
 }
 
 shinyApp(ui, server)

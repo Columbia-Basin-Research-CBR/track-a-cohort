@@ -15,6 +15,10 @@ source(here("R/utils_fct_wday_to_month.R"))
 #load data file
 load(here::here("data", "STARS_data.rda"))
 
+# filter to include data needed for this plot type (not shinyapp)
+STARS_data <- STARS_data %>% 
+  dplyr::filter(use_case == "STARS_plot_type_1") 
+
 # Get the current timestamp
 timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
 

@@ -62,10 +62,77 @@ STARS_data <- filtered_dates %>%
   dplyr::mutate(hydro_type = factor(
     ifelse(is.na(hydro_type), "Unassigned", hydro_type),
     levels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical", "Unassigned")
+  ), 
+  use_case = "STARS_plot_type_1" 
   )
-  ) 
-  
 
+## This sourcing code is added to the script for the additional STARS interactive app plot requested 12/24- designated as STARS_plot_type_2 - 
+# future edit could change how each is plotted to have matching data columns but for now, each type filters to get the correct data for each plot
+
+# Subset the data and convert to tibble
+df_stars_raw <- tibble::as_tibble(WR_xts[, c(
+  "Survival Overall Est",                     
+  "Survival Overall LCL 80",                  
+  "Survival Overall UCL 80",                  
+  "Survival Sacramento Est",                  
+  "Survival Sacramento LCL 80",               
+  "Survival Sacramento UCL 80",               
+  "Survival Yolo Est",                        
+  "Survival Yolo LCL 80",                     
+  "Survival Yolo UCL 80",                     
+  "Survival Sutter Est",                      
+  "Survival Sutter LCL 80",                   
+  "Survival Sutter UCL 80",                   
+  "Survival Steamboat Est",                   
+  "Survival Steamboat LCL 80",                
+  "Survival Steamboat UCL 80",                
+  "Survival Interior Delta Est",              
+  "Survival Interior Delta LCL 80",           
+  "Survival Interior Delta UCL 80"           
+)]) %>%
+  # Add the first date as a new column
+  dplyr::mutate(date = zoo::index(WR_xts)) %>%
+  # Make date the first column
+  dplyr::select(date, tidyr::everything()) %>%
+  # Pivot longer
+  tidyr::pivot_longer(
+    cols = -date,
+    names_to = c("metric", "route", "stat"),
+    names_pattern = "(Survival) (.*) (Est|LCL 80|UCL 80)",
+    values_to = "value"
+  ) %>%
+  # Rename the stat column values
+  dplyr::mutate(stat = dplyr::recode(stat, "Est" = "median", "LCL 80" = "lowerCI", "UCL 80" = "upperCI")) %>%
+  # Pivot wider to have median, lowerCI, and upperCI as separate columns
+  tidyr::pivot_wider(
+    names_from = stat,
+    values_from = value
+  ) %>%
+  # Convert date to WY, wDay
+  dplyr::arrange(date) %>% 
+  dplyr::mutate(WY = lubridate::year(date) + (lubridate::month(date) >= 10),
+         wDay = dplyr::if_else(month(date) >= 10, lubridate::yday(date) - 273, lubridate::yday(date) + 92),
+         doy = lubridate::yday(date),
+         CY = lubridate::year(date),
+         wDate = dplyr::if_else(month(date) >= 10, date + lubridate::years(1), date)) 
+
+#based on Nick Beer feedback, the model only forecasts through 7/31 and then returns 0 since no fish are running. Therefore, currently filtering dates beyond 7/31 in the CY to only show WY: 10-01 to 07-31
+filtered_dates <- df_stars_raw %>%
+  dplyr::filter(!(lubridate::year(wDate) == CY & (lubridate::month(wDate) > 7 | (lubridate::month(wDate) == 7 & lubridate::day(wDate) > 31)))) %>% 
+  mutate(use_case = "STARS_plot_type_2")
+
+# append HCI classification to STARS data (for shiny app)
+STARS_data_2 <- filtered_dates %>%
+  dplyr::left_join(select(hydrological_classification_index, WY, hydro_type = Classification), by = "WY") %>%
+  dplyr::mutate(hydro_type = factor(
+    ifelse(is.na(hydro_type), "Unassigned", hydro_type),
+    levels = c("Wet", "Above Normal", "Below Normal", "Dry", "Critical", "Unassigned")
+  ), 
+  use_case = "STARS_plot_type_2" 
+  )
+
+# Combine the two STARS data sets
+STARS_data <- dplyr::bind_rows(STARS_data, STARS_data_2)
 
 #save to data folder for use in other scripts
 usethis::use_data(STARS_data, overwrite = TRUE)
