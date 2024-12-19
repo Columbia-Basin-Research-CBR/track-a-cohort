@@ -1,7 +1,7 @@
 #' @title Figure 6. Steelhead Daily Loss and Export (per Facility pending)
 #' @description This script is more of a holder space for plot that will include export per facility and loss per facility for steelhead
 #' Current data shows total daily loss and export for both facilities
-#' 
+#'
 require(tidyverse)
 require(here)
 require(patchwork)
@@ -36,10 +36,19 @@ if (use_previous_year) {
 # Calculate the ratio for the secondary axis
 ratio <- max(steelhead_loss_export_data$daily_total_loss) / max(steelhead_loss_export_data$pumping_discharge_cfs)
 
-p1 <- steelhead_loss_export_data %>% 
+# Define the start and end dates for the water year
+start_date <- as.Date(paste0(previous_year, "-10-01"))
+end_date <- as.Date(paste0(current_year, "-09-30"))
+
+#set facility as factor to prevent dropping facet in grid
+steelhead_loss_export_data$facility <- factor(steelhead_loss_export_data$facility, levels = c("CVP", "SWP"))
+
+
+p1 <- steelhead_loss_export_data %>%
   ggplot(aes(x = date)) +
   geom_bar(aes(y = daily_total_loss, fill = facility), stat = "identity", position = position_dodge2(preserve = "single")) + # Changed color to fill for bar
   geom_line(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
+  geom_point(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
   {if (!is.null(omrValues)) geom_vline(data = omrValues, aes(xintercept = date), color = 'black')} +
   {if (!is.null(omrValues)) geom_text(data = omrValues, aes(x = date, y = 200, label = paste("OMR:", value)), color = 'black', angle = -90, size = 3, vjust = 1)} +
   labs(title = "Daily Loss and Export at CVP/SWP Facilities",
@@ -52,11 +61,11 @@ p1 <- steelhead_loss_export_data %>%
        fill = "Daily loss by facility: ",
        color = "Pumping discharge by facility:",
        caption = NULL) +
-  scale_x_date(date_breaks = "2 month", date_labels = "%m/%y") +
+  scale_x_date(date_breaks = "2 month", date_labels = "%m/%y", limits = c(start_date, end_date)) +
   scale_y_continuous(sec.axis = sec_axis(~./ratio, name = "Pumping Discharge (cfs)")) + # Add secondary axis
   scale_color_manual(values = c("#F5C767", "#00BFFF")) +
   scale_fill_manual(values = c("#CE900D","#0072B2" )) +
-  theme_minimal() + 
+  theme_minimal() +
   theme(legend.position = "none",
         plot.subtitle =  element_text(face = "plain", size = 13),
         text = element_text(size = 15),
@@ -64,23 +73,24 @@ p1 <- steelhead_loss_export_data %>%
         panel.grid.minor = element_blank(),
         panel.border = element_rect(color = "grey", fill = NA, size = 0.5))
 
-p2 <- steelhead_loss_export_data %>% 
+p2 <- steelhead_loss_export_data %>%
   ggplot(aes(x = date)) +
   geom_bar(aes(y = daily_total_loss, fill = facility), stat = "identity", position = position_dodge2(preserve = "single")) + # Changed color to fill for bar
   geom_line(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
+  geom_point(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
   labs(title = NULL,
        x = "Date",
        y = "Daily Loss",
        y.sec = "Pumping Discharge (cfs)",
        fill = "Daily loss by facility: ",
        color = "Pumping by facility:",
-       caption = paste0(caption_note, "Data sources: Daily loss and Export Preliminary data from CDFW;\nCFS from the CDEC sites HRO (for SWP) and TRP (for CVP)\n", timestamp)) + 
-  scale_x_date(date_breaks = "2 month", date_labels = "%m/%y") +
+       caption = paste0(caption_note, "Data sources: Daily loss and Export Preliminary data from CDFW;\nCFS from the CDEC sites HRO (for SWP) and TRP (for CVP)\n", timestamp)) +
+  scale_x_date(date_breaks = "2 month", date_labels = "%m/%y", limits = c(start_date, end_date)) +
   scale_y_continuous(sec.axis = sec_axis(~./ratio, name = "Pumping Discharge (cfs)")) + # Add secondary axis
   scale_color_manual(values = c("#F5C767", "#00BFFF")) +
   scale_fill_manual(values = c("#CE900D","#0072B2" )) +
-  theme_minimal() + 
-  facet_grid(~facility) +
+  theme_minimal() +
+  facet_grid(~facility, drop = FALSE) +
   theme(legend.position = "bottom",
         text = element_text(size = 15),
         panel.grid.major = element_line(linetype = "dotted"),

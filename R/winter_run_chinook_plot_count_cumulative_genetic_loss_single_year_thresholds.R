@@ -64,6 +64,12 @@ jpe_current_year_100pct <- genetic_cumulative_loss_data %>%
 jpe_current_year_75pct <- jpe_current_year_100pct *.75
 jpe_current_year_50pct <- jpe_current_year_100pct *.50
 
+# IF early in the season, and no JPE reported, adjust the text to reflect
+percent_loss_text <- ifelse(is.na(jpe_current_year_100pct),
+                            "No Single-Year Threshold value reported to date",
+                            paste0("Percent loss of Single-Year Threshold: ", round((max(cumloss_current_year$cumloss) / jpe_current_year_100pct) * 100, 2), "%"))
+
+
 
 max_loss_threshold_2010_to_2018 <- genetic_cumulative_loss_data %>% 
   filter(between(WY, 2010, 2018)) %>%
@@ -89,7 +95,7 @@ missing_dates_start <- seq.Date(from = start_date, to = first_known_data$date, b
 # Create a new data frame with missing dates and the first known value
 missing_data_start <- data.frame(
   date = missing_dates_start,
-  cumloss = first_known_data$cumloss,
+  cumloss = c(rep(0, length(missing_dates_start) - 1), first_known_data$cumloss),  # Start from 0 and connect to the first known data point
   WY = plot_year
 )
 
@@ -130,7 +136,7 @@ p <- cumloss_current_year_filled %>%
                    aes(x = date, y = cumloss, label = paste0("Cumulative genetic loss: ", max(cumloss), "\n% loss of Single-Year Threshold: ", round((cumloss / jpe_current_year_100pct) * 100, 2), "%")),
                    size = 3,
                    nudge_x = 1,
-                   nudge_y = 100,
+                   nudge_y = max(cumloss_current_year$cumloss)*0.4, 
                    hjust = 0,
                    color = "black") +
   scale_x_date(date_labels = "%m/%d", limits = c(start_date, NA)) +
@@ -139,7 +145,7 @@ p <- cumloss_current_year_filled %>%
   scale_linetype_manual(values = c("Reported Loss" = "solid", "No Loss Reported" = "solid", "Current Date" = "dotted")) +
   labs(title = paste0("Cumulative Genetic Loss for WY", plot_year, " with Single-Year Thresholds"),
        subtitle = paste0("Species: Natural Winter-run Chinook\nCumulative genetic loss to date: ", max(cumloss_current_year$cumloss),
-                         "\nPercent loss of Single-Year Threshold: ", round((max(cumloss_current_year$cumloss) / jpe_current_year_100pct) * 100, 2), "%"),
+                         "\n", percent_loss_text),
        caption = paste0(caption_note, "Genetic loss data provided by USBR before Water Year 2020 otherwise sourced from the CDFW Salvage Database.\n", timestamp),
        x = "Date",
        y = "Cumulative Genetic Loss", 

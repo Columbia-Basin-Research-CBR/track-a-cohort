@@ -25,11 +25,12 @@ source(here("R/utils_fct_assign_current_water_year.R"))
        current_year <- assign_current_water_year()
        previous_year <- current_year - 1
        
-       # Check if there is any data for the current year
-       use_previous_year <- !any(steelhead_loss_data$WY == current_year)
+       # Check if there is any data for the current year or if the current date is before December 31st of the current year
+       use_previous_year <- !any(steelhead_loss_data$WY == current_year) || Sys.Date() < as.Date(paste0(current_year, "-12-31"))
+       
        if (use_previous_year) {
          plot_year <- previous_year
-         caption_note <- paste0("No data reported for WY", current_year, ". Data reflects last available data (WY", previous_year, ").\n")
+         caption_note <- paste0("No data reported for WY", current_year, ", or current date is prior to 12/31. Data reflects last available data (WY", previous_year, ").\n")
        } else {
          plot_year <- current_year
          caption_note <- ""
@@ -88,7 +89,7 @@ management_period_start <- as.Date(paste0(plot_year,"-03-31"))
 management_period_end <- as.Date(paste0(plot_year,"-06-15"))
 
 #set start date for xlim 
-start_date <- as.Date(paste0(plot_year - 1, "-10-01"))
+start_date <- as.Date(paste0(plot_year - 1, "-12-31"))
 
 # Calculate maximum cumulative loss for each management period
 max_loss_by_period <- cumloss_current_year %>%

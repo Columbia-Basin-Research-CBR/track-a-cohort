@@ -15,9 +15,9 @@ load(here("data/steelhead_loss_data.rda"))
 
 # Filter to include current water year and unclipped fish only
 current_year_steelhead_loss_data <- steelhead_loss_data %>% 
-  filter(WY == current_year, adipose_clip == "Unclipped") %>% 
+  filter(WY == current_year) %>% 
   mutate(date = as_date(date)) %>% 
-  group_by(facility, date) %>% 
+  group_by(WY, facility, date) %>% 
   summarise(daily_total_loss = sum(loss))
 
 # Check if there is data for the current water year
@@ -26,7 +26,7 @@ use_previous_year <- nrow(current_year_steelhead_loss_data) == 0
 # If no data for the current year, use the previous year
 if (use_previous_year) {
   current_year_steelhead_loss_data <- steelhead_loss_data %>% 
-    filter(WY == previous_year, adipose_clip == "Unclipped") %>% 
+    filter(WY == previous_year) %>% 
     mutate(date = as_date(date)) %>% 
     group_by(WY,facility, date) %>% 
     summarise(daily_total_loss = sum(loss))

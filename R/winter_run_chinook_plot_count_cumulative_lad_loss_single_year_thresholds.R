@@ -29,6 +29,7 @@ source(here("R/utils_fct_assign_current_water_year.R"))
        
        # Check if there is any data for the current year
        use_previous_year <- !any(lad_cumulative_loss_data$WY == current_year)
+       # use_previous_year<-TRUE
        if (use_previous_year) {
          plot_year <- previous_year
          caption_note <- paste0("No data reported for WY", current_year, ". Data reflects last available data (WY", previous_year, ").\n")
@@ -37,7 +38,6 @@ source(here("R/utils_fct_assign_current_water_year.R"))
          caption_note <- ""
        }
       
-
 #current date
 date <- today()
 #convert current date to water day
@@ -69,6 +69,12 @@ jpe_current_year_1.17pct <- lad_cumulative_loss_data %>%
   filter(WY == plot_year, cumloss == max(cumloss)) %>%
   pull(jpe)*.0117
 
+# IF early in the season, and no JPE reported, adjust the text to reflect
+percent_loss_text <- ifelse(is.na(jpe_current_year_2pct),
+                            "No Single-Year Threshold value reported to date",
+                            paste0("Percent loss of Single-Year Threshold: ", round((max(cumloss_current_year$cumloss) / jpe_current_year_2pct) * 100, 2), "%"))
+
+
 
 max_loss_threshold_2010_to_2018 <- lad_cumulative_loss_data %>% 
   filter(between(WY, 2010, 2018)) %>%
@@ -93,7 +99,7 @@ missing_dates_start <- seq.Date(from = start_date, to = first_known_data$date, b
 # Create a new data frame with missing dates and the first known value
 missing_data_start <- data.frame(
   date = missing_dates_start,
-  cumloss = first_known_data$cumloss,
+  cumloss = c(rep(0, length(missing_dates_start) - 1), first_known_data$cumloss),  # Start from 0 and connect to the first known data point
   WY = plot_year
 )
 
@@ -136,16 +142,16 @@ p <- cumloss_current_year_filled %>%
                    aes(x = date, y = cumloss, label = paste0("Cumulative LAD loss: ", max(cumloss),"\n% loss of Single-Year Threshold: ", round((cumloss/jpe_current_year_2pct)*100, 2), "%")),
                    size = 3, 
                    nudge_x = 1, # Adjust nudge_x and nudge_y as needed to position the label
-                   nudge_y = 400, 
+                   nudge_y = max(cumloss_current_year$cumloss)*0.1, 
                    hjust = 0,
                    color = "black") +
   scale_x_date(date_labels = "%m/%d", limits = c(start_date, NA)) +
-  scale_y_continuous(expand = c(0,100)) +
+  scale_y_continuous( expand = c(0,1)) +
   scale_color_manual(values = c("Reported Loss" = "black", "No Loss Reported" = "grey", "Current Date" = "blue2")) +
   scale_linetype_manual(values = c("Reported Loss" = "solid", "No Loss Reported" = "solid", "Current Date" = "dotted")) +
   labs(title = paste0("Cumulative LAD Loss for WY", plot_year, " with Single-Year Thresholds"),
        subtitle = paste0("Species: Natural Winter-run Chinook\nCumulative LAD loss to date: ", max(cumloss_current_year$cumloss),
-                         "\nPercent loss of Single-Year Threshold: ", round((max(cumloss_current_year$cumloss) / jpe_current_year_2pct) * 100, 2), "%"),
+                         "\n", percent_loss_text),
        caption = paste0(caption_note, "LAD loss from the CDFW Salvage Database.\n", timestamp),
        x = "Date",
        y = "Cumulative LAD Loss", 

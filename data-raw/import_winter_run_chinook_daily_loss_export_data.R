@@ -29,7 +29,7 @@ df_lad_loss <- loss.wch %>%
 # Calculate total daily loss
 current_year_winter_run_loss_data <- df_lad_loss %>%
   filter(WY == current_year) %>%
-  group_by(facility, date) %>%
+  group_by(WY,facility, date) %>%
   summarize(daily_total_loss = sum(loss))
 
 

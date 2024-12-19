@@ -71,7 +71,7 @@ source(here("R/utils_fct_wday_to_month.R"))
     geom_line( data = . %>% filter(WY == plot_year ), aes(x = wDay, y = cumloss, group = WY), color = "black") +
     geom_line( data = . %>% filter(WY != plot_year ), aes(x = wDay, y = cumloss, group = WY, color =  hydro_type_grp)) +
     geom_hline(yintercept = max_cumloss_current_year, linetype = "dashed", color = "black") +
-    geom_text(aes(x = 250, y = max_cumloss_current_year), label = "WY2024 cumulative loss", size = 2.5, vjust = -0.5, fontface = "plain" ) +
+    geom_text(aes(x = 250, y = max_cumloss_current_year), label = paste0("WY",plot_year," cumulative loss"), size = 2.5, vjust = -0.5, fontface = "plain" ) +
     gghighlight() +
     ggrepel::geom_text_repel(data = subset(max_cumloss_per_year, cumloss >= max_cumloss_current_year & WY !=2001), 
                              aes(x = wDay, y = cumloss, label = WY), 
