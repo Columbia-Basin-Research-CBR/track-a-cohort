@@ -16,7 +16,15 @@ source(here("R/utils_fct_assign_current_water_year.R"))
 
 # load pre generated data
   load(here::here("data/STARS_data.rda")) 
-  load(here::here("data/hydrological_classification_index.rda"))
+  #filter data for specific plot type
+  current_WY_data <- STARS_data %>% 
+    dplyr::filter(use_case == "STARS_plot_type_1") #include data for this plot not specific years data
+  
+  # plot code for year-specific data
+  year_specific_data <- STARS_data %>% 
+    dplyr::filter(use_case == "STARS_plot_type_2") #include data for this plot not current water year plot
+  
+load(here::here("data/hydrological_classification_index.rda"))
   
 current_year <- assign_current_water_year()
 
@@ -244,7 +252,7 @@ ui <- shinydashboardPlus::dashboardPage(
               shinyWidgets::pickerInput(
                 inputId = "select_metric_2",
                 label = "Select Probability:",
-                choices = unique(STARS_data$route),
+                choices = unique(year_specific_data$route),
                 multiple = TRUE,
                 selected = c("Overall","Interior Delta", "Sacramento","Steamboat","Sutter", "Yolo"),
                 options = list(`live-search` = TRUE)
@@ -252,7 +260,7 @@ ui <- shinydashboardPlus::dashboardPage(
               shinyWidgets::pickerInput(
                 inputId = "specific_years_2",
                 label = "Select Year",
-                choices = unique(STARS_data$WY),
+                choices = unique(year_specific_data$WY),
                 multiple = FALSE,
                 selected = current_year,
                 options = list(`live-search` = TRUE)
@@ -340,9 +348,7 @@ server <- function(input, output, session) {
   
   #plot code for current water year
   render_plot <- function(metric) {
-    current_WY_data <- STARS_data %>% 
-      dplyr::filter(use_case == "STARS_plot_type_1") #include data for this plot not specific years data
-    
+
     if (input$select_year == "All years") {
       fct_stars_current_water_year_plot(data = current_WY_data, metric = metric, hydro = as.character(input$select_hydro), hydro_type = current_WY_data$hydro_type)
     } else {
@@ -371,11 +377,6 @@ server <- function(input, output, session) {
   output$plot3 <- plotly::renderPlotly({
     render_plot("idRoute")
   })
-  
-  
-  # plot code for year-specific data
-  year_specific_data <- STARS_data %>% 
-    dplyr::filter(use_case == "STARS_plot_type_2") #include data for this plot not current water year plot
   
   # Render the year-specific plot
   output$plot_year_specific <- plotly::renderPlotly({
