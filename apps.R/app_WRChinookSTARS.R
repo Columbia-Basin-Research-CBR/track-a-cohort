@@ -11,8 +11,8 @@ require(here)
 
 # load helper functions
 source(here::here("apps.R/utils_SacPAStheme.R"))
-source(here("R/utils_fct_wday_to_month.R"))
-source(here("R/utils_fct_assign_current_water_year.R"))
+source(here::here("R/utils_fct_wday_to_month.R"))
+source(here::here("R/utils_fct_assign_current_water_year.R"))
 
 # load pre generated data
   load(here::here("data/STARS_data.rda")) 
@@ -116,13 +116,13 @@ fct_stars_specific_water_year_plot <- function(data, selected_routes, selected_y
     dplyr::filter(route %in% selected_routes, WY == selected_year)
   
   # Create the plot
-  survival_plot <- plot_ly(filtered_data, x = ~date) 
+  survival_plot <- plotly::plot_ly(filtered_data, x = ~date) 
   
   for (route in unique(filtered_data$route)) {
     route_data <- filtered_data %>% dplyr::filter(route == !!route)
     
     survival_plot <- survival_plot %>%
-      add_ribbons(
+      plotly::add_ribbons(
         data = route_data,
         ymin = ~lowerCI,
         ymax = ~upperCI,
@@ -133,7 +133,7 @@ fct_stars_specific_water_year_plot <- function(data, selected_routes, selected_y
         hoverinfo = "text",
         text = ~paste("Route-specific Survival:", route, "<br>Date:", date, "<br>Lower 80%:", round(lowerCI, 2), "<br>Upper 80%:", round(upperCI, 2))
       ) %>%
-      add_lines(
+      plotly::add_lines(
         data = route_data,
         y = ~median,
         line = list(color = color_palette[route], width = 1),
@@ -144,7 +144,7 @@ fct_stars_specific_water_year_plot <- function(data, selected_routes, selected_y
   }
   
   survival_plot <- survival_plot %>%
-    layout(
+    plotly::layout(
       title = list(
         # text = paste0("WY", selected_year, " Route-specific Survival:\nMedian survival of daily cohorts of winter run Chinook Salmon through the Delta (Knights Landing to Chipps Island)"),
         x = 0.5
