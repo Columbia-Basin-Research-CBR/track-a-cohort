@@ -180,7 +180,7 @@ ui <- shinydashboardPlus::dashboardPage(
         solidHeader = TRUE,
         title = "Interactive plot: STARS model - Winter-run Chinook Salmon",
         HTML("Visualize STARS model results 
-        (<a href = 'https://cdnsciencepub.com/doi/10.1139/cjfas-2021-0042'>Hance et al. 2022</a>; <a href = 'https://www.cbr.washington.edu/shiny/STARS/'>STARS Shiny app</a>) 
+        (<a href = 'https://cdnsciencepub.com/doi/10.1139/cjfas-2021-0042'  target='_blank' >Hance et al. 2022</a>; <a href = 'https://www.cbr.washington.edu/shiny/STARS/' target='_blank'>STARS Shiny app</a>) 
         for Winter-run Chinook Salmon in the current water year compared to past water years or select a specific year to compare all available survival probabilities.
         Select a specific survival probability below to adjust the plots.
         To add/remove selections from plot, click variables within the plot legend or adjust selections in the drop down menus." )
@@ -194,7 +194,7 @@ ui <- shinydashboardPlus::dashboardPage(
         solidHeader = TRUE,
         collapsible = TRUE,
         collapsed = FALSE,
-        title = paste0("Compare Current Water Year (WY", current_year,") to Past Water Years"),
+        title = paste0("Compare Current Water Year (WY", current_year,") Survival and Routing Probabilities to Past Water Years"),
         fluidRow(
           column(
             width = 3,
@@ -282,7 +282,7 @@ ui <- shinydashboardPlus::dashboardPage(
     left = HTML(
       '<div style="color: #5E7880;">
        <a href="https://cbr.washington.edu/" target="_blank" style="color: #5E7880; text-decoration: none;" onmouseover="this.style.textDecoration=\'underline\';" onmouseout="this.style.textDecoration=\'none\';">Columbia Basin Research</a> •
-       <a href="https://safs.uw.edu/" target="_blank" style="color: #5E7880; text-decoration: none;" onmouseover="this.style.textDecoration=\'underline\';" onmouseout="this.style.textDecoration=\'none\';">School of Aquatic and Fishery Sciences</a> •
+       <a href="https://fish.uw.edu/" target="_blank" style="color: #5E7880; text-decoration: none;" onmouseover="this.style.textDecoration=\'underline\';" onmouseout="this.style.textDecoration=\'none\';">School of Aquatic and Fishery Sciences</a> •
        <a href="https://environment.uw.edu/" target="_blank" style="color: #5E7880; text-decoration: none;" onmouseover="this.style.textDecoration=\'underline\';" onmouseout="this.style.textDecoration=\'none\';">College of the Environment</a> •
        <a href="https://www.washington.edu/" target="_blank" style="color: #5E7880; text-decoration: none;" onmouseover="this.style.textDecoration=\'underline\';" onmouseout="this.style.textDecoration=\'none\';">University of Washington</a>
      </div>'
