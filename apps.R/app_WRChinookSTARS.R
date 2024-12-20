@@ -244,7 +244,7 @@ ui <- shinydashboardPlus::dashboardPage(
               shinyWidgets::pickerInput(
                 inputId = "select_metric_2",
                 label = "Select Probability:",
-                choices = unique(year_specific_data$route),
+                choices = unique(STARS_data$route),
                 multiple = TRUE,
                 selected = c("Overall","Interior Delta", "Sacramento","Steamboat","Sutter", "Yolo"),
                 options = list(`live-search` = TRUE)
@@ -252,7 +252,7 @@ ui <- shinydashboardPlus::dashboardPage(
               shinyWidgets::pickerInput(
                 inputId = "specific_years_2",
                 label = "Select Year",
-                choices = unique(year_specific_data$WY),
+                choices = unique(STARS_data$WY),
                 multiple = FALSE,
                 selected = current_year,
                 options = list(`live-search` = TRUE)
