@@ -203,7 +203,7 @@ ui <- shinydashboardPlus::dashboardPage(
               solidHeader = FALSE,
             selectInput(
               inputId = "select_metric", 
-              label = "Select Probability:", 
+              label = "Select Survival or Routing Probability:", 
               choices = c("Overall Survival" = "surv",
                           "Interior Delta Route-specific Survival Probability" = "idsurv",
                           "Interior Delta Route-specific Probability" = "idRoute",
@@ -251,7 +251,7 @@ ui <- shinydashboardPlus::dashboardPage(
               solidHeader = FALSE,
               shinyWidgets::pickerInput(
                 inputId = "select_metric_2",
-                label = "Select Probability:",
+                label = "Select Survival Probability:",
                 choices = unique(year_specific_data$route),
                 multiple = TRUE,
                 selected = c("Overall","Interior Delta", "Sacramento","Steamboat","Sutter", "Yolo"),
