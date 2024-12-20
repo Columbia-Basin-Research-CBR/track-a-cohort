@@ -12,6 +12,7 @@ timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
 #set current year
 source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
+previous_year <- current_year - 1
 
 # Load the data
 load(here::here("data/steelhead_loss_export_data.rda"))
@@ -46,7 +47,7 @@ steelhead_loss_export_data$facility <- factor(steelhead_loss_export_data$facilit
 
 p1 <- steelhead_loss_export_data %>%
   ggplot(aes(x = date)) +
-  geom_bar(aes(y = daily_total_loss, fill = facility), stat = "identity", position = position_dodge2(preserve = "single")) + # Changed color to fill for bar
+  geom_bar(aes(y = daily_total_loss, fill = facility), stat = "identity", position = position_dodge2(preserve = "single"), width = 2) + # Changed color to fill for bar
   geom_line(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
   geom_point(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
   {if (!is.null(omrValues)) geom_vline(data = omrValues, aes(xintercept = date), color = 'black')} +
@@ -75,7 +76,7 @@ p1 <- steelhead_loss_export_data %>%
 
 p2 <- steelhead_loss_export_data %>%
   ggplot(aes(x = date)) +
-  geom_bar(aes(y = daily_total_loss, fill = facility), stat = "identity", position = position_dodge2(preserve = "single")) + # Changed color to fill for bar
+  geom_bar(aes(y = daily_total_loss, fill = facility), stat = "identity", position = position_dodge2(preserve = "single"), width = 7) + # Changed color to fill for bar
   geom_line(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
   geom_point(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
   labs(title = NULL,
