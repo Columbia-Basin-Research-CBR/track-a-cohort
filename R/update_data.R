@@ -8,7 +8,6 @@ source(file.path(getwd(), "data-raw/import_jpe_annual_data.R"))
 source(file.path(getwd(), "data-raw/import_winter_run_chinook_lad_loss_data.R"))
 source(file.path(getwd(), "data-raw/import_winter_run_chinook_genetic_loss_data.R"))
 source(file.path(getwd(), "data-raw/import_winter_run_chinook_hatchery_loss_data.R"))
-source(file.path(getwd(), "data-raw/import_steelhead_rbdd_biweekly_passage_data.R"))
 source(file.path(getwd(), "data-raw/import_steelhead_loss_data.R"))
 source(file.path(getwd(), "data-raw/import_steelhead_daily_loss_export_data.R"))
 

@@ -21,13 +21,6 @@ source(here("R/utils_fct_assign_current_water_year.R"))
 current_year <- assign_current_water_year()
 ```
 
-## RBDD Juvenile Passage Estimates
-
-```{r, load_plot_rbdd_biweekly_passage, fig.width=10, fig.height=7}
-source(here("R/steelhead_plot_rbdd_biweekly_passage.R"))
-```
-
-Related links: [SacPAS Page](https://www.cbr.washington.edu/sacramento/tmp/redbluffdaily_1714603318_94.html){target="_blank"}, [GitHub Repo Code](https://github.com/Columbia-Basin-Research-CBR/track-a-cohort/blob/main/R/winter_run_chinook_plot_annual_jpe.R){target="_blank"}
 
 ## Delta STARs Survival and Routing Probabilities
 
