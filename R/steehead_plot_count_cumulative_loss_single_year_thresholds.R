@@ -22,12 +22,19 @@ source(here("R/utils_fct_wday_to_month.R"))
 
 #set current year
 source(here("R/utils_fct_assign_current_water_year.R"))
-       current_year <- assign_current_water_year()
-       previous_year <- current_year - 1
-       
-       # Check if there is any data for the current year or if the current date is before December 31st of the current year
-       use_previous_year <- !any(steelhead_loss_data$WY == current_year) || Sys.Date() < as.Date(paste0(current_year, "-12-31"))
-       
+        current_year <- assign_current_water_year()   # Assuming this gives the current water year
+        previous_year <- current_year - 1
+        current_date <- Sys.Date()
+        
+        # If the current year data exists for unclipped steelhead and the date is after 12/31 of the previous year, use current year
+        if (any(steelhead_loss_data$WY == current_year & steelhead_loss_data$adipose_clip == "Unclipped" & steelhead_loss_data$date >= as.Date(paste0(previous_year, "-12-31")))) {
+          use_previous_year <- FALSE
+        } else {
+          # Otherwise, use the previous year's data if no current year data or if the date is before 12/31 of the previous year
+          use_previous_year <- TRUE
+        }
+
+       # Assign plot year and caption note based on the condition
        if (use_previous_year) {
          plot_year <- previous_year
          caption_note <- paste0("No data reported for WY", current_year, ", or current date is prior to 12/31. Data reflects last available data (WY", previous_year, ").\n")
@@ -35,6 +42,7 @@ source(here("R/utils_fct_assign_current_water_year.R"))
          plot_year <- current_year
          caption_note <- ""
        }
+       
 
 # Get the current timestamp
 timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
