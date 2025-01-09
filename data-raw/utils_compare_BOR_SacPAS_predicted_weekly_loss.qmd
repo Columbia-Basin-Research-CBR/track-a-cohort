@@ -26,6 +26,8 @@ Outstanding questions/thoughts:
 
     -   "...For model training, we aggregated all variables from daily observations to weekly means, except for precipitation and prior week salvage, which were summed, and Delta Cross Channel (DCC) gate status, which was listed as “opened” or “closed” based on a simple majority of daily statuses."
 
+    -   Tillotson et al (2022) uses \[DAYflow\](https://data.ca.gov/dataset/dayflow); recommendes looking into method to incorporate accumlated precipitation: `I think would also be worth your time to see whether the SacPAS implementation of the model is appropriately adding the apportioned precipitation from prior days (e.g. If it rained five inches on day one, five inches on day two and zero inches thereafter, daily precip would be 1/0.00017448  on day one, (1+1)/0.00017448 on days two through five and 1/0.00017448 on day six). That's not something I had to deal with when developing the model as I was just relying on the historic DAYFLOW data which already accounted for all steps in calculating precipitation. `
+
 6.  Since the BOR and NB code is using binary.form ="none" and quantile.form = "qrf", is appears no random forest, `randomForest`, is used, just a quantile regression forest `quantrefForest` which differs from Tillotson et al (2022):
 
     -   "Feedback from potential model users included some concern regarding the reliance of the models on the prior week’s loss since it may lead to poor prediction early in the salvage season when few fish are observed. In an attempt to address this concern, we developed an alternative, two-step model formulation (hereafter referred to as the hurdle model). The hurdle model first trains a random forest classifier using the ‘randomForest’ package (Law and Wiener 2002). The response and predictor variables are the same as for the simple model, except that the responses are converted from continuous to binary (i.e., loss/no loss) and the prior week’s loss is excluded. A QRF model with the same formulation as the simple model is then fit to a censored data set containing only weeks with non-zero observed loss. The prediction from the classification model is then multiplied by the prediction in the simple model. Thus, the first step (RF classifier) predicts whether or not any loss will occur in the coming week based only on environmental and operational conditions, and when loss is predicted to occur, the second step (QRF regression) estimates the magnitude of loss using the complete set of predictors, (i.e., including the prior week’s loss). Per each response variable, both the simple and hurdle models were fit. were fit. The output of each model is the same: a predicted distribution of the response variable, which can be used to explore the range of potential outcomes, given a set of environmental and operational conditions "
@@ -130,11 +132,15 @@ train_inches<-train_nb %>%
 
 #conversion formula 
 # cfs =  (precipitation (inches) * (1/12) * area)/86,400
-
+#suggested conversion method by Tillotson email: 
+# Inches at Stockton times Delta area as given in DAYFLOW documentation (acre inches/ day)
+# Divide by 12 (acre feet/ day)
+# Multiply by 43,556  (cubic feet/ day)
+# Divide by 86,400, the number of seconds in a day (CFS)
+# Divide by 5, DAYFLOW methods assume precipitation enters the Delta evenly over the day of rainfall and the next four days.
  
 
 ```
-
 
 ```{r import_new_loss_data}
 # assign current water year

@@ -59,28 +59,30 @@ ui <- shinydashboard::dashboardPage(
         conditionalPanel(
           condition = "input.showLines",
           # Add numeric input for OMRI value
-          HTML("<p><b>Enter OMRI values and dates:</b></p> <p>Use the 'Add OMRI Line' button to add a new vertical line to the plot(s). 
-               Additionally, a user can manually add/edit the values/dates in the text box area.</p>"),
+          # HTML("<p><b>Enter OMRI values and dates:</b></p>"),
           numericInput(
             inputId = "omriValue",
-            label = "OMRI Value:",
-            value = NULL
+            label = "Add OMRI Value:",
+            value = -500
           ),
           # Add date input
           dateInput(
             inputId = "omriDate",
-            label = "OMRI Date:",
+            label = "with OMRI Date:",
             value = Sys.Date()
           ),
           # Add buttons
           actionButton("addLine", "Add OMRI Line"),
           actionButton("resetLines", "Reset OMRI Lines"),
           br(),
+          HTML("<p>Select 'Add OMRI Line' to add a new vertical line to the plot(s). 
+               Additionally, a user can manually add/edit the values/dates in the text box area.</p>"),
+          br(),
           br(),
           # Text area for editing
           textAreaInput(
             inputId = "omriTextArea",
-            label = "OMRI Lines (Edit Values/Dates):",
+            label = "Plotted OMRI Lines (Edit Values/Dates):",
             value = "",
             rows = 6,
             placeholder = "value,date e.g.,\n-5000,2024-01-01\n-2000,2024-12-03\n-500,2025-10-24"
