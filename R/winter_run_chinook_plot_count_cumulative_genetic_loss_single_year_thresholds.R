@@ -35,6 +35,7 @@ timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
 
 #current date
 date <- today()
+
 #convert current date to water day
 wDay_today <- if_else(month(date) >= 10, yday(date) - 273, yday(date) + 92)
 
@@ -59,14 +60,14 @@ cumloss_current_year <- genetic_cumulative_loss_data %>%
 # extract current water year JPE and set 100% genetic loss of JPE -- return single value
 jpe_current_year_100pct <- genetic_cumulative_loss_data %>%
   filter(WY == plot_year, cumloss == max(cumloss)) %>%
-  pull(jpe)*.005004
+  pull(jpe)* .005 #.005004 is the previous 2019 BiOp SYT value, updated 2/13/25 to 0.5% SYT for winter-run chinook.
 
 jpe_current_year_75pct <- jpe_current_year_100pct *.75
 jpe_current_year_50pct <- jpe_current_year_100pct *.50
 
 # IF early in the season, and no JPE reported, adjust the text to reflect
 percent_loss_text <- ifelse(is.na(jpe_current_year_100pct),
-                            "No Single-Year Threshold value reported to date",
+                            "No JPE and/or Single-Year Threshold value reported to date",
                             paste0("Percent loss of Single-Year Threshold: ", round((max(cumloss_current_year$cumloss) / jpe_current_year_100pct) * 100, 2), "%"))
 
 
@@ -126,11 +127,11 @@ p <- cumloss_current_year_filled %>%
   geom_line(data = missing_data_end, aes(x = date, y = cumloss, color = "No Loss Reported", linetype = "No Loss Reported")) +
   geom_point(data = cumloss_current_year, aes(x = date, y = cumloss, color = "Reported Loss")) +
   geom_hline(yintercept = jpe_current_year_100pct, linetype = "dashed", color = "red4") +
-  geom_text(aes(x = start_date, y = jpe_current_year_100pct, label = paste0("100% Single-Year Threshold (.5004% of JPE): ", round(jpe_current_year_100pct, 2))), hjust = 0, vjust = 2, color = "red4", size = 3) +
+  geom_text(aes(x = start_date, y = jpe_current_year_100pct, label = paste0("100% Single-Year Threshold (0.5% of JPE): ", round(jpe_current_year_100pct, 2))), hjust = 0, vjust = 2, color = "red4", size = 3) +
   geom_hline(yintercept = jpe_current_year_75pct, linetype = "dashed", color = "#CC7722") +
-  geom_text(aes(x = start_date, y = jpe_current_year_75pct, label = paste0("75% Single-Year Threshold (.5004% of JPE): ", round(jpe_current_year_75pct, 2))), hjust = 0, vjust = 2, color = "#CC7722", size = 3) +
+  geom_text(aes(x = start_date, y = jpe_current_year_75pct, label = paste0("75% Single-Year Threshold (0.5% of JPE): ", round(jpe_current_year_75pct, 2))), hjust = 0, vjust = 2, color = "#CC7722", size = 3) +
   geom_hline(yintercept = jpe_current_year_50pct, linetype = "dashed", color = "goldenrod3") +
-  geom_text(aes(x = start_date, y = jpe_current_year_50pct, label = paste0("50% Single-Year Threshold (.5004% of JPE): ", round(jpe_current_year_50pct, 2))), hjust = 0, vjust = 2, color = "goldenrod3", size = 3) +
+  geom_text(aes(x = start_date, y = jpe_current_year_50pct, label = paste0("50% Single-Year Threshold (0.5% of JPE): ", round(jpe_current_year_50pct, 2))), hjust = 0, vjust = 2, color = "goldenrod3", size = 3) +
   geom_vline(aes(xintercept = as.numeric(wDay_to_date(wDay_today, current_year)), color = "Current Date", linetype = "Current Date")) +
   geom_label_repel(data = data.frame(date = max(cumloss_current_year$date), cumloss = max(cumloss_current_year$cumloss)),
                    aes(x = date, y = cumloss, label = paste0("Cumulative genetic loss: ", max(cumloss), "\n% loss of Single-Year Threshold: ", round((cumloss / jpe_current_year_100pct) * 100, 2), "%")),
