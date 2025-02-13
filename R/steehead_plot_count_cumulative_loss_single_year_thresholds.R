@@ -1,11 +1,16 @@
 #' @title Figure 5: Steelhead Cumulative Loss for current water year 
 #' @details
+#' Plots reflect management actions post 2019 BiOp and are subject to revision.
+#' Single Year Threshold for Steelhead:
+#' Natural Central Valley Steelhead (loss = 3000) for a single WY year.
+#' Previous management thresholds:
 #' Single-Year Loss Thresholds (PA 4-69, 2019 BiOP)
 #' In each year, typically January/February, Reclamation and DWR propose to avoid exceeding an annual loss threshold equal to 90% of the greatest annual loss that occurred in the historical record 2010-2018 for each of:
 #' Natural Winter-Run Chinook Salmon (loss= 1.17% of JPE)
 #' Natural Central Valley Steelhead from December through March (loss =1,414)
 #' Natural Central Valley Steelhead from April through June 15 (loss = 1,552)
 #' (More information on PA 4-70, 2019 BiOP)
+
 require(tidyverse)
 require(here)
 require(ggrepel)
@@ -26,18 +31,18 @@ source(here("R/utils_fct_assign_current_water_year.R"))
         previous_year <- current_year - 1
         current_date <- Sys.Date()
         
-        # If the current year data exists for unclipped steelhead and the date is after 12/31 of the previous year, use current year
-        if (any(steelhead_loss_data$WY == current_year & steelhead_loss_data$adipose_clip == "Unclipped" & steelhead_loss_data$date >= as.Date(paste0(previous_year, "-12-31")))) {
+        # If the current year data exists for unclipped steelhead, use current year
+        if (any(steelhead_loss_data$WY == current_year & steelhead_loss_data$adipose_clip == "Unclipped")) {
           use_previous_year <- FALSE
         } else {
-          # Otherwise, use the previous year's data if no current year data or if the date is before 12/31 of the previous year
+          # Otherwise, use the previous year's data if no current year data
           use_previous_year <- TRUE
         }
 
        # Assign plot year and caption note based on the condition
        if (use_previous_year) {
          plot_year <- previous_year
-         caption_note <- paste0("No data reported for WY", current_year, ", or current date is prior to 12/31. Data reflects last available data (WY", previous_year, ").\n")
+         caption_note <- paste0("No data reported for WY", current_year, ". Data reflects last available data (WY", previous_year, ").\n")
        } else {
          plot_year <- current_year
          caption_note <- ""
@@ -69,91 +74,142 @@ steelhead_loss_data_unclipped <- steelhead_loss_data %>%
 # extract maximum cumloss for the current year
 cumloss_current_year <- steelhead_loss_data_unclipped %>%
   filter(WY == plot_year) %>% 
-  mutate(management_period = case_when(
-    (month(date) == 12 & day(date) >= 31) | 
-      month(date) %in% c(1, 2) | 
-      (month(date) == 3 & day(date) <= 31)  ~ "12/1 - 3/31",
-    (month(date) == 4 & day(date) >= 1) | 
-      (month(date) == 5) | 
-      (month(date) == 6 & day(date) <= 15) ~ "4/1 - 6/15",
-    TRUE ~ NA_character_
-  )) %>% 
-  filter(!is.na(management_period)) %>%
-  group_by(management_period) %>%
-  mutate(cum_loss_mgt = cumsum(loss))
+  # mutate(management_period = case_when(
+  #   (month(date) == 12 & day(date) >= 31) | 
+  #     month(date) %in% c(1, 2) | 
+  #     (month(date) == 3 & day(date) <= 31)  ~ "12/1 - 3/31",
+  #   (month(date) == 4 & day(date) >= 1) | 
+  #     (month(date) == 5) | 
+  #     (month(date) == 6 & day(date) <= 15) ~ "4/1 - 6/15",
+  #   TRUE ~ NA_character_
+  # )) %>% 
+  # filter(!is.na(management_period)) %>%
+  # group_by(management_period) %>%
+  mutate(cumloss = cumsum(loss))
 
 
-# Set loss threshold for each management period
-current_year_mgmt1_100pct <- 1414  
-current_year_mgmt1_75pct <- current_year_mgmt1_100pct*.75
-current_year_mgmt1_50pct <- current_year_mgmt1_100pct*.50
+# Set loss threshold for each management period-- manually set 
+current_year_100pct <- 3000
+current_year_75pct <- current_year_100pct*.75
+current_year_50pct <- current_year_100pct*.50
 
-current_year_mgmt2_100pct <- 1552 
-current_year_mgmt2_75pct <- current_year_mgmt2_100pct*.75
-current_year_mgmt2_50pct <- current_year_mgmt2_100pct*.50
+# current_year_mgmt1_100pct <- 1414  
+# current_year_mgmt1_75pct <- current_year_mgmt1_100pct*.75
+# current_year_mgmt1_50pct <- current_year_mgmt1_100pct*.50
+# 
+# current_year_mgmt2_100pct <- 1552 
+# current_year_mgmt2_75pct <- current_year_mgmt2_100pct*.75
+# current_year_mgmt2_50pct <- current_year_mgmt2_100pct*.50
 
-# set management threshold line
-management_period_start <- as.Date(paste0(plot_year,"-03-31"))
-management_period_end <- as.Date(paste0(plot_year,"-06-15"))
+# # set management threshold line
+# management_period_start <- as.Date(paste0(plot_year,"-03-31"))
+# management_period_end <- as.Date(paste0(plot_year,"-06-15"))
 
-#set start date for xlim 
-start_date <- as.Date(paste0(plot_year - 1, "-12-31"))
+# #set start date for xlim 
+# start_date <- as.Date(paste0(plot_year - 1, "-12-31"))
 
-# Calculate maximum cumulative loss for each management period
-max_loss_by_period <- cumloss_current_year %>%
-  group_by(management_period) %>%
-  summarize(
-    max_date = max(date),
-    max_cum_loss_mgt = max(cum_loss_mgt)
-  ) %>%
-  ungroup()
+# set x-lim to start of water year. 10-01
+startdate_WY <-as.Date(paste0(plot_year-1, "-10-01"))
 
-max_loss_by_period$management_period[1]
+# # Calculate maximum cumulative loss for each management period
+# max_loss_by_period <- cumloss_current_year %>%
+#   group_by(management_period) %>%
+#   summarize(
+#     max_date = max(date),
+#     max_cum_loss_mgt = max(cum_loss_mgt)
+#   ) %>%
+#   ungroup()
+# 
+# max_loss_by_period$management_period[1]
+
+# add missing values to from start to todays date
+
+# Identify the first known data point value for the current year
+first_known_data <- cumloss_current_year %>%
+  arrange(date) %>%
+  slice(1)
+
+# Create a sequence of dates from October 1st to the first known data point
+start_date <- as.Date(paste0(plot_year - 1, "-10-01"))
+missing_dates_start <- seq.Date(from = start_date, to = first_known_data$date, by = "day")
+
+# Create a new data frame with missing dates and the first known value
+missing_data_start <- data.frame(
+  date = missing_dates_start,
+  cumloss = c(rep(0, length(missing_dates_start) - 1), first_known_data$cumloss),  # Start from 0 and connect to the first known data point
+  WY = plot_year
+)
+
+# Identify the last known data point value for the current year
+last_known_data <- cumloss_current_year %>%
+  filter(date <= Sys.Date()) %>%
+  arrange(desc(date)) %>%
+  slice(1)
+
+# Create a sequence of dates from the last known data point to today's date
+missing_dates_end <- seq.Date(from = last_known_data$date, to = Sys.Date(), by = "day")
+
+# Create a new data frame with these dates and the last known value
+missing_data_end <- data.frame(
+  date = missing_dates_end,
+  cumloss = last_known_data$cumloss,
+  WY = plot_year
+)
+
+# Combine these new data frames with the original data
+cumloss_current_year_filled <- bind_rows(cumloss_current_year, missing_data_start, missing_data_end)
+
 
 
 # plot
-p <- cumloss_current_year %>% 
-  ggplot(aes(x= date, y = cum_loss_mgt, group = management_period, color = management_period)) +
-  geom_point(data = . %>% filter(management_period == management_period[1])) +
-  geom_line(data = . %>% filter(management_period == management_period[1])) +
-  geom_point(data = . %>% filter(management_period == management_period[2])) +
-  geom_line(data = . %>% filter(management_period == management_period[2])) +
-  geom_vline(xintercept = management_period_start, linetype = "dashed", color = "darkgrey", show.legend = TRUE) +
+p <- cumloss_current_year_filled %>% 
+  ggplot(aes(x= date, y = cumloss)) +
+           geom_line(data = cumloss_current_year, aes(x = date, y = cumloss, color = "Reported Loss", linetype = "Reported Loss")) +
+           geom_line(data = missing_data_start, aes(x = date, y = cumloss, color = "No Loss Reported", linetype = "No Loss Reported")) +
+           geom_line(data = missing_data_end, aes(x = date, y = cumloss, color = "No Loss Reported", linetype = "No Loss Reported")) +
+           geom_point(data = cumloss_current_year, aes(x = date, y = cumloss, color = "Reported Loss")) +
+  # geom_vline(xintercept = management_period_start, linetype = "dashed", color = "darkgrey", show.legend = TRUE) +
   #set thresholds for management period 1
-  geom_segment(y = current_year_mgmt1_100pct, x = start_date, xend = management_period_start, linetype = "dashed", color = "red4") +
-  geom_text(aes(x = start_date, y = current_year_mgmt1_100pct, label = paste0("100% Single-Year Threshold: ", round(current_year_mgmt1_100pct,2))), hjust = 0, vjust = 2, color = "red4", size = 3) +
-  geom_segment(y = current_year_mgmt1_75pct, x = start_date, xend = management_period_start, linetype = "dashed", color = "#CC7722") +
-  geom_text(aes(x = start_date, y = current_year_mgmt1_75pct, label = paste0("75% Single-Year Threshold: ", round(current_year_mgmt1_75pct,2))), hjust = 0, vjust = 2, color = "#CC7722", size = 3) +
-  geom_segment(y = current_year_mgmt1_50pct, x = start_date, xend = management_period_start, linetype = "dashed", color = "goldenrod3") +
-  geom_text(aes(x = start_date, y = current_year_mgmt1_50pct, label = paste0("50% Single-Year Threshold: ", round( current_year_mgmt1_50pct,2))), hjust = 0, vjust = 2, color = "goldenrod3", size = 3) +
-  #set thresholds for management period 2
-  geom_segment(y = current_year_mgmt2_100pct, x = management_period_start, xend = management_period_end, linetype = "dashed", color = "red4") +
-  geom_text(aes(x = management_period_start, y = current_year_mgmt2_100pct, label = paste0("100% Single-Year Threshold: ", round(current_year_mgmt2_100pct,2))), hjust = 0, vjust = 2, color = "red4", size = 3) +
-  geom_segment(y = current_year_mgmt2_75pct, x = management_period_start, xend = management_period_end, linetype = "dashed", color = "#CC7722") +
-  geom_text(aes(x = management_period_start, y = current_year_mgmt2_75pct, label = paste0("75% Single-Year Threshold: ", round(current_year_mgmt2_75pct,2))), hjust = 0, vjust = 2, color = "#CC7722", size = 3) +
-  geom_segment(y = current_year_mgmt2_50pct, x = management_period_start, xend = management_period_end,  linetype = "dashed", color = "goldenrod3") +
-  geom_text(aes(x = management_period_start, y = current_year_mgmt2_50pct, label = paste0("50% Single-Year Threshold: ", round( current_year_mgmt2_50pct,2))), hjust = 0, vjust = 2, color = "goldenrod3", size = 3) +
-  # set current date threshold
+  # geom_segment(y = current_year_100pct, x = start_date, xend = management_period_start, linetype = "dashed", color = "red4") +
+  geom_text(aes(x = start_date, y = current_year_100pct, label = paste0("100% Single-Year Threshold: ", round(current_year_100pct,2))), hjust = 0, vjust = 2, color = "red4", size = 3) +
+  # geom_segment(y = current_year_75pct, x = start_date, xend = management_period_start, linetype = "dashed", color = "#CC7722") +
+  geom_text(aes(x = start_date, y = current_year_75pct, label = paste0("75% Single-Year Threshold: ", round(current_year_75pct,2))), hjust = 0, vjust = 2, color = "#CC7722", size = 3) +
+  # geom_segment(y = current_year_mgmt1_50pct, x = start_date, xend = management_period_start, linetype = "dashed", color = "goldenrod3") +
+  geom_text(aes(x = start_date, y = current_year_50pct, label = paste0("50% Single-Year Threshold: ", round( current_year_50pct,2))), hjust = 0, vjust = 2, color = "goldenrod3", size = 3) +
+    geom_vline(aes(xintercept = as.numeric(wDay_to_date(wDay_today, current_year)), color = "Current Date", linetype = "Current Date")) +
+    # #set thresholds for management period 2
+  # geom_segment(y = current_year_mgmt2_100pct, x = management_period_start, xend = management_period_end, linetype = "dashed", color = "red4") +
+  # geom_text(aes(x = management_period_start, y = current_year_mgmt2_100pct, label = paste0("100% Single-Year Threshold: ", round(current_year_mgmt2_100pct,2))), hjust = 0, vjust = 2, color = "red4", size = 3) +
+  # geom_segment(y = current_year_mgmt2_75pct, x = management_period_start, xend = management_period_end, linetype = "dashed", color = "#CC7722") +
+  # geom_text(aes(x = management_period_start, y = current_year_mgmt2_75pct, label = paste0("75% Single-Year Threshold: ", round(current_year_mgmt2_75pct,2))), hjust = 0, vjust = 2, color = "#CC7722", size = 3) +
+  # geom_segment(y = current_year_mgmt2_50pct, x = management_period_start, xend = management_period_end,  linetype = "dashed", color = "goldenrod3") +
+  # geom_text(aes(x = management_period_start, y = current_year_mgmt2_50pct, label = paste0("50% Single-Year Threshold: ", round( current_year_mgmt2_50pct,2))), hjust = 0, vjust = 2, color = "goldenrod3", size = 3) +
+  # # set current date threshold
   # geom_vline(aes(xintercept = as.numeric(wDay_to_date(wDay_today, current_year)), color = "Current Date", linetype = "Current Date")) +
-  geom_label_repel(data = max_loss_by_period,
-                   aes(x = max_date, 
-                       y = max_cum_loss_mgt, 
-                       label = paste0("Cumulative loss: ", round(max_cum_loss_mgt,2),"\n% loss of Single-Year Threshold: ", ifelse(management_period == management_period[1], round((max_cum_loss_mgt/current_year_mgmt1_100pct)*100, 2), round((max_cum_loss_mgt/current_year_mgmt2_100pct)*100, 2)), "%" )),
+  geom_label_repel(data = data.frame(date = max(cumloss_current_year$date), cumloss = max(cumloss_current_year$cumloss)),
+                   aes(x = date, 
+                       y = cumloss, 
+                       label = paste0("Cumulative loss: ", round(max(cumloss),2),"\n% loss of Single-Year Threshold: ", 
+                                      round((max(cumloss)/current_year_100pct)*100, 2), "%" )
+                       ),
                    size = 3, 
-                   nudge_x = 0, # Adjust nudge_x and nudge_y as needed to position the label
+                   nudge_x = 1, # Adjust nudge_x and nudge_y as needed to position the label
                    nudge_y = 400, 
                    hjust = 0,
                    color = "black") +
-  scale_x_date(date_labels = "%m/%d", date_breaks = "1 month", limits = c(start_date,management_period_end), expand = c(.01,.01)) +
+  scale_x_date(date_labels = "%m/%d", date_breaks = "1 month", limits = c(start_date,NA), expand = c(.01,.01)) +
   scale_y_continuous(expand = c(0,100)) +
-  scale_color_manual(values = c("12/1 - 3/31" = "#0072B2", "4/1 - 6/15" = "#00BFFF"), name = "Management period:") +
+    scale_color_manual(values = c("Reported Loss" = "black", "No Loss Reported" = "grey", "Current Date" = "blue2")) +
+  scale_linetype_manual(values = c("Reported Loss" = "solid", "No Loss Reported" = "solid", "Current Date" = "dotted")) +
+  # scale_color_manual(values = c("12/1 - 3/31" = "#0072B2", "4/1 - 6/15" = "#00BFFF"), name = "Management period:") +
   # scale_linetype_manual() +
-  labs(title = paste0("Cumulative Loss for WY", plot_year, " with Single-Year Thresholds"),
-       subtitle = paste0("Species: Unclipped Steelhead\nCumulative loss 12/31-3/31: ", round(filter(max_loss_by_period, management_period == 	"12/1 - 3/31")$max_cum_loss_mgt,2),
-                         "\nCumulative loss 4/1-6/15: ", round(filter(max_loss_by_period, management_period == "4/1 - 6/15")$max_cum_loss_mgt,2)),
+  labs(title = paste0("Cumulative Loss for WY", plot_year, " with Single-Year Loss Thresholds"),
+       subtitle = paste0("Species: Unclipped Steelhead\nCumulative loss: ", round(max(cumloss_current_year$cumloss),2),"\nSingle-Year Loss Threshold: ", current_year_100pct,"\n"),
        caption = paste0(caption_note, "Data sources: Preliminary data from CDFW; subject to revision.\n", timestamp),
        x = "Date",
-       y = "Cumulative Loss") +
+       y = "Cumulative Loss",
+       color = NULL,
+       linetype = NULL) +
   theme_minimal() +
   theme(
     panel.grid.major = element_line(linetype = "dotted"),
@@ -166,5 +222,4 @@ p <- cumloss_current_year %>%
 print(p)
 
 #Notes
-#automatically generate dots for days with no cumloss reported up to today's date?
-#need to find a automatic way to set x and y limit
+#updated plot to reflect changes in mangement-- no longer using management periods-- plot is for a single water year.
