@@ -71,7 +71,7 @@ jpe_current_year_1.17pct <- lad_cumulative_loss_data %>%
 
 # IF early in the season, and no JPE reported, adjust the text to reflect
 percent_loss_text <- ifelse(is.na(jpe_current_year_2pct),
-                            "No Single-Year Threshold value reported to date",
+                            "No JPE and/or Single-Year Threshold value reported to date",
                             paste0("Percent loss of Single-Year Threshold: ", round((max(cumloss_current_year$cumloss) / jpe_current_year_2pct) * 100, 2), "%"))
 
 
