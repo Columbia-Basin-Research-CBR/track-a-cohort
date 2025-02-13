@@ -46,7 +46,7 @@ winter_run_chinook_loss_export_data$facility <- factor(winter_run_chinook_loss_e
 
 p1 <- winter_run_chinook_loss_export_data %>% 
   ggplot(aes(x = date)) +
-  geom_bar(aes(y = daily_total_loss, fill = facility), stat = "identity", position = position_dodge2(preserve = "single"), width = 2) + # Changed color to fill for bar
+  geom_bar(aes(y = daily_total_loss, fill = facility), stat = "identity", position = position_dodge2(preserve = "single")) + # Changed color to fill for bar
   geom_line(aes(y = pumping_discharge_cfs * ratio, color = facility)) +  #apply ratio to y
   geom_point(aes(y = pumping_discharge_cfs * ratio, color = facility)) + #apply ratio to y
   {if (!is.null(omrValues)) geom_vline(data = omrValues, aes(xintercept = date), color = 'black')} +
@@ -61,7 +61,7 @@ p1 <- winter_run_chinook_loss_export_data %>%
        y.sec = "Pumping Discharge (cfs)",
        fill = "Daily loss by facility: ",
        color = "Pumping discharge by facility:") +
-  scale_x_date(date_breaks = "2 month", date_labels = "%m/%y", limits = c(start_date, NA)) +
+  scale_x_date(date_breaks = "1 month", date_labels = "%m/%d") +
   scale_y_continuous(sec.axis = sec_axis(~./ratio, name = "Pumping Discharge (cfs)")) + # Add secondary axis
   scale_color_manual(values = c("#F5C767", "#00BFFF")) +
   scale_fill_manual(values = c("#CE900D","#0072B2" )) +
@@ -79,17 +79,20 @@ p1 <- winter_run_chinook_loss_export_data %>%
 
 p2 <- winter_run_chinook_loss_export_data %>% 
   ggplot(aes(x = date)) +
-  geom_bar(aes(y = daily_total_loss, fill = facility), stat = "identity", position = position_dodge2(preserve = "single"), width = 7) + # Changed color to fill for bar
+  geom_bar(aes(y = daily_total_loss, fill = facility), 
+           stat = "identity", 
+           position = position_dodge2(preserve = "single")
+         ) + # Changed color to fill for bar
   geom_line(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
   geom_point(aes(y = pumping_discharge_cfs * ratio, color = facility)) + # Apply ratio to y
   labs(title = NULL,
        caption = paste0(caption_note, "Data sources: Daily loss and Export Preliminary data from CDFW;\nCFS from the CDEC sites HRO (for SWP) and TRP (for CVP)\n", timestamp),
-       x = "Date",
+       x = "Date (mm/dd)",
        y = "Daily Loss",
        y.sec = "Pumping Discharge (cfs)",
        fill = "Daily loss by facility: ",
        color = "Pumping by facility:") + 
-  scale_x_date(date_breaks = "2 month", date_labels = "%m/%y", limits = c(start_date, NA)) +
+  scale_x_date(date_breaks = "1 month", date_labels = "%m/%d") +
   scale_y_continuous(sec.axis = sec_axis(~./ratio, name = "Pumping Discharge (cfs)")) + # Add secondary axis
   scale_color_manual(values = c("#F5C767", "#00BFFF")) +
   scale_fill_manual(values = c("#CE900D","#0072B2" )) +
