@@ -39,7 +39,7 @@ ratio <- ifelse(!any(!is.na(steelhead_loss_export_data$daily_total_loss)), 1,
 
 # Define the start and end dates for the water year
 start_date <- as.Date(paste0(previous_year, "-10-01"))
-end_date <- as.Date(paste0(current_year, "-09-30"))
+# end_date <- as.Date(paste0(current_year, "-09-30"))
 
 #set facility as factor to prevent dropping facet in grid
 steelhead_loss_export_data$facility <- factor(steelhead_loss_export_data$facility, levels = c("CVP", "SWP"))
@@ -62,7 +62,7 @@ p1 <- steelhead_loss_export_data %>%
        fill = "Daily loss by facility: ",
        color = "Pumping discharge by facility:",
        caption = NULL) +
-  scale_x_date(date_breaks = "2 month", date_labels = "%m/%y", limits = c(start_date, end_date)) +
+  scale_x_date(date_breaks = "2 month", date_labels = "%m/%y", limits = c(start_date, NA)) +
   scale_y_continuous(sec.axis = sec_axis(~./ratio, name = "Pumping Discharge (cfs)")) + # Add secondary axis
   scale_color_manual(values = c("#F5C767", "#00BFFF")) +
   scale_fill_manual(values = c("#CE900D","#0072B2" )) +
@@ -88,10 +88,10 @@ p2 <- steelhead_loss_export_data %>%
        fill = "Daily loss by facility: ",
        color = "Pumping by facility:",
        caption = paste0(caption_note, "Data sources: Daily loss and Export Preliminary data from CDFW;\nCFS from the CDEC sites HRO (for SWP) and TRP (for CVP)\n", timestamp)) +
-  scale_x_date(date_breaks = "2 month", date_labels = "%m/%y", limits = c(start_date, end_date)) +
   scale_y_continuous(sec.axis = sec_axis(~./ratio, name = "Pumping Discharge (cfs)")) + # Add secondary axis
   scale_color_manual(values = c("#F5C767", "#00BFFF")) +
   scale_fill_manual(values = c("#CE900D","#0072B2" )) +
+  scale_x_date(date_breaks = "2 month", date_labels = "%m/%y", limits = c(start_date, NA)) + #
   theme_minimal() +
   facet_grid(~facility, drop = FALSE) +
   theme(legend.position = "bottom",

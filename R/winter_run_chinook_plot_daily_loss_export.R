@@ -61,7 +61,7 @@ p1 <- winter_run_chinook_loss_export_data %>%
        y.sec = "Pumping Discharge (cfs)",
        fill = "Daily loss by facility: ",
        color = "Pumping discharge by facility:") +
-  scale_x_date(date_breaks = "2 month", date_labels = "%m/%y", limits = c(start_date, end_date)) +
+  scale_x_date(date_breaks = "2 month", date_labels = "%m/%y", limits = c(start_date, NA)) +
   scale_y_continuous(sec.axis = sec_axis(~./ratio, name = "Pumping Discharge (cfs)")) + # Add secondary axis
   scale_color_manual(values = c("#F5C767", "#00BFFF")) +
   scale_fill_manual(values = c("#CE900D","#0072B2" )) +
@@ -89,7 +89,7 @@ p2 <- winter_run_chinook_loss_export_data %>%
        y.sec = "Pumping Discharge (cfs)",
        fill = "Daily loss by facility: ",
        color = "Pumping by facility:") + 
-  scale_x_date(date_breaks = "2 month", date_labels = "%m/%y", limits = c(start_date, end_date)) +
+  scale_x_date(date_breaks = "2 month", date_labels = "%m/%y", limits = c(start_date, NA)) +
   scale_y_continuous(sec.axis = sec_axis(~./ratio, name = "Pumping Discharge (cfs)")) + # Add secondary axis
   scale_color_manual(values = c("#F5C767", "#00BFFF")) +
   scale_fill_manual(values = c("#CE900D","#0072B2" )) +
