@@ -17,15 +17,14 @@ previous_year <- current_year - 1
 # Load the data
 load(here::here("data/steelhead_loss_export_data.rda"))
 
+
 # Check if the current WY is present in the data
 use_previous_year <- !any(steelhead_loss_export_data$WY == current_year)
 
 
 # If no data for the current year, use the previous year for omrValues and add a caption
 if (use_previous_year) {
-  omrValues <- data.frame(value = c(-5000, -3500, -2000, -5000, -3500, -2500, -500, -1500, -2500, "COA 8.17"),
-                          date = lubridate::ymd(c('2024-01-01', '2024-01-14', '2024-01-23', '2024-02-04', '2024-02-08',
-                                                  '2024-02-17', '2024-03-11', '2024-02-26', '2024-04-01', '2024-04-09')))
+  omrValues <- NULL
   caption_note <- paste0("No data reported for Current WY", current_year, ". Data reflects last available data (WY", previous_year, ").\n")
   water_year_text <- paste("Water Year:", previous_year)
 } else {
@@ -34,8 +33,9 @@ if (use_previous_year) {
   water_year_text <- paste("Current Water Year:", current_year)
 }
 
-# Calculate the ratio for the secondary axis
-ratio <- max(steelhead_loss_export_data$daily_total_loss) / max(steelhead_loss_export_data$pumping_discharge_cfs)
+# Calculate the ratio for the secondary axis- updated to use 1 if not steelheadloss data reported 
+ratio <- ifelse(!any(!is.na(steelhead_loss_export_data$daily_total_loss)), 1, 
+                max(steelhead_loss_export_data$daily_total_loss, na.rm = TRUE) / max(steelhead_loss_export_data$pumping_discharge_cfs))
 
 # Define the start and end dates for the water year
 start_date <- as.Date(paste0(previous_year, "-10-01"))
@@ -70,8 +70,10 @@ p1 <- steelhead_loss_export_data %>%
   theme(legend.position = "none",
         plot.subtitle =  element_text(face = "plain", size = 13),
         text = element_text(size = 15),
+        axis.ticks.y.right = element_line(color = "grey"),
         panel.grid.major = element_line(linetype = "dotted", color = "grey"),
         panel.grid.minor = element_blank(),
+        
         panel.border = element_rect(color = "grey", fill = NA, size = 0.5))
 
 p2 <- steelhead_loss_export_data %>%
@@ -94,6 +96,7 @@ p2 <- steelhead_loss_export_data %>%
   facet_grid(~facility, drop = FALSE) +
   theme(legend.position = "bottom",
         text = element_text(size = 15),
+        axis.ticks.y.right = element_line(color = "grey"),
         panel.grid.major = element_line(linetype = "dotted"),
         panel.grid.minor = element_blank(),
         panel.border = element_rect(color = "grey", fill = NA, size = 0.5))

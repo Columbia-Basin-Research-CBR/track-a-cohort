@@ -54,7 +54,7 @@ df_river <- df_river_raw %>%
     location == "TRP" ~ "CVP",
     location == "HRO" ~ "SWP"
   )) %>%
-  select(site, YMD, value)
+  select(WY,site, YMD, value)
 
 # Import OMRI data from SacPAS river conditions
 df_OMRI_raw <- fct_import_SacPAS_river_conditions_query(sites = "Combined", years = years, metrics = "OMRIndex") 
@@ -62,12 +62,14 @@ df_OMRI_raw <- fct_import_SacPAS_river_conditions_query(sites = "Combined", year
 df_OMRI <- df_OMRI_raw %>% 
   mutate(WY = year(YMD) + if_else(month(YMD) >= 10, 1, 0)) %>% 
   filter(WY == if (use_previous_year) previous_year else current_year) %>%  
-  select(YMD, "OMRI" = value)
+  select(WY,YMD, "OMRI" = value)
 
 # Combine loss and export into final list data
 steelhead_loss_export_data <- current_year_steelhead_loss_data %>% 
-  left_join(select(df_river, site, YMD, "pumping_discharge_cfs" = value), by = c("facility" = "site", "date" = "YMD")) %>% 
-  left_join(select(df_OMRI, OMRI, YMD), by = c("date" = "YMD"))
+  full_join(select(df_river, site, YMD,WY, "pumping_discharge_cfs" = value), by = c("facility" = "site", "date" = "YMD")) %>% 
+  full_join(select(df_OMRI, OMRI, YMD, WY), by = c("date" = "YMD")) %>% 
+  mutate(WY = coalesce(WY.x, WY.y, WY)) %>% 
+  select(-WY.x, -WY.y)
 
 # Save the data
 usethis::use_data(steelhead_loss_export_data, overwrite = TRUE)

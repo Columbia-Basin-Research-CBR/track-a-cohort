@@ -68,7 +68,7 @@ source(here("data-raw/utils_fct_import_river_data.R"))
      location == "TRP" ~ "CVP",
      location == "HRO" ~ "SWP"
     )) %>%
-    select(site, YMD, value)
+    select(site, WY, YMD, value)
   
   # import OMRI data from SacPAS river conditions
   df_OMRI_raw <- fct_import_SacPAS_river_conditions_query(sites = "Combined", years = years, metrics = "OMRIndex") 
@@ -76,13 +76,15 @@ source(here("data-raw/utils_fct_import_river_data.R"))
   df_OMRI <- df_OMRI_raw %>% 
   mutate(WY = year(YMD) + if_else(month(YMD) >= 10, 1, 0)) %>% 
     filter(WY == current_year) %>%  
-  select( YMD, "OMRI" = value)
+  select( WY, YMD, "OMRI" = value)
 
 
 # combine loss and export into final list data
 winter_run_chinook_loss_export_data <- current_year_winter_run_loss_data %>% 
-  left_join(select(df_river, site, YMD, "pumping_discharge_cfs" = value), by = c("facility" = "site", "date" = "YMD")) %>% 
-  left_join(select(df_OMRI, OMRI, YMD), by = c( "date" = "YMD")) 
+  full_join(select(df_river, site, WY,YMD, "pumping_discharge_cfs" = value), by = c("facility" = "site", "date" = "YMD")) %>% 
+  full_join(select(df_OMRI, OMRI,WY, YMD), by = c( "date" = "YMD")) %>% 
+  mutate(WY = coalesce(WY.x, WY.y, WY)) %>% # coalesce to keep WY for all datasets to plot  discharge and OMR through WY even without loss data
+  select(-WY.x, -WY.y)
   
 
 # Save the data
