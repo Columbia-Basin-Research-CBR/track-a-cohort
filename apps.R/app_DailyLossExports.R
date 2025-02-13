@@ -19,13 +19,13 @@ load(here::here("data/steelhead_loss_export_data.rda"))
 load(here::here("data/winter_run_chinook_loss_export_data.rda"))
 
 
+combined_df <- bind_rows(
+  steelhead_loss_export_data %>% mutate(Species = "Steelhead"),
+  winter_run_chinook_loss_export_data %>% mutate(Species = "Winter-run Chinook")
+)
 
 
-# OMRI values data frame--provided by BOR
-omriValues <- data.frame(value = c(-5000,-3500,-2000,-5000,-3500,-2500,-500,-1500,-2500, "COA 8.17"),
-                         date = lubridate::ymd(c('2024-01-01', '2024-01-14', '2024-01-23', '2024-02-04', '2024-02-08',
-                                                 '2024-02-17', '2024-03-11', '2024-02-26', '2024-04-01', '2024-04-09')))
-
+#UI
 ui <- shinydashboard::dashboardPage(
   shinydashboard::dashboardHeader(title = "SacPAS: Interactive Plot"),
   shinydashboard::dashboardSidebar(disable = TRUE),
@@ -59,6 +59,39 @@ ui <- shinydashboard::dashboardPage(
         checkboxInput(inputId = "showLines", 
                       label = "Include approximate changes in OMRI values by date", 
                       value = TRUE),
+        # Conditional OMRI controls
+        conditionalPanel(
+          condition = "input.showLines",
+          # Add numeric input for OMRI value
+          # HTML("<p><b>Enter OMRI values and dates:</b></p>"),
+          numericInput(
+            inputId = "omriValue",
+            label = "Add OMRI Value:",
+            value = -500
+          ),
+          # Add date input
+          dateInput(
+            inputId = "omriDate",
+            label = "with OMRI Date:",
+            value = Sys.Date()
+          ),
+          # Add buttons
+          actionButton("addLine", "Add OMRI Line"),
+          actionButton("resetLines", "Reset OMRI Lines"),
+          br(),
+          HTML("<p>Select 'Add OMRI Line' to add a new vertical line to the plot(s). 
+               Additionally, a user can manually add/edit the values/dates in the text box area.</p>"),
+          br(),
+          br(),
+          # Text area for editing
+          textAreaInput(
+            inputId = "omriTextArea",
+            label = "Plotted OMRI Lines (Edit Values/Dates):",
+            value = "",
+            rows = 6,
+            placeholder = "value,date e.g.,\n-5000,2024-01-01\n-2000,2024-12-03\n-500,2025-10-24"
+          )
+        ),
         br(),
         br(),
         br(),
@@ -97,7 +130,53 @@ ui <- shinydashboard::dashboardPage(
 
 
 server <- function(input, output) {
+  omriValues <- reactiveVal(data.frame(value = numeric(0), date = as.Date(character(0))))
   
+  # Remove modal dialog code and update add line observer
+  observeEvent(input$addLine, {
+    req(input$omriValue, input$omriDate)
+    new_value <- as.numeric(input$omriValue)
+    new_date <- as.Date(input$omriDate)
+    
+    if (!is.na(new_value) && !is.na(new_date)) {
+      current_values <- omriValues()
+      updated_values <- rbind(current_values, 
+                              data.frame(value = new_value, date = new_date))
+      omriValues(updated_values)
+      updateTextAreaInput(session, "omriTextArea", 
+                          value = paste0(apply(updated_values, 1, 
+                                               function(row) paste(row, collapse = ",")), 
+                                         collapse = "\n"))
+    }
+  })
+  
+  observeEvent(input$resetLines, {
+    omriValues(data.frame(value = numeric(0), date = as.Date(character(0))))
+    updateTextAreaInput(session, "omriTextArea", value = "")
+  })
+  
+  observeEvent(input$omriTextArea, {
+    lines <- strsplit(input$omriTextArea, "\n")[[1]]
+    parsed_values <- do.call(rbind, lapply(lines, function(line) {
+      parts <- strsplit(line, ",")[[1]]
+      if (length(parts) == 2) {
+        tryCatch({
+          value <- as.numeric(parts[1])
+          date <- as.Date(parts[2], format = "%Y-%m-%d")
+          if (!is.na(value) && !is.na(date)) {
+            data.frame(value = value, date = date)
+          } else {
+            NULL
+          }
+        }, error = function(e) NULL)
+      } else {
+        NULL
+      }
+    }))
+    if (!is.null(parsed_values)) {
+      omriValues(parsed_values)
+    }
+  })
   
   # Helper function to create plots
   createPlot <- function(data_to_plot, species_name = input$select_species) {
@@ -127,18 +206,21 @@ server <- function(input, output) {
       )
     
     # Conditionally add vertical lines and text if input$showLines is TRUE
-    if (input$showLines) {
-      omriValues$date_iso <- format(omriValues$date, "%Y-%m-%d")
-      p <- p %>%
-        layout(
-          xaxis = list(title = "", type = "date"),
-          yaxis2 = list(overlaying = "y", side = "right", title = "Pumping Discharge (cfs)")
-        )
-      for (val in omriValues$date_iso) {
-        corresponding_value <- omriValues$value[omriValues$date == val]
+    current_lines <- omriValues()
+    if (input$showLines && nrow(current_lines) > 0) {
+      for (i in seq_len(nrow(current_lines))) {
         p <- p %>%
-          add_segments(x = val, xend = val, y = 0, yend = max(data_to_plot$daily_total_loss, na.rm = TRUE), yaxis = "y", line = list(color = "grey", width = 1), showlegend = FALSE) %>%
-          add_annotations(x = val, y = max(data_to_plot$daily_total_loss, na.rm = TRUE), text = paste("OMRI:", corresponding_value), showarrow = FALSE, yanchor = "bottom", yaxis = "y", textangle = 90)
+          add_segments(
+            x = current_lines$date[i], xend = current_lines$date[i],
+            y = 0, yend = max(data_to_plot$daily_total_loss, na.rm = TRUE),
+            line = list(color = "grey", width = 1), showlegend = FALSE
+          ) %>%
+          add_annotations(
+            x = current_lines$date[i],
+            y = max(data_to_plot$daily_total_loss, na.rm = TRUE),
+            text = paste("OMRI:", current_lines$value[i]),
+            showarrow = FALSE, yanchor = "bottom", textangle = 90
+          )
       }
     }
     
@@ -150,17 +232,9 @@ server <- function(input, output) {
     req(input$select_plot != "Compare All")
     
     if (input$select_plot == "Combined, CVP & SWP") {
-      combined_df <- bind_rows(
-        steelhead_loss_export_data %>% mutate(Species = "Steelhead"),
-        winter_run_chinook_loss_export_data %>% mutate(Species = "Winter-run Chinook")
-      )
       
       data_to_plot <- combined_df %>% filter(Species == input$select_species)
     } else {
-      combined_df <- bind_rows(
-        steelhead_loss_export_data %>% mutate(Species = "Steelhead"),
-        winter_run_chinook_loss_export_data %>% mutate(Species = "Winter-run Chinook")
-      )
       
       data_to_plot <- combined_df %>% 
         filter(facility == input$select_plot & Species == input$select_species)
@@ -192,10 +266,6 @@ server <- function(input, output) {
   observe({
     if (input$select_plot == "Compare All") {
       output$plot_combined <- renderPlotly({
-        combined_df <- bind_rows(
-          steelhead_loss_export_data %>% mutate(Species = "Steelhead"),
-          winter_run_chinook_loss_export_data %>% mutate(Species = "Winter-run Chinook")
-        )
         
         data_to_plot <- combined_df %>% filter(Species == input$select_species)
         
@@ -203,10 +273,6 @@ server <- function(input, output) {
       })
       
       output$plot_cvp <- renderPlotly({
-        combined_df <- bind_rows(
-          steelhead_loss_export_data %>% mutate(Species = "Steelhead"),
-          winter_run_chinook_loss_export_data %>% mutate(Species = "Winter-run Chinook")
-        )
         
         data_to_plot <- combined_df %>% 
           filter(facility == "CVP" & Species == input$select_species)
@@ -214,10 +280,7 @@ server <- function(input, output) {
       })
       
       output$plot_swp <- renderPlotly({
-        combined_df <- bind_rows(
-          steelhead_loss_export_data %>% mutate(Species = "Steelhead"),
-          winter_run_chinook_loss_export_data %>% mutate(Species = "Winter-run Chinook")
-        )
+        
         data_to_plot <- combined_df %>% 
           filter(facility == "SWP" & Species == input$select_species)
         createPlot(data_to_plot)
