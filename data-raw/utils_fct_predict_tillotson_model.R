@@ -42,8 +42,12 @@ calculateWYWeek <- function(date) {
 }
 
 # Function to check if the data is valid
-is_valid_data <- function(df) {
-  required_columns <- c("sample_time", "facility", "adipose_clip", "lad_race", "loss")
+is_valid_data <- function(df, species_filter) {
+  if(species_filter == "STL") {
+    required_columns <- c("sample_time", "facility", "adipose_clip", "loss")
+    } else if(species_filter == "WCH") {
+    required_columns <- c("sample_time", "facility", "adipose_clip", "lad_race", "loss")
+    }
   all(required_columns %in% colnames(df))
 }
 
@@ -69,7 +73,7 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
   
   # If the data is invalid, load data from the previous water year
 
-  if (!is_valid_data(df_fish_raw)) {
+  if (!is_valid_data(df_fish_raw, species_filter)) {
     previous_url <- sub(paste0("year=", currentWY), paste0("year=", previousWY), species_url)
     df_fish_raw <- read_csv(previous_url) %>%
       janitor::clean_names()
@@ -150,6 +154,7 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
     mutate(WY = year(YMD) + (month(YMD) >= 10)) %>%
     filter(WY %in% if (use_previous_year) previousWY else currentWY) %>%
     mutate(week = sapply(YMD, calculateWYWeek)) %>%
+    select(-c(year,mm,dd,unit,datatype)) %>%
     pivot_wider(names_from = c(location, parameter), values_from = value) %>%
     select(YMD, WY, week, FPT_flow, VNS_flow, Combined_OMRDailyUSGS, TRP_pumping, HRO_pumping, MAL_wtemp) %>%
     mutate(combined_export = TRP_pumping + HRO_pumping) %>%
@@ -160,11 +165,13 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
       weekly_avg_omr = mean(Combined_OMRDailyUSGS, na.rm = TRUE),
       weekly_avg_export = mean(combined_export, na.rm = TRUE),
       weekly_avg_mal_wtemp = mean(MAL_wtemp, na.rm = TRUE)
-    )
+    ) %>% 
+    drop_na() #remove if no data--consider inputting 0 or 1
 
 
   df_combined <- df_fish %>%
-    left_join(df_river, by = "week")
+    left_join(df_river, by = "week") %>% 
+    drop_na() #remove if no data--consider inputting 0 or 1
 
   # list for storing outputs
   tillotsonList <- list()
@@ -181,6 +188,9 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
       daily_exports = df_combined$weekly_avg_export[i],
       species.pw = df_combined$total_weekly_loss[i]
     )
+    
+    NewData<- NewData %>% 
+      replace_na()
 
     # Dynamically rename the species.pw column
     names(NewData)[names(NewData) == "species.pw"] <- species_column_name
