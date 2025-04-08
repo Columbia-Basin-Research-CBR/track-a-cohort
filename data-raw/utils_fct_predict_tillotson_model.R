@@ -26,6 +26,7 @@ startOfWY <- function(date) {
   }
 }
 
+
 weekStartDate <- function(weekNumber, waterYear) {
   waterYearStart <- ymd(paste(waterYear - 1, "10-01", sep = "-"))
   startDateOfWeek <- waterYearStart + days((weekNumber - 1) * 7)
@@ -40,6 +41,7 @@ calculateWYWeek <- function(date) {
   weekNumber <- ceiling(daysSinceStart / 7)
   return(weekNumber)
 }
+
 
 # Function to check if the data is valid
 is_valid_data <- function(df, species_filter) {
@@ -64,6 +66,9 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
   # return years of interest
   years <- previousWY:currentWY
   
+  #set start date of WY
+  start_date_wy <- ymd(paste0(previousWY, "-10-01"))
+  
   # Load the model script
   source(here("data-raw", model_script))
 
@@ -71,8 +76,7 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
   df_fish_raw <- read_csv(species_url) %>%
     janitor::clean_names()
   
-  # If the data is invalid, load data from the previous water year
-
+  # If the data is invalid, load data from the previous water year -- adjusted for if date is past 10/1--see code below
   if (!is_valid_data(df_fish_raw, species_filter)) {
     previous_url <- sub(paste0("year=", currentWY), paste0("year=", previousWY), species_url)
     df_fish_raw <- read_csv(previous_url) %>%
@@ -82,21 +86,31 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
     use_previous_year <- FALSE
   }
   
-  # Determine the water year to use for calendar date assignment
-  waterYearToUse <- if (use_previous_year) previousWY else currentWY
-  
-
 
   # Apply species filter based on the species_filter argument
   # Add check if new WY data is valid, but no species specific data is present yet, use previous year data
+  # Adjusted 4/8/25 to check if date (with no loss) is in the current WY (start date 10/1), then return 0 in place of no data for the current WY and proceed.
   if (species_filter == "STL") {
     df_fish_check <- df_fish_raw %>% filter(species == "Rainbow / Steelhead Trout")
      if (nrow(df_fish_check) == 0) {
+       if(today >= start_date_wy) {
+         # generate week sequence up to current week
+         current_week <- calculateWYWeek(today)
+         weeks <- 1:current_week
+         
+         df_fish <- tibble(
+           week = weeks,
+           total_weekly_loss = rep(0, length(weeks)),
+           calendar_date = sapply(weeks, function(wk) weekStartDate(wk, currentWY))
+         )
+         use_previous_year <- FALSE  # We're using current year, with 0s
+       } else {
       previous_url <- sub(paste0("year=", currentWY), paste0("year=", previousWY), species_url)
       df_fish_raw<- read_csv(previous_url) %>%
         janitor::clean_names()
       df_fish <- df_fish_raw %>% filter(species == "Rainbow / Steelhead Trout")
       use_previous_year <- TRUE
+       }
      } else {
       df_fish <- df_fish_raw %>% filter(species == "Rainbow / Steelhead Trout")
      }
@@ -105,17 +119,33 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
   } else if (species_filter == "WCH") {
     df_fish_check <- df_fish_raw %>% filter(lad_race == "Winter")
     if (nrow(df_fish_check) == 0) {
+      if(today >= start_date_wy) {
+        # generate week sequence up to current week
+        current_week <- calculateWYWeek(today)
+        weeks <- 1:current_week
+        
+        df_fish <- tibble(
+          week = weeks,
+          total_weekly_loss = rep(0, length(weeks)),
+          calendar_date = sapply(weeks, function(wk) weekStartDate(wk, currentWY))
+        )
+        use_previous_year <- FALSE  # We're using current year, with 0s
+      } else {
       previous_url <- sub(paste0("year=", currentWY), paste0("year=", previousWY), species_url)
       df_fish_raw <- read_csv(previous_url) %>%
         janitor::clean_names()
       df_fish <- df_fish_raw %>% filter(lad_race == "Winter")
       use_previous_year <- TRUE
+      }
     } else {
       df_fish <- df_fish_raw %>% filter(lad_race == "Winter")
     }
     species_column_name <- "winter.pw"
     model_to_use <- WR_Simple_Combined[[2]]
   }
+  
+  # Determine the water year to use for calendar date assignment
+  waterYearToUse <- if (use_previous_year) previousWY else currentWY
 
   df_fish <- df_fish %>%
     mutate(
@@ -128,8 +158,8 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
     mutate(week = sapply(date, calculateWYWeek)) %>%
     group_by(week) %>%
     summarise(total_weekly_loss = sum(total_daily_loss)) %>% 
-    mutate(calendar_date = weekStartDate(week, waterYearToUse))
-    # mutate(calendar_date = weekStartDate(week, Sys.Date()))  # Add calendar date column
+    complete(week = 1:calculateWYWeek(today), fill = list(total_weekly_loss = 0)) %>%  # Fill in missing weeks with 0
+    mutate(calendar_date = weekStartDate(week, waterYearToUse)) # Add calendar date column (adjusting week since the previous week is used for the current week prediction)
 
 
   # Set variables of interest for river data import function
@@ -178,7 +208,7 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
 
   for (i in 1:nrow(df_combined)) {
     NewData <- data.frame(
-      wy_week = df_combined$week[i] + 1,
+      wy_week = df_combined$week[i] + 1, #lagging data to use past week data for current water week.
       mal_temp = df_combined$weekly_avg_mal_wtemp[i],
       precip = 1,
       OMR = df_combined$weekly_avg_omr[i],
@@ -188,6 +218,7 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
       daily_exports = df_combined$weekly_avg_export[i],
       species.pw = df_combined$total_weekly_loss[i]
     )
+  
     
     NewData<- NewData %>% 
       replace_na()
