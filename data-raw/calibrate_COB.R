@@ -42,9 +42,9 @@ savenames <- c( "date","water.year", "wy.week",    "month","X7.days","week", "we
   df.main <- read.csv(here("data-raw/AllYears.Intake.csv"))
   # Need to modify datastructure to match original
   df.main <- cbind.data.frame(df.main,"week"=53)
-  minY <- min(useyears)
-  maxY <- max(useyears)
-  df.main <- df.main[df.main$water_year >= minY & df.main$water_year <= maxY,]
+  # minY <- min(useyears)
+  # maxY <- max(useyears)
+  # df.main <- df.main[df.main$water_year >= minY & df.main$water_year <= maxY,]
   df.main$week <- (df.main$julian -1)  %/% 7 + 1
   names(df.main)
   names(df.main)[match("x",names(df.main),nomatch=0)] <- "x"
@@ -133,7 +133,7 @@ savenames <- c( "date","water.year", "wy.week",    "month","X7.days","week", "we
   #combine all weekly salvage in to single data frame
   weekly.salvage <- cbind(steelhead,winter.cl,steel.cl,winter,spring)
   
-  
+  df.covars.filled <- cbind(df.main[,c(3,8,9,10)], df.covars) #cob:run without filled covariates
   #Create weekly averages for covariates
   wy.week <- aggregate(wy.week ~ year.week , data = df.covars.filled, mean)[,2]
   temp.mal <- aggregate(temp.mal ~ year.week , data = df.covars.filled, mean)[,2]

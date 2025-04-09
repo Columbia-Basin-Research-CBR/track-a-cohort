@@ -13,6 +13,9 @@ current_year <- assign_current_water_year()
 # import fct to import river data from SacPAS
 source(here("data-raw/utils_fct_import_river_data.R"))
 
+#import fct to import precipitation data from CDEC
+source(here("data-raw/utils_fct_import_CDEC_precipitation_data.R"))
+
 # import functions needed to run Tillotson model (shared by BOR)
 source(here("R/brt.functions.R"))
 load(here("R/ITMData.rda"))
@@ -38,7 +41,7 @@ weekStartDate <- function(weekNumber, waterYear) {
 calculateWYWeek <- function(date) {
   waterYearStart <- startOfWY(date)
   daysSinceStart <- as.integer(difftime(date, waterYearStart, units = "days"))
-  weekNumber <- ceiling(daysSinceStart / 7)
+  weekNumber <- floor(daysSinceStart / 7) +1
   return(weekNumber)
 }
 
@@ -56,6 +59,7 @@ is_valid_data <- function(df, species_filter) {
 fct_process_and_run_tillotson_model <- function(species_url, species_filter, model_script, species.pw) {
   # To get current WY years of data:
   today <- Sys.Date()
+  
   # Determine the current and previous water years based on today's date
   if (format(today, "%m") >= "10") {
     currentWY <- as.numeric(format(today, "%Y")) + 1
@@ -95,13 +99,13 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
      if (nrow(df_fish_check) == 0) {
        if(today >= start_date_wy) {
          # generate week sequence up to current week
-         current_week <- calculateWYWeek(today)
-         weeks <- 1:current_week
+         current_wyweek <- calculateWYWeek(today)
+         wyweeks <- 1:current_wyweek
          
          df_fish <- tibble(
-           week = weeks,
-           total_weekly_loss = rep(0, length(weeks)),
-           calendar_date = sapply(weeks, function(wk) weekStartDate(wk, currentWY))
+           wyweek = wyweeks,
+           total_weekly_loss = rep(0, length(wyweeks)),
+           calendar_date = sapply(wyweeks, function(wk) weekStartDate(wk, currentWY))
          )
          use_previous_year <- FALSE  # We're using current year, with 0s
        } else {
@@ -121,13 +125,13 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
     if (nrow(df_fish_check) == 0) {
       if(today >= start_date_wy) {
         # generate week sequence up to current week
-        current_week <- calculateWYWeek(today)
-        weeks <- 1:current_week
+        current_wyweek <- calculateWYWeek(today)
+        wyweeks <- 1:current_wyweek
         
         df_fish <- tibble(
-          week = weeks,
-          total_weekly_loss = rep(0, length(weeks)),
-          calendar_date = sapply(weeks, function(wk) weekStartDate(wk, currentWY))
+          wyweek = wyweeks,
+          total_weekly_loss = rep(0, length(wyweeks)),
+          calendar_date = sapply(wyweeks, function(wk) weekStartDate(wk, currentWY))
         )
         use_previous_year <- FALSE  # We're using current year, with 0s
       } else {
@@ -155,11 +159,11 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
     group_by(date) %>%
     summarise(total_daily_loss = sum(loss)) %>%
     ungroup() %>%
-    mutate(week = sapply(date, calculateWYWeek)) %>%
-    group_by(week) %>%
+    mutate(wyweek = sapply(date, calculateWYWeek)) %>%
+    group_by(wyweek) %>%
     summarise(total_weekly_loss = sum(total_daily_loss)) %>% 
-    complete(week = 1:calculateWYWeek(today), fill = list(total_weekly_loss = 0)) %>%  # Fill in missing weeks with 0
-    mutate(calendar_date = weekStartDate(week, waterYearToUse)) # Add calendar date column (adjusting week since the previous week is used for the current week prediction)
+    complete(wyweek = 1:calculateWYWeek(today), fill = list(total_weekly_loss = 0)) %>%  # Fill in missing weeks with 0
+    mutate(calendar_date = weekStartDate(wyweek, waterYearToUse)) # Add calendar date column (adjusting week since the previous week is used for the current week prediction)
 
 
   # Set variables of interest for river data import function
@@ -183,12 +187,12 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
     bind_rows(df_OMR_raw) %>%
     mutate(WY = year(YMD) + (month(YMD) >= 10)) %>%
     filter(WY %in% if (use_previous_year) previousWY else currentWY) %>%
-    mutate(week = sapply(YMD, calculateWYWeek)) %>%
+    mutate(wyweek = sapply(YMD, calculateWYWeek)) %>%
     select(-c(year,mm,dd,unit,datatype)) %>%
     pivot_wider(names_from = c(location, parameter), values_from = value) %>%
-    select(YMD, WY, week, FPT_flow, VNS_flow, Combined_OMRDailyUSGS, TRP_pumping, HRO_pumping, MAL_wtemp) %>%
+    select(YMD, WY, wyweek, FPT_flow, VNS_flow, Combined_OMRDailyUSGS, TRP_pumping, HRO_pumping, MAL_wtemp) %>%
     mutate(combined_export = TRP_pumping + HRO_pumping) %>%
-    group_by(week) %>%
+    group_by(wyweek) %>%
     summarise(
       weekly_avg_fpt_flow = mean(FPT_flow, na.rm = TRUE),
       weekly_avg_vns_flow = mean(VNS_flow, na.rm = TRUE),
@@ -197,10 +201,13 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
       weekly_avg_mal_wtemp = mean(MAL_wtemp, na.rm = TRUE)
     ) %>% 
     drop_na() #remove if no data--consider inputting 0 or 1
-
+  
+  # import precipitation data from CDEC
+  sfs_summed <- fct_import_CDEC_precipitation_data(start_date = start_date_wy, end_date = today)
 
   df_combined <- df_fish %>%
-    left_join(df_river, by = "week") %>% 
+    left_join(df_river, by = "wyweek") %>% 
+    left_join(sfs_summed, by = "wyweek") %>%
     drop_na() #remove if no data--consider inputting 0 or 1
 
   # list for storing outputs
@@ -208,9 +215,10 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
 
   for (i in 1:nrow(df_combined)) {
     NewData <- data.frame(
-      wy_week = df_combined$week[i] + 1, #lagging data to use past week data for current water week.
+      wy_week = df_combined$wyweek[i] + 1, #lagging data to use past week data for current water week.
+      wyweek = df_combined$wyweek[i],
       mal_temp = df_combined$weekly_avg_mal_wtemp[i],
-      precip = 1,
+      precip = df_combined$weekly_5dsum_sfs_precip_cfs[i],
       OMR = df_combined$weekly_avg_omr[i],
       sac = df_combined$weekly_avg_fpt_flow[i],
       sjr = df_combined$weekly_avg_vns_flow[i],
@@ -218,8 +226,7 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
       daily_exports = df_combined$weekly_avg_export[i],
       species.pw = df_combined$total_weekly_loss[i]
     )
-  
-    
+
     NewData<- NewData %>% 
       replace_na()
 
@@ -230,13 +237,15 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
     pred <- predict(model_to_use, newdata = NewData, what = c(0.05, 0.5, 0.95))
     predictions <- data.frame(
       lowerCI = pred[, 1], median = pred[, 2], upperCI = pred[, 3],
-      week = df_combined$week[i],
+      week = df_combined$wyweek[i],
       OMR = df_combined$weekly_avg_omr[i],
       Export = df_combined$weekly_avg_export[i],
       ObservedLoss = df_combined$total_weekly_loss[i],
       weekly_avg_mal_wtemp = df_combined$weekly_avg_mal_wtemp[i],
       weekly_avg_fpt_flow = df_combined$weekly_avg_fpt_flow[i],
       weekly_avg_vns_flow = df_combined$weekly_avg_vns_flow[i],
+      weekly_avg_vns_flow = df_combined$weekly_avg_vns_flow[i],
+      weekly_5dsum_sfs_precip_cfs = df_combined$weekly_5dsum_sfs_precip_cfs[i],
       calendar_date = df_combined$calendar_date[i], # Include calendar date in predictions
       wy = waterYearToUse  # Add water year to predictions
     )
