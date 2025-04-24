@@ -38,7 +38,7 @@ ratio <- ifelse(!any(!is.na(winter_run_chinook_loss_export_data$daily_total_loss
 
 # Define the start and end dates for the water year
 start_date <- as.Date(paste0(previous_year, "-10-01"))
-end_date <- as.Date(paste0(current_year, "-9-30"))
+# end_date <- as.Date(paste0(current_year, "-9-30"))
 
 winter_run_chinook_loss_export_data$facility <- factor(winter_run_chinook_loss_export_data$facility, levels = c("CVP", "SWP"))
 
