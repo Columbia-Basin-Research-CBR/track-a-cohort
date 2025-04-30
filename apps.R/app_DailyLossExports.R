@@ -129,7 +129,7 @@ ui <- shinydashboard::dashboardPage(
 
 
 
-server <- function(input, output) {
+server <- function(input, output, session) {
   omriValues <- reactiveVal(data.frame(value = numeric(0), date = as.Date(character(0))))
   
   # Remove modal dialog code and update add line observer
