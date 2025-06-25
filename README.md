@@ -1,4 +1,4 @@
-# [Track-a-Cohort](https://columbia-basin-research-cbr.github.io/track-a-cohort/www/TAC_chinook_figures.html)
+# [Track-a-Cohort](https://www.cbr.washington.edu/sacramento/cohort/index.html#juvindelta)
 
 *product in development – please note the plots are pending new data inputs for WY2025*
 
