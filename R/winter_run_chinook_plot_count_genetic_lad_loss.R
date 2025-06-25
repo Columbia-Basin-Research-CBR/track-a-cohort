@@ -1,8 +1,7 @@
-#' JPE loss - compare genetic and LAD loss estimates
-#' @description Barplot comparing JPE loss: genetic vs LAD loss estimates.
-#' Currently using a flat file provided by BOR that will be updated once genetic data
-#' is shared with SacPAS. The LAD loss data is imported directly from SacPAS.
-#' @return static barplot comparing JPE loss: genetic v LAD loss estimates
+#' Total loss - compare genetic and LAD loss estimates across years
+#' @description Barplot comparing Total loss: genetic vs LAD loss estimates.
+#' Genetic and LAD loss data is imported directly from SacPAS.
+#' @return static barplot comparing Total loss: genetic v LAD loss estimates
 
 require(tidyverse)
 require(here)
