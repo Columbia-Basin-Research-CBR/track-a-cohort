@@ -1,0 +1,10 @@
+name: track-a-cohort
+title:
+username: caitobrien
+account: caitobrien
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14605462
+bundleId: 10171920
+url: https://caitobrien.shinyapps.io/track-a-cohort/
+version: 1
