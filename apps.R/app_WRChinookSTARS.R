@@ -41,10 +41,42 @@ fct_stars_current_water_year_plot <- function(data, metric, hydro, hydro_type){
       color_palette["Unassigned"] <- "black"
     }
   } else {
-    unique_years <- unique(data$WY)
-    color_palette <- c("#E69F00", "#56B4E9","#009E73","#999999","#0072B2" ,"#D55E00", "#CC79A7", "#F0E442")
-    names(color_palette) <- as.character(unique_years)
+    #if hydro is not selected, assign colors and linetypes by water year
+    
+    # Generate a dynamic color palette and linetype for new years
+    get_color_linetype <- function(unique_years) {
+      
+      # assign max colors available in Okabe-Ito palette
+      max_colors <-  c("#E69F00", "#56B4E9","#009E73","#999999", "#0072B2", "#D55E00", "#CC79A7", "#F0E442") #pulled from: grDevices::palette.colors(9, "Okabe-Ito") w/o black
+      
+      n <- length(unique_years)
+      
+      colors <- rep(max_colors, length.out = n) #repeat paletter if n > max_colors
+      names(colors) <- as.character(unique_years)
+      
+      
+      lty_styles <- c("solid", "dashed", "dotted", "dotdash", "longdash")
+      cycle_index <- floor((seq_len(n) - 1) / length(max_colors))
+      linetypes <- lty_styles[(cycle_index %% length(lty_styles)) + 1]
+      names(linetypes) <- as.character(unique_years)   
+      
+      
+      return(list(colors = colors, linetypes = linetypes))
+    }
+    
+    
+    # Apply to unique years
+    unique_years <- unique(STARS_data$WY)
+    color_linetype <- get_color_linetype(unique_years)
+    
+    # Extract colors and line types
+    color_palette <- color_linetype$colors
+    linetypes <- color_linetype$linetypes
+    
+    # Override the color and line type for the current year
     color_palette[as.character(current_year)] <- "black"
+    linetypes[as.character(current_year)] <- "solid"
+    
   }
   
   p <- plot_ly(data = data, x = ~wDay)
@@ -53,9 +85,11 @@ fct_stars_current_water_year_plot <- function(data, metric, hydro, hydro_type){
     if (hydro == "TRUE") {
       color <- color_palette[as.character(data$hydro_type[data$WY == wy][1])]
       transparency <- if (color %in% c("#D2B48C", "#f1ac1c")) "30" else "10"  # 0.4 transparency for specified colors, 0.2 for others
+      dash_style <- "solid"
     } else {
       color <- color_palette[as.character(wy)]
       transparency <- if (color %in% c("#E69F00", "#F0E442")) "30" else "10"  # 0.4 transparency for specified colors, 0.2 for others
+      dash_style <- linetypes[as.character(wy)]
     }
     
     fillcolor <- if (wy == current_year) "rgba(0, 0, 0, .15)" else paste0(color, transparency) 
@@ -63,9 +97,9 @@ fct_stars_current_water_year_plot <- function(data, metric, hydro, hydro_type){
       add_lines(
         data = data %>% filter(WY == wy),
         y = ~.data[[y_var]], 
-        line = list(width = ifelse(wy == current_year, 3, 1.5)), 
-        color = if (hydro == "TRUE") ~hydro_type else ~as.factor(WY),
-        colors = color_palette,
+        line = list(width = ifelse(wy == current_year, 3, 1.5),
+                    color = color,
+                    dash = dash_style), 
         name = if (hydro == "TRUE") ~paste0(hydro_type, " - WY", WY) else ~paste0("WY", WY),
         hoverinfo = "text",
         text = ~paste("WY:", WY, "<br>Date:", wDate, "<br>Probability:", round(.data[[y_var]],2)),
