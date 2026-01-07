@@ -1,0 +1,56 @@
+"WY"|"jpe"|"status"|"Classification"|"hydro_type"|"hydro_type_grp"|"method"|"value"
+1996|338107|"Pre-2009 BiOp (1994 to 2008)"|"Wet"|"Wet"|"Wet & Above Normal"|"Genetic"|283.97
+1997|165069|"Pre-2009 BiOp (1994 to 2008)"|"Wet"|"Wet"|"Wet & Above Normal"|"Genetic"|34.17
+1998|138316|"Pre-2009 BiOp (1994 to 2008)"|"Wet"|"Wet"|"Wet & Above Normal"|"Genetic"|696.04
+1999|454792|"Pre-2009 BiOp (1994 to 2008)"|"Wet"|"Wet"|"Wet & Above Normal"|"Genetic"|1171.42
+2000|289724|"Pre-2009 BiOp (1994 to 2008)"|"Above Normal"|"Above Normal"|"Wet & Above Normal"|"Genetic"|563.36
+2001|370221|"Pre-2009 BiOp (1994 to 2008)"|"Dry"|"Dry"|"Below Normal, Dry, & Critical"|"Genetic"|14044.09
+2002|1864802|"Pre-2009 BiOp (1994 to 2008)"|"Dry"|"Dry"|"Below Normal, Dry, & Critical"|"Genetic"|664.07
+2003|2136747|"Pre-2009 BiOp (1994 to 2008)"|"Above Normal"|"Above Normal"|"Wet & Above Normal"|"Genetic"|2627.64
+2004|1896649|"Pre-2009 BiOp (1994 to 2008)"|"Below Normal"|"Below Normal"|"Below Normal, Dry, & Critical"|"Genetic"|3045.85
+2006|3831286|"Pre-2009 BiOp (1994 to 2008)"|"Wet"|"Wet"|"Wet & Above Normal"|"Genetic"|1274.14
+2007|3739069|"Pre-2009 BiOp (1994 to 2008)"|"Dry"|"Dry"|"Below Normal, Dry, & Critical"|"Genetic"|1843.25
+2008|NA|"Pre-2009 BiOp (1994 to 2008)"|"Critical"|"Critical"|"Below Normal, Dry, & Critical"|"Genetic"|746.019999999999
+2009|617783|"2009 & 2019 BiOp (2009 to present)"|"Dry"|"Dry"|"Below Normal, Dry, & Critical"|"Genetic"|1208.59
+2010|1179633|"2009 & 2019 BiOp (2009 to present)"|"Below Normal"|"Below Normal"|"Below Normal, Dry, & Critical"|"Genetic"|1929.25000000001
+2011|332012|"2009 & 2019 BiOp (2009 to present)"|"Wet"|"Wet"|"Wet & Above Normal"|"Genetic"|1487.48
+2012|162051|"2009 & 2019 BiOp (2009 to present)"|"Below Normal"|"Below Normal"|"Below Normal, Dry, & Critical"|"Genetic"|900.550000000001
+2013|532809|"2009 & 2019 BiOp (2009 to present)"|"Dry"|"Dry"|"Below Normal, Dry, & Critical"|"Genetic"|197.17
+2014|1196387|"2009 & 2019 BiOp (2009 to present)"|"Critical"|"Critical"|"Below Normal, Dry, & Critical"|"Genetic"|48.45
+2016|101716|"2009 & 2019 BiOp (2009 to present)"|"Below Normal"|"Below Normal"|"Below Normal, Dry, & Critical"|"Genetic"|11.47
+2018|201409|"2009 & 2019 BiOp (2009 to present)"|"Below Normal"|"Below Normal"|"Below Normal, Dry, & Critical"|"Genetic"|97.27
+2019|433176|"2009 & 2019 BiOp (2009 to present)"|"Wet"|"Wet"|"Wet & Above Normal"|"Genetic"|212.36
+2020|854941|"2009 & 2019 BiOp (2009 to present)"|"Dry"|"Dry"|"Below Normal, Dry, & Critical"|"Genetic"|76.93
+2021|330130|"2009 & 2019 BiOp (2009 to present)"|"Critical"|"Critical"|"Below Normal, Dry, & Critical"|"Genetic"|3.88
+2023|49924|"2009 & 2019 BiOp (2009 to present)"|"Wet"|"Wet"|"Wet & Above Normal"|"Genetic"|2.88
+2024|234896|"2009 & 2019 BiOp (2009 to present)"|"Above Normal"|"Above Normal"|"Wet & Above Normal"|"Genetic"|127.43
+2025|98893|"2009 & 2019 BiOp (2009 to present)"|NA|NA|NA|"Genetic"|28.82
+1996|338107|"Pre-2009 BiOp (1994 to 2008)"|"Wet"|"Wet"|"Wet & Above Normal"|"LAD"|2375.77
+1997|165069|"Pre-2009 BiOp (1994 to 2008)"|"Wet"|"Wet"|"Wet & Above Normal"|"LAD"|629.71
+1998|138316|"Pre-2009 BiOp (1994 to 2008)"|"Wet"|"Wet"|"Wet & Above Normal"|"LAD"|1525.19
+1999|454792|"Pre-2009 BiOp (1994 to 2008)"|"Wet"|"Wet"|"Wet & Above Normal"|"LAD"|3715.27
+2000|289724|"Pre-2009 BiOp (1994 to 2008)"|"Above Normal"|"Above Normal"|"Wet & Above Normal"|"LAD"|5828.57
+2001|370221|"Pre-2009 BiOp (1994 to 2008)"|"Dry"|"Dry"|"Below Normal, Dry, & Critical"|"LAD"|20062.05
+2002|1864802|"Pre-2009 BiOp (1994 to 2008)"|"Dry"|"Dry"|"Below Normal, Dry, & Critical"|"LAD"|3331.13
+2003|2136747|"Pre-2009 BiOp (1994 to 2008)"|"Above Normal"|"Above Normal"|"Wet & Above Normal"|"LAD"|6816.57000000001
+2004|1896649|"Pre-2009 BiOp (1994 to 2008)"|"Below Normal"|"Below Normal"|"Below Normal, Dry, & Critical"|"LAD"|7779.19
+2005|881719|"Pre-2009 BiOp (1994 to 2008)"|"Above Normal"|"Above Normal"|"Wet & Above Normal"|"LAD"|1373.12
+2006|3831286|"Pre-2009 BiOp (1994 to 2008)"|"Wet"|"Wet"|"Wet & Above Normal"|"LAD"|2601.28
+2007|3739069|"Pre-2009 BiOp (1994 to 2008)"|"Dry"|"Dry"|"Below Normal, Dry, & Critical"|"LAD"|NA
+2008|NA|"Pre-2009 BiOp (1994 to 2008)"|"Critical"|"Critical"|"Below Normal, Dry, & Critical"|"LAD"|1292.11
+2009|617783|"2009 & 2019 BiOp (2009 to present)"|"Dry"|"Dry"|"Below Normal, Dry, & Critical"|"LAD"|1514.79
+2010|1179633|"2009 & 2019 BiOp (2009 to present)"|"Below Normal"|"Below Normal"|"Below Normal, Dry, & Critical"|"LAD"|1656.16000000001
+2011|332012|"2009 & 2019 BiOp (2009 to present)"|"Wet"|"Wet"|"Wet & Above Normal"|"LAD"|4359.9
+2012|162051|"2009 & 2019 BiOp (2009 to present)"|"Below Normal"|"Below Normal"|"Below Normal, Dry, & Critical"|"LAD"|2079.17
+2013|532809|"2009 & 2019 BiOp (2009 to present)"|"Dry"|"Dry"|"Below Normal, Dry, & Critical"|"LAD"|731.720000000001
+2014|1196387|"2009 & 2019 BiOp (2009 to present)"|"Critical"|"Critical"|"Below Normal, Dry, & Critical"|"LAD"|322.19
+2015|124521|"2009 & 2019 BiOp (2009 to present)"|"Critical"|"Critical"|"Below Normal, Dry, & Critical"|"LAD"|105.9
+2016|101716|"2009 & 2019 BiOp (2009 to present)"|"Below Normal"|"Below Normal"|"Below Normal, Dry, & Critical"|"LAD"|56.41
+2017|166189|"2009 & 2019 BiOp (2009 to present)"|"Wet"|"Wet"|"Wet & Above Normal"|"LAD"|110.65
+2018|201409|"2009 & 2019 BiOp (2009 to present)"|"Below Normal"|"Below Normal"|"Below Normal, Dry, & Critical"|"LAD"|671.15
+2019|433176|"2009 & 2019 BiOp (2009 to present)"|"Wet"|"Wet"|"Wet & Above Normal"|"LAD"|565.65
+2020|854941|"2009 & 2019 BiOp (2009 to present)"|"Dry"|"Dry"|"Below Normal, Dry, & Critical"|"LAD"|196.7
+2021|330130|"2009 & 2019 BiOp (2009 to present)"|"Critical"|"Critical"|"Below Normal, Dry, & Critical"|"LAD"|8.21
+2022|125038|"2009 & 2019 BiOp (2009 to present)"|"Critical"|"Critical"|"Below Normal, Dry, & Critical"|"LAD"|73.04
+2023|49924|"2009 & 2019 BiOp (2009 to present)"|"Wet"|"Wet"|"Wet & Above Normal"|"LAD"|109.89
+2024|234896|"2009 & 2019 BiOp (2009 to present)"|"Above Normal"|"Above Normal"|"Wet & Above Normal"|"LAD"|4208.65999999998

@@ -27,6 +27,12 @@ jpe_genetic_lad_data <- genetic_total_loss_data %>%
     values_to = "value"
   )
 
+csv_data <- jpe_genetic_lad_data %>%
+  mutate(status = gsub("\n", " ", status)) %>%
+  filter(value_type == "pct_total_loss") %>%
+  select(-value_type)
+write.table(csv_data, "docs/www/TAC_chinook_csvs/genetic_lad_percent_loss.csv", row.names = FALSE, sep = "|")
+
 # Get the current timestamp
 timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
 
