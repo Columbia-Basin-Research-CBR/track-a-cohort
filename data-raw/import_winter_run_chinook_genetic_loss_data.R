@@ -50,16 +50,16 @@ df_genetic_loss_sacpas <- loss.wch %>%
   ) %>% 
   select( date, CY, WY, wDay, doy, wDate, loss)
 
-# Identify the first SacPAS data entry date
-first_sacpas_date <- min(df_genetic_loss_sacpas$date)
+min_sacpas_water_year <- 2010
+min_sacpas_water_date <- as.Date(paste0(min_sacpas_water_year, "-10-01"))
 
-# Filter BOR data to include only entries before the first SacPAS date
+# Filter BOR data to include only entries before the minimum date required to
+# use SacPAS data: 10-01-2009
 df_genetic_loss_bor_filtered <- df_genetic_loss_bor %>%
-  filter(date < first_sacpas_date)
+  filter(date < min_sacpas_water_date)
 
 # Combine the filtered BOR dataset and SacPAS generated data
 df_genetic_loss <- bind_rows(df_genetic_loss_bor_filtered, df_genetic_loss_sacpas)
-
 
 # load jpe annual estimates
 load(here::here("data/jpe_annual_data.rda"))
