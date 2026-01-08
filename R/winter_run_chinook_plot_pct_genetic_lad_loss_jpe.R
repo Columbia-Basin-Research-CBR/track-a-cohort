@@ -31,7 +31,12 @@ csv_data <- jpe_genetic_lad_data %>%
   mutate(status = gsub("\n", " ", status)) %>%
   filter(value_type == "pct_total_loss") %>%
   select(-value_type)
-write.table(csv_data, "docs/www/TAC_chinook_csvs/genetic_lad_percent_loss.csv", row.names = FALSE, sep = "|")
+
+csv_path <- here::here("docs/www/TAC_chinook_csvs/")
+if (!dir.exists(csv_path)) {
+  dir.create(csv_path, recursive = TRUE)
+}
+write.table(csv_data, paste0(csv_path, "genetic_lad_percent_loss.csv"), row.names = FALSE, sep = "|")
 
 # Get the current timestamp
 timestamp <- format(Sys.time(), "%d %b %Y %H:%M:%S %Z")
