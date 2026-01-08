@@ -2,7 +2,7 @@
 #' @details
 #' Plots reflect management actions post 2019 BiOp and are subject to revision.
 #' Single Year Threshold for Steelhead:
-#' Natural Central Valley Steelhead (loss = 3000) for a single WY year.
+#' Natural Central Valley Steelhead (loss = 5294) for a single WY year.
 #' Previous management thresholds:
 #' Single-Year Loss Thresholds (PA 4-69, 2019 BiOP)
 #' In each year, typically January/February, Reclamation and DWR propose to avoid exceeding an annual loss threshold equal to 90% of the greatest annual loss that occurred in the historical record 2010-2018 for each of:
@@ -78,7 +78,7 @@ cumloss_current_year <- steelhead_loss_data_unclipped %>%
 
 
 # Set loss threshold -- manually set 
-current_year_100pct <- 3000
+current_year_100pct <- 5294
 current_year_75pct <- current_year_100pct*.75
 current_year_50pct <- current_year_100pct*.50
 
