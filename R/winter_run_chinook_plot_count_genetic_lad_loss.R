@@ -39,7 +39,7 @@ p <- jpe_genetic_lad_data %>%
   labs(
     title = "Genetic vs Length-At-Date (LAD) Total Loss ",
     subtitle = "Species: Natural Winter-run Chinook",
-    caption = paste0("Data sources: Genetic loss provided by USBR. LAD loss from CDFW Salvage Database.\n",timestamp),
+    caption = paste0("Data sources: Genetic loss provided by USBR before Water Year 2010. LAD loss from CDFW Salvage Database.\n",timestamp),
     x = "Water Year",
     y = "Total loss",
     fill = NULL

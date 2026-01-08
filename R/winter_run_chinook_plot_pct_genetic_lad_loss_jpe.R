@@ -38,7 +38,7 @@ p <- jpe_genetic_lad_data %>%
   labs(
     title = "Genetic vs Length-At-Date (LAD) Percent Loss of JPE",
     subtitle = "Species: Natural Winter-run Chinook",
-    caption = paste0("Genetic loss data provided by USBR before Water Year 2020;\nLAD and genetic loss data sourced from the CDFW Salvage Database.\n", timestamp),
+    caption = paste0("Genetic loss data provided by USBR before Water Year 2010;\nLAD and genetic loss data sourced from the CDFW Salvage Database.\n", timestamp),
     x = "Water Year",
     y = "Percent Loss",
     fill = NULL

@@ -147,7 +147,7 @@ p <- cumloss_current_year_filled %>%
   labs(title = paste0("Cumulative Genetic Loss for WY", plot_year, " with Single-Year Thresholds"),
        subtitle = paste0("Species: Natural Winter-run Chinook\nCumulative genetic loss to date: ", max(cumloss_current_year$cumloss),
                          "\n", percent_loss_text),
-       caption = paste0(caption_note, "Genetic loss data provided by USBR before Water Year 2020 otherwise sourced from the CDFW Salvage Database.\n", timestamp),
+       caption = paste0(caption_note, "Genetic loss data provided by USBR before Water Year 2010 otherwise sourced from the CDFW Salvage Database.\n", timestamp),
        x = "Date",
        y = "Cumulative Genetic Loss", 
        color = NULL,
