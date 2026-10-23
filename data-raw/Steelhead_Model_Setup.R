@@ -13,9 +13,14 @@ require(zoo)
 require(caret)
 source(here::here("R/brt.functions.R"))
 select <- dplyr::select
-load(here::here("R/ITMData.rda"))
 
-df.ss <- df.ss%>%mutate(dcc= if_else(dcc==2,"open","closed"))
+df.ss <- read.csv("https://cbr.washington.edu/sacramento/data/generated/tac_weekly_calib.csv")
+df.ss <- df.ss[df.ss$water_year >= 2009 & df.ss$water_year <= 2025,]
+df.week <- df.ss 
+df.week$dcc <- as.factor(df.week$dcc)
+df.ss$dcc <- as.factor(df.ss$dcc)
+df.week <- df.week %>% mutate(dcc= if_else(dcc==1,"open","closed"))
+df.ss <- df.ss %>% mutate(dcc= if_else(dcc==1,"open","closed"))
 
 
 #=========================Flexible function for fitting two-part incidental take model=====================
@@ -43,8 +48,7 @@ hurdle.model <- function(data, response,
     data.pres <- data.frame(data)
   }
   
-  
-  if(binary.form=="rf"){
+ if(binary.form=="rf"){
     
     binary.model <- randomForest(x=data.binary[,binary.predictors],y=data.binary[,resp.loc],
                                  ntree = n.trees,
@@ -57,9 +61,7 @@ hurdle.model <- function(data, response,
   
   
   if(quantile.form=="qrf"&binary.form!="none"){
-    if(log.quant==T){
-    }
-    
+
     quantile.model <- quantregForest(x=data.pres[,quantile.predictors],y=data.pres[,resp.loc],
                                      ntree = n.trees,
                                      importance = T, 
@@ -85,11 +87,10 @@ hurdle.model <- function(data, response,
                                      nodesize=quantile.nodesize)
     
     
-    
     if(is.na(predict.data)==T){
-      prediction.a <- predict(quantile.model,newdata=data,what=which.quant)
+      prediction.a <- predict(quantile.model,newdata=data[,quantile.predictors],what=which.quant)
       
-      Pred_Mean <- predict(quantile.model,newdata=data,what=mean)
+      Pred_Mean <- predict(quantile.model,newdata=data[,quantile.predictors],what=mean)
       
     }else{
       prediction.a <- (predict(quantile.model,newdata=predict.data,what=which.quant))
@@ -122,11 +123,18 @@ hurdle.model <- function(data, response,
   return(list(binary.model,quantile.model,prediction))
 }
 
+# WAS With the previous load(.....rda) 
+# steelhead.pred.cols <- c(2:4,17:21,29)
+# steelhead.response <- "stlhd_loss"
+
+# For CBR input data modifidd to be same is now also:
+steelhead.pred.cols <- c(2:4,17:21,29)
+steelhead.response <- "stlhd_loss"
 
 Stlhd_Simple_Combined <- hurdle.model(data = df.ss,
-                                      response = "stlhd_loss",
+                                      response = steelhead.response,
                                       binary.predictors = NA,
-                                      quantile.predictors = c(2:4,17:21,29),
+                                      quantile.predictors = steelhead.pred.cols,
                                       binary.form = "none",
                                       quantile.form = "qrf",
                                       which.quant = c(0.01,0.05,.1,.25,.5,.75,.9,.95,.99),
@@ -138,6 +146,7 @@ Stlhd_Simple_Combined <- hurdle.model(data = df.ss,
 
 
 #Facilities Separated
+
 Stlhd_Simple_CVP <- hurdle.model(data = df.ss,
                                  response = "stlhd_loss_cvp",
                                  binary.predictors = NA,
@@ -150,6 +159,7 @@ Stlhd_Simple_CVP <- hurdle.model(data = df.ss,
                                  pres.only=F
 )
 
+
 Stlhd_Simple_SWP <- hurdle.model(data = df.ss,
                                  response = "stlhd_loss_swp",
                                  binary.predictors = NA,
@@ -161,7 +171,6 @@ Stlhd_Simple_SWP <- hurdle.model(data = df.ss,
                                  quantile.nodesize = 5,
                                  pres.only=F
 )
-
 
 
 

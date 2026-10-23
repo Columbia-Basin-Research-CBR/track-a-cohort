@@ -12,10 +12,14 @@ require(zoo)
 require(caret)
 source(here("R/brt.functions.R"))
 select <- dplyr::select
-load(here("R/ITMData.rda"))
 
-df.ss <- df.ss%>%mutate(dcc= if_else(dcc==2,"open","closed"))
-
+df.ss <- read.csv("https://cbr.washington.edu/sacramento/data/generated/tac_weekly_calib.csv")
+df.ss <- df.ss[df.ss$water_year >= 2009 & df.ss$water_year <= 2025,]
+df.week <- df.ss 
+df.ss$dcc <- as.factor(df.ss$dcc)
+df.ss <- df.ss %>% mutate(dcc= if_else(dcc==1,"open","closed"))
+df.week$dcc <- as.factor(df.week$dcc)
+df.week <- df.week %>% mutate(dcc= if_else(dcc==1,"open","closed"))
 
 #=========================Flexible function for fitting two-part incidental take model=====================
 
@@ -56,8 +60,6 @@ hurdle.model <- function(data, response,
   
   
   if(quantile.form=="qrf"&binary.form!="none"){
-    if(log.quant==T){
-    }
     
     quantile.model <- quantregForest(x=data.pres[,quantile.predictors],y=data.pres[,resp.loc],
                                      ntree = n.trees,
@@ -83,12 +85,10 @@ hurdle.model <- function(data, response,
                                      rsq = T,
                                      nodesize=quantile.nodesize)
     
-    
-    
     if(is.na(predict.data)==T){
-      prediction.a <- predict(quantile.model,newdata=data,what=which.quant)
+      prediction.a <- predict(quantile.model,newdata=data[,quantile.predictors],what=which.quant)
       
-      Pred_Mean <- predict(quantile.model,newdata=data,what=mean)
+      Pred_Mean <- predict(quantile.model,newdata=data[,quantile.predictors],what=mean)
       
     }else{
       prediction.a <- (predict(quantile.model,newdata=predict.data,what=which.quant))
@@ -117,32 +117,32 @@ hurdle.model <- function(data, response,
   
   prediction <- data.frame(cbind(prediction.a,Pred_Mean))
   
-  
   return(list(binary.model,quantile.model,prediction))
 }
 
 names(df.ss)
-names(df.ss[c(2:4,17:21,29)])
+winter.pred.cols <- c(2:4,17:21,27)
+winter.response <- "winter" 
 
 WR_Simple_Combined <- hurdle.model(data = df.ss,
-                                      response = "winter",
+                                      response = winter.response,
                                       binary.predictors = NA,
-                                      quantile.predictors = c(2:4,17:21,27),
+                                      quantile.predictors = winter.pred.cols,
                                       binary.form = "none",
                                       quantile.form = "qrf",
+                                      predict.data = NA,
                                       which.quant = c(0.01,0.05,.1,.25,.5,.75,.9,.95,.99),
                                       n.trees=500,
                                       quantile.nodesize = 5,
                                       pres.only=F
 )
 
-
-
-#Facilities Separated
+#Facilities Separated 
+# never called
 WR_Simple_CVP <- hurdle.model(data = df.ss,
                                  response = "winter_cvp",
                                  binary.predictors = NA,
-                                 quantile.predictors = c(2:4,17:21,30),
+                                 quantile.predictors = winter.pred.cols,
                                  binary.form = "none",
                                  quantile.form = "qrf",
                                  which.quant = c(0.01,0.05,.1,.25,.5,.75,.9,.95,.99),
@@ -150,11 +150,11 @@ WR_Simple_CVP <- hurdle.model(data = df.ss,
                                  quantile.nodesize = 5,
                                  pres.only=F
 )
-
+# never called
 WR_Simple_SWP <- hurdle.model(data = df.ss,
-                                 response = "winter",
+                                 response = "winter_swp",
                                  binary.predictors = NA,
-                                 quantile.predictors = c(2:4,17:21,33),
+                                 quantile.predictors = winter.pred.cols,
                                  binary.form = "none",
                                  quantile.form = "qrf",
                                  which.quant = c(0.01,0.05,.1,.25,.5,.75,.9,.95,.99),
@@ -162,7 +162,6 @@ WR_Simple_SWP <- hurdle.model(data = df.ss,
                                  quantile.nodesize = 5,
                                  pres.only=F
 )
-
 
 
 

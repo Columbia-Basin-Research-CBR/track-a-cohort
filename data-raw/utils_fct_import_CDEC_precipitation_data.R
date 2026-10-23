@@ -19,7 +19,7 @@ query_url <- sprintf(
   station, sensor_num, dur_code, start_date, end_date
 )
 
-sfs_raw<-data.table::fread(query_url)
+sfs_raw<-data.table::fread(query_url,verbose=FALSE,showProgress=FALSE)
 
 sfs_wrangled<-sfs_raw %>% 
   as_tibble() %>% 
@@ -29,17 +29,14 @@ sfs_wrangled<-sfs_raw %>%
   mutate(wyweek = sapply(date, calculateWYWeek),
          value = as.numeric(value))
 
-sfs_summed<-sfs_wrangled %>% 
-  arrange(date) %>% 
-  mutate(precip_5day_total = rollapply(value, width = 5, align = "right", fill = NA, FUN = sum),
-         precip_cfs = precip_5day_total / 0.00017448) %>%  #constant provided by CBR to convert inches to cfs at SFS station instead of using DAYFLOW a retrospective value used in Tillotson et al. 2022
-group_by(wyweek) %>% 
+# precip is summed and not converted to flow
+sfs_summed<-sfs_wrangled %>%
+  arrange(date) %>% mutate(precip = value)     
+sfs_summed <- sfs_summed %>% group_by(wyweek) %>% 
   summarise(
-    weekly_5dsum_sfs_precip = if (all(is.na(precip_cfs))) 0 else max(precip_cfs, na.rm = TRUE),
-    .groups = "drop",
-    weekly_5dsum_sfs_precip_cfs = weekly_5dsum_sfs_precip/1000
-  ) %>% 
-  select(wyweek, weekly_5dsum_sfs_precip_cfs)
+    weekly_precip = if (all(is.na(precip))) 0 else sum(precip, na.rm = TRUE),
+    .groups = "drop"  ) %>% 
+  select(wyweek, weekly_precip)
 
 return(sfs_summed)
 }

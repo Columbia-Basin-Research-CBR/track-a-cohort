@@ -22,7 +22,7 @@ fct_import_SacPAS_river_conditions_query <- function(sites, years, metrics) {
                     "&tempUnit=C&startdate=1%2F1&enddate=12%2F31&avgyear=0&consolidate=1&grid=1&y1min=&y1max=&y2min=&y2max=&size=medium")
       
       # Read data using fread
-      raw_data <- data.table::fread(url)
+      raw_data <- data.table::fread(url,verbose=FALSE,showProgress=FALSE)
       
       # wrangle data
       wrangled_data <- raw_data %>%

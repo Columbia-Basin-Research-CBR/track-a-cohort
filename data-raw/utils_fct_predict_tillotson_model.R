@@ -18,7 +18,12 @@ source(here("data-raw/utils_fct_import_CDEC_precipitation_data.R"))
 
 # import functions needed to run Tillotson model (shared by BOR)
 source(here("R/brt.functions.R"))
-load(here("R/ITMData.rda"))
+# SacPAS data file
+df.week <- df.ss <- read.csv("https://cbr.washington.edu/sacramento/data/generated/tac_weekly_calib.csv")
+df.week$dcc <- as.factor(df.week$dcc)
+df.ss$dcc <- as.factor(df.ss$dcc)
+df.week <- df.week %>% mutate(dcc= if_else(dcc==1,"open","closed"))
+df.ss <- df.ss %>% mutate(dcc= if_else(dcc==1,"open","closed"))
 
 # Define the start if WY and weekstart to set dates
 startOfWY <- function(date) {
@@ -29,14 +34,11 @@ startOfWY <- function(date) {
   }
 }
 
-
 weekStartDate <- function(weekNumber, waterYear) {
   waterYearStart <- ymd(paste(waterYear - 1, "10-01", sep = "-"))
   startDateOfWeek <- waterYearStart + days((weekNumber - 1) * 7)
   return(startDateOfWeek)
 }
-
-
 
 calculateWYWeek <- function(date) {
   waterYearStart <- startOfWY(date)
@@ -44,7 +46,6 @@ calculateWYWeek <- function(date) {
   weekNumber <- floor(daysSinceStart / 7) +1
   return(weekNumber)
 }
-
 
 # Function to check if the data is valid
 is_valid_data <- function(df, species_filter) {
@@ -76,9 +77,9 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
   # Load the model script
   source(here("data-raw", model_script))
 
-  # weekly loss totals differ from BOR supplied code -- need to verify discrepancies
-  df_fish_raw <- read_csv(species_url) %>%
-    janitor::clean_names()
+  # weekly loss totals
+  df_fish_raw <- read_csv(species_url,comment='\"')
+  df_fish_raw <- df_fish_raw %>% janitor::clean_names()
   
   # If the data is invalid, load data from the previous water year -- adjusted for if date is past 10/1--see code below
   if (!is_valid_data(df_fish_raw, species_filter)) {
@@ -218,7 +219,8 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
       wy_week = df_combined$wyweek[i] + 1, #lagging data to use past week data for current water week.
       wyweek = df_combined$wyweek[i],
       mal_temp = df_combined$weekly_avg_mal_wtemp[i],
-      precip = df_combined$weekly_5dsum_sfs_precip_cfs[i],
+      # use sum mraw precip ONLY
+      precip = df_combined$weekly_precip[i],
       OMR = df_combined$weekly_avg_omr[i],
       sac = df_combined$weekly_avg_fpt_flow[i],
       sjr = df_combined$weekly_avg_vns_flow[i],
@@ -245,7 +247,7 @@ fct_process_and_run_tillotson_model <- function(species_url, species_filter, mod
       weekly_avg_fpt_flow = df_combined$weekly_avg_fpt_flow[i],
       weekly_avg_vns_flow = df_combined$weekly_avg_vns_flow[i],
       weekly_avg_vns_flow = df_combined$weekly_avg_vns_flow[i],
-      weekly_5dsum_sfs_precip_cfs = df_combined$weekly_5dsum_sfs_precip_cfs[i],
+      weekly_precip = df_combined$weekly_precip[i],
       calendar_date = df_combined$calendar_date[i], # Include calendar date in predictions
       wy = waterYearToUse  # Add water year to predictions
     )
