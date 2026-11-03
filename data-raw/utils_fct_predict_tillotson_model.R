@@ -36,49 +36,56 @@ fct_process_and_run_tillotson_model <- function(species) {
   }
 
   current_water_year_data <- tac_weekly_calib_data[tac_weekly_calib_data$water_year == current_water_year,]
-  for (i in 1:nrow(current_water_year_data)) {
-    input_data <- data.frame(
-      wy_week = current_water_year_data$wy_week[i] + 1,
-      wyweek = current_water_year_data$wy_week[i],
-      mal_temp = current_water_year_data$mal_temp[i],
-      precip = current_water_year_data$precip[i],
-      OMR = current_water_year_data$OMR[i],
-      sac = current_water_year_data$sac[i],
-      sjr = current_water_year_data$sjr[i],
-      dcc = "closed",
-      daily_exports = current_water_year_data$daily_exports[i]
-    )
-    if (species == "STL") {
-      input_data$stlhd_loss.pw = current_water_year_data$stlhd_loss.pw[i]
-    } else if (species == "WCH") {
-      input_data$winter.pw = current_water_year_data$winter.pw[i]
-    }
 
-    pred <- predict(model_to_use, newdata = input_data, what = c(0.05, 0.5, 0.95))
-    predictions <- data.frame(
-      lowerCI = pred[, 1], median = pred[, 2], upperCI = pred[, 3]
-    )
-    predictions <- predictions %>%
-      bind_cols(input_data) %>%
-      rename(
-        week = wyweek,
-        Export = daily_exports,
-        weekly_avg_mal_wtemp = mal_temp,
-        weekly_avg_fpt_flow = sac,
-        weekly_avg_vns_flow = sjr,
-        weekly_precip = precip
-      ) %>%
-      select(-c(wy_week, dcc)) %>%
-      mutate(
-        wy = current_water_year_data$water_year[i],
-        calendar_date = current_water_year_data$date[i]
+  num_rows <- nrow(current_water_year_data)
+  if (num_rows > 0) {
+    for (i in 1:num_rows) {
+      input_data <- data.frame(
+        wy_week = current_water_year_data$wy_week[i] + 1,
+        wyweek = current_water_year_data$wy_week[i],
+        mal_temp = current_water_year_data$mal_temp[i],
+        precip = current_water_year_data$precip[i],
+        OMR = current_water_year_data$OMR[i],
+        sac = current_water_year_data$sac[i],
+        sjr = current_water_year_data$sjr[i],
+        dcc = "closed",
+        daily_exports = current_water_year_data$daily_exports[i]
       )
-    if (species == "STL") {
-      predictions <- predictions %>% rename(ObservedLoss = stlhd_loss.pw)
-    } else if (species == "WCH") {
-      predictions <- predictions %>% rename(ObservedLoss = winter.pw)
+      if (species == "STL") {
+        input_data$stlhd_loss.pw = current_water_year_data$stlhd_loss.pw[i]
+      } else if (species == "WCH") {
+        input_data$winter.pw = current_water_year_data$winter.pw[i]
+      }
+
+      # If any input value in this row is NA, don't run a prediction.
+      if (anyNA(input_data)) next
+
+      pred <- predict(model_to_use, newdata = input_data, what = c(0.05, 0.5, 0.95))
+      predictions <- data.frame(
+        lowerCI = pred[, 1], median = pred[, 2], upperCI = pred[, 3]
+      )
+      predictions <- predictions %>%
+        bind_cols(input_data) %>%
+        rename(
+          week = wyweek,
+          Export = daily_exports,
+          weekly_avg_mal_wtemp = mal_temp,
+          weekly_avg_fpt_flow = sac,
+          weekly_avg_vns_flow = sjr,
+          weekly_precip = precip
+        ) %>%
+        select(-c(wy_week, dcc)) %>%
+        mutate(
+          wy = current_water_year_data$water_year[i],
+          calendar_date = current_water_year_data$date[i]
+        )
+      if (species == "STL") {
+        predictions <- predictions %>% rename(ObservedLoss = stlhd_loss.pw)
+      } else if (species == "WCH") {
+        predictions <- predictions %>% rename(ObservedLoss = winter.pw)
+      }
+      result_list[[i]] <- predictions
     }
-    result_list[[i]] <- predictions
   }
 
   return(bind_rows(result_list))
