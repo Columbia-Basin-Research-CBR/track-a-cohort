@@ -10,12 +10,6 @@ require(here)
 require(data.table)
 
 fct_process_and_run_tillotson_model <- function(species) {
-  # TODO: Is janitor::clean_names() needed?
-  # TODO: Do NA rows need to be removed? Is replace_na() needed on input data?
-  # TODO: What to do when there is no data?
-  # TODO: Handle the full water year.
-  # TODO: Delete unused code.
-
   if (species == "STL") {
     # Load the model script
     source(here("data-raw", "Steelhead_Model_Setup.R"))
@@ -44,23 +38,19 @@ fct_process_and_run_tillotson_model <- function(species) {
   current_water_year_data <- tac_weekly_calib_data[tac_weekly_calib_data$water_year == current_water_year,]
   for (i in 1:nrow(current_water_year_data)) {
     input_data <- data.frame(
-      # TODO: Is this correct? "lagging data to use past week data for current water week."
       wy_week = current_water_year_data$wy_week[i] + 1,
       wyweek = current_water_year_data$wy_week[i],
       mal_temp = current_water_year_data$mal_temp[i],
-      # TODO: What does this mean? "use sum mraw precip ONLY"
       precip = current_water_year_data$precip[i],
       OMR = current_water_year_data$OMR[i],
       sac = current_water_year_data$sac[i],
       sjr = current_water_year_data$sjr[i],
       dcc = "closed",
-      # TODO: Is this correct? daily, not weekly exports?
       daily_exports = current_water_year_data$daily_exports[i]
     )
     if (species == "STL") {
       input_data$stlhd_loss.pw = current_water_year_data$stlhd_loss.pw[i]
     } else if (species == "WCH") {
-      # TODO: Is this correct, one is _loss and the other isn't?
       input_data$winter.pw = current_water_year_data$winter.pw[i]
     }
 
@@ -93,9 +83,6 @@ fct_process_and_run_tillotson_model <- function(species) {
 
   return(bind_rows(result_list))
 }
-
-# TODO: Are these columns in the output needed? weekly_avg_vns_flow.1, weekly_5dsum_sfs_precip_cfs
-# TODO: How do I check these results are correct?
 
 # Winter-run
 winter_run_tillotson_output <- fct_process_and_run_tillotson_model(species = "WCH")
